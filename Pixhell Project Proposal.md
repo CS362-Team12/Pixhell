@@ -21,8 +21,15 @@ Unity \- [https://unity.com/](https://unity.com/)
 
 ## Communication: 
 
-Main \- Discord Server  
-Backup \- Email
+Primary \- Discord Server  
+Secondary \- Email
+
+### Rules:
+
+* Prompt response (within 8 hours, excluding 12 am \- 8 am)  
+* Whenever a member is stuck or confused, reach out for help  
+* If you have an emergency, communicate that to the team as soon as possible so they are aware   
+* Be respectful in all communications and keep communications professional
 
 # Product Description
 

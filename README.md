@@ -8,3 +8,5 @@ Pixhell is a bullet-hell rogue-lite that challenges players to survive and conqu
 We are creating a replayable rogue-lite bullet-hell game involving making it through the nine circles of Hell to eventually battle the Devil. The game will include meta-progression, different characters, weapons, and enemies. The goal is to provide users with an enjoyable experience of progression and discovery in a chaotic challenge.
 
 Trello: https://trello.com/b/1FqZ28jJ/pt12pixhell
+Living Document is at /Pixhell Living Document.md
+Reports found at /reports/

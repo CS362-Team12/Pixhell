@@ -1,6 +1,6 @@
 # Team Info \- Pixhell
 
-## Names and Roles: {#names-and-roles:}
+## Names and Roles:
 
 Joshua Knowles \- SCM, Deadline Management, Design  
 Brendan Laus \- Design \- Map Focus, Item Creation  
@@ -383,7 +383,8 @@ Our greatest potential risk would be picking a project that is far too large for
 * Implement sound design to make the game pop, both through sound effects and music  
 * Add in-depth lore and story element
 
-## [Team Info](#names-and-roles:)
+## Team Info
+See top of document
 
 ## Timeline
 

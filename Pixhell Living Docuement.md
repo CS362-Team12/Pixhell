@@ -398,3 +398,22 @@ Week 7: Sound design for player and some enemies and boss is done. Animation for
 Week 8: Working on one to two levels. Developing enemies for the levels. Sound design and general debugging as we playtest.  
 Week 9: Mostly this week the game will roughly be done and the main focus for this will be the final levels and debugging as we go through and test more and more.  
 Week 10: Publish the finished product.
+
+# Project Architecture and Design
+
+## Software Architecture
+
+## Software Design
+
+## Coding Guideline
+
+## Process Description
+### Risk Assessment
+
+### Project Schedule
+
+### Team Structure
+
+### Test Plan & Bugs
+
+### Documentation Plans

@@ -9,6 +9,9 @@ public class LoadCharacterSaves : MonoBehaviour
     private int runCount = 0;
     private string path = Application.streamingAssetsPath;
 
+    public GameObject buttonPrefab;
+    public Transform panelContainer;
+
     void Start()
     {
         Debug.Log(path);
@@ -25,14 +28,29 @@ public class LoadCharacterSaves : MonoBehaviour
     }
 
     void AddRunToPanel(string filePath) {
-        // IMPLEMENT
+        // STILL BUGGY
         try
             {
                 // Open the file and read the first line
                 using (StreamReader reader = new StreamReader(filePath))
                 {
-                    string firstLine = reader.ReadLine();  // Reads the first line of the file
-                    // NEED FUNCTIONALITY HERE
+                    string firstLine = reader.ReadLine();  // Read the first line of the file
+
+                // Instantiate a new button from the prefab
+                GameObject newButton = Instantiate(buttonPrefab, panelContainer);
+
+                // Get the button's text component
+                Text buttonText = newButton.GetComponentInChildren<Text>();
+
+                // Set the button's text to the first line of the file
+                if (buttonText != null)
+                {
+                    buttonText.text = firstLine;
+                }
+
+                // Add functionality when the button is clicked
+                Button button = newButton.GetComponent<Button>();
+                button.onClick.AddListener(() => EnterRun(filePath));
                     
                 }
             }
@@ -80,5 +98,10 @@ public class LoadCharacterSaves : MonoBehaviour
             Debug.Log("New run created with filename: " + filePath);
         }
         AddRunToPanel(filePath);
+    }
+
+    void EnterRun(string filePath) {
+
+        SceneManager.LoadScene("Lobby")
     }
 }

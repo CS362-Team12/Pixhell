@@ -403,6 +403,76 @@ Week 10: Publish the finished product.
 
 ## Software Architecture
 
+**Functionality:**
+
+1. Scenes  
+   1. Using Unity’s built-in scenes to store permanent features like menu buttons, lobby design, and arenas  
+      1. Includes scenes such as a main menu, run loading screen, lobby, and arenas  
+2. UI Management  
+   1. Manage the movement between scenes and menus through the use of interactable buttons  
+   2. Display different HUDs or ‘heads-up display’  
+3. Player Data Storage  
+   1. Load and save player data to allow multiple gameplay saves  
+      1. Data includes arena progress, items, level, and money  
+      2. Using a “Runs” folder that stores text files within it with information such as current player arena, inventory items, and money  
+         1. These get continually updated as the player progresses through the game  
+4. Item Registry  
+   1. Store item functionality in individual scripts for each item, with links to the asset art  
+5. Assets  
+   1. Visuals and animations for maps, characters, enemies, and UI  
+      1. Will include character and enemy attack animations, pixel art, and item styling  
+6. Game Logic  
+   1. Calculates all instances of damage that a player or enemy does  
+      1. Incorporates player upgrades and items  
+   2. Updates the stats for the player  
+   3. Update player item inventory and shop inventory
+
+**Interfacing:**
+
+| Function | Interface | How |
+| :---- | :---- | :---- |
+| Scenes | UI Management | Scenes are moved between using buttons on the UI, which are controlled by UI management. |
+| UI Management | Scenes, Assets, Item Registry | Controls the transitions between scenes (including menus), and loads up assets in places like the shopkeeper |
+| Player Data Storage | Game Logic | Saves and loads the items that the player has, allowing the Game Logic to read and calculate numbers based on the player's inventory and leveling data |
+| Item Registry | Game Logic, Assets | Items properties are pulled from the registry to be used in the game logic, and the registry contains file locations in the item assets folder |
+| Assets | UI Management, Game Logic | Art and animations are loaded through triggers like opening the shopkeeper (UI Management), as well as when the player or an enemy attack (Game Logic) |
+| Game Logic | Assets, Item Registry | Display different sprites requested from Assets. Using items’ properties from the Item Registry to calculate instances of damage. |
+
+**Assumptions:**
+
+1. Scenes  
+   1. We are assuming that Unity’s built-in scene function is working without bugs and can be manipulated in the way we want  
+   2. We are assuming these scenes will meet our performance requirements.  
+2. Asset imports  
+   1. We are assuming that both our custom-made sprites and ones we find elsewhere (like the Unity store) will be easily imported into our game and look and function the same way as we expected  
+3. Buttons and UI  
+   1. We will be using Unity’s built-in event system to interact with the buttons and other UI features, like a scrollable menu, so are assuming that these features are easy to work with and customizable in the way we want  
+4. Global Data Storage  
+   1. We are assuming that it is possible to store and pass information about the player across scenes in order to do calculations and modify game behavior accordingly
+
+**Alternative Decisions:**
+
+1. Player Run Data Storage  
+   1. **Current Choice:** A single folder containing text files for each individual run, with each file containing the current highest arena, inventory, and coins.  
+   2. **Alternative**: A MySQL database with tables to store player and individual run information  
+      1. Pros  
+         1. Permanent data storage that allows players to access their runs from multiple computers  
+         2. Acts an easily backupable system to prevent players from losing save data  
+      2. Cons  
+         1. Unnecessarily complex for a single-player game, and would require some form of account authentication to ensure that the correct  
+         2. Would turn an offline single-player game into one that requires some form of internet connection  
+         3. Would require constant maintenance and fees to keep a database up and running  
+2. Scene Storage  
+   1. **Current Choice**: Using Unity’s individual scene system and editor to store UI elements and other parts of game design directly on the scene, with several scenes that are constantly transitioned between in gameplay  
+   2. **Alternative:** Have a single scene that has UI elements and other parts of the game loaded through scripts in real time.  
+      1. Pros  
+         1. Requires less overall storage due to the reduction in scenes  
+         2. Makes viewing changes to scenes through GitHub much easier, rather than having to completely reload the Unity build to view changes  
+      2. Cons  
+         1. Requires much more scripting for simple features that Unity already handles  
+         2. Making small changes to scenes becomes much more tedious as there is no way to view changes in real-time  
+         3. Generally removes the purpose of using a game engine
+
 ## Software Design
 
 ## Coding Guideline

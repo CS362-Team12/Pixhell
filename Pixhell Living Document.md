@@ -412,6 +412,25 @@ Week 10: Publish the finished product.
 
 ### Project Schedule
 
+| Milestone | Tasks | Effort Estimation | Dependencies |
+| :---- | :---- | :---- | :---- |
+| Game Concept | Define game theme, mechanics, design, and progression | 3 weeks | N/A |
+| Player Movement | Player movement, dashing | 1 week | GitHub and Unity setup |
+| Player attacks | Left click attack for swordsman, archer, and mage, as well as single special attack | 3 weeks | Player Movement |
+| Base Menu (Start Menu, Run Selection, Pause Menus) | Implement working buttons, screen transitions, backend file system for storing data for swapping screens | 3 weeks | N/A |
+| Lobby Functionality | Design and implement portal loading system forr each arena, as well as shopkeeper UI | 2 weeks | N/A |
+| Basic enemy spawning | Implement a wave spawning system that will be used universally, design simple enemy AI to move towards and attack the player, health and stats for each enemy | 3 weeks | Player Movement, Player attacks |
+| Player and Enemy health and attacks | Allow player attacks to damage enemies, and enemy attacks to damage the player, and implement death mechanics for both. | 2 weeks | Basic Enemy Spawning |
+| Coin and Leveling system | Implement dropable experience and coins from enemies that the player can obtain and spend on upgrades | 1 week | Player and Enemy Health and Attacks |
+| Shopkeeper and Item progression | Implement shopkeeper functionality and allow players to purchase items with coins | 2 weeks | Coin and Leveling System |
+| Implement Item Functionality | Introduce purchasable items for the player that impact gameplay (Increase damage, alter attack, increase health, etc) | 3 weeks | Shopkeeper and Item Progression |
+| Arena Design | Design Arenas for the player to fight in | 5 weeks | N/A |
+| Enemy and Player Visual Design | Design player and enemy animations and sounds | 2 weeks | N/A |
+| Lobby Design | Design the lobby and its portals, as well as the shopkeeper UI and item UI | 2 weeks | N/A |
+| Bosses | Implement Mini-Bosses and Final Bosses that unlock the next level for the player to access | 3 weeks | Shopkeeper and Item Progression |
+| In-Run Leveling Upgrades | Implement on-the-go upgrades for players to purchase through the leveling system to make them stronger during arena fights. Will include upgrades like health, damage, or attack speed. | 2 weeks | Coin and Leveling System |
+| General Play Testing | Ensure gameplay seamlessly transitions between levels, attacks from the player and enemies work, and the player can upgrade their character and save run data | 1 week | In-Run Leveling Upgrades (Includes all previous mechanics-focused goals) |
+
 ### Team Structure
 
 ### Test Plan & Bugs

@@ -451,3 +451,8 @@ UI and Misc:
 For any additional changes that may be seen frequently, we will hopefully be thorough before implementing any new features. If bugs are seen in these elements, be it UI or random bugs, we will isolate these issues in either the testing map or the main menu to best see how our changes will affect the game’s look and feel. If these bugs are more foundational, we will call an emergency meeting or directly @ the people whose design would be most affected. This will keep our group on the same page, as well as keep each design element in the hands of those who will be most knowledgeable about it.
 
 ### Documentation Plans
+
+### Game Theme:
+
+Our theme is to follow a rough baseline of ancient Italy (Rome).
+All items and maps will accordingly follow through on this idea (excluding the main hub). This will create a stark contrast between the hub world of Limbo, being an office building with a central elevator to travel between each level beneath it.

@@ -451,6 +451,23 @@ UI and Misc:
 For any additional changes that may be seen frequently, we will hopefully be thorough before implementing any new features. If bugs are seen in these elements, be it UI or random bugs, we will isolate these issues in either the testing map or the main menu to best see how our changes will affect the game’s look and feel. If these bugs are more foundational, we will call an emergency meeting or directly @ the people whose design would be most affected. This will keep our group on the same page, as well as keep each design element in the hands of those who will be most knowledgeable about it.
 
 ### Documentation Plans
+To ensure that the user experience is smooth and comprehensive, Pixhell will include two primary forms of documentation.
+1. User Guide (Player Manual)
+* This document will target players and provide basic instructions on how to play the game, understand core game mechanics, and troubleshoot any common issues with a FAQ section.
+* The User Guide will contain:
+    * A general game overview
+    * Basic controls & combat mechanics
+    * Stage progression information
+    * Upgrade information
+    * FAQ (common troubleshooting steps)
+* The User Guide will be in PDF form and will be bundled with the game. This will be created once major gameplay features are finalized conceptually and have begun implementation.
+2. In-Game Help Menu
+* This document will target players and mirror some of the essential knowledge laid out in the User Guide, but in a much more concise and readable way for reference in the menu of the game.
+* The Help Menu will contain:
+    * Quick reference for controls and key bindings
+    * Quick and accessible explanations for mechanics
+* The Help Menu will be available at all times inside the game alongside where settings will be.
+
 
 ### Game Theme:
 

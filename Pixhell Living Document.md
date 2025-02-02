@@ -434,5 +434,20 @@ Week 10: Publish the finished product.
 ### Team Structure
 
 ### Test Plan & Bugs
+Brendan Laus:
+
+We will isolate and test each small change to the game software as required. These different requirements and testing implementations will be listed below:
+
+Mechanics:
+Game mechanics will be tested in a mostly empty map with an enemy, the player character, and whatever additional hazards the character will frequently interact with. There will also be a custom item spawner to test different components and how they interact with each other. This means that each new element can be tested as it relates to the standard gameplay loop. This enables us to see if the desired mechanical change will properly affect the player, enemies, and whatever items may relate to it.
+
+Items:
+Items will follow the same path, primarily being spawned into this test world. This will allow us to isolate item effects and see how they change the player’s movement, health, damage, attacks, and any additional impacted core game mechanics. This will permit us to see potential edge cases, as well as how each item feels to use, and permit minor changes to be made and allow us to see how these changes impact gameplay.
+
+Maps:
+Maps will be a bit tougher to isolate given elements, so we will mostly be trying to test out individual maps while incrementally adding the designated features of said map. For example, the circle of greed will first have its basic shape and structure implemented and tested. This would mean that the foundation of the map would be tested, and then any additional unique features would be tested after. The final test of any map will be the enemy entities since these will likely be the most difficult to effectively balance. But by testing all other elements of a given map first, we will be able to see how the map feels to play before adding and changing the enemy code.
+
+UI and Misc:
+For any additional changes that may be seen frequently, we will hopefully be thorough before implementing any new features. If bugs are seen in these elements, be it UI or random bugs, we will isolate these issues in either the testing map or the main menu to best see how our changes will affect the game’s look and feel. If these bugs are more foundational, we will call an emergency meeting or directly @ the people whose design would be most affected. This will keep our group on the same page, as well as keep each design element in the hands of those who will be most knowledgeable about it.
 
 ### Documentation Plans

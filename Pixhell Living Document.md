@@ -475,6 +475,83 @@ Week 10: Publish the finished product.
 
 ## Software Design
 
+1. Scenes
+
+	Scenes in Unity are self-contained environments that store the game’s visual and functional elements. They are used to organize different aspects of the game, such as menus, lobbies, and gameplay arenas.
+
+Functionality:  
+Separates UI elements from gameplay mechanics.  
+Loads different parts of the game depending on the player’s progression.
+
+Key Scenes:  
+Main Menu: Displays options like new game, load game, and settings.  
+Run Loading Screen: Handles transitions between game states.  
+Lobby: A hub where players can prepare before entering an arena.  
+Arenas: The core gameplay environments where combat and progression take place.
+
+2. UI Management  
+   Handles user interactions, scene transitions, and HUD updates.  
+     
+   Functionality:  
+   Handles transitions between menus and scenes.  
+   Displays and updates the HUD dynamically.  
+     
+   Key Elements:  
+   Scene Manager: Handles switching between game scenes.  
+   HUD Manager: Displays player stats, inventory, and game notifications.
+
+   Button Handlers: Manages UI interactions such as clicking buttons or toggling settings.
+
+     
+3. Player Data Storage  
+   Stores and manages persistent player data such as progress, items, and money, ensuring it can be saved and reloaded.  
+     
+   Functionality:  
+   Saves and loads multiple gameplay runs.
+
+   Maintains player-specific data such as arena progress, inventory, level, and money.
+
+     
+   Storage Mechanism:  
+   Uses a folder containing text files that store player state.  
+     
+4. Item Registry  
+   Stores and defines item functionality, linking individual items to their corresponding assets and scripts.  
+     
+   Functionality:  
+   Stores functionality for each item in a dedicated script.  
+   Connects item scripts with corresponding visual assets.  
+     
+   Key Elements:  
+   Item Scripts: Defines behavior and effects of each item.  
+   Asset Links: Stores paths to corresponding images or animations.
+
+5. Assets  
+   Holds all graphical and audio elements, such as character animations, enemy designs, UI elements, and pixel art.  
+     
+   Functionality:  
+   Provides animations for characters, enemies, and UI elements.  
+   Stores pixel art for maps, items, and environments.  
+     
+   Key Elements:  
+   Sprite Sheets: Contains all pixel art for 2D rendering.  
+   Animation Controllers: Defines animation states and transitions.  
+     
+     
+6. Game Logic
+
+	Handles damage calculations, player and enemy interactions, and all stat updates.
+
+	Functionality:  
+Computes damage dealt and received.  
+Applies player upgrades and item effects.  
+Updates player stats dynamically.
+
+Key Elements:  
+Combat System: Determines attack damage and effects.  
+Upgrade Manager: Applies player skill upgrades and enhancements.  
+Inventory System: Manages player and shop inventory.
+
 ## Coding Guideline
 
 ## Process Description

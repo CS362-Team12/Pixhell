@@ -556,6 +556,16 @@ Inventory System: Manages player and shop inventory.
 
 ## Process Description
 ### Risk Assessment
+1. Scope Creep:
+	Adding too many features beyond our initial plan can result in delays and being unable to fully finish the project in a timely manner.
+2. Technical Challenges:
+	Issues can arise when attempting to program in collision detection or performance optimization, especially as we all are not too familiar with Unitys game engine.
+3. Time Management:
+	We all have our other classes that we have to attend to and as we are all CS majors, everyone of us has big coding projects to attend to. If we do not balance it well we could come down to the last seconds of the project.
+4. Team Coordination:
+	Communication breakdowns i.e. improperly communicated objectives, ideas or goals. There can also be uneven workload distribution between the members that can cause development to slow.
+5. Bugs and Debugging:
+	As most of us are inexperienced with the 2d Unity game engine, bugs and logic errors will come about and be a significant challenge for us to fix. We have already seen bugs and are working hard to fix them.
 
 ### Project Schedule
 

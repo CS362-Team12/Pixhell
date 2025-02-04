@@ -2,13 +2,13 @@
 
 ## Names and Roles:
 
-Joshua Knowles \- SCM, Deadline Management, Design  
-Brendan Laus \- Design \- Map Focus, Item Creation  
-Max Russell \- Sound Design, Stage Design  
-James Osborn \- Item creation, Menu Mechanics and Transitions  
-Tanush Ojha \- Art Manager, Movement, Design  
-Kiet Bui \- Art, Sound Design  
-Chris Dutton \- Design Manager, Level Developer
+Joshua Knowles \- SCM, Deadline Management, Upgrade Design  
+Brendan Laus \- Item Design, Map Design, Sound Design, Programmer  
+Max Russell \- Sound Manager, Programmer  
+James Osborn \- Enemy Design, Menu Mechanics and Transitions, Programmer  
+Tanush Ojha \- Art Manager, Movement, Enemy Design, Programmer  
+Kiet Bui \- Character Design, Art Design, Sound Design, Programmer  
+Chris Dutton \- Design Manager, Level Design, Programmer
 
 ## Links:
 
@@ -23,7 +23,8 @@ Unity \- [https://unity.com/](https://unity.com/)
 VSCode \- [https://code.visualstudio.com/download](https://code.visualstudio.com/download) 
 
 Management:  
-Google Doc Version of this document \- [Here](#external-requirements)   
+Google Doc Version of this document \- [https://docs.google.com/document/d/1xVvEEf0EtcPMxhUlb37Tiand0Ma5XY8CIZj35kNzp0U/edit?usp=sharing](https://docs.google.com/document/d/1xVvEEf0EtcPMxhUlb37Tiand0Ma5XY8CIZj35kNzp0U/edit?usp=sharing)
+
 Trello \- [https://trello.com/b/1FqZ28jJ/pt12pixhell](https://trello.com/b/1FqZ28jJ/pt12pixhell) 
 
 ## Communication: 
@@ -216,7 +217,7 @@ Games are a huge source of fun and a way for people to escape from their regular
 3. Modularity/Maintainability  
    1. Core systems of the game (enemy generation and behaviors, item/upgrade mechanics, etc.) must be modular so that new additions of new features can be implemented seamlessly.
 
-## External Requirements {#external-requirements}
+## External Requirements
 
 1. Error Robustness  
    1. The game must be able to handle incorrect user input gracefully. Errors during the generation of each stage should be handled and not interrupt gameplay.  
@@ -235,40 +236,41 @@ Toolset Justification:
 * We chose Unity for its powerful 2D development capabilities and extensive library of assets, which will help streamline game development. Additionally, due to the lack of experience among the teammates on any single game development platform, Unity’s simple learning curve greatly benefits our team with our strict deadline, by bringing almost all aspects of game development to one place.
 
 Team Roles Justification:  
-	Joshua Knowles \- SCM, Deadline Management, Design
+	Joshua Knowles \- SCM, Deadline Management, Upgrade Design
 
 * Every project needs an SCM to manage deadlines, version control, documentation, and overall keep the team connected and knowledgeable. Without the SCM, team members may not know what to do to be productive and work may be wasted if something worked on is no longer needed.   
 * Having a specific person dedicated to managing deadlines also ensures that things will get turned in on time and that work is done based on its priority.
 
-Brendan Laus \- Design \- Map Focus, Item creation,
+Brendan Laus \- Item Design, Map Design, Sound Design, Programmer
 
 * Look into and implement effective 2d map creation elements that provide both visually appealing elements as well as effective gameplay variation if applicable  
 * Research and create items that will provide meaningful and understandable changes to gameplay that improve playability and synergize with certain builds  
 * Aiding others with general design on core gameplay elements, especially as they relate to both map design and potential items to be implemented.  
 * Each of the roles above will be massively important to this game, as both items and maps will provide key elements of the replayability appeal that Pixhell is striving for. 
 
-Max Russell \- Sound Design, Stage Design
+Max Russell \- Sound Manager, Programmer
 
 * Develops audio elements throughout the game and assists in designing stages for thematic consistency.  
 * Sound design and general stage appearance is important for the player’s enjoyment of any game and makes this game more memorable and unique.
 
-James Osborn \- Item creation, Menu mechanics and transitions
+James Osborn \- Enemy Design, Menu Mechanics and Transitions, Programmer
 
 * Will bring the core elements of the gameplay together through the menu and lobby, making the game playable.  
 * Add variety through character items for replayability
 
-Tanush Ojha \- Art Manager, Movement, Enemy Design
+Tanush Ojha \- Art Manager, Movement, Enemy Design, Programmer
 
 * Will source and create art, including basic character, boss, and enemy design, creating both models and small animations for everything. Art will create a depth of character in our game, enhancing the gameplay experience.  
 * Create movement mechanics such as dashing, teleporting, and any other movement boosts we come up with in our game. Good movement mechanics will allow the user to come up with different techniques of movement, combining dashing with teleporting or running, adding a simple but fun additional aspect of difficulty and skill.  
 * Creating boss mechanics, including weapon attacks, phases, and more will give the user an enhanced gameplay experience, having difficult bosses that take multiple tries to beat will give the user more time to learn and have fun with our game.
 
-Kiet Bui \- Art, Sound Design, Animation, 
+Kiet Bui \- Character Design, Art Design, Sound Design, Programmer 
 
+* Unique characters will enhance the replayability and feel of the game  
 * Create arts and music, which allows the user to experience what the world inside the game looks and sounds like.  
 * Putting animation for characters and enemies gives the game life.
 
-Chris Dutton \- Design Manager, level developer
+Chris Dutton \- Design Manager, Level Design, Programmer
 
 * Makes sure all design elements fit the backdrop of the game   
 * Ensures that levels have a challenge and fit within the games universe
@@ -399,7 +401,7 @@ Week 8: Working on one to two levels. Developing enemies for the levels. Sound d
 Week 9: Mostly this week the game will roughly be done and the main focus for this will be the final levels and debugging as we go through and test more and more.  
 Week 10: Publish the finished product.
 
-# Project Architecture and Design
+# Project Architecture and Design  
 
 ## Software Architecture
 
@@ -554,18 +556,23 @@ Inventory System: Manages player and shop inventory.
 
 ## Coding Guideline
 
+[https://google.github.io/styleguide/csharp-style.html](https://google.github.io/styleguide/csharp-style.html)  
+I looked through multiple style guidelines for C\# and this one stood out as the most detailed, easiest to read, and easiest to implement. I believe once a script is finished, the writer can ask a teammate to double-check their code, and while doing so the aforementioned teammate could verify the stylization via the guidelines simultaneously.
+
 ## Process Description
+
 ### Risk Assessment
-1. Scope Creep:
-	Adding too many features beyond our initial plan can result in delays and being unable to fully finish the project in a timely manner.
-2. Technical Challenges:
-	Issues can arise when attempting to program in collision detection or performance optimization, especially as we all are not too familiar with Unitys game engine.
-3. Time Management:
-	We all have our other classes that we have to attend to and as we are all CS majors, everyone of us has big coding projects to attend to. If we do not balance it well we could come down to the last seconds of the project.
-4. Team Coordination:
-	Communication breakdowns i.e. improperly communicated objectives, ideas or goals. There can also be uneven workload distribution between the members that can cause development to slow.
-5. Bugs and Debugging:
-	As most of us are inexperienced with the 2d Unity game engine, bugs and logic errors will come about and be a significant challenge for us to fix. We have already seen bugs and are working hard to fix them.
+
+1. **Scope Creep:**  
+   1. Adding too many features beyond our initial plan can result in delays and being unable to fully finish the project in a timely manner.  
+2. **Technical Challenges:**  
+   1. Issues can arise when attempting to program in collision detection or performance optimization, especially as we all are not too familiar with Unitys game engine.  
+3. **Time Management:**  
+   1. We all have our other classes that we have to attend to and as we are all CS majors, everyone of us has big coding projects to attend to. If we do not balance it well we could come down to the last seconds of the project.  
+4. **Team Coordination:**  
+   1. Communication breakdowns i.e. improperly communicated objectives, ideas or goals. There can also be uneven workload distribution between the members that can cause development to slow.  
+5. **Bugs and Debugging:**  
+   1. As most of us are inexperienced with the 2d Unity game engine, bugs and logic errors will come about and be a significant challenge for us to fix. We have already seen bugs and are working hard to fix them.
 
 ### Project Schedule
 
@@ -590,43 +597,63 @@ Inventory System: Manages player and shop inventory.
 
 ### Team Structure
 
+Over the course of the project, we’ve further developed our team into 5 distinct categories:  
+Design, Programming, Art, Sound, and Managerial Work. 
+
+Design:   
+Design is in charge of documenting and creating the concepts of the game and its features. For example, someone in charge of enemy design would create enemy concepts and ideas that could be implemented. Just because someone designs a concept does not mean that they are going to be the ones to program that concept.   
+Generally, everyone is in charge of some aspect of design, but it’s also meant to be a very brainstormy category. No one person should entirely design one section. That being said, Kiet is generally in charge of characters, Joshua is generally in charge of upgrades, Brendan is generally in charge of items, James is generally in charge of enemies, and Chris is generally in charge of levels. Chris is also the overall manager of all design categories and he is the one to be reported to if there are questions or issues. 
+
+Programming:   
+Programming is in charge of implementing the design concepts into the game. In general, everyone is a programmer, and what is programmed by who will be determined more in depth at a later date, as we’re still in our design portion of the project. As SCM, Joshua will generally manage merges and commits. 
+
+Art:   
+Art could generally fall into a sub category design, but has large enough differences and a large enough amount of work to be separated into its own category. Art is in control of determining how the game looks. Most art is going to be found from Unity’s asset store, but the missing bits and pieces are going to have to be created by hand.   
+Tanush is the art manager and will oversee most of the work in this area, while Kiet helps. 
+
+Sound:   
+Much like art, sound could fall into a design sub category but is big enough to separate. Sound is in control of determining how the game sounds, which in combination with art determines how the game feels as a whole. Music is going to be created by hand while sound effects are going to be either recorded or found from free websites.  
+Max is the sound manager and will oversee most of the work in this area, with assistance from Brendan and Kiet. 
+
+Managerial Work:   
+As the SCM, Joshua is in charge of most of the managerial work that comes with the project. This includes but is not limited to, managing the trello, managing the weekly report, organizing documents and turning in assignments. There is an expectation that team members will update some of these things as they do them, but Joshua is in charge of helping people remember and adding details when needed.   
+To see the overall update to roles, check the top of this document, where the roles have been updated. 
+
 ### Test Plan & Bugs
-Brendan Laus:
 
 We will isolate and test each small change to the game software as required. These different requirements and testing implementations will be listed below:
 
-Mechanics:
+Mechanics:  
 Game mechanics will be tested in a mostly empty map with an enemy, the player character, and whatever additional hazards the character will frequently interact with. There will also be a custom item spawner to test different components and how they interact with each other. This means that each new element can be tested as it relates to the standard gameplay loop. This enables us to see if the desired mechanical change will properly affect the player, enemies, and whatever items may relate to it.
 
-Items:
+Items:  
 Items will follow the same path, primarily being spawned into this test world. This will allow us to isolate item effects and see how they change the player’s movement, health, damage, attacks, and any additional impacted core game mechanics. This will permit us to see potential edge cases, as well as how each item feels to use, and permit minor changes to be made and allow us to see how these changes impact gameplay.
 
-Maps:
+Maps:  
 Maps will be a bit tougher to isolate given elements, so we will mostly be trying to test out individual maps while incrementally adding the designated features of said map. For example, the circle of greed will first have its basic shape and structure implemented and tested. This would mean that the foundation of the map would be tested, and then any additional unique features would be tested after. The final test of any map will be the enemy entities since these will likely be the most difficult to effectively balance. But by testing all other elements of a given map first, we will be able to see how the map feels to play before adding and changing the enemy code.
 
-UI and Misc:
+UI and Misc:  
 For any additional changes that may be seen frequently, we will hopefully be thorough before implementing any new features. If bugs are seen in these elements, be it UI or random bugs, we will isolate these issues in either the testing map or the main menu to best see how our changes will affect the game’s look and feel. If these bugs are more foundational, we will call an emergency meeting or directly @ the people whose design would be most affected. This will keep our group on the same page, as well as keep each design element in the hands of those who will be most knowledgeable about it.
 
-### Documentation Plans
+### Documentation Plan
+
 To ensure that the user experience is smooth and comprehensive, Pixhell will include two primary forms of documentation.
-1. User Guide (Player Manual)
-* This document will target players and provide basic instructions on how to play the game, understand core game mechanics, and troubleshoot any common issues with a FAQ section.
-* The User Guide will contain:
-    * A general game overview
-    * Basic controls & combat mechanics
-    * Stage progression information
-    * Upgrade information
-    * FAQ (common troubleshooting steps)
-* The User Guide will be in PDF form and will be bundled with the game. This will be created once major gameplay features are finalized conceptually and have begun implementation.
-2. In-Game Help Menu
-* This document will target players and mirror some of the essential knowledge laid out in the User Guide, but in a much more concise and readable way for reference in the menu of the game.
-* The Help Menu will contain:
-    * Quick reference for controls and key bindings
-    * Quick and accessible explanations for mechanics
-* The Help Menu will be available at all times inside the game alongside where settings will be.
 
+1. User Guide (Player Manual)  
+   1. This document will target players and provide basic instructions on how to play the game, understand core game mechanics, and troubleshoot any common issues with a FAQ section.  
+   2. The User Guide will contain:  
+      1. A general game overview  
+      2. Basic controls & combat mechanics  
+      3. Stage progression information  
+      4. Upgrade information  
+      5. FAQ (common troubleshooting steps)
 
-### Game Theme:
+   The User Guide will be in PDF form and will be bundled with the game. This will be created once major gameplay features are finalized conceptually and have begun implementation.
 
-Our theme is to follow a rough baseline of ancient Italy (Rome).
-All items and maps will accordingly follow through on this idea (excluding the main hub). This will create a stark contrast between the hub world of Limbo, being an office building with a central elevator to travel between each level beneath it.
+2. In-Game Help Menu  
+   1. This document will target players and mirror some of the essential knowledge laid out in the User Guide, but in a much more concise and readable way for reference in the menu of the game.  
+   2. The Help Menu will contain:  
+      1. Quick reference for controls and key bindings  
+      2. Quick and accessible explanations for mechanics
+
+   The Help Menu will be available at all times inside the game alongside where settings will be.

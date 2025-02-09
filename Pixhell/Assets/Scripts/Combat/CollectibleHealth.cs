@@ -5,6 +5,14 @@ using UnityEngine;
 public class CollectibleHealth : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    float health = 25.0f;
+    float heal_mult = 1.0f;
+
+    public void update_healing(float increase)
+    {
+        heal_mult += increase;
+    }
+
     void Start()
     {
         
@@ -21,7 +29,7 @@ public class CollectibleHealth : MonoBehaviour
 
         if (controller != null && controller.health < controller.max_health)
         {
-            controller.change_health(25);
+            controller.change_health(health*heal_mult);
             Destroy(gameObject);
         }
 

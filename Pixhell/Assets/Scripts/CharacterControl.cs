@@ -24,6 +24,18 @@ public class PlayerController : MonoBehaviour
     float base_speed = 1.0f;
     float speed_mult;
     public float speed = 3.0f;
+    public void update_movement(float increase)
+    {
+        speed_mult += increase;
+    }
+    float attack_speed = 1.0f;
+    float attack_speed_mult = 1.0f;
+    float attack_time = Time.time;
+    public void as_increase(float increase)
+    {
+        attack_speed_mult -= increase;
+    }
+
 
     [Header("Dash Settings")]
     bool is_vulnerable = true;

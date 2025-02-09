@@ -45,11 +45,11 @@ Secondary \- Email
 
 ## Abstract
 
-Pixhell is a bullet-hell rogue-lite that challenges players to survive and conquer nine stages \- the nine circles of Hell \- combining fast-paced action and unique environments with a progression system that encourages experimentation across multiple runs. Players navigate through increasingly more difficult stages, collecting upgrades along the way to eventually defeat the Devil in the center of Hell.
+Pixhell is a bullet-hell rogue-lite that challenges players to survive and conquer nine stages \- the nine circles of Hell \- combining fast-paced action and unique environments with a progression system that encourages experimentation across multiple runs. Players navigate through increasingly more difficult stages, collecting upgrades along the way to eventually defeat the Devil in the center of Hell. While similar to other bullet-hells, Pixhell focuses on creating intelligent enemy AI that feels like you’re battling against actual enemies instead of a swarm of enemies with no intelligence, which is unique within the genre. 
 
 ## Goal
 
-We are creating a replayable rogue-lite bullet-hell game involving making it through the nine circles of Hell to eventually battle the Devil. The game will include meta-progression, different characters, weapons, and enemies. The goal is to provide users with an enjoyable experience of progression and discovery in a chaotic challenge.
+We are creating a replayable rogue-lite bullet-hell game involving making it through the nine circles of Hell to eventually battle the Devil. The game will include meta-progression, different characters, weapons, and enemies. The goal is to provide users with an enjoyable experience of progression and discovery. We also aim to make our game stand out by making it more strategic than the average bullet-hell where a player can make intelligent decisions based on enemy AI decisions as opposed to just building the strongest possible character. That being said, we still plan on maintaining the satisfying  “strength through upgrades” part of bullet-hells. 
 
 ## Current Practice
 
@@ -57,7 +57,8 @@ There are many examples of games similar to ours that we are taking inspiration 
 
 ## Novelty
 
-The thematic structure of combining a narrative like the Nine Circles of Hell with the action and tight mechanics of a bullet-hell roguelike creates a more immersive and stylistic experience. Navigating a symbolic descent while the difficulty escalates makes for a memorable gaming venture. Using the Nine Circles of Hell creates a new theme not seen before that creates a new experience for people playing our game, while still being able to pick up the game quickly with its similarities to other games. Our nine arena progression is also a novel concept, which allows us to create a lot of variety between individual arenas with novel enemy types and environments, while finally our three unique characters can be mixed and matched with different arenas and items to make each run in our game itself feel different from the next. 
+The thematic structure of combining a narrative like the Nine Circles of Hell with the action and tight mechanics of a bullet-hell roguelike creates a more immersive and stylistic experience. Navigating a symbolic descent while the difficulty escalates makes for a memorable gaming venture. Using the Nine Circles of Hell creates a new theme not seen before that creates a new experience for people playing our game, while still being able to pick up the game quickly with its similarities to other games. Our nine arena progression is also a novel concept, which allows us to create a lot of variety between individual arenas with novel enemy types and environments, while finally our three unique characters can be mixed and matched with different arenas and items to make each run in our game itself feel different from the next.   
+Each arena additionally has unique mechanisms themed around their circle of hell, such as foggy vision for a bathhouse vibe (Lust) or larger, exploding enemies (Gluttony). This separates each arena itself into novel experiences, while also being novel from other games in of itself. These arenas will have intelligent AI that work with each other and are aware of their surroundings, making decisions based on their health, position, and the positions of others around them. This is unique from most bullet-hells, which usually just involves swarms of enemies that follow a very basic attack pattern. 
 
 ## Effects
 

@@ -1,8 +1,10 @@
 // Works with the SelectRun scene to load existing runs
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.IO;
 using System;
+using TMPro;
 
 public class LoadCharacterSaves : MonoBehaviour
 {
@@ -28,42 +30,63 @@ public class LoadCharacterSaves : MonoBehaviour
     }
 
     void AddRunToPanel(string filePath) {
-        // STILL BUGGY
-        try
-            {
-                // Open the file and read the first line
-                using (StreamReader reader = new StreamReader(filePath))
-                {
-                    string firstLine = reader.ReadLine();  // Read the first line of the file
+    try {
+        using (StreamReader reader = new StreamReader(filePath)) {
+            string firstLine = reader.ReadLine(); // Read the first line of the file
 
-                // Instantiate a new button from the prefab
-                GameObject newButton = Instantiate(buttonPrefab, panelContainer);
-
-                // Get the button's text component
-                Text buttonText = newButton.GetComponentInChildren<Text>();
-
-                // Set the button's text to the first line of the file
-                if (buttonText != null)
-                {
-                    buttonText.text = firstLine;
-                }
-
-                // Add functionality when the button is clicked
-                Button button = newButton.GetComponent<Button>();
-                button.onClick.AddListener(() => EnterRun(filePath));
-                    
-                }
+            // Instantiate a new button from the prefab
+            GameObject newButton = Instantiate(buttonPrefab.gameObject, panelContainer);
+            if (newButton == null) {
+                Debug.LogError("Failed to instantiate buttonPrefab!");
+                return;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error reading the file: " + ex.Message);
+
+            // Get the button's text component
+            TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText == null) {
+                Debug.LogError("TextMeshProUGUI component not found in buttonPrefab!");
+                return;
             }
+
+            // Set the button's text
+            buttonText.text = firstLine + filePath;
+
+            // Get the Button component
+            Button button = newButton.GetComponent<Button>();
+            if (button == null) {
+                Debug.LogError("Button component not found on buttonPrefab!");
+                return;
+            }
+
+            // Add button functionality
+            button.onClick.AddListener(() => EnterRun(filePath));
+
+            // Positioning the button to prevent overlap
+            RectTransform buttonRect = newButton.GetComponent<RectTransform>();
+            if (buttonRect == null) {
+                Debug.LogError("RectTransform component not found on buttonPrefab!");
+                return;
+            }
+
+            float buttonWidth = buttonRect.rect.width; // Get width of button prefab
+            float spacing = 10f; // Space between buttons
+
+            // Set button position
+            buttonRect.anchoredPosition = new Vector2(runCount * (buttonWidth + spacing), 0);
+
+            // Increment run count
+            runCount++;
+        }
+    } 
+    catch (Exception ex) {
+        Debug.LogError("Error reading the file: " + ex.Message);
     }
+}
 
     void GetRuns() {
         string generalPath = path + "/Runs";
 
-        string[] allFiles = Directory.GetFiles(generalPath, "*", SearchOption.TopDirectoryOnly);
+        string[] allFiles = Directory.GetFiles(generalPath, "*.txt", SearchOption.TopDirectoryOnly);
         // Go through all run files in this directory
         // For each one, add to existing list of runs in the menu (some kind of scroll thing that shows runs you can click on
         
@@ -74,7 +97,7 @@ public class LoadCharacterSaves : MonoBehaviour
         // In each file, read the top line (Character type)
     }
 
-    void MakeFreshRun() {
+    public void MakeFreshRun() {
         // Used to generate a new, fresh run
         // Called when user presses +New button
         // Add the new run to the existing panel
@@ -102,6 +125,6 @@ public class LoadCharacterSaves : MonoBehaviour
 
     void EnterRun(string filePath) {
 
-        SceneManager.LoadScene("Lobby")
+        SceneManager.LoadScene("Lobby");
     }
 }

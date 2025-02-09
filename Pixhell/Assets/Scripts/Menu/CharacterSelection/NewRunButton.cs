@@ -14,7 +14,15 @@ public class NewRunButton : MonoBehaviour {
     }
 
     void OnClick() {
-        //LoadCharacterSaves.MakeFreshRun();
+        LoadCharacterSaves saveManager = FindObjectOfType<LoadCharacterSaves>();
+        if (saveManager != null)
+        {
+            saveManager.MakeFreshRun();  // Calls the function
+        }
+        else
+        {
+            Debug.LogError("LoadCharacterSaves not found in the scene!");
+        }
     }
 
 }

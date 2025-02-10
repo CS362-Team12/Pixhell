@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time - dodge_time >= 2.0f)
         {
+            animator.SetBool("is_dodging", true);
             dodge_time = Time.time;
             is_vulnerable = false;
             float startTime = Time.time;
@@ -110,6 +111,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = position;
                 yield return null;
             }
+            animator.SetBool("is_dodging", false);
             is_vulnerable = true;
         }
     }

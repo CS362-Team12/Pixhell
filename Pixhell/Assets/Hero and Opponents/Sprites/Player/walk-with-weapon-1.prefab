@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4166795876250806227}
   - component: {fileID: 7978585362922117303}
   - component: {fileID: 6745676285347251144}
+  - component: {fileID: 3160991074220692013}
   m_Layer: 16
   m_Name: walk-with-weapon-1
   m_TagString: Untagged
@@ -203,13 +204,9 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   speed: 3
-  dashSpeed: 12
-  dashDuration: 0.2
-  dashCooldown: 1
-  isInvulnerable: 0
-  invulnerabilityDuration: 0.3
   max_health: 100
-  projectilePrefab: {fileID: 0}
+  animator: {fileID: 3160991074220692013}
+  projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
 --- !u!50 &7978585362922117303
 Rigidbody2D:
   serializedVersion: 5
@@ -283,3 +280,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.65}
   m_EdgeRadius: 0
+--- !u!95 &3160991074220692013
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 047efb0615b25b74783d322c44e6be5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

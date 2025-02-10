@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     float current_health;
     public float health { get { return current_health; } }
 
+    public Animator animator;
+
     public GameObject projectilePrefab;
 
     void Start()
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
         SprintAction.Enable();
         DodgeAction.Enable();
         projectileCreate.Enable();
+        animator = GetComponent<Animator>();
     }
 
     public void update_movement(float increase)
@@ -60,16 +63,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Vector2 move = MoveAction.ReadValue<Vector2>();
         if (SprintAction.IsPressed())
         {
+            animator.SetFloat("speed", 6);
             Vector2 position = (Vector2)transform.position + move * 5.5f * Time.deltaTime * speed_mult;
             transform.position = position;
         }
-        else
-        {
+        else if (MoveAction.IsPressed()) {
+            animator.SetFloat("speed", 4);
             Vector2 position = (Vector2)transform.position + move * 3.0f * Time.deltaTime * speed_mult;
             transform.position = position;
+        }else {
+                animator.SetFloat("speed", 0);
         }
         if (DodgeAction.WasPressedThisFrame())
         {
@@ -78,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if (projectileCreate.IsPressed()) {
             Launch();
         }
+        
     }
 
     IEnumerator dodge_roll(Vector2 move)

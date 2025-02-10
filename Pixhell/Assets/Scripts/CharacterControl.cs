@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings")]
     bool is_vulnerable = true;
     float dodge_duration = .2f;
+    float dodge_time = -2f;
 
     [Header("Attack Settings")]
     float attack_speed = 1.0f;

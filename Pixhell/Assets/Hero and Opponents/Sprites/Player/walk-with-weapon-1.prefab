@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4166795876250806227}
   - component: {fileID: 7978585362922117303}
   - component: {fileID: 6745676285347251144}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: walk-with-weapon-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!114 &4166795876250806227
@@ -168,18 +168,48 @@ MonoBehaviour:
       m_Action: Sprint
       m_Flags: 0
     m_Flags: 0
-  speed: 3
-  projectilePrefab: {fileID: 0}
-  max_health: 100
+  DodgeAction:
+    m_Name: Dodge
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: b82bb20c-155a-4bee-a2f8-c1ef545a7f25
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a23cea92-e274-4e56-ab75-f91d33d6e540
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge
+      m_Flags: 0
+    m_Flags: 0
   projectileCreate:
     m_Name: Projectile Create
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: cd87036f-53a6-4861-bedc-6a15cabb12dc
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 48695925-dda6-40ef-8869-d44c0c2d3a11
+      m_Path: <Keyboard>/c
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Projectile Create
+      m_Flags: 0
     m_Flags: 0
+  speed: 3
+  dashSpeed: 12
+  dashDuration: 0.2
+  dashCooldown: 1
+  isInvulnerable: 0
+  invulnerabilityDuration: 0.3
+  max_health: 100
+  projectilePrefab: {fileID: 0}
 --- !u!50 &7978585362922117303
 Rigidbody2D:
   serializedVersion: 5

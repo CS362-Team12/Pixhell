@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings")]
     bool is_vulnerable = true;
     float dodge_duration = .2f;
+    float dodge_time = -2f;
 
     [Header("Attack Settings")]
     float attack_speed = 1.0f;
@@ -81,15 +82,19 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator dodge_roll(Vector2 move)
     {
-        is_vulnerable = false;
-        float startTime = Time.time;
-        while (Time.time < startTime + dodge_duration)
+        if (Time.time - dodge_time >= 2.0f)
         {
-            Vector2 position = (Vector2)transform.position + move * 15.5f * Time.deltaTime * speed_mult;
-            transform.position = position;
-            yield return null;
+            dodge_time = Time.time;
+            is_vulnerable = false;
+            float startTime = Time.time;
+            while (Time.time < startTime + dodge_duration)
+            {
+                Vector2 position = (Vector2)transform.position + move * 15.5f * Time.deltaTime * speed_mult;
+                transform.position = position;
+                yield return null;
+            }
+            is_vulnerable = true;
         }
-        is_vulnerable = true;
     }
     void FixedUpdate()
     {

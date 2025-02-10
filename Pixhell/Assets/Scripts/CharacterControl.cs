@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [Header("2D settings")]
     Rigidbody2D rigidbody2d;
     Vector2 move;
+    private bool m_FacingRight = true;
+    float horizontal_move;
 
     [Header("Move Speed")]
     float base_speed = 1.0f;
@@ -63,8 +65,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        horizontal_move = Input.GetAxisRaw("Horizontal");
         Vector2 move = MoveAction.ReadValue<Vector2>();
+        if (horizontal_move > 0 && !m_FacingRight)
+        {
+            Flip();
+        }else if(horizontal_move < 0 && m_FacingRight)
+        {
+            Flip();
+        }
         if (SprintAction.IsPressed())
         {
             animator.SetFloat("speed", 6);
@@ -104,6 +113,18 @@ public class PlayerController : MonoBehaviour
             is_vulnerable = true;
         }
     }
+
+    private void Flip()
+    {
+        // Switch the way the player is labelled as facing.
+        m_FacingRight = !m_FacingRight;
+
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
     void FixedUpdate()
     {
         {

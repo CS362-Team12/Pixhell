@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack Settings")]
     float attack_speed = 1.0f;
+    // Divides by attack_speed_mult instead. i.e. 2 is 100% faster (.5 per second)
+    // This prevents it from going to 0 and having a 0 attack speed
     float attack_speed_mult = 1.0f;
     float attack_time = Time.time;
 
@@ -50,6 +52,11 @@ public class PlayerController : MonoBehaviour
         SprintAction.Enable();
         DodgeAction.Enable();
         projectileCreate.Enable();
+    }
+
+    public void update_attack_speed(float increase)
+    {
+        attack_speed_mult += increase;
     }
 
     public void update_movement(float increase)
@@ -128,7 +135,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!SprintAction.IsPressed() || !DodgeAction.IsPressed())
         {
-            if (Time.time - attack_time >= attack_speed * attack_speed_mult)
+            if (Time.time - attack_time >= attack_speed / attack_speed_mult)
             {
                 attack_time = Time.time;
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

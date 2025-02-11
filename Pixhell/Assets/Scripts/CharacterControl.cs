@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public InputAction MoveAction;
     public InputAction SprintAction;
     public InputAction DodgeAction;
-    public InputAction projectileCreate;
 
     [Header("2D settings")]
     Rigidbody2D rigidbody2d;
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     float attack_speed = 1.0f;
     float attack_speed_mult = 1.0f;
-    float attack_time = Time.time;
+    float attack_time = -2f;
 
     [Header("Health Settings")]
     public float max_health = 100;
@@ -53,7 +52,6 @@ public class PlayerController : MonoBehaviour
         MoveAction.Enable();
         SprintAction.Enable();
         DodgeAction.Enable();
-        projectileCreate.Enable();
         animator = GetComponent<Animator>();
     }
 
@@ -74,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        if (SprintAction.IsPressed())
+        if (SprintAction.IsPressed() && move != Vector2.zero)
         {
             animator.SetFloat("speed", 6);
             Vector2 position = (Vector2)transform.position + move * 5.5f * Time.deltaTime * speed_mult;
@@ -91,7 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(dodge_roll(move));
         }
-        if (projectileCreate.IsPressed()) {
+        if (Input.GetMouseButtonDown(0)) {
             Launch();
         }
         
@@ -99,6 +97,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator dodge_roll(Vector2 move)
     {
+        if (move == Vector2.zero) // Prevent dodge if there's no movement input
+            yield break;
+
         if (Time.time - dodge_time >= 2.0f)
         {
             animator.SetBool("is_dodging", true);
@@ -157,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
     void Launch()
     {
-        if (!SprintAction.IsPressed() || !DodgeAction.IsPressed())
+        if (!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         {
             if (Time.time - attack_time >= attack_speed * attack_speed_mult)
             {

@@ -186,23 +186,6 @@ MonoBehaviour:
       m_Action: Dodge
       m_Flags: 0
     m_Flags: 0
-  projectileCreate:
-    m_Name: Projectile Create
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: cd87036f-53a6-4861-bedc-6a15cabb12dc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 519ca104-e60c-4091-b3f9-9c086693b932
-      m_Path: <Keyboard>/c
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Projectile Create
-      m_Flags: 0
-    m_Flags: 0
   speed: 3
   max_health: 100
   animator: {fileID: 3160991074220692013}

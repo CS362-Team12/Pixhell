@@ -33,21 +33,6 @@ public class PlayerController : MonoBehaviour
     [Header("Attack Settings")]
     float attack_speed = 1.0f;
     float attack_speed_mult = 1.0f;
-    float attack_time = Time.time;
-    public void as_increase(float increase)
-    {
-        attack_speed_mult -= increase;
-    }
-
-
-    [Header("Dash Settings")]
-    bool is_vulnerable = true;
-    float dodge_duration = .2f;
-    float dodge_time = -2f;
-
-    [Header("Attack Settings")]
-    float attack_speed = 1.0f;
-    float attack_speed_mult = 1.0f;
     float attack_time = -2f;
 
     [Header("Health Settings")]

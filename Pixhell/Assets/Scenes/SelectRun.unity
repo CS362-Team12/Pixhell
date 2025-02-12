@@ -251,7 +251,6 @@ GameObject:
   - component: {fileID: 410485031}
   - component: {fileID: 410485034}
   - component: {fileID: 410485033}
-  - component: {fileID: 410485035}
   m_Layer: 5
   m_Name: RunInfoPanel
   m_TagString: Untagged
@@ -266,17 +265,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410485030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1711527640}
+  m_Father: {fileID: 1585696922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 450}
+  m_SizeDelta: {x: 320, y: 1060}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410485033
 MonoBehaviour:
@@ -291,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -316,18 +315,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410485030}
   m_CullTransparentMesh: 1
---- !u!114 &410485035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410485030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be178cef7a4494541bce7f561e4bd941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &473416040
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473416041}
   m_Layer: 5
-  m_Name: Sliding Area
+  m_Name: SlidingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,8 +575,9 @@ GameObject:
   - component: {fileID: 1585696925}
   - component: {fileID: 1585696924}
   - component: {fileID: 1585696923}
+  - component: {fileID: 1585696926}
   m_Layer: 5
-  m_Name: Scrollbar
+  m_Name: RunInfoSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -607,6 +595,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 410485031}
   - {fileID: 473416041}
   m_Father: {fileID: 1711527640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -702,6 +691,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585696921}
   m_CullTransparentMesh: 1
+--- !u!114 &1585696926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585696921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd32bc11f6ea88e48aa19e8e092b52cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 1585696923}
+  panelContainer: {fileID: 410485031}
 --- !u!1 &1711527636
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +801,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1585696922}
-  - {fileID: 410485031}
   - {fileID: 299146302}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -819,6 +821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be178cef7a4494541bce7f561e4bd941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 7929395474199648586, guid: e0ff9f56256152444a8f432c5f995126, type: 3}
+  panelContainer: {fileID: 410485031}
 --- !u!1 &2089167237
 GameObject:
   m_ObjectHideFlags: 0

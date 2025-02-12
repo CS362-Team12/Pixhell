@@ -49,7 +49,7 @@ public class LoadCharacterSaves : MonoBehaviour
             }
 
             // Set the button's text
-            buttonText.text = firstLine + filePath;
+            buttonText.text = "BUTTON DESIGN IN PROGRESS\n" + firstLine + filePath;
 
             // Get the Button component
             Button button = newButton.GetComponent<Button>();
@@ -71,7 +71,7 @@ public class LoadCharacterSaves : MonoBehaviour
             float buttonWidth = buttonRect.rect.width; // Get width of button prefab
             float spacing = 10f; // Space between buttons
 
-            // Set button position
+            // Set button position relative to the left side of the panel
             buttonRect.anchoredPosition = new Vector2(runCount * (buttonWidth + spacing), 0);
 
             // Increment run count

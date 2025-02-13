@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 299146305}
   - component: {fileID: 299146304}
   - component: {fileID: 299146303}
+  - component: {fileID: 299146306}
   m_Layer: 5
   m_Name: CreateNewRunButton
   m_TagString: Untagged
@@ -240,6 +241,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299146301}
   m_CullTransparentMesh: 1
+--- !u!114 &299146306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299146301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c750af3b97819e24e8352be829c04349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 299146303}
 --- !u!1 &410485030
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,8 +288,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 450}
-  m_SizeDelta: {x: 320, y: 1060}
+  m_AnchoredPosition: {x: 0, y: 440}
+  m_SizeDelta: {x: 320.00003, y: 1040}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410485033
 MonoBehaviour:
@@ -958,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be178cef7a4494541bce7f561e4bd941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runCount: 0
   buttonPrefab: {fileID: 7929395474199648586, guid: e0ff9f56256152444a8f432c5f995126, type: 3}
   panelContainer: {fileID: 410485031}
 --- !u!1 &2058737100

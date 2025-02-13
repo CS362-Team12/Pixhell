@@ -17,7 +17,7 @@ public class NewRunButton : MonoBehaviour {
         LoadCharacterSaves saveManager = FindObjectOfType<LoadCharacterSaves>();
         if (saveManager != null)
         {
-            saveManager.MakeFreshRun();  // Calls the function
+            saveManager.MakeFreshRun();  // Calls new run function
         }
         else
         {

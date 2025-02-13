@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectibleHealth : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    float health = 25.0f;
+    float health =25.0f;
     float heal_mult = 1.0f;
 
     public void update_healing(float increase)

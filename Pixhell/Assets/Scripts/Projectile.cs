@@ -37,8 +37,12 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Projectile collision with " + other.gameObject);
-        // Enemyclass controller = other.GetComponent<GameObject>;
-        // controller.reduce_hp(damage*damage_mult); uncomment when enemy class is set up aint no way in hell im doing playable charater and enemys
+        var target = other.GetComponent<Enemy>(); 
+        if (target != null)
+        {
+            target.TakeDamage(damage * damage_mult);  // Call the TakeDamage method
+        }
+
         Destroy(gameObject);
     }
 

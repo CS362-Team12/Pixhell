@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 730704207238576842}
-  - component: {fileID: 21740447279619009}
   - component: {fileID: 1647444488598359488}
   - component: {fileID: 8572317475000366003}
-  - component: {fileID: 6560544382735532080}
+  - component: {fileID: 1580209906646987884}
   m_Layer: 0
   m_Name: ArcherObject
   m_TagString: Untagged
@@ -35,19 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &21740447279619009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5085792645026659305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44dedf0d162d23340b920d014ef638fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!212 &1647444488598359488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
---- !u!114 &6560544382735532080
+--- !u!114 &1580209906646987884
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,3 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  speed: 2
+  orbitRadius: 3.5
+  orbitSpeed: 0.5

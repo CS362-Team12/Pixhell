@@ -5,16 +5,25 @@ public class Enemy : MonoBehaviour
     public float health = 100.0f;
     public float speed = 1.0f;
 
+    public GameObject player;
+
     // Three states, hopefully turned into constants later:
     // 0. Moving: Perform the move code
     // 1. Attack: Perform the attack animation and effects
     // 2. Idle: Used to basically just do nothing, can be used after attacking for a delay
+
+    // These should be overwritten for most enemies
+
     // This array says which state it is in for certain times
-    int[] states = {0,1,2};
+    protected int[] states = { 0, 1, 2 };
+    
     // Tracks how long each state lasts. 0 means just for one frame
-    float[] timers = {2,0,1};
+    protected float[] timers = { 2f, 0f, 1f };
+    
     // IMPORTANT: This tracks the INDEX of states currently being used. 
     // states[currIndex] = currState; There is a function for this
+
+
     int currIndex = 0;
     //How long the enemy has been in its current state
     float currStateTime = 0;
@@ -27,7 +36,7 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -50,7 +59,6 @@ public class Enemy : MonoBehaviour
             currIndex = (currIndex+1) % states.Length;
             currStateTime = 0;
         }
-        Debug.Log(currStateTime);
     }
 
     
@@ -58,7 +66,6 @@ public class Enemy : MonoBehaviour
     // Default, move towards player
     public virtual void Move() 
     {
-        var player = GameObject.FindWithTag("Player");
         var step = speed*Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
     }

@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         speed_mult = base_speed;
-        current_health = 25;
+        current_health = max_health;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();
         SprintAction.Enable();
@@ -136,13 +136,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void change_health(float health)
+    public bool TakeDamage(float damage) {
+        bool damaged = change_health(-damage);
+        if (current_health <= 0) {
+            // GAME OVER
+        }
+        return damaged;
+    }
+
+    public bool change_health(float health)
     {
         if (is_vulnerable && health < 0)
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);
+            return true;
         }
+        return false;
     }
 
     public void update_health(float increase) 

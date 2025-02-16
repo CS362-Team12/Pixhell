@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Move Speed")]
     float base_speed = 1.0f;
-    float speed_mult;
+    public float speed_mult;
     public float speed = 3.0f;
 
     [Header("Dash Settings")]
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     float attack_speed = 1.0f;
     // Divides by attack_speed_mult instead. i.e. 2 is 100% faster (.5 per second)
     // This prevents it from going to 0 and having a 0 attack speed
-    float attack_speed_mult = 1.0f;
+    public float attack_speed_mult = 1.0f;
     float attack_time = -2f;
 
     [Header("Health Settings")]

@@ -3,29 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
-    float damage_mult = 1.0f;
     float damage = 25.0f;
-    public void damage_update(float increase)
-    {
-        damage_mult += increase;
-    }
-
 
     // Awake is called when the Projectile GameObject is instantiated
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 10f);
     }
 
     void Update()
     {
 
     }
-
 
     public void Launch(Vector2 direction, float force)
     {
@@ -36,15 +29,22 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Projectile collision with " + other.gameObject);
-        var target = other.GetComponent<Enemy>(); 
+        var target = other.GetComponent<PlayerController>(); 
         if (target != null)
         {
-            target.TakeDamage(damage * damage_mult);  // Call the TakeDamage method
+            bool damaged = target.TakeDamage(damage);  // Call the TakeDamage method
+            // This prevents the projectile from being destroyed when dashing
+            if (target.is_vulnerable) {
+                Destroy(gameObject);
+            }
+        } else {
+            // Don't collide and destory itself from enemies
+            var enemy = other.GetComponent<Enemy>();
+            if (enemy == null) { 
+                Destroy(gameObject);
+            }
         }
 
-        Destroy(gameObject);
+        
     }
-
-
 }

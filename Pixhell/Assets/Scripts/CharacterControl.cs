@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     public float max_health = 100;
     float current_health;
     public float health { get { return current_health; } }
+    float invincibility_time = 1f;
+    float hit_time = -2f;
+
 
     public Animator animator;
 
@@ -136,17 +139,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Run this function when taking damage from a damage source
     public bool TakeDamage(float damage) {
         bool damaged = change_health(-damage);
         if (current_health <= 0) {
             // GAME OVER
         }
+        if (damaged) {
+            hit_time = Time.time;
+        }
         return damaged;
     }
 
+    // Run this function when you don't want to trigger invinciblity frames
     public bool change_health(float health)
     {
-        if (is_vulnerable && health < 0)
+        if (is_vulnerable && health < 0 && Time.time - hit_time >= invincibility_time)
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);

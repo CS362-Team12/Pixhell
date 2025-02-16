@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {    
-    public float health = 100.0f;
-    public float speed = 1.0f;
+    protected float health = 100.0f;
+    protected float speed = 1.0f;
+    protected float collisionDamage = 25.0f;
 
     public GameObject player;
 
@@ -89,6 +90,16 @@ public class Enemy : MonoBehaviour
         if (health <= 0) {
             //Should be replaced with a death animation? 
             Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Collision Damage
+        var target = other.GetComponent<PlayerController>(); 
+        if (target != null)
+        {
+            target.TakeDamage(collisionDamage);  // Call the TakeDamage method
         }
     }
 }

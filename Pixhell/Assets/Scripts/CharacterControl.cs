@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 3.0f;
 
     [Header("Dash Settings")]
-    bool is_vulnerable = true;
+    public bool is_vulnerable = true;
     float dodge_duration = .2f;
     float dodge_time = -2f;
 

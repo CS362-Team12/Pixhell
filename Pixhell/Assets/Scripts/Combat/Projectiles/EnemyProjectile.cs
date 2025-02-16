@@ -34,7 +34,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             bool damaged = target.TakeDamage(damage);  // Call the TakeDamage method
             // This prevents the projectile from being destroyed when dashing
-            if (damaged) {
+            if (target.is_vulnerable) {
                 Destroy(gameObject);
             }
         } else {

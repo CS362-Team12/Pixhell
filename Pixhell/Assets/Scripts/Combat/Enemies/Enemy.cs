@@ -28,6 +28,8 @@ public class Enemy : MonoBehaviour
     int currIndex = 0;
     //How long the enemy has been in its current state
     float currStateTime = 0;
+    // To add randomness, we store the current timer so we can add randomness to it
+    float currTimer;
 
     int GetCurrentState()
     {
@@ -38,6 +40,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        // Multiply by a scale, so that it's relative
+        currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
     }
 
     // Update is called once per frame
@@ -53,12 +57,14 @@ public class Enemy : MonoBehaviour
             Idle();
         }
         
-        //Update timer
+        //Update timer, with randomness so each enemy is a little different. 
+        // Spawns should also spawn in increments if possible
         currStateTime += Time.deltaTime;
         //If time is passed, move to next state, wrapping
-        if (currStateTime >= timers[currIndex]) {
+        if (currStateTime >= currTimer) {
             currIndex = (currIndex+1) % states.Length;
             currStateTime = 0;
+            currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
         }
     }
 

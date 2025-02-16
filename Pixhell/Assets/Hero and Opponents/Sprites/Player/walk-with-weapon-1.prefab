@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4166795876250806227}
   - component: {fileID: 7978585362922117303}
   - component: {fileID: 6745676285347251144}
+  - component: {fileID: 3160991074220692013}
   m_Layer: 16
   m_Name: walk-with-weapon-1
   m_TagString: Untagged
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2a25ca5ed66f7e54c8e97c7ce3315866, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -185,31 +186,10 @@ MonoBehaviour:
       m_Action: Dodge
       m_Flags: 0
     m_Flags: 0
-  projectileCreate:
-    m_Name: Projectile Create
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: cd87036f-53a6-4861-bedc-6a15cabb12dc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 48695925-dda6-40ef-8869-d44c0c2d3a11
-      m_Path: <Keyboard>/c
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Projectile Create
-      m_Flags: 0
-    m_Flags: 0
   speed: 3
-  dashSpeed: 12
-  dashDuration: 0.2
-  dashCooldown: 1
-  isInvulnerable: 0
-  invulnerabilityDuration: 0.3
   max_health: 100
-  projectilePrefab: {fileID: 0}
+  animator: {fileID: 3160991074220692013}
+  projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
 --- !u!50 &7978585362922117303
 Rigidbody2D:
   serializedVersion: 5
@@ -273,8 +253,8 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.15, y: -0.05}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    border: {x: 0.17, y: 0, z: 0.53999996, w: 0}
+    pivot: {x: 0.36, y: 0.5}
     oldSize: {x: 1.28, y: 0.96}
     newSize: {x: 1.28, y: 0.96}
     adaptiveTilingThreshold: 0.5
@@ -283,3 +263,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.65}
   m_EdgeRadius: 0
+--- !u!95 &3160991074220692013
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 047efb0615b25b74783d322c44e6be5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

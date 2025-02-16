@@ -19,11 +19,11 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Over
   - Projectiles
   - Character
-  - 
-  - 
+  - Under
+  - Ground
   - 
   - 
   - 
@@ -43,3 +43,6 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  - Over
+  - Character
+  - Ground

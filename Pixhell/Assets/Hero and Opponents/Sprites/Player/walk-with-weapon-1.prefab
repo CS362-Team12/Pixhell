@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 8640907151943126642}
   - component: {fileID: 3815007933092154987}
   - component: {fileID: 4166795876250806227}
+  - component: {fileID: 8236504403079512234}
   - component: {fileID: 7978585362922117303}
   - component: {fileID: 6745676285347251144}
-  - component: {fileID: 3160991074220692013}
+  - component: {fileID: 5980619562306250965}
   m_Layer: 16
   m_Name: walk-with-weapon-1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,10 +187,27 @@ MonoBehaviour:
       m_Action: Dodge
       m_Flags: 0
     m_Flags: 0
+  speed_mult: 0
   speed: 3
+  is_vulnerable: 1
+  attack_speed_mult: 1
   max_health: 100
-  animator: {fileID: 3160991074220692013}
+  animator: {fileID: 5980619562306250965}
   projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+--- !u!114 &8236504403079512234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41528f706d7ade84299d36bc4434e21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experience: 0
+  upgradeManager: {fileID: 0}
 --- !u!50 &7978585362922117303
 Rigidbody2D:
   serializedVersion: 5
@@ -247,11 +265,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.15, y: -0.05}
+  m_Offset: {x: 0, y: -0.02}
   m_SpriteTilingProperty:
     border: {x: 0.17, y: 0, z: 0.53999996, w: 0}
     pivot: {x: 0.36, y: 0.5}
@@ -261,9 +279,9 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.65}
+  m_Size: {x: 0.26, y: 0.5}
   m_EdgeRadius: 0
---- !u!95 &3160991074220692013
+--- !u!95 &5980619562306250965
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0

@@ -5,32 +5,22 @@ using static GameConstants;
 
 
 
-public class Upgrade : MonoBehaviour
+public class Upgrade
 {
-    public virtual string title { get; set; }
-    public virtual string description { get; set; }
-    public virtual int rarity { get; set; }
+    protected string title = "DEFAULT TITLE";
+    protected string description = "DEFAULT DESCRIPTION";
+    protected int rarity = COMMON;
 
     public PlayerController player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public string Title
     {
-        GameObject playerObject = GameObject.FindWithTag("PlayerControllerPlayer");
-        if (playerObject != null)
-        {
-            player = playerObject.GetComponent<PlayerController>();
-        }
-        else
-        {
-            Debug.LogError("Player not found!");
-        }
+        get { return title; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public string Description
     {
-        
+        get { return description; }
     }
 
     public virtual void ApplyUpgrade() {

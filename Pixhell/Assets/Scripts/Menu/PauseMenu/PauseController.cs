@@ -33,7 +33,7 @@ public class PauseController : MonoBehaviour
 
     }
 
-    void TogglePause(bool allowToggle=false)
+    public void TogglePause(bool allowToggle=false)
     // Toggles the current pause setting
     // Takes a force parameter that will allow the toggle to happen even on menus where it should not be allowed
     {

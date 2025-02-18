@@ -519,6 +519,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1403697649868078611, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1493394990}
+    - targetCorrespondingSourceObject: {fileID: 1403697649868078611, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1493395000}
   m_SourcePrefab: {fileID: 100100000, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
 --- !u!1 &1493394989 stripped
 GameObject:
@@ -552,6 +555,45 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8640907151943126642, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
   m_PrefabInstance: {fileID: 1060276413}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1493395000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493394989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f42cc24b13fa84bb22a87bb711d94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowVolley:
+    m_Name: Arrow Volley
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: daf5f800-a4af-4405-9611-dc423a3b5537
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 5f10c048-c8fb-4e82-bc90-10802debe42d
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Arrow Volley
+      m_Flags: 0
+    m_Flags: 0
+  SnareArrow:
+    m_Name: Snare Arrow
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d08da332-fac0-4a89-8204-6d577ebe0050
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
 --- !u!1 &1631073177
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,6 +38,7 @@ public class LoadCharacterSaves : MonoBehaviour
         using (StreamReader reader = new StreamReader(filePath)) 
         {
             string firstLine = reader.ReadLine(); // Read the first line of the file
+            string secondLine = reader.ReadLine();
 
             // Instantiate a new button from the prefab
             GameObject newButton = Instantiate(buttonPrefab.gameObject, panelContainer);
@@ -56,7 +57,7 @@ public class LoadCharacterSaves : MonoBehaviour
             }
 
             // Set the button's text
-            buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + filePath;
+            buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + "\n" + filePath + "\n" + secondLine;
             Button button = newButton.GetComponent<Button>();
             // Add button functionality
             button.onClick.AddListener(() => EnterRun(filePath));
@@ -133,13 +134,14 @@ public class LoadCharacterSaves : MonoBehaviour
         string filePath = generalPath + "/" + randomString;
         using (StreamWriter writer = new StreamWriter(filePath))
         {
-            writer.WriteLine("Arena: 1\n");
+            writer.WriteLine("Arena: 1");
+            writer.WriteLine("Items:,");
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void EnterRun(string filePath) {
-
+        GameManager.LoadPlayerData(filePath);
         SceneManager.LoadScene("Lobby");
     }
 

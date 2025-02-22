@@ -17,7 +17,7 @@ public static class GameManager {
     public static Inventory inventory;
     public static int coins;
 
-    static void LoadPlayerData() {
+    static void LoadPlayerData(string filePath) {
         // Implement functionality that reads a file and places the data in the respective fields
     }
 

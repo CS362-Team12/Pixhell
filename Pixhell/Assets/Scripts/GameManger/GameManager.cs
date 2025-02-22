@@ -8,21 +8,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using InventoryClass;
 
-public class GameManager : MonoBehaviour {
+public static class GameManager {
     // Accessable Player info for current run
-    [SerializeField] string sceneName;
-    [SerializeField] int maxArena;
-    [SerializeField] string runID;
-    private string path = Application.streamingAssetsPath;
+    [SerializeField] static int maxArena;
+    [SerializeField] static string runID;
+    private static string path = Application.streamingAssetsPath;
 
-    public Inventory inventory;
-    public int coins;
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    public static Inventory inventory;
+    public static int coins;
 
-    void LoadPlayerData() {
+    static void LoadPlayerData() {
         // Implement functionality that reads a file and places the data in the respective fields
     }
+
+    static void SetMaxArena(int max) {
+        maxArena = max;
+    }
+
+    static void UpdateCoins(int amount) {
+        coins += amount;
+    }
+
+    static List<Item> getInventory() {
+        return inventory.getList();
+    }
 }
+ 

@@ -134,7 +134,6 @@ public class LoadCharacterSaves : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(filePath))
         {
             writer.WriteLine("Arena: 1\n");
-            //Debug.Log("New run created with filename: " + filePath);
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

@@ -1,2 +1,2 @@
 Arena: 1
-Items:,1,
+Items:,1,2

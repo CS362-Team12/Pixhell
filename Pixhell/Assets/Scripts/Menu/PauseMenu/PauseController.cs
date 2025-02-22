@@ -40,6 +40,8 @@ public class PauseController : MonoBehaviour
         if ((SceneManager.GetActiveScene().name == "StartMenu" || SceneManager.GetActiveScene().name == "SelectRun") && !allowToggle) {
             return;
         }
+        GameManager.LogPlayerData();
+
         isPaused = !isPaused;
         pauseMenuUI.SetActive(isPaused);  // Show/hide the pause menu
         Time.timeScale = isPaused ? 0f : 1f;  // Freeze gameplay time when paused

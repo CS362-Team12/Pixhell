@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -11,22 +12,31 @@ using InventoryClass;
 public static class GameManager {
     // Accessable Player info for current run
     [SerializeField] static int maxArena;
-    [SerializeField] static string runID;
+    [SerializeField] static string runIDPath;
     private static string path = Application.streamingAssetsPath;
 
-    public static Inventory inventory;
+    public static Inventory inventory = new Inventory();
     public static int coins;
 
-    static void LoadPlayerData(string filePath) {
-        // Implement functionality that reads a file and places the data in the respective fields
+    public static void LoadPlayerData(string filePath) {
+        runIDPath = filePath;
+        
+        using (StreamReader reader = new StreamReader(filePath)) 
+        {
+            maxArena = int.Parse(reader.ReadLine().Split(" ")[1]);
+            string itemLine = reader.ReadLine();
+            Debug.Log("ITEMLINE: " + itemLine);
+            string[] items = itemLine.Split(',');
+            for (int i = 1; i < items.Length; i++) {
+                string itemId = items[i];
+                inventory.addItem(int.Parse(itemId));
+            }
+        }
     }
 
-    static void SetMaxArena(int max) {
-        maxArena = max;
-    }
-
-    static void UpdateCoins(int amount) {
-        coins += amount;
+    public static void LogPlayerData() {
+        string dataString = $"Arena: {maxArena}, runID: {runIDPath}, InventorySize: {inventory.items.Count}";
+        Debug.Log(dataString);
     }
 }
  

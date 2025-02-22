@@ -7,11 +7,16 @@ using System.IO;
 
 namespace InventoryClass {
     public class Inventory {
-        public List<Item> items;
+        public List<Item> items = new List<Item>();
         public int totalDamageMod = 0;
         public int totalAttackSpeedMod = 0;
         public int totalHealthMod = 0;
         public int totalMovementSpeedMod = 0;
+
+        public void addItem(int id) {
+            items.Add(readItem(id));
+            calculateModifiers();
+        }
 
         public void addItem(Item item) {
             items.Add(item);
@@ -40,13 +45,13 @@ namespace InventoryClass {
             }
         }
 
-        Item readItem(int id) {
-            string[] lines = File.ReadAllLines("GlobalItems.csv");
+        public Item readItem(int id) {
+            string itemInfoPath = Path.Combine(Application.streamingAssetsPath, "Items/GlobalItems.csv");
+            string[] lines = File.ReadAllLines(itemInfoPath);
             foreach (var line in lines)
             {
                 string[] columns = line.Split(',');
-
-                if (int.Parse(columns[0]) == id)
+                if (columns[0] == id.ToString())
                 {
                     string name = columns[1];
                     string description = columns[2];

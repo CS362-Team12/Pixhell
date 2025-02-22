@@ -28,9 +28,5 @@ public static class GameManager {
     static void UpdateCoins(int amount) {
         coins += amount;
     }
-
-    static List<Item> getInventory() {
-        return inventory.getList();
-    }
 }
  

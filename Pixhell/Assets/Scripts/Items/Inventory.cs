@@ -1,4 +1,7 @@
+using UnityEngine;
 using System.Collections.Generic;
+using System;
+using System.IO;
 
 // File used to dynamically store player items as they play
 
@@ -12,10 +15,12 @@ namespace InventoryClass {
 
         public void addItem(Item item) {
             items.Add(item);
+            calculateModifiers();
         }
 
         public void removeItem(Item item) {
             items.Remove(item);
+            calculateModifiers();
         }
 
         public List<Item> getList() {
@@ -34,6 +39,27 @@ namespace InventoryClass {
                 totalMovementSpeedMod += item.movementSpeed;
             }
         }
-    
+
+        Item readItem(int id) {
+            string[] lines = File.ReadAllLines("GlobalItems.csv");
+            foreach (var line in lines)
+            {
+                string[] columns = line.Split(',');
+
+                if (int.Parse(columns[0]) == id)
+                {
+                    string name = columns[1];
+                    string description = columns[2];
+                    string imagePath = columns[3];
+                    int damage = int.Parse(columns[4]);
+                    int attackSpeed = int.Parse(columns[5]);
+                    int health = int.Parse(columns[6]);
+                    int movementSpeed = int.Parse(columns[7]);
+                    return new Item(id, name, description, imagePath, damage, attackSpeed, health, movementSpeed);
+                }
+            }
+            Debug.Log("Item with ID {id} not found.");
+            return new Item();
+        }
     }
 }

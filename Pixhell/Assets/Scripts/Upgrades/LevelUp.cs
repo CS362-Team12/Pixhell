@@ -20,8 +20,8 @@ public class LevelUp : MonoBehaviour
             experience -= levelCaps[level];
             level++;
 
-            GameObject upgradeManager = GameObject.FindWithTag("UpgradeManager");
-            upgradeManager.GetComponent<UpgradeManager>().TriggerLevelUp();
+            GameObject UpgradeController = GameObject.Find("EventSystem");
+            UpgradeController.GetComponent<UpgradeController>().TriggerLevelUp();
         }
     }
 }

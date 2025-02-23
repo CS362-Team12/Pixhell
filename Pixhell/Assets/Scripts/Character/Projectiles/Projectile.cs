@@ -6,13 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
-    float damage_mult = 1.0f;
-    float damage = 25.0f;
-    public void damage_update(float increase)
-    {
-        damage_mult += increase;
-    }
-
+    float damage;
 
     // Awake is called when the Projectile GameObject is instantiated
     void Awake()
@@ -27,11 +21,12 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void Launch(Vector2 direction, float force)
+    public void Launch(Vector2 direction, float force, float dam, float dam_mult)
     {
         rigidbody2d.AddForce(direction.normalized * force, ForceMode2D.Impulse);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        damage = dam * dam_mult;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -40,7 +35,7 @@ public class Projectile : MonoBehaviour
         var target = other.GetComponent<Enemy>(); 
         if (target != null)
         {
-            target.TakeDamage(damage * damage_mult);  // Call the TakeDamage method
+            target.TakeDamage(damage);  // Call the TakeDamage method
         }
 
         Destroy(gameObject);

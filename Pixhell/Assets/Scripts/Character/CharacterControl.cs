@@ -15,39 +15,43 @@ public class PlayerController : MonoBehaviour
     public InputAction DodgeAction;
 
     [Header("2D settings")]
-    Rigidbody2D rigidbody2d;
-    Vector2 move;
-    private bool m_FacingRight = true;
-    float horizontal_move;
+    protected Rigidbody2D rigidbody2d;
+    protected Vector2 move;
+    protected bool m_FacingRight = true;
+    protected float horizontal_move;
 
     [Header("Move Speed")]
-    float base_speed = 1.0f;
-    float speed_mult;
+    protected float base_speed = 1.0f;
+    protected float speed_mult;
     public float speed = 3.0f;
 
     [Header("Dash Settings")]
-    public bool is_vulnerable = true;
-    float dodge_duration = .2f;
-    float dodge_time = -2f;
+    protected float dodge_duration = .2f;
+    protected float dodge_time = -2f;
 
     [Header("Attack Settings")]
-    float attack_speed = 1.0f;
-    float attack_speed_mult = 1.0f;
-    float attack_time = -2f;
+    protected float attack_speed = 1.0f;
+    protected float attack_speed_mult = 1.0f;
+    protected float attack_time = -2f;
 
     [Header("Health Settings")]
     public float max_health = 100;
-    float current_health;
+    protected float current_health;
     public float health { get { return current_health; } }
-    float invincibility_time = 1f;
-    float hit_time = -2f;
+    protected float invincibility_time = 1f;
+    public bool is_vulnerable = true;
+    protected float hit_time = -2f;
+    protected float seconds = 1f;
+
+    [Header("Damage Settings")]
+    protected float damage_mult = 1.0f;
+    protected float damage = 25.0f;
+
 
 
     public Animator animator;
 
-    public GameObject projectilePrefab;
-
-    void Start()
+    public void Start()
     {
         speed_mult = base_speed;
         current_health = max_health;
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
         SprintAction.Enable();
         DodgeAction.Enable();
         animator = GetComponent<Animator>();
+        StartImmune();
     }
 
     public void update_movement(float increase)
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         horizontal_move = Input.GetAxisRaw("Horizontal");
         Vector2 move = MoveAction.ReadValue<Vector2>();
@@ -92,13 +97,13 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(dodge_roll(move));
         }
-        if (Input.GetMouseButtonDown(0)) {
-            Launch();
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) {
+            BasicAttack();
         }
         
     }
 
-    IEnumerator dodge_roll(Vector2 move)
+    private IEnumerator dodge_roll(Vector2 move)
     {
         if (move == Vector2.zero) // Prevent dodge if there's no movement input
             yield break;
@@ -120,7 +125,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Flip()
+    protected void StartImmune()
+    {
+        is_vulnerable = false;
+        StartCoroutine(ImmuneTimer());
+    }
+
+    private IEnumerator ImmuneTimer()
+    {
+        yield return new WaitForSeconds(seconds);
+        is_vulnerable = true;
+    }
+
+    protected void Flip()
     {
         // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
@@ -131,7 +148,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         {
             Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime;
@@ -141,18 +158,20 @@ public class PlayerController : MonoBehaviour
 
     // Run this function when taking damage from a damage source
     public bool TakeDamage(float damage) {
-        bool damaged = change_health(-damage);
+        bool damaged = ChangeHealth(-damage);
         if (current_health <= 0) {
             // GAME OVER
         }
-        if (damaged) {
+        if (damaged)
+        {
             hit_time = Time.time;
+            StartImmune();
         }
         return damaged;
     }
 
     // Run this function when you don't want to trigger invinciblity frames
-    public bool change_health(float health)
+    public bool ChangeHealth(float health)
     {
         if (is_vulnerable && health < 0 && Time.time - hit_time >= invincibility_time)
         {
@@ -163,32 +182,30 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void update_health(float increase) 
+    public void UpdateHealth(float increase) 
     {
         max_health += increase;
         current_health = max_health;
     }
 
-    public void as_increase(float increase)
+    public void UpdateImmunity(float increase)
+    {
+        seconds += increase;
+    }
+
+    public void AsIncrease(float increase)
     {
         attack_speed_mult -= increase;
     }
 
-    void Launch()
+    public void DamageUpdate(float increase)
     {
-        if (!SprintAction.IsPressed() && !DodgeAction.IsPressed())
-        {
-            if (Time.time - attack_time >= attack_speed * attack_speed_mult)
-            {
-                attack_time = Time.time;
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0f;
-                Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
-                GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
-                Projectile projectile = projectileObject.GetComponent<Projectile>();
-                projectile.Launch(direction, 6.5f);
-            }
-        }
-        
+        damage_mult += increase;
+    }
+
+    protected virtual void BasicAttack()
+    {
+
+        Debug.Log("Player Attacked");
     }
 }

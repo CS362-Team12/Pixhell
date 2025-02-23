@@ -29,7 +29,7 @@ public class CollectibleHealth : MonoBehaviour
 
         if (controller != null && controller.health < controller.max_health)
         {
-            controller.change_health(health*heal_mult);
+            controller.ChangeHealth(health*heal_mult);
             Destroy(gameObject);
         }
 

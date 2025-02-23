@@ -66,5 +66,10 @@ namespace InventoryClass {
             Debug.Log($"Item with ID {id} not found.");
             return new Item();
         }
+
+        public void resetInventory() {
+            items = new List<Item>();
+            calculateModifiers();
+        }
     }
 }

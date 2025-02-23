@@ -20,16 +20,20 @@ public static class GameManager {
 
     public static void LoadPlayerData(string filePath) {
         runIDPath = filePath;
-        
+        inventory.resetInventory();
         using (StreamReader reader = new StreamReader(filePath)) 
         {
             maxArena = int.Parse(reader.ReadLine().Split(" ")[1]);
-            string itemLine = reader.ReadLine();
+            string itemLine = reader.ReadLine().Substring(6);
             Debug.Log("ITEMLINE: " + itemLine);
             string[] items = itemLine.Split(',');
-            for (int i = 1; i < items.Length; i++) {
+            Debug.Log(items.Length);
+            for (int i = 0; i < items.Length; i++) {
                 string itemId = items[i];
-                inventory.addItem(int.Parse(itemId));
+                if (itemId.Length > 0) {
+                    inventory.addItem(int.Parse(itemId));
+                }
+                
             }
         }
     }

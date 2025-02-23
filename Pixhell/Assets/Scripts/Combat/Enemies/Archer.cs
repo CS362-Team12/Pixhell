@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameConstants;
 
 public class Archer : Enemy
 {   
@@ -12,7 +13,7 @@ public class Archer : Enemy
      public Archer()
     {
         // Move, then wait a little, launch arrow, wait a little
-        states = new int[] { 0, 2, 1, 2 };
+        states = new int[] { MOVING, IDLING, ATTACKING, IDLING };
         timers = new float[] { 3f, 0.75f, 0f, 0.75f };
     }
 

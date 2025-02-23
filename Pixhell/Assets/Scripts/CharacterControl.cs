@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        speed_mult = base_speed;
+        Debug.Log(GameManager.inventory.totalHealthMod);
+        speed_mult = base_speed * (1 + GameManager.inventory.totalMovementSpeedMod);
+        max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
         current_health = max_health;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();

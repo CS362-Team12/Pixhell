@@ -8,10 +8,10 @@ using System.IO;
 namespace InventoryClass {
     public class Inventory {
         public List<Item> items = new List<Item>();
-        public int totalDamageMod = 0;
-        public int totalAttackSpeedMod = 0;
-        public int totalHealthMod = 0;
-        public int totalMovementSpeedMod = 0;
+        public float totalDamageMod = 0;
+        public float totalAttackSpeedMod = 0;
+        public float totalHealthMod = 0;
+        public float totalMovementSpeedMod = 0;
 
         public void addItem(int id) {
             items.Add(readItem(id));
@@ -38,10 +38,10 @@ namespace InventoryClass {
             totalHealthMod = 0;
             totalMovementSpeedMod = 0;
             foreach (Item item in items) {
-                totalDamageMod += item.damage;
-                totalAttackSpeedMod += item.attackSpeed;
-                totalHealthMod += item.health;
-                totalMovementSpeedMod += item.movementSpeed;
+                totalDamageMod += item.damage / 100;
+                totalAttackSpeedMod += item.attackSpeed / 100;
+                totalHealthMod += item.health / 100;
+                totalMovementSpeedMod += item.movementSpeed / 100;
             }
         }
 
@@ -56,14 +56,14 @@ namespace InventoryClass {
                     string name = columns[1];
                     string description = columns[2];
                     string imagePath = columns[3];
-                    int damage = int.Parse(columns[4]);
-                    int attackSpeed = int.Parse(columns[5]);
-                    int health = int.Parse(columns[6]);
-                    int movementSpeed = int.Parse(columns[7]);
+                    float damage = float.Parse(columns[4]);
+                    float attackSpeed = float.Parse(columns[5]);
+                    float health = float.Parse(columns[6]);
+                    float movementSpeed = float.Parse(columns[7]);
                     return new Item(id, name, description, imagePath, damage, attackSpeed, health, movementSpeed);
                 }
             }
-            Debug.Log("Item with ID {id} not found.");
+            Debug.Log($"Item with ID {id} not found.");
             return new Item();
         }
     }

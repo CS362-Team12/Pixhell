@@ -6,16 +6,16 @@ public class Item {
     public string name;
     public string description;
     public string imagePath;
-    public int damage;
-    public int attackSpeed;
-    public int health;
-    public int movementSpeed;
+    public float damage;
+    public float attackSpeed;
+    public float health;
+    public float movementSpeed;
 
     public Item() {
         this.id = -1;
     }
 
-    public Item(int id, string name, string desc, string imagePath, int d, int aS, int h, int mS) {
+    public Item(int id, string name, string desc, string imagePath, float d, float aS, float h, float mS) {
         this.id = id;
         this.name = name;
         this.description = desc;

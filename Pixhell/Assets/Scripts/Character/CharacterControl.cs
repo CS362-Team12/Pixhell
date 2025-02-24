@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     [Header("Damage Settings")]
     protected float damage_mult = 1.0f;
     protected float damage = 25.0f;
-
+    protected float projectile_speed_mult = 1.0f;
 
 
     public Animator animator;
@@ -197,6 +197,10 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     // All increase modifiers
+    public void UpdateProjectileSpeed(float increase)
+    {
+        projectile_speed_mult += increase;
+    }
     public void UpdateMovement(float increase)
     {
         speed_mult += increase;

@@ -4571,6 +4571,14 @@ PrefabInstance:
       value: Move
       objectReference: {fileID: 0}
     - target: {fileID: -2221367632817053126, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialOne.m_Name
+      value: Special One
+      objectReference: {fileID: 0}
+    - target: {fileID: -2221367632817053126, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialTwo.m_Name
+      value: Special Two
+      objectReference: {fileID: 0}
+    - target: {fileID: -2221367632817053126, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: DodgeAction.m_Name
       value: Dodge
       objectReference: {fileID: 0}

@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class WarriorClass : MonoBehaviour
+public class WarriorClass : PlayerController
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
+        base.Start();
+        current_health = max_health;
+        damage = 25.0f;
+        attack_speed = 1.2f;
+        speed_mult = .8f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    }
+    protected override void BasicAttack()
+    { 
+        base.BasicAttack();
     }
 }

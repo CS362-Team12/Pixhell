@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [Header("Input Actions")]
     public InputAction MoveAction;
     public InputAction SprintAction;
+    public InputAction SpecialOne;
+    public InputAction SpecialTwo;
     public InputAction DodgeAction;
 
     [Header("2D settings")]
@@ -35,13 +37,15 @@ public class PlayerController : MonoBehaviour
     protected float attack_time = -2f;
 
     [Header("Health Settings")]
-    public float max_health = 100;
+    public float max_health = 100f;
     protected float current_health;
     public float health { get { return current_health; } }
     protected float invincibility_time = 1f;
     public bool is_vulnerable = true;
     protected float hit_time = -2f;
     protected float seconds = 1f;
+    float heal_mult = 1.0f;
+
 
     [Header("Damage Settings")]
     protected float damage_mult = 1.0f;
@@ -53,19 +57,15 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
+        // Sets base values
         speed_mult = base_speed;
-        current_health = max_health;
+        // Enables Movement
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();
         SprintAction.Enable();
         DodgeAction.Enable();
         animator = GetComponent<Animator>();
         StartImmune();
-    }
-
-    public void update_movement(float increase)
-    {
-        speed_mult += increase;
     }
 
     // Update is called once per frame
@@ -178,8 +178,22 @@ public class PlayerController : MonoBehaviour
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);
             return true;
+        }else if (health > 0)
+        {
+            current_health = Mathf.Clamp(current_health + (health*heal_mult), 0, max_health);
+            Debug.Log(current_health + "/" + max_health);
+            return false;
         }
         return false;
+    }
+    // All increase modifiers
+    public void update_movement(float increase)
+    {
+        speed_mult += increase;
+    }
+    public void update_healing(float increase)
+    {
+        heal_mult += increase;
     }
 
     public void UpdateHealth(float increase) 
@@ -195,14 +209,14 @@ public class PlayerController : MonoBehaviour
 
     public void AsIncrease(float increase)
     {
-        attack_speed_mult -= increase;
+        attack_speed_mult += increase;
     }
 
     public void DamageUpdate(float increase)
     {
         damage_mult += increase;
     }
-
+    // Basic attacks for players
     protected virtual void BasicAttack()
     {
 

@@ -7,20 +7,18 @@ public class ArcherClass : PlayerController
     void Start()
     {
         base.Start();
+        max_health = 75f;
+        current_health = max_health;
         damage = 15.0f;
-        attack_speed = 1.5f;
         speed_mult = 1.2f;
+        attack_speed_mult = 1.1f;
     }
-
-    // Update is called once per frame
-
-
 
     protected override void BasicAttack()
     {
         if (!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         {
-            if (Time.time - attack_time >= attack_speed * attack_speed_mult)
+            if (Time.time - attack_time >= attack_speed / attack_speed_mult)
             {
                 attack_time = Time.time;
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

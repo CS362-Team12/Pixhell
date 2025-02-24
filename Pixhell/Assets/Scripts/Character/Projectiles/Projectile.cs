@@ -15,12 +15,6 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, 5f);
     }
 
-    void Update()
-    {
-
-    }
-
-
     public void Launch(Vector2 direction, float force, float dam, float dam_mult)
     {
         rigidbody2d.AddForce(direction.normalized * force, ForceMode2D.Impulse);

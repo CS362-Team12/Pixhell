@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     protected float dodge_duration = .2f;
     protected float dodge_time = -2f;
     public bool is_dodging = false;
+    protected float dash_mult = 1.0f;
 
     [Header("Attack Settings")]
     protected float attack_speed = 1.0f;
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour
             float startTime = Time.time;
             while (Time.time < startTime + dodge_duration)
             {
-                Vector2 position = (Vector2)transform.position + move * 15.5f * Time.deltaTime * speed_mult;
+                Vector2 position = (Vector2)transform.position + move * 10f * Time.deltaTime * dash_mult * (speed_mult/4f);
                 transform.position = position;
                 yield return null;
             }
@@ -200,6 +201,12 @@ public class PlayerController : MonoBehaviour
     {
         speed_mult += increase;
     }
+
+    public void UpdateDash(float increase)
+    {
+        dash_mult += increase;
+    }
+
     public void UpdateHealing(float increase)
     {
         heal_mult += increase;

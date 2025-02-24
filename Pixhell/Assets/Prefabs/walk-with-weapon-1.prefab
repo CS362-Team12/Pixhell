@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3815007933092154987}
   - component: {fileID: 7978585362922117303}
   - component: {fileID: 6745676285347251144}
-  - component: {fileID: 3160991074220692013}
   - component: {fileID: -2221367632817053126}
+  - component: {fileID: 5980619562306250965}
+  - component: {fileID: -9124712430784119024}
   m_Layer: 16
   m_Name: walk-with-weapon-1
   m_TagString: Player
@@ -164,28 +165,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.26, y: 0.5}
   m_EdgeRadius: 0
---- !u!95 &5980619562306250965
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403697649868078611}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 047efb0615b25b74783d322c44e6be5b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-2221367632817053126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +243,24 @@ MonoBehaviour:
       m_Action: Sprint
       m_Flags: 0
     m_Flags: 0
+  SpecialOne:
+    m_Name: Special One
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f2d2183e-f346-4b61-a171-269a12fbe26b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  SpecialTwo:
+    m_Name: Special Two
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a6e9c728-eb44-4765-a51c-0f74412739c2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   DodgeAction:
     m_Name: Dodge
     m_Type: 0
@@ -282,7 +279,43 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   speed: 3
-  is_vulnerable: 1
+  is_dodging: 0
   max_health: 100
-  animator: {fileID: 3160991074220692013}
+  is_vulnerable: 1
+  animator: {fileID: 0}
   projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+--- !u!95 &5980619562306250965
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 047efb0615b25b74783d322c44e6be5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-9124712430784119024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41528f706d7ade84299d36bc4434e21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experience: 0

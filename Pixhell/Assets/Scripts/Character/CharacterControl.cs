@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings")]
     protected float dodge_duration = .2f;
     protected float dodge_time = -2f;
+    public bool is_dodging = false;
 
     [Header("Attack Settings")]
     protected float attack_speed = 1.0f;
@@ -61,7 +62,8 @@ public class PlayerController : MonoBehaviour
         speed_mult = base_speed;
         // Enables Movement
         Debug.Log(GameManager.inventory.totalHealthMod);
-        speed_mult = base_speed * (1 + GameManager.inventory.totalMovementSpeedMod);
+        speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
+        damage_mult = (1 + GameManager.inventory.totalDamageMod);
         max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
         current_health = max_health;
         attack_speed_mult = attack_speed_mult + GameManager.inventory.totalAttackSpeedMod;
@@ -116,6 +118,7 @@ public class PlayerController : MonoBehaviour
         if (Time.time - dodge_time >= 2.0f)
         {
             animator.SetBool("is_dodging", true);
+            is_dodging = true;
             dodge_time = Time.time;
             is_vulnerable = false;
             float startTime = Time.time;
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
                 yield return null;
             }
             animator.SetBool("is_dodging", false);
+            is_dodging = false;
             is_vulnerable = true;
         }
     }

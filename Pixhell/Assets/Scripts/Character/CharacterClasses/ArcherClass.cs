@@ -7,11 +7,11 @@ public class ArcherClass : PlayerController
     void Start()
     {
         base.Start();
-        max_health = 75f;
+        max_health *= .75f;
         current_health = max_health;
-        damage = 15.0f;
-        speed_mult = 1.2f;
-        attack_speed_mult = 1.1f;
+        damage *= .60f;
+        speed_mult *= 1.2f;
+        attack_speed_mult *= 1.1f;
     }
 
     protected override void BasicAttack()

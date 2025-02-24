@@ -18,6 +18,6 @@ public class AttackSpeedUp_U : Upgrade
     public override void ApplyUpgrade()
     {   
         GameObject player = GameObject.FindWithTag("Player");
-        player.GetComponent<PlayerController>().AsIncrease(attack_up);
+        player.GetComponent<PlayerController>().UpdateAttackSpeed(attack_up);
     }
 }

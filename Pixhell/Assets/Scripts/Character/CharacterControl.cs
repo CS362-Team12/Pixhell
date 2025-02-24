@@ -192,11 +192,11 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     // All increase modifiers
-    public void update_movement(float increase)
+    public void UpdateMovement(float increase)
     {
         speed_mult += increase;
     }
-    public void update_healing(float increase)
+    public void UpdateHealing(float increase)
     {
         heal_mult += increase;
     }
@@ -212,12 +212,12 @@ public class PlayerController : MonoBehaviour
         seconds += increase;
     }
 
-    public void AsIncrease(float increase)
+    public void UpdateAttackSpeed(float increase)
     {
         attack_speed_mult += increase;
     }
 
-    public void DamageUpdate(float increase)
+    public void UpdateSpeed(float increase)
     {
         damage_mult += increase;
     }

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     protected float collisionDamage = 25.0f;
 
     public GameObject player;
+    public GameObject XPDrop;
 
     // Three states, hopefully turned into constants later:
     // 0. Moving: Perform the move code
@@ -68,8 +69,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    
-
     // Default, move towards player
     public virtual void Move() 
     {
@@ -95,6 +94,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("Took " + damage + " damage!");
         if (health <= 0) {
             //Should be replaced with a death animation? 
+            Instantiate(XPDrop, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

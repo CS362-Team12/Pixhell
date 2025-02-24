@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2221367632817053126}
   m_Layer: 16
   m_Name: walk-with-weapon-1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,11 +148,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.15, y: -0.05}
+  m_Offset: {x: 0, y: -0.02}
   m_SpriteTilingProperty:
     border: {x: 0.17, y: 0, z: 0.53999996, w: 0}
     pivot: {x: 0.36, y: 0.5}
@@ -162,9 +162,9 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.65}
+  m_Size: {x: 0.26, y: 0.5}
   m_EdgeRadius: 0
---- !u!95 &3160991074220692013
+--- !u!95 &5980619562306250965
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0

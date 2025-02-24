@@ -26,7 +26,7 @@ public class ArcherClass : PlayerController
                 Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
                 GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                 Projectile projectile = projectileObject.GetComponent<Projectile>();
-                projectile.Launch(direction, 6.5f, damage, damage_mult);
+                projectile.Launch(direction, 6.5f, projectile_speed_mult, damage, damage_mult);
             }
         }
     }

@@ -76,8 +76,16 @@ public class UpgradeController : MonoBehaviour
                 rarity = LEGENDARY;
             }
 
-            var random2 = Random.Range(0, upgrades[rarity].Length);
-            chosenUpgrades[i] = upgrades[rarity][random2];
+            var upgradeFound = false;
+            while(!upgradeFound) {
+                var random2 = Random.Range(0, upgrades[rarity].Length);
+                var upgrade = upgrades[rarity][random2];
+                if (upgrade.IsValid()) {
+                    chosenUpgrades[i] = upgrades[rarity][random2];
+                    upgradeFound = true;
+                }
+            }
+            
 
             GameObject title_text = GameObject.Find(textNames[i][0]);
             title_text.GetComponent<TextMeshProUGUI>().text = chosenUpgrades[i].Title;
@@ -90,7 +98,9 @@ public class UpgradeController : MonoBehaviour
     }
 
     public void ChooseUpgrade(int upgradeNumber) {
-        chosenUpgrades[upgradeNumber].ApplyUpgrade();
+        var upgrade = chosenUpgrades[upgradeNumber];
+        upgrade.ApplyUpgrade();
+        upgrade.SetSelected(true);
         TogglePause();
         // TODO: Apply Invincibility
     }

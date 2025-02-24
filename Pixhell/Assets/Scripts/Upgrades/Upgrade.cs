@@ -10,6 +10,9 @@ public class Upgrade
     protected string title = "DEFAULT TITLE";
     protected string description = "DEFAULT DESCRIPTION";
     protected int rarity = COMMON;
+    protected bool reusable = true;
+    bool selected = false;
+    
 
     public PlayerController player;
 
@@ -23,7 +26,20 @@ public class Upgrade
         get { return description; }
     }
 
+    public void SetSelected(bool s) {
+        selected = s;
+    }
+
+    public bool IsValid() {
+        if (!reusable) {
+            return !selected;
+        }
+        return true;
+    }
+
     public virtual void ApplyUpgrade() {
         Debug.Log("Upgrae not implemented");
     }
+
+
 }

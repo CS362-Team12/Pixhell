@@ -6,11 +6,11 @@ public class MageClass : PlayerController
     void Start()
     {
         base.Start();
-        max_health = 75f;
+        max_health *= .75f;
         current_health = max_health;
-        damage = 12.0f;
-        speed_mult = 1.2f;
-        attack_speed_mult = 1.15f;
+        damage *= .48f;
+        speed_mult *= 1.2f;
+        attack_speed_mult *= 1.15f;
     }
     protected override void BasicAttack()
     {

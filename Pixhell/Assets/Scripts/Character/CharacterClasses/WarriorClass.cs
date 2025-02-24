@@ -6,9 +6,8 @@ public class WarriorClass : PlayerController
     {
         base.Start();
         current_health = max_health;
-        damage = 25.0f;
-        attack_speed = 1.2f;
-        speed_mult = .8f;
+        attack_speed *= 1.2f;
+        speed_mult *= .8f;
 
     }
     protected override void BasicAttack()

@@ -12,6 +12,7 @@ using InventoryClass;
 public static class GameManager {
     // Accessable Player info for current run
     [SerializeField] static int maxArena;
+    [SerializeField] static int coins;
     [SerializeField] static string runIDPath;
     private static string path = Application.streamingAssetsPath;
 
@@ -23,7 +24,10 @@ public static class GameManager {
         inventory.resetInventory();
         using (StreamReader reader = new StreamReader(filePath)) 
         {
+            // Read Arena
             maxArena = int.Parse(reader.ReadLine().Split(" ")[1]);
+            
+            // Read Items
             string itemLine = reader.ReadLine().Substring(6);
             Debug.Log("ITEMLINE: " + itemLine);
             string[] items = itemLine.Split(',');
@@ -33,6 +37,9 @@ public static class GameManager {
                 if (itemId.Length > 0) {
                     inventory.addItem(int.Parse(itemId));
                 }
+            
+            // Read Coins
+            coins = int.Parse(reader.ReadLine().Split(" ")[1]);
                 
             }
         }

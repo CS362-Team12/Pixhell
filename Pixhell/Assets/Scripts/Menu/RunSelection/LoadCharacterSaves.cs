@@ -135,6 +135,7 @@ public class LoadCharacterSaves : MonoBehaviour
         {
             writer.WriteLine("Arena: 1");
             writer.WriteLine("Items:");
+            writer.WriteLine("Coins: 0");
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

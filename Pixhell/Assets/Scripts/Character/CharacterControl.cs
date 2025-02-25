@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     protected float base_speed = 1.0f;
     protected float speed_mult;
     public float speed = 3.0f;
+    protected float stopTime = 0f;
+    protected float minStopDuration = 0.05f;
 
     [Header("Dash Settings")]
     protected float dodge_duration = .2f;
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
 
+
     public void Start()
     {
         // Sets base values
@@ -77,14 +80,17 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         horizontal_move = Input.GetAxisRaw("Horizontal");
         Vector2 move = MoveAction.ReadValue<Vector2>();
-        if (horizontal_move > 0 && !m_FacingRight)
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        animator.SetFloat("AnimationSpeed", attack_speed_mult);
+        if (mousePosition.x > transform.position.x && !m_FacingRight)
         {
             Flip();
-        }else if(horizontal_move < 0 && m_FacingRight)
+        }
+        else if (mousePosition.x < transform.position.x && m_FacingRight)
         {
             Flip();
         }
@@ -105,10 +111,15 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(dodge_roll(move));
         }
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0)) {
-            BasicAttack();
+        if (move == Vector2.zero)
+        {
+            stopTime += Time.deltaTime; // Increase stop duration
         }
-        
+        else
+        {
+            stopTime = 0f; // Reset when moving
+        }
+
     }
 
     private IEnumerator dodge_roll(Vector2 move)
@@ -232,12 +243,8 @@ public class PlayerController : MonoBehaviour
         attack_speed_mult += increase;
     }
 
-    public void UpdateSpeed(float increase)
-    {
-        damage_mult += increase;
-    }
     // Basic attacks for players
-    protected virtual void BasicAttack()
+    protected virtual void BasicAttack(Vector2 move)
     {
 
         Debug.Log("Player Attacked");

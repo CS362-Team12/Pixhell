@@ -10,8 +10,17 @@ public class WarriorClass : PlayerController
         speed_mult *= .8f;
 
     }
-    protected override void BasicAttack()
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+        {
+            animator.SetTrigger("Attack");
+            BasicAttack(move);
+        }
+    }
+    protected override void BasicAttack(Vector2 move)
     { 
-        base.BasicAttack();
+        base.BasicAttack(move);
     }
 }

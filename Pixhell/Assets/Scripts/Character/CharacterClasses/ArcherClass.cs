@@ -14,12 +14,22 @@ public class ArcherClass : PlayerController
         attack_speed_mult *= 1.1f;
     }
 
-    protected override void BasicAttack()
+    protected override void Update()
     {
-        if (!SprintAction.IsPressed() && !DodgeAction.IsPressed())
+        base.Update();
+        if (Input.GetMouseButtonDown(0))
+        {
+            BasicAttack(move);
+        }
+    }
+    protected override void BasicAttack(Vector2 move)
+    {
+        if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
+        || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
         {
             if (Time.time - attack_time >= attack_speed / attack_speed_mult)
             {
+                animator.SetTrigger("Attack");
                 attack_time = Time.time;
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0f;

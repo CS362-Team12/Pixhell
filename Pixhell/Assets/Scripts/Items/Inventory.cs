@@ -13,6 +13,8 @@ namespace InventoryClass {
         public float totalHealthMod = 0;
         public float totalMovementSpeedMod = 0;
 
+        public string itemInfoPath = Path.Combine(Application.streamingAssetsPath, "Items/GlobalItems.csv");
+
         public void addItem(int id) {
             items.Add(readItem(id));
             calculateModifiers();
@@ -46,7 +48,6 @@ namespace InventoryClass {
         }
 
         public Item readItem(int id) {
-            string itemInfoPath = Path.Combine(Application.streamingAssetsPath, "Items/GlobalItems.csv");
             string[] lines = File.ReadAllLines(itemInfoPath);
             foreach (var line in lines)
             {
@@ -66,6 +67,21 @@ namespace InventoryClass {
             }
             Debug.Log($"Item with ID {id} not found.");
             return new Item();
+        }
+
+        public Item readItem(string[] columns) 
+        {
+            // Removes the need for looking at all lines in the file
+            int id = int.Parse(columns[0]);
+            string name = columns[1];
+            string description = columns[2];
+            string imagePath = columns[3];
+            float damage = float.Parse(columns[4]);
+            float attackSpeed = float.Parse(columns[5]);
+            float health = float.Parse(columns[6]);
+            float movementSpeed = float.Parse(columns[7]);
+            int cost = int.Parse(columns[8]);
+            return new Item(id, name, description, imagePath, damage, attackSpeed, health, movementSpeed, cost);
         }
 
         public void resetInventory() {

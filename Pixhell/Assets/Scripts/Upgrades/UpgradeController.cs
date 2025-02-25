@@ -37,16 +37,20 @@ public class UpgradeController : MonoBehaviour
         upgrades = new Upgrade[4][];
 
         upgrades[COMMON] = new Upgrade[] { 
-            new AttackSpeedUp_U("Attack Speed Up","Increases attacks speed by 10%.", COMMON, 0.1f) 
+            new AttackSpeedUp_U("Attack Speed Up", "Increases attack speed by 10%.", COMMON, 0.1f),
+            new AttackDamageUp_U("Attack Damage Up", "Increases attack damage by 10%.", COMMON, 0.1f),
         };
         upgrades[UNCOMMON] = new Upgrade[] { 
-            new AttackSpeedUp_U("Attack Speed Up+", "Increases attacks speed by 20%.", UNCOMMON, 0.2f)
+            new AttackSpeedUp_U("Attack Speed Up+", "Increases attack speed by 20%.", UNCOMMON, 0.2f),
+            new AttackDamageUp_U("Attack Damage Up+", "Increases attack damage by 20%.", UNCOMMON, 0.2f),
         };
         upgrades[RARE] = new Upgrade[] { 
-            new AttackSpeedUp_U("Attack Speed Up++", "Increases attacks speed by 30%.", RARE, 0.3f)
+            new AttackSpeedUp_U("Attack Speed Up++", "Increases attack speed by 30%.", RARE, 0.3f),
+            new AttackDamageUp_U("Attack Damage Up++", "Increases attack damage by 30%.", RARE, 0.3f),
         };
         upgrades[LEGENDARY] = new Upgrade[] { 
-            new AttackSpeedUp_U("Attack Speed Up+++", "Increases attacks speed by 50%.", LEGENDARY, 0.5f)
+            new AttackSpeedUp_U("Attack Speed Up+++", "Increases attack speed by 50%.", LEGENDARY, 0.5f),
+            new AttackDamageUp_U("Attack Damage Up+++", "Increases attack damage by 50%.", LEGENDARY, 0.5f),
         };
     }
 

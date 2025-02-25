@@ -11,9 +11,9 @@ using InventoryClass;
 
 public static class GameManager {
     // Accessable Player info for current run
-    [SerializeField] static int maxArena;
-    [SerializeField] static int coins;
-    [SerializeField] static string runIDPath;
+    public static int maxArena;
+    public static int coins;
+    public static string runIDPath;
     public static string path = Application.streamingAssetsPath;
 
     public static Inventory inventory = new Inventory();

@@ -13,6 +13,10 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        var target = GameObject.FindWithTag("Enemy");
+        Debug.Log(target);
+        if (!target) {
+            Instantiate(spawnEnemy, transform.position, transform.rotation);
+        }
     }
 }

@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 349fb6072b752834fb68e9b680ae7405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Lobby
+  sceneName: Limbo
   button: {fileID: 156038813}
 --- !u!114 &156038813
 MonoBehaviour:

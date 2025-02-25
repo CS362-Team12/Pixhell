@@ -40,6 +40,8 @@ public class PauseController : MonoBehaviour
         if ((SceneManager.GetActiveScene().name == "StartMenu" || SceneManager.GetActiveScene().name == "SelectRun") && !allowToggle) {
             return;
         }
+        GameManager.LogPlayerData();
+
         isPaused = !isPaused;
         pauseMenuUI.SetActive(isPaused);  // Show/hide the pause menu
         Time.timeScale = isPaused ? 0f : 1f;  // Freeze gameplay time when paused
@@ -56,7 +58,7 @@ public class PauseController : MonoBehaviour
         
         if (isPaused) {
                 Button lobbyButton = GameObject.Find("PauseLobbyButton").GetComponent<Button>();
-            if (currentScene.name == "Lobby") {
+            if (currentScene.name == "Limbo") {
                 lobbyButton.interactable = false;
                 lobbyButton.GetComponent<Image>().color = Color.grey;
             }

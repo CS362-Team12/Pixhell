@@ -85,15 +85,23 @@ public class UpgradeController : MonoBehaviour
             }
 
             var upgradeFound = false;
-            while(!upgradeFound) {
+            var loopCount = 0;
+            while(!upgradeFound && loopCount < 5000) {
                 var random2 = Random.Range(0, upgrades[rarity].Length);
                 var upgrade = upgrades[rarity][random2];
                 if (upgrade.IsValid()) {
-                    chosenUpgrades[i] = upgrades[rarity][random2];
+                    chosenUpgrades[i] = upgrade;
                     upgradeFound = true;
+                    // Set the upgrade to temporarily selected, so it can't show up in this upgrade cycle
+                    upgrade.SetTempSelected(true);
                 }
+                loopCount ++;
             }
-            
+            if (loopCount >= 5000) {
+                // This should never happen
+                Debug.Log("ERROR: No Upgrade Found");
+                return;
+            }
 
             GameObject title_text = GameObject.Find(textNames[i][0]);
             title_text.GetComponent<TextMeshProUGUI>().text = chosenUpgrades[i].Title;
@@ -109,6 +117,13 @@ public class UpgradeController : MonoBehaviour
         var upgrade = chosenUpgrades[upgradeNumber];
         upgrade.ApplyUpgrade();
         upgrade.SetSelected(true);
+        
+        // Unselect temp select upgrades so they can show up again, if not selected or if reusable
+        for (int i = 0; i < 3; i++) {
+            chosenUpgrades[i].SetTempSelected(false);
+        }
+        
+
         TogglePause();
         // TODO: Apply Invincibility
     }

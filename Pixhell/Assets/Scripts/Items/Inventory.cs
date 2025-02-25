@@ -47,6 +47,15 @@ namespace InventoryClass {
             }
         }
 
+        public bool hasItem(Item item) {
+            for (int i = 0; i < items.Count; i++) {
+                if (items[i].id == item.id) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public Item readItem(int id) {
             string[] lines = File.ReadAllLines(itemInfoPath);
             foreach (var line in lines)

@@ -58,7 +58,7 @@ public class PauseController : MonoBehaviour
         
         if (isPaused) {
                 Button lobbyButton = GameObject.Find("PauseLobbyButton").GetComponent<Button>();
-            if (currentScene.name == "Lobby") {
+            if (currentScene.name == "Limbo") {
                 lobbyButton.interactable = false;
                 lobbyButton.GetComponent<Image>().color = Color.grey;
             }

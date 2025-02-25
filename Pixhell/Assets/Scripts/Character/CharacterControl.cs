@@ -231,7 +231,8 @@ public class PlayerController : MonoBehaviour
     {
         projectile_speed_mult += increase;
     }
-    public void UpdateMovement(float increase)
+
+    public void UpdateSpeed(float increase)
     {
         speed_mult += increase;
     }
@@ -262,10 +263,14 @@ public class PlayerController : MonoBehaviour
         attack_speed_mult += increase;
     }
 
+    public void UpdateDamage(float increase)
+    {
+        damage_mult += increase;
+    }
+
     // Basic attacks for players
     protected virtual void BasicAttack(Vector2 move)
     {
-
         Debug.Log("Player Attacked");
     }
 }

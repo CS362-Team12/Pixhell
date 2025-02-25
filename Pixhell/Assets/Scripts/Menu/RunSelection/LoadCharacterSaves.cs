@@ -141,7 +141,7 @@ public class LoadCharacterSaves : MonoBehaviour
 
     void EnterRun(string filePath) {
         GameManager.LoadPlayerData(filePath);
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("Limbo");
     }
 
     float GetPrefabButtonWidth()

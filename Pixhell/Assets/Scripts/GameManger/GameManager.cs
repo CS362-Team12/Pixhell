@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using InventoryClass;
+using System.Linq;
 
 public static class GameManager {
     // Accessable Player info for current run
@@ -46,6 +47,16 @@ public static class GameManager {
                 }
             
             }
+        }
+    }
+
+    public static void SavePlayerData() {
+        using (StreamWriter writer = new StreamWriter(runIDPath))
+        {
+            writer.WriteLine("Arena: " + maxArena);
+            writer.WriteLine("Coins: " + coins);
+            string idList = string.Join(",", inventory.items.Select(item => item.id.ToString()).ToArray());
+            writer.WriteLine("Items:" + idList);
         }
     }
 

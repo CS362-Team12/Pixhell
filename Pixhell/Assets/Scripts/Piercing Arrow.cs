@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Projectile : MonoBehaviour
+public class PiercingArrow: MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     float damage_mult = 1.0f;
-    float damage = 25.0f;
-
-    [Header("Audio")]
-    public AudioSource ImpactSound;
-
+    float damage = 50.0f;
+    int max_pierce = 10;
+    int pierce_count = 0;
     public void damage_update(float increase)
     {
         damage_mult += increase;
@@ -45,8 +43,14 @@ public class Projectile : MonoBehaviour
         if (target != null)
         {
             target.TakeDamage(damage * damage_mult);  // Call the TakeDamage method
+            pierce_count++;
         }
 
-        Destroy(gameObject);
+        if (pierce_count >= max_pierce)
+        {
+            Destroy(gameObject);
+        }
     }
+
+
 }

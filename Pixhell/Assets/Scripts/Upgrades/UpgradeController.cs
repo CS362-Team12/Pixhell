@@ -19,6 +19,10 @@ public class UpgradeController : MonoBehaviour
     };
     Upgrade[] chosenUpgrades = new Upgrade[3];
     float[] odds = {.45f, .35f, .15f, .05f};
+
+    // Array coordinates for upgrade to force being selected
+    // Set to -1 to turn off, attched to DEBUG to be off for non DEBUG builds
+    int[] forcedUpgrade = {-1, 3};
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +44,7 @@ public class UpgradeController : MonoBehaviour
             new AttackSpeedUp_U("Attack Speed Up", "Increases attack speed by 10%.", COMMON, 0.1f),
             new AttackDamageUp_U("Attack Damage Up", "Increases attack damage by 10%.", COMMON, 0.1f),
             new MoveSpeedUp_U("Move Speed Up", "Increases move speed by 10%.", COMMON, 0.1f),
+            new DashRangeUp_U("Dash Range Up", "Increases dash distance by 30%.", COMMON, 0.3f),
         };
         upgrades[UNCOMMON] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up+", "Increases attack speed by 20%.", UNCOMMON, 0.2f),
@@ -55,6 +60,7 @@ public class UpgradeController : MonoBehaviour
             new AttackSpeedUp_U("Attack Speed Up+++", "Increases attack speed by 50%.", LEGENDARY, 0.5f),
             new AttackDamageUp_U("Attack Damage Up+++", "Increases attack damage by 50%.", LEGENDARY, 0.5f),
             new MoveSpeedUp_U("Move Speed Up+++", "Increases move speed by 50%.", LEGENDARY, 0.5f),
+            new DashRangeUp_U("Dash Range Up+", "Doubles dash distance.", LEGENDARY, 1f),
         };
     }
 
@@ -86,6 +92,16 @@ public class UpgradeController : MonoBehaviour
 
             var upgradeFound = false;
             var loopCount = 0;
+            
+            // FORCED UPGRADE DEBUG OPTION
+            Debug.Log(DEBUG);
+            if (DEBUG && forcedUpgrade[0] != -1 && upgrades[forcedUpgrade[0]][forcedUpgrade[1]].IsValid()) {
+                Debug.Log("Forced Upgrade Active");
+                chosenUpgrades[i] = upgrades[forcedUpgrade[0]][forcedUpgrade[1]];
+                upgradeFound = true;
+                upgrades[forcedUpgrade[0]][forcedUpgrade[1]].SetTempSelected(true);
+            }
+
             while(!upgradeFound && loopCount < 5000) {
                 var random2 = Random.Range(0, upgrades[rarity].Length);
                 var upgrade = upgrades[rarity][random2];
@@ -108,8 +124,8 @@ public class UpgradeController : MonoBehaviour
             GameObject description_text = GameObject.Find(textNames[i][1]);
             description_text.GetComponent<TextMeshProUGUI>().text = chosenUpgrades[i].Description;
             GameObject rarity_text = GameObject.Find(textNames[i][2]);
-            rarity_text.GetComponent<TextMeshProUGUI>().text = RARITY_STRINGS[rarity];
-            rarity_text.GetComponent<TextMeshProUGUI>().color = RARITY_COLORS[rarity];
+            rarity_text.GetComponent<TextMeshProUGUI>().text = RARITY_STRINGS[chosenUpgrades[i].Rarity];
+            rarity_text.GetComponent<TextMeshProUGUI>().color = RARITY_COLORS[chosenUpgrades[i].Rarity];
         }
     }
 

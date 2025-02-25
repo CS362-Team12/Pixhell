@@ -30,6 +30,11 @@ public class Upgrade
         get { return description; }
     }
 
+    public int Rarity
+    {
+        get { return rarity; }
+    }
+
     public void SetSelected(bool s) {
         selected = s;
     }

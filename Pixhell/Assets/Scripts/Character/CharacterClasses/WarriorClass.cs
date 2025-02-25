@@ -17,10 +17,7 @@ public class WarriorClass : PlayerController
     protected override void Update()
     {
         base.Update();
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
-        {
-            BasicAttack(move);
-        }
+        
     }
     protected override void BasicAttack(Vector2 move)
     {

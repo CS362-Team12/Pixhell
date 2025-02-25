@@ -111,6 +111,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(dodge_roll(move));
         }
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+        {
+            BasicAttack(move);
+        }
+        // Timer for not being able to attack while sprinting
         if (move == Vector2.zero)
         {
             stopTime += Time.deltaTime; // Increase stop duration
@@ -122,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Dodge function
     private IEnumerator dodge_roll(Vector2 move)
     {
         if (move == Vector2.zero) // Prevent dodge if there's no movement input
@@ -145,7 +151,7 @@ public class PlayerController : MonoBehaviour
             is_vulnerable = true;
         }
     }
-
+    // StartImmune and ImmuneTimer are together. They determine the length of Invulnerability 
     protected void StartImmune()
     {
         is_vulnerable = false;
@@ -155,12 +161,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator ImmuneTimer()
     {
         float elapsedTime = 0f;
-        float flashInterval = 0.1f; // Time between flashes
+        float flashInterval = 0.1f; 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
         while (elapsedTime < seconds)
         {
-            spriteRenderer.enabled = !spriteRenderer.enabled; // Toggle sprite visibility
+            Debug.Log("Character is invulnerable");
+            spriteRenderer.enabled = !spriteRenderer.enabled; 
             yield return new WaitForSeconds(flashInterval);
             elapsedTime += flashInterval;
         }

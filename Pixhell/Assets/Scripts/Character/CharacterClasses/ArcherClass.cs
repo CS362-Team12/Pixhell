@@ -17,7 +17,7 @@ public class ArcherClass : PlayerController
     protected override void Update()
     {
         base.Update();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
             BasicAttack(move);
         }

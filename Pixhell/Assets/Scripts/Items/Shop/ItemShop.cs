@@ -11,11 +11,13 @@ public class ItemShop : MonoBehaviour
     GameObject itemShopUI;
     bool shopShowing;
 
-    public GameObject itemsPanel;
+    GameObject itemsPanel;
+    public GameObject infoPanel;
     int count;
     string filePath;
 
     int buttonSize;
+    int spacing;
 
     void Start() {
         itemShopUI = transform.Find("ItemShopUI").gameObject;
@@ -23,6 +25,7 @@ public class ItemShop : MonoBehaviour
         itemShopUI.SetActive(false);
         count = 0;
         buttonSize = 500;
+        spacing = 100;
     }
 
     void OnMouseDown()
@@ -37,6 +40,7 @@ public class ItemShop : MonoBehaviour
     {
         Debug.Log("Toggled Shop");
         shopShowing = !shopShowing;
+        infoPanel.SetActive(false);
         itemShopUI.SetActive(shopShowing);  // Show/hide the shop
         Time.timeScale = !shopShowing ? 1f : 0f;  // Freeze gameplay time when shop open
         GameObject player = GameObject.FindWithTag("Player");
@@ -45,9 +49,6 @@ public class ItemShop : MonoBehaviour
         }
         if (shopShowing) {
             LoadShop();
-        }
-        else {
-
         }
         
     }
@@ -100,7 +101,6 @@ public class ItemShop : MonoBehaviour
 
         if (GameManager.inventory.hasItem(item)) 
         {
-            Debug.Log("GREYSCALING");
             buttonBg.color = new Color(0.5f, 0.5f, 0.5f, 1f);
         }
 
@@ -111,12 +111,30 @@ public class ItemShop : MonoBehaviour
         int row = count / columns;
         int column = count % columns == 0 ? -1 : 1;
 
-        buttonRect.anchoredPosition = new Vector2(column * buttonSize * 0.75f, (-row + 1) * buttonSize);
+        buttonRect.anchoredPosition = new Vector2(column * buttonSize * 0.75f, (-row + 1) * (buttonSize + spacing));
         count++;
     }
 
     void ViewItem(Item item) 
     {
-        Debug.Log("Viewing item " + item.name + "!");    
+        infoPanel.SetActive(true);
+        Image img = infoPanel.transform.Find("InfoImage").GetComponent<Image>();
+        string path = Path.Combine(Application.streamingAssetsPath, item.imagePath);
+        if (File.Exists(path)) {
+            byte[] imageBytes = File.ReadAllBytes(path);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(imageBytes);
+            img.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        }
+
+        TextMeshProUGUI  text = infoPanel.transform.Find("InfoText").GetComponent<TextMeshProUGUI>();
+        text.text = item.name + "\n\n" + item.description + "\n\n";
+
+        if (GameManager.inventory.hasItem(item)) {
+            text.text += "OWNED";
+        }
+        else {
+            text.text += "Cost: " + item.cost;
+        }
     }
 }

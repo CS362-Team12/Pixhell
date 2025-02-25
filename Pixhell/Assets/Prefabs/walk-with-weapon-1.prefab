@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8640907151943126642}
   - component: {fileID: 3815007933092154987}
   - component: {fileID: 7978585362922117303}
+  - component: {fileID: -682028510724069188}
   - component: {fileID: 6745676285347251144}
-  - component: {fileID: -2221367632817053126}
   - component: {fileID: 5980619562306250965}
   - component: {fileID: -9124712430784119024}
   m_Layer: 16
@@ -31,10 +31,11 @@ Transform:
   m_GameObject: {fileID: 1403697649868078611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.96, y: 0.07, z: 0}
+  m_LocalPosition: {x: 1.746, y: -0.112, z: 0}
   m_LocalScale: {x: 1.2766, y: 1.4009, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5060356393109813120}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3815007933092154987
@@ -119,6 +120,129 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-682028510724069188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca71260cbd49d64b89770db412f3b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveAction:
+    m_Name: Move
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 91ee4565-2ece-41e2-8250-e8df38644c0e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 82b3ee39-765f-4046-bd91-b3e2572ce1b9
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: b9b06739-c682-4329-8548-33d9c3c3c650
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 63ddc4c4-a108-4440-9966-62a34119eaeb
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 2612f896-2656-4de1-90b9-2454fe84efe0
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 9b772c23-36ac-48ca-ba85-e876ac6e5881
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  SprintAction:
+    m_Name: Sprint
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 995e332d-56e9-4b86-9b31-69ee89c7504a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b4f38c5c-ebea-412d-924a-311f0d44bdfc
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sprint
+      m_Flags: 0
+    m_Flags: 0
+  SpecialOne:
+    m_Name: Special One
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3ed97175-463c-4091-b748-d1da3311f100
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  SpecialTwo:
+    m_Name: Special Two
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c7589f7e-f8ec-4f14-8796-1a5628800066
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  DodgeAction:
+    m_Name: Dodge
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 9fe38340-3003-4611-af56-8df5c8c9b1ec
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 124c36c4-e570-460a-b1a9-de7dd641ce1e
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge
+      m_Flags: 0
+    m_Flags: 0
+  speed: 3
+  is_dodging: 0
+  max_health: 100
+  is_vulnerable: 1
+  animator: {fileID: 5980619562306250965}
+  AttackPoint: {fileID: 5060356393109813120}
+  attack_range: 0.55
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!61 &6745676285347251144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,125 +289,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.26, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &-2221367632817053126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403697649868078611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122f5d6588a6a654a94e8f90bd4f7475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveAction:
-    m_Name: Move
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 123e5392-6766-4dfd-8446-c21c0a58fedc
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: c610d488-0eeb-4a8b-beeb-28857af18136
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 0ee0b919-62af-486a-bc75-7aacc0a85592
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 166ce840-c7f9-4e55-8401-81928ffb142d
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: eaa166c2-41fd-425f-b94e-be1df1bfd0e5
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: dce53f4b-c3ac-4860-88cf-e1cf9195929a
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    m_Flags: 0
-  SprintAction:
-    m_Name: Sprint
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6eda3639-34d4-4363-93a1-ce63ff474ac7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: dc0b550e-c15b-4069-ac6e-268c19b9eb2a
-      m_Path: <Keyboard>/leftShift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Sprint
-      m_Flags: 0
-    m_Flags: 0
-  SpecialOne:
-    m_Name: Special One
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f2d2183e-f346-4b61-a171-269a12fbe26b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  SpecialTwo:
-    m_Name: Special Two
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a6e9c728-eb44-4765-a51c-0f74412739c2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  DodgeAction:
-    m_Name: Dodge
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1efbecc2-4789-4d0e-95b5-c2cd87cca1b7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4b3656b5-7efd-48ff-aa16-a783aa44b168
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Dodge
-      m_Flags: 0
-    m_Flags: 0
-  speed: 3
-  is_dodging: 0
-  max_health: 100
-  is_vulnerable: 1
-  animator: {fileID: 0}
-  projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
 --- !u!95 &5980619562306250965
 Animator:
   serializedVersion: 7
@@ -319,3 +324,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
+--- !u!1 &6326460203903690011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5060356393109813120}
+  m_Layer: 16
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5060356393109813120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326460203903690011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.307, y: 0.084, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8640907151943126642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

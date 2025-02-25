@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
 
-    public void Start()
+    protected virtual void Start()
     {
         // Sets base values
         speed_mult = base_speed;

@@ -4,7 +4,7 @@ public class ArcherClass : PlayerController
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject projectilePrefab;
-    void Start()
+    protected override void Start()
     {
         base.Start();
         max_health *= .75f;

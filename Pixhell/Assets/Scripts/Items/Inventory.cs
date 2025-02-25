@@ -60,7 +60,8 @@ namespace InventoryClass {
                     float attackSpeed = float.Parse(columns[5]);
                     float health = float.Parse(columns[6]);
                     float movementSpeed = float.Parse(columns[7]);
-                    return new Item(id, name, description, imagePath, damage, attackSpeed, health, movementSpeed);
+                    int cost = int.Parse(columns[8]);
+                    return new Item(id, name, description, imagePath, damage, attackSpeed, health, movementSpeed, cost);
                 }
             }
             Debug.Log($"Item with ID {id} not found.");

@@ -150,6 +150,7 @@ public class ItemShop : MonoBehaviour
             GameManager.coins -= item.cost;
             GameManager.inventory.addItem(item);
             ViewItem(item);
+            GameManager.SavePlayerData();
         }
     }
 }

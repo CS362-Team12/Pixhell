@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7978585362922117303}
   - component: {fileID: 6745676285347251144}
   - component: {fileID: 3160991074220692013}
+  - component: {fileID: 6620396324204140077}
   m_Layer: 16
   m_Name: walk-with-weapon-1
   m_TagString: Untagged
@@ -187,6 +188,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   speed: 3
+  is_vulnerable: 1
   max_health: 100
   animator: {fileID: 3160991074220692013}
   projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
@@ -285,3 +287,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6620396324204140077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f42cc24b13fa84bb22a87bb711d94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowVolley:
+    m_Name: Arrow Volley
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 87b5d121-156a-4aba-83fc-d006288d83c6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 845311e3-d5e3-46c3-ade5-3140e3812920
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Arrow Volley
+      m_Flags: 0
+    m_Flags: 0
+  PiercingArrow:
+    m_Name: Piercing Arrow
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 261eceda-09be-44c2-89f0-74d6756fd00a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 92944857-4d80-4260-b9ba-462e73f8b306
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Piercing Arrow
+      m_Flags: 0
+    m_Flags: 0
+  ProjectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+  PiercingPrefab: {fileID: 1283419919620192332, guid: 8a4a35c3ee5f7464881ea098752800a8, type: 3}

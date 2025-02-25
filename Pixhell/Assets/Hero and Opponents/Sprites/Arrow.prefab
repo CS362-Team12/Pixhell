@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a231665f776fdd4b995920e98592963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ImpactSound: {fileID: 0}
+  ImpactSoundClip: {fileID: 8300000, guid: 34aca9e3f1ade4802b9062b1380aa523, type: 3}
 --- !u!50 &2970525818660695397
 Rigidbody2D:
   serializedVersion: 5

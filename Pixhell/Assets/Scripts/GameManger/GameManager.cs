@@ -14,7 +14,7 @@ public static class GameManager {
     [SerializeField] static int maxArena;
     [SerializeField] static int coins;
     [SerializeField] static string runIDPath;
-    private static string path = Application.streamingAssetsPath;
+    public static string path = Application.streamingAssetsPath;
 
     public static Inventory inventory = new Inventory();
 

@@ -154,7 +154,19 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ImmuneTimer()
     {
-        yield return new WaitForSeconds(seconds);
+        float elapsedTime = 0f;
+        float flashInterval = 0.1f; // Time between flashes
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        while (elapsedTime < seconds)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled; // Toggle sprite visibility
+            yield return new WaitForSeconds(flashInterval);
+            elapsedTime += flashInterval;
+        }
+
+        // Ensure sprite is visible at the end
+        spriteRenderer.enabled = true;
         is_vulnerable = true;
     }
 

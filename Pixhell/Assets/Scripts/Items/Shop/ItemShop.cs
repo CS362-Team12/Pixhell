@@ -129,12 +129,27 @@ public class ItemShop : MonoBehaviour
 
         TextMeshProUGUI  text = infoPanel.transform.Find("InfoText").GetComponent<TextMeshProUGUI>();
         text.text = item.name + "\n\n" + item.description + "\n\n";
-
+        Button purchaseButton = infoPanel.transform.Find("PurchaseButton").GetComponent<Button>(); 
         if (GameManager.inventory.hasItem(item)) {
             text.text += "OWNED";
+            purchaseButton.interactable = false;
+            purchaseButton.GetComponent<Image>().color = Color.grey;
         }
         else {
             text.text += "Cost: " + item.cost;
+            purchaseButton.interactable = true;
+            purchaseButton.GetComponent<Image>().color = Color.white;
+            purchaseButton.onClick.RemoveAllListeners();
+            purchaseButton.onClick.AddListener(() => PurchaseItem(item));
+        }
+    }
+
+    void PurchaseItem(Item item) {
+        Debug.Log("Current coins: " + GameManager.coins + " Cost: " + item.cost);
+        if (item.cost <= GameManager.coins) {
+            GameManager.coins -= item.cost;
+            GameManager.inventory.addItem(item);
+            ViewItem(item);
         }
     }
 }

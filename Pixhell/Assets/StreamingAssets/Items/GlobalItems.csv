@@ -1,4 +1,6 @@
 id,name,description,imagePath,damage,attackSpeed,health,movementSpeed,cost
+4,Starter Ring,Increases all stats by 5%,Items/starter_ring.png,5,5,5,5,0
 1,Speed Ring,Increases movement speed by 10%,Items/speed_ring.png,0,0,0,10,10
-2,Super Ring,Massively boosts all player stats,Items/super_ring.png,150,150,150,150,1
-3,Damage Ring,Increases attack damage by 15%,Items/damage_ring,15,0,0,0,5
+2,Super Ring,Massively boosts all player stats,Items/super_ring.png,150,150,150,150,100
+3,Damage Ring,Increases attack damage by 15%,Items/damage_ring.png,15,0,0,0,5
+5,Swiftstrike Charm,Increases attack speed by 30%,Items/swiftstrike_charm.png,0,30,0,0,50

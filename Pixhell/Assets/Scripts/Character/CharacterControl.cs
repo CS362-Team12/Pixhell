@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     protected float hit_time = -2f;
     protected float seconds = 1f;
     float heal_mult = 1.0f;
+    protected bool is_dead = false;
 
 
     [Header("Damage Settings")]
@@ -82,47 +83,53 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        horizontal_move = Input.GetAxisRaw("Horizontal");
-        Vector2 move = MoveAction.ReadValue<Vector2>();
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        animator.SetFloat("AnimationSpeed", attack_speed_mult);
-        if (mousePosition.x > transform.position.x && !m_FacingRight)
+        if (!is_dead)
         {
-            Flip();
-        }
-        else if (mousePosition.x < transform.position.x && m_FacingRight)
-        {
-            Flip();
-        }
-        if (SprintAction.IsPressed() && move != Vector2.zero)
-        {
-            animator.SetFloat("speed", 6);
-            Vector2 position = (Vector2)transform.position + move * 5.5f * Time.deltaTime * speed_mult;
-            transform.position = position;
-        }
-        else if (MoveAction.IsPressed()) {
-            animator.SetFloat("speed", 4);
-            Vector2 position = (Vector2)transform.position + move * 3.0f * Time.deltaTime * speed_mult;
-            transform.position = position;
-        }else {
+            horizontal_move = Input.GetAxisRaw("Horizontal");
+            Vector2 move = MoveAction.ReadValue<Vector2>();
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            animator.SetFloat("AnimationSpeed", attack_speed_mult);
+            if (mousePosition.x > transform.position.x && !m_FacingRight)
+            {
+                Flip();
+            }
+            else if (mousePosition.x < transform.position.x && m_FacingRight)
+            {
+                Flip();
+            }
+            if (SprintAction.IsPressed() && move != Vector2.zero)
+            {
+                animator.SetFloat("speed", 6);
+                Vector2 position = (Vector2)transform.position + move * 5.5f * Time.deltaTime * speed_mult;
+                transform.position = position;
+            }
+            else if (MoveAction.IsPressed())
+            {
+                animator.SetFloat("speed", 4);
+                Vector2 position = (Vector2)transform.position + move * 3.0f * Time.deltaTime * speed_mult;
+                transform.position = position;
+            }
+            else
+            {
                 animator.SetFloat("speed", 0);
-        }
-        if (DodgeAction.WasPressedThisFrame())
-        {
-            StartCoroutine(dodge_roll(move));
-        }
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
-        {
-            BasicAttack(move);
-        }
-        // Timer for not being able to attack while sprinting
-        if (move == Vector2.zero)
-        {
-            stopTime += Time.deltaTime; // Increase stop duration
-        }
-        else
-        {
-            stopTime = 0f; // Reset when moving
+            }
+            if (DodgeAction.WasPressedThisFrame())
+            {
+                StartCoroutine(dodge_roll(move));
+            }
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+            {
+                BasicAttack(move);
+            }
+            // Timer for not being able to attack while sprinting
+            if (move == Vector2.zero)
+            {
+                stopTime += Time.deltaTime; // Increase stop duration
+            }
+            else
+            {
+                stopTime = 0f; // Reset when moving
+            }
         }
 
     }
@@ -163,10 +170,9 @@ public class PlayerController : MonoBehaviour
         float elapsedTime = 0f;
         float flashInterval = 0.1f; 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
+        Debug.Log("Character is invulnerable");
         while (elapsedTime < seconds)
         {
-            Debug.Log("Character is invulnerable");
             spriteRenderer.enabled = !spriteRenderer.enabled; 
             yield return new WaitForSeconds(flashInterval);
             elapsedTime += flashInterval;
@@ -199,15 +205,24 @@ public class PlayerController : MonoBehaviour
     // Run this function when taking damage from a damage source
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
-        if (current_health <= 0) {
+        if (current_health <= 0 && !is_dead) {
             // GAME OVER
+            animator.SetTrigger("death");
+            is_dead = true;
+            StartCoroutine(FreezeOnDeath());
         }
-        if (damaged)
+        if (damaged && !is_dead)
         {
             hit_time = Time.time;
             StartImmune();
         }
         return damaged;
+    }
+
+    protected IEnumerator FreezeOnDeath()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        animator.enabled = false;
     }
 
     // Run this function when you don't want to trigger invinciblity frames

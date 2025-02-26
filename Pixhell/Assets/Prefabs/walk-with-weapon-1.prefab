@@ -239,7 +239,7 @@ MonoBehaviour:
   is_vulnerable: 1
   animator: {fileID: 5980619562306250965}
   AttackPoint: {fileID: 5060356393109813120}
-  attack_range: 0.55
+  attack_range: 0.7
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192

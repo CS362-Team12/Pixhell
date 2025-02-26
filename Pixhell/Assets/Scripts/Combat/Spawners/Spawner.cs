@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         var target = GameObject.FindWithTag("Enemy");
-        Debug.Log(target);
+        
         if (!target) {
             Instantiate(spawnEnemy, transform.position, transform.rotation);
         }

@@ -14,11 +14,13 @@ public class ItemShop : MonoBehaviour
 
     GameObject itemsPanel;
     public GameObject infoPanel;
-    int count;
+    public int count;
     string filePath;
+    RectTransform panelRect;
 
     int buttonSize;
     int spacing;
+    public int pageSpacing;
 
     private Color ownedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
     private Color notOwnedColor = new Color(1f, 1f, 1f, 1f);
@@ -30,6 +32,7 @@ public class ItemShop : MonoBehaviour
         count = 0;
         buttonSize = 500;
         spacing = 100;
+        pageSpacing = 1000;
     }
 
     void OnMouseDown()
@@ -59,10 +62,11 @@ public class ItemShop : MonoBehaviour
 
     void LoadShop() 
     {
+        Destroy(itemsPanel);
         count = 0;
         itemsPanel = new GameObject("ItemsPanel", typeof(RectTransform));
         itemsPanel.transform.SetParent(itemShopUI.transform);
-        RectTransform panelRect = itemsPanel.GetComponent<RectTransform>();
+        panelRect = itemsPanel.GetComponent<RectTransform>();
         panelRect.anchoredPosition = new Vector2(0, 0);
 
         filePath = GameManager.inventory.itemInfoPath;
@@ -131,11 +135,13 @@ public class ItemShop : MonoBehaviour
         Button button = newButton.GetComponent<Button>();
         button.onClick.AddListener(() => ViewItem(item));
 
+        int page = count / 6;
         int columns = 2; // Number of items per row
-        int row = count / columns;
+        int row = (count - (6 * page)) / columns;
         int column = count % columns == 0 ? -1 : 1;
+        
 
-        buttonRect.anchoredPosition = new Vector2(column * buttonSize * 0.75f, (-row + 1) * (buttonSize + spacing));
+        buttonRect.anchoredPosition = new Vector2(column * buttonSize * 0.75f, ((-row + 1) * (buttonSize + spacing)) - (pageSpacing * page * 2));
         count++;
     }
 
@@ -174,9 +180,11 @@ public class ItemShop : MonoBehaviour
         if (item.cost <= GameManager.coins) {
             GameManager.coins -= item.cost;
             GameManager.inventory.addItem(item);
+            float currentY = panelRect.anchoredPosition.y;
             ToggleUI();
             ToggleUI();
             ViewItem(item);
+            panelRect.anchoredPosition = new Vector2(panelRect.anchoredPosition.x, currentY);
             GameManager.SavePlayerData();
         }
         else {
@@ -187,9 +195,11 @@ public class ItemShop : MonoBehaviour
     void SellItem(Item item) {
         GameManager.coins += item.cost;
         GameManager.inventory.removeItem(item);
+        float currentY = panelRect.anchoredPosition.y;
         ToggleUI();
         ToggleUI();
         ViewItem(item);
+        panelRect.anchoredPosition = new Vector2(panelRect.anchoredPosition.x, currentY);
         GameManager.SavePlayerData();
     }
 

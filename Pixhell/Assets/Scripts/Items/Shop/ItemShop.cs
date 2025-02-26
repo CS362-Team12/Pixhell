@@ -20,6 +20,9 @@ public class ItemShop : MonoBehaviour
     int buttonSize;
     int spacing;
 
+    private Color ownedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+    private Color notOwnedColor = new Color(1f, 1f, 1f, 1f);
+
     void Start() {
         itemShopUI = transform.Find("ItemShopUI").gameObject;
         shopShowing = false;
@@ -102,7 +105,10 @@ public class ItemShop : MonoBehaviour
 
         if (GameManager.inventory.hasItem(item)) 
         {
-            buttonBg.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            buttonBg.color = ownedColor;
+        }
+        else {
+            buttonBg.color = notOwnedColor;
         }
 
         Button button = newButton.GetComponent<Button>();
@@ -151,6 +157,8 @@ public class ItemShop : MonoBehaviour
         if (item.cost <= GameManager.coins) {
             GameManager.coins -= item.cost;
             GameManager.inventory.addItem(item);
+            ToggleUI();
+            ToggleUI();
             ViewItem(item);
             GameManager.SavePlayerData();
         }
@@ -162,6 +170,8 @@ public class ItemShop : MonoBehaviour
     void SellItem(Item item) {
         GameManager.coins += item.cost;
         GameManager.inventory.removeItem(item);
+        ToggleUI();
+        ToggleUI();
         ViewItem(item);
         GameManager.SavePlayerData();
     }

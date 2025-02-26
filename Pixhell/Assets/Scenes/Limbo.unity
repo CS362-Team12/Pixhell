@@ -4538,6 +4538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Lust
+  animator: {fileID: 2027354125}
 --- !u!61 &1631073179
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class Archer : Enemy
     public float orbitRadius;  // The distance between the two objects
     public float orbitSpeed;  // Speed in which its oribit position changes
 
+    public Animator animator;
     float angle = 0f;   // Angle in radians, used for calculating the orbit
 
      public Archer()

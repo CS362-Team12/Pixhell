@@ -32,57 +32,58 @@ public class LoadCharacterSaves : MonoBehaviour
     }
 
     void AddRunToPanel(string filePath) 
-{
-    try 
     {
-        using (StreamReader reader = new StreamReader(filePath)) 
+        try 
         {
-            string firstLine = reader.ReadLine(); // Read the first line of the file
-
-            // Instantiate a new button from the prefab
-            GameObject newButton = Instantiate(buttonPrefab.gameObject, panelContainer);
-            if (newButton == null) 
+            using (StreamReader reader = new StreamReader(filePath)) 
             {
-                Debug.LogError("Failed to instantiate buttonPrefab!");
-                return;
+                string firstLine = reader.ReadLine(); // Read the first line of the file
+                string secondLine = reader.ReadLine();
+
+                // Instantiate a new button from the prefab
+                GameObject newButton = Instantiate(buttonPrefab.gameObject, panelContainer);
+                if (newButton == null) 
+                {
+                    Debug.LogError("Failed to instantiate buttonPrefab!");
+                    return;
+                }
+
+                // Get the button's text component
+                TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText == null) 
+                {
+                    Debug.LogError("TextMeshProUGUI component not found in buttonPrefab!");
+                    return;
+                }
+
+                // Set the button's text
+                buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + "\n" + filePath + "\n" + secondLine;
+                Button button = newButton.GetComponent<Button>();
+                // Add button functionality
+                button.onClick.AddListener(() => EnterRun(filePath));
+
+                RectTransform buttonRect = newButton.GetComponent<RectTransform>();
+
+                // Set the button's pivot to the left
+                buttonRect.pivot = new Vector2(0f, 0.5f); // Pivot at the left side (x = 0)
+                buttonRect.anchorMin = new Vector2(0f, 0.5f); // Anchor at the left side
+                buttonRect.anchorMax = new Vector2(0f, 0.5f); // Anchor at the left side
+
+                float buttonWidth = buttonRect.rect.width; // Get width of button prefab
+
+                // Set button position relative to the left side of the panel with spacing
+                float buttonPositionX = (buttonWidth + buttonSpacing) * runCount; // Add spacing between buttons
+
+                buttonRect.anchoredPosition = new Vector2(buttonPositionX, 0); // Add gap and position the button
+
+                runCount++; // Increment the run count after positioning each button
             }
-
-            // Get the button's text component
-            TextMeshProUGUI buttonText = newButton.GetComponentInChildren<TextMeshProUGUI>();
-            if (buttonText == null) 
-            {
-                Debug.LogError("TextMeshProUGUI component not found in buttonPrefab!");
-                return;
-            }
-
-            // Set the button's text
-            buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + filePath;
-            Button button = newButton.GetComponent<Button>();
-            // Add button functionality
-            button.onClick.AddListener(() => EnterRun(filePath));
-
-            RectTransform buttonRect = newButton.GetComponent<RectTransform>();
-
-            // Set the button's pivot to the left
-            buttonRect.pivot = new Vector2(0f, 0.5f); // Pivot at the left side (x = 0)
-            buttonRect.anchorMin = new Vector2(0f, 0.5f); // Anchor at the left side
-            buttonRect.anchorMax = new Vector2(0f, 0.5f); // Anchor at the left side
-
-            float buttonWidth = buttonRect.rect.width; // Get width of button prefab
-
-            // Set button position relative to the left side of the panel with spacing
-            float buttonPositionX = (buttonWidth + buttonSpacing) * runCount; // Add spacing between buttons
-
-            buttonRect.anchoredPosition = new Vector2(buttonPositionX, 0); // Add gap and position the button
-
-            runCount++; // Increment the run count after positioning each button
+        } 
+        catch (Exception ex) 
+        {
+            Debug.LogError("Error reading the file: " + ex.Message);
         }
-    } 
-    catch (Exception ex) 
-    {
-        Debug.LogError("Error reading the file: " + ex.Message);
     }
-}
 
     void GetRuns() {
         string generalPath = path + "/Runs";
@@ -108,9 +109,8 @@ public class LoadCharacterSaves : MonoBehaviour
         runCount = 0;
         foreach (string file in allFiles)
         {
-                AddRunToPanel(file);
+            AddRunToPanel(file);
         }
-        // In each file, read the top line (Character type)
     }
 
     public void MakeFreshRun() {
@@ -133,15 +133,15 @@ public class LoadCharacterSaves : MonoBehaviour
         string filePath = generalPath + "/" + randomString;
         using (StreamWriter writer = new StreamWriter(filePath))
         {
-            writer.WriteLine("Arena: 1\n");
-            //Debug.Log("New run created with filename: " + filePath);
+            writer.WriteLine("Arena: 1");
+            writer.WriteLine("Items:");
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void EnterRun(string filePath) {
-
-        SceneManager.LoadScene("Lobby");
+        GameManager.LoadPlayerData(filePath);
+        SceneManager.LoadScene("Limbo");
     }
 
     float GetPrefabButtonWidth()

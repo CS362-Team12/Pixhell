@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameConstants;
 
 public class Enemy : MonoBehaviour
 {    
@@ -7,16 +8,17 @@ public class Enemy : MonoBehaviour
     protected float collisionDamage = 25.0f;
 
     public GameObject player;
+    public GameObject XPDrop;
 
     // Three states, hopefully turned into constants later:
-    // 0. Moving: Perform the move code
-    // 1. Attack: Perform the attack animation and effects
-    // 2. Idle: Used to basically just do nothing, can be used after attacking for a delay
+    // 1. Moving: Perform the move code
+    // 2. Attack: Perform the attack animation and effects
+    // 3. Idle: Used to basically just do nothing, can be used after attacking for a delay
 
     // These should be overwritten for most enemies
 
     // This array says which state it is in for certain times
-    protected int[] states = { 0, 1, 2 };
+    protected int[] states = { MOVING, ATTACKING, IDLING };
     
     // Tracks how long each state lasts. 0 means just for one frame
     protected float[] timers = { 2f, 0f, 1f };
@@ -48,11 +50,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         var currState = GetCurrentState();
-        if (currState == 0) {
+        if (currState == MOVING) {
             Move();
-        } else if (currState == 1) {
+        } else if (currState == ATTACKING) {
             Attack();
-        } else if (currState == 2) {
+        } else if (currState == IDLING) {
             // If you wish to do something in the Idle phase
             Idle();
         }
@@ -67,8 +69,6 @@ public class Enemy : MonoBehaviour
             currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
         }
     }
-
-    
 
     // Default, move towards player
     public virtual void Move() 
@@ -95,6 +95,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("Took " + damage + " damage!");
         if (health <= 0) {
             //Should be replaced with a death animation? 
+            Instantiate(XPDrop, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

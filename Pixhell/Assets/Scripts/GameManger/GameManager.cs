@@ -2,27 +2,45 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using InventoryClass;
 
-public class GameManager : MonoBehaviour {
+public static class GameManager {
     // Accessable Player info for current run
-    [SerializeField] string sceneName;
-    [SerializeField] int maxArena;
-    [SerializeField] string runID;
-    private string path = Application.streamingAssetsPath;
+    [SerializeField] static int maxArena;
+    [SerializeField] static string runIDPath;
+    private static string path = Application.streamingAssetsPath;
 
-    public Inventory inventory;
-    public int coins;
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+    public static Inventory inventory = new Inventory();
+    public static int coins;
+
+    public static void LoadPlayerData(string filePath) {
+        runIDPath = filePath;
+        inventory.resetInventory();
+        using (StreamReader reader = new StreamReader(filePath)) 
+        {
+            maxArena = int.Parse(reader.ReadLine().Split(" ")[1]);
+            string itemLine = reader.ReadLine().Substring(6);
+            Debug.Log("ITEMLINE: " + itemLine);
+            string[] items = itemLine.Split(',');
+            Debug.Log(items.Length);
+            for (int i = 0; i < items.Length; i++) {
+                string itemId = items[i];
+                if (itemId.Length > 0) {
+                    inventory.addItem(int.Parse(itemId));
+                }
+                
+            }
+        }
     }
 
-    void LoadPlayerData() {
-        // Implement functionality that reads a file and places the data in the respective fields
+    public static void LogPlayerData() {
+        string dataString = $"Arena: {maxArena}, runID: {runIDPath}, InventorySize: {inventory.items.Count}";
+        Debug.Log(dataString);
     }
 }
+ 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1580209906646987884}
   m_Layer: 0
   m_Name: ArcherObject
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,9 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44dedf0d162d23340b920d014ef638fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  speed: 2
   player: {fileID: 0}
+  XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
   projectilePrefab: {fileID: 4627103214006155261, guid: 88aa2d4373adc3747a3ba1c44a05a12f, type: 3}
   orbitRadius: 3.5
   orbitSpeed: 0.5

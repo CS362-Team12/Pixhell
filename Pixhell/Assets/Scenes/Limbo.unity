@@ -5220,6 +5220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d37e221897a1c64e8de4e8d57ad55d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopShowing: 0
   infoPanel: {fileID: 1335309583}
 --- !u!212 &1457384376
 SpriteRenderer:
@@ -5265,7 +5266,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -2551531519480358495, guid: 8ff08ab9b0ce1114d942fa7b5c2267e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5285,12 +5286,12 @@ Transform:
   m_GameObject: {fileID: 1457384374}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.38, y: 0.74, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1816289548}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1798724555}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1457384378
 BoxCollider2D:
@@ -5308,7 +5309,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5326,17 +5327,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.015954494, y: 0.00000035762787}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6.26, y: 5.4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.583705, y: 5.5945883}
   m_EdgeRadius: 0
 --- !u!1 &1505263485
 GameObject:
@@ -7233,6 +7234,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789321143}
   m_CullTransparentMesh: 1
+--- !u!1 &1798724552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798724555}
+  - component: {fileID: 1798724556}
+  m_Layer: 1
+  m_Name: ShopDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1798724555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798724552}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.9, y: 1.68, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1457384377}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1798724556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798724552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85bde066057fe3f439830919e01d8d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultImage: {fileID: -2551531519480358495, guid: 8ff08ab9b0ce1114d942fa7b5c2267e4, type: 3}
+  hoverImage: {fileID: 7244790015186340409, guid: 4e51b95fbcd317d4cb931ab75a3c8e41, type: 3}
 --- !u!1 &1816289547
 GameObject:
   m_ObjectHideFlags: 0
@@ -7615,7 +7663,7 @@ SceneRoots:
   - {fileID: 6471617303169813887}
   - {fileID: 1631073181}
   - {fileID: 1541613756}
-  - {fileID: 1457384377}
+  - {fileID: 1798724555}
   - {fileID: 1134215100}
   - {fileID: 1427471753}
   - {fileID: 883309875}

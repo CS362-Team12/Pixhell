@@ -1,6 +1,6 @@
 using TMPro;  // Make sure you have this at the top for TextMeshPro
 using UnityEngine;
-public class YourClass : MonoBehaviour
+public class CoinDisplay : MonoBehaviour
 {
     public TextMeshProUGUI text;
 

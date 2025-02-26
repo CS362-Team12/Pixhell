@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7993519650500968262}
   - component: {fileID: 656586025630177690}
   - component: {fileID: 8595598568403409910}
+  - component: {fileID: 5328486168201196019}
   m_Layer: 0
   m_Name: XPOrb
   m_TagString: Untagged
@@ -138,3 +139,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.03
+--- !u!114 &5328486168201196019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435735731593564780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ec4c528d99a52408a0c676edcbd0c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: 076e189010fcbd24da8e98bd4c309fb4, type: 3}

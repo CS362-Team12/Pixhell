@@ -26,7 +26,7 @@ namespace InventoryClass {
         }
 
         public void removeItem(Item item) {
-            items.Remove(item);
+            items.RemoveAll(i => i.id == item.id);
             calculateModifiers();
         }
 

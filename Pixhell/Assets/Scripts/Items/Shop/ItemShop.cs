@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.IO;
 using System;
+using System.Collections;
 
 public class ItemShop : MonoBehaviour
 {
@@ -127,30 +128,61 @@ public class ItemShop : MonoBehaviour
             img.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
         }
 
-        TextMeshProUGUI  text = infoPanel.transform.Find("InfoText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI text = infoPanel.transform.Find("InfoText").GetComponent<TextMeshProUGUI>();
         text.text = item.name + "\n\n" + item.description + "\n\n";
         Button purchaseButton = infoPanel.transform.Find("PurchaseButton").GetComponent<Button>(); 
         if (GameManager.inventory.hasItem(item)) {
             text.text += "OWNED";
-            purchaseButton.interactable = false;
-            purchaseButton.GetComponent<Image>().color = Color.grey;
+            TextMeshProUGUI buttonText = purchaseButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = "Sell";
+            purchaseButton.onClick.RemoveAllListeners();
+            purchaseButton.onClick.AddListener(() => SellItem(item));
         }
         else {
             text.text += "Cost: " + item.cost;
-            purchaseButton.interactable = true;
-            purchaseButton.GetComponent<Image>().color = Color.white;
+            TextMeshProUGUI buttonText = purchaseButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = "Purchase";
             purchaseButton.onClick.RemoveAllListeners();
             purchaseButton.onClick.AddListener(() => PurchaseItem(item));
         }
     }
 
     void PurchaseItem(Item item) {
-        Debug.Log("Current coins: " + GameManager.coins + " Cost: " + item.cost);
         if (item.cost <= GameManager.coins) {
             GameManager.coins -= item.cost;
             GameManager.inventory.addItem(item);
             ViewItem(item);
             GameManager.SavePlayerData();
         }
+        else {
+            StartCoroutine(ShowWarningText("You do not have enough coins to purchase this item!", 1.5f, itemShopUI));
+        }
+    }
+
+    void SellItem(Item item) {
+        GameManager.coins += item.cost;
+        GameManager.inventory.removeItem(item);
+        ViewItem(item);
+        GameManager.SavePlayerData();
+    }
+
+    private IEnumerator ShowWarningText(string message, float duration, GameObject canvas)
+    {
+        // Create new Text GameObject
+        GameObject textObj = new GameObject("WarningText");
+        textObj.transform.SetParent(canvas.transform, false); // Attach to canvas
+
+        // Add Text component
+        TextMeshProUGUI textComponent = textObj.AddComponent<TextMeshProUGUI>();
+        textComponent.text = message;
+        textComponent.fontSize = 36;
+        textComponent.color = Color.red;
+        textComponent.alignment = TextAlignmentOptions.Center;
+        RectTransform rectTransform = textObj.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0, 0);
+        rectTransform.sizeDelta = new Vector2(1000, 100);
+        // Wait for duration and destroy
+        yield return new WaitForSecondsRealtime(duration);
+        Destroy(textObj);
     }
 }

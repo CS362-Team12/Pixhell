@@ -10,7 +10,7 @@ using System.Collections;
 public class ItemShop : MonoBehaviour
 {
     GameObject itemShopUI;
-    bool shopShowing;
+    public bool shopShowing;
 
     GameObject itemsPanel;
     public GameObject infoPanel;
@@ -110,6 +110,23 @@ public class ItemShop : MonoBehaviour
         else {
             buttonBg.color = notOwnedColor;
         }
+
+        // Create the cost text
+        GameObject costTextObject = new GameObject("CostText", typeof(RectTransform), typeof(TextMeshProUGUI));
+        costTextObject.transform.SetParent(newButton.transform, false);
+
+        // Set up the TextMeshProUGUI component
+        TextMeshProUGUI costText = costTextObject.GetComponent<TextMeshProUGUI>();
+        costText.text = "$" + item.cost.ToString(); // Set the cost as text
+        costText.fontSize = 64;
+        costText.color = Color.black;
+        costText.alignment = TextAlignmentOptions.TopRight; // Align to the top-right corner
+
+        // Adjust the RectTransform for the cost text to position it in the top-right corner
+        RectTransform costRect = costTextObject.GetComponent<RectTransform>();
+        costRect.sizeDelta = new Vector2(150, 30); // Set the size of the cost text box
+        costRect.anchoredPosition = new Vector2(0.5f * buttonSize - 90, 0.5f * buttonSize - 20); // Position in top-right corner
+
 
         Button button = newButton.GetComponent<Button>();
         button.onClick.AddListener(() => ViewItem(item));

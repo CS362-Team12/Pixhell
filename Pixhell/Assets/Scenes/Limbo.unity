@@ -1295,6 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1088592784}
+  showLabel: 1
 --- !u!114 &1088592784
 MonoBehaviour:
   m_ObjectHideFlags: 0

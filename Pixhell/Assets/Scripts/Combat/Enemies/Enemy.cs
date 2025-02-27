@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject player;
     public GameObject XPDrop;
+    public GameObject DamageText;
 
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
@@ -98,7 +99,18 @@ public class Enemy : MonoBehaviour
             Instantiate(XPDrop, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+
+        // Trigger floating text to show damage
+        ShowDamageText(damage);
+
     }
+
+    void ShowDamageText(float damage)
+    {
+        var DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
+        DmgText.GetComponent<TextMesh>().text = damage.ToString();
+    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {

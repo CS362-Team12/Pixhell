@@ -17,6 +17,8 @@ public class Portal : MonoBehaviour
         {
             animator.SetBool("is_teleporting", true);
             Debug.Log("TELEPORTING");
+            GameObject player = GameObject.Find("walk-with-weapon-1");
+            player.transform.position = transform.position;
             StartCoroutine(LoadSceneAfterAnimation());
         }
         // Debug.Log(animator.is_teleporting);

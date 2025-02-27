@@ -112,24 +112,40 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage) 
     {
-        health -= damage;
-        Debug.Log("Took " + damage + " damage!");
-        animator.SetTrigger("hit");
-        if (health <= 0) {
-            animator.SetTrigger("dead");
-            is_dead = true;
-            StartCoroutine(Die());
-        }
+        if (!is_dead) {
+            health -= damage;
+            Debug.Log("Took " + damage + " damage!");
+            animator.SetTrigger("hit");
+            if (health <= 0)
+            {
+                animator.SetTrigger("dead");
+                animator.SetBool("is_dead", true);
+                is_dead = true;
+                StartCoroutine(Die());
+            }
 
-        // Trigger floating text to show damage
-        ShowDamageText(damage);
+            // Trigger floating text to show damage
+            ShowDamageText(damage);
+
+        }
 
     }
 
     void ShowDamageText(float damage)
     {
-        var DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
+        GameObject DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
+        // DmgText.transform.SetParent(transform.parent, true);
+        DmgText.transform.position = transform.position;
+        
+        if (!facingRight)
+        {
+            Debug.Log("FLIPS BEFORE: " + DmgText.transform.localScale.x);
+            DmgText.transform.localScale = new Vector3(-1 * DmgText.transform.localScale.x, DmgText.transform.localScale.y, DmgText.transform.localScale.z);
+            Debug.Log("FLIPS: " + DmgText.transform.localScale.x);
+        }
+        
         DmgText.GetComponent<TextMesh>().text = damage.ToString();
+        Debug.Log("FLIPS AFTER: " + DmgText.transform.localScale.x);
     }
 
     private IEnumerator Die()
@@ -148,7 +164,7 @@ public class Enemy : MonoBehaviour
     {
         // Collision Damage
         var target = other.GetComponent<PlayerController>(); 
-        if (target != null)
+        if (target != null || !is_dead)
         {
             target.TakeDamage(collisionDamage);  // Call the TakeDamage method
         }

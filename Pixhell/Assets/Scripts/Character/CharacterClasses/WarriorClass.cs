@@ -31,8 +31,8 @@ public class WarriorClass : PlayerController
                 attack_time = Time.time;
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 attackDirection = (mousePosition - transform.position).normalized;
-                Debug.DrawLine(transform.position, transform.position + (Vector3)attackDirection * attack_range, Color.red, 0.2f);
-                float attack_angle = 180f;
+                Debug.DrawLine(transform.position, transform.position + (Vector3)attackDirection * attack_range, Color.red, .2f);
+                float attack_angle = 120f;
 
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attack_range, enemyLayers);
                 

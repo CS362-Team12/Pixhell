@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Threading;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -77,6 +78,11 @@ public class PlayerController : MonoBehaviour
         DodgeAction.Enable();
         animator = GetComponent<Animator>();
         StartImmune();
+
+        if (SceneManager.GetActiveScene().name == "Limbo")
+        {
+            AudioManager.Instance.PlayBackgroundMusic();
+        }
     }
 
     // Update is called once per frame
@@ -121,19 +127,7 @@ public class PlayerController : MonoBehaviour
 
         if (Time.time - dodge_time >= 2.0f)
         {
-            if (AudioManager.Instance != null)
-            {
-                AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-                if (audioSource != null && dodgeSound != null)
-                {
-                    audioSource.PlayOneShot(dodgeSound);
-                    Debug.Log("Dodge sound played: " + dodgeSound.name);
-                }
-                else
-                {
-                    Debug.LogError("AudioSource or dodgeSound is null in dodge_roll");
-                }
-            }
+            AudioManager.Instance.PlaySoundEffect(dodgeSound, 0.3f);
 
             animator.SetBool("is_dodging", true);
             is_dodging = true;
@@ -205,21 +199,7 @@ public class PlayerController : MonoBehaviour
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);
 
-            // Play damage sound when health decreases
-            if (AudioManager.Instance != null)
-            {
-                AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-                if (audioSource != null && damageSound != null)
-                {
-                    audioSource.PlayOneShot(damageSound);
-                    Debug.Log("Damage sound played: " + damageSound.name);
-                }
-                else
-                {
-                    Debug.LogError("AudioSource or damageSound is null in ChangeHealth");
-                }
-            }
-
+            AudioManager.Instance.PlaySoundEffect(damageSound, 0.2f); // Balanced volume
             return true;
         }
         else if (health > 0)

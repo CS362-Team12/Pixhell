@@ -117,11 +117,11 @@ public class Enemy : MonoBehaviour
         if (health <= 0) {
             animator.SetTrigger("dead");
             is_dead = true;
-            StartCoroutine(die());
+            StartCoroutine(Die());
         }
     }
 
-    private IEnumerator die()
+    private IEnumerator Die()
     {
         // Get the length of the teleport animation
         float animationDuration = 1.667f;

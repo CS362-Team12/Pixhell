@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject player;
     public GameObject XPDrop;
+    public GameObject DamageText;
 
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
@@ -119,6 +120,16 @@ public class Enemy : MonoBehaviour
             is_dead = true;
             StartCoroutine(Die());
         }
+
+        // Trigger floating text to show damage
+        ShowDamageText(damage);
+
+    }
+
+    void ShowDamageText(float damage)
+    {
+        var DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
+        DmgText.GetComponent<TextMesh>().text = damage.ToString();
     }
 
     private IEnumerator Die()

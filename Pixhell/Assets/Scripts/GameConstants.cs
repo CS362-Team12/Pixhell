@@ -2,7 +2,10 @@ using UnityEngine;
 using TMPro;
 
 public static class GameConstants
-{
+{   
+    // Turn to false for user builds. Use this to run stuff in debug mode only
+    public const bool DEBUG = true;
+    
     // Upgrade Constants
     public const int COMMON = 0;
     public const int UNCOMMON = 1;

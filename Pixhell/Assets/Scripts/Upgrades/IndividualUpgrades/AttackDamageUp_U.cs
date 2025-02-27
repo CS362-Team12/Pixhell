@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using static GameConstants;
 
 
-public class AttackSpeedUp_U : Upgrade
+public class AttackDamageUp_U : Upgrade
 {
-    float attack_up;
+    float attackDamageUp;
     
-    public AttackSpeedUp_U(string t, string d, int r, float au) {
+    public AttackDamageUp_U(string t, string d, int r, float adu) {
         title = t;
         description = d;
         rarity = r;
-        attack_up = au;
+        attackDamageUp = adu;
     }
 
     public override void ApplyUpgrade()
     {   
         GameObject player = GameObject.FindWithTag("Player");
-        player.GetComponent<PlayerController>().UpdateAttackSpeed(attack_up);
+        player.GetComponent<PlayerController>().UpdateDamage(attackDamageUp);
     }
 }

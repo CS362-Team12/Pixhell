@@ -1,0 +1,3 @@
+Arena: 1
+Coins: 763
+Items:2,3,1

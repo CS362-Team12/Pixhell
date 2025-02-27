@@ -23,8 +23,6 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/Global.unity
   - m_enabled: 1
-    m_path: Assets/Scenes/Lobby.unity
-  - m_enabled: 1
     m_path: Assets/Scenes/StartMenu.unity
   - m_enabled: 1
     m_path: Assets/Scenes/SelectRun.unity

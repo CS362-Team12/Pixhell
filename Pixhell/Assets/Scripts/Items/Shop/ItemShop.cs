@@ -68,6 +68,8 @@ public class ItemShop : MonoBehaviour
         itemsPanel.transform.SetParent(itemShopUI.transform);
         panelRect = itemsPanel.GetComponent<RectTransform>();
         panelRect.anchoredPosition = new Vector2(0, 0);
+        Debug.Log(Screen.width);
+        panelRect.localScale = new Vector3(0.5f, 0.5f, 1f);
 
         filePath = GameManager.inventory.itemInfoPath;
         string[] lines = File.ReadAllLines(filePath);

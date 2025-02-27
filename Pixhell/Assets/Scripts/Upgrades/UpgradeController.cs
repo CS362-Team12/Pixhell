@@ -23,7 +23,10 @@ public class UpgradeController : MonoBehaviour
     // Array coordinates for upgrade to force being selected
     // Set to -1 to turn off, attched to DEBUG to be off for non DEBUG builds
     int[] forcedUpgrade = {-1, 3};
-    
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip selectSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -133,7 +136,9 @@ public class UpgradeController : MonoBehaviour
         var upgrade = chosenUpgrades[upgradeNumber];
         upgrade.ApplyUpgrade();
         upgrade.SetSelected(true);
-        
+
+        AudioManager.Instance.PlaySoundEffect(selectSound, 0.3f);
+
         // Unselect temp select upgrades so they can show up again, if not selected or if reusable
         for (int i = 0; i < 3; i++) {
             chosenUpgrades[i].SetTempSelected(false);

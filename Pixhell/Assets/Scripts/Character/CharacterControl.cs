@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Threading;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -55,6 +56,9 @@ public class PlayerController : MonoBehaviour
     protected float damage = 25.0f;
     protected float projectile_speed_mult = 1.0f;
 
+    [Header("Audio Settings")] // New header for clarity
+    [SerializeField] protected AudioClip dodgeSound;
+    [SerializeField] protected AudioClip damageSound;
 
     public Animator animator;
 
@@ -75,6 +79,11 @@ public class PlayerController : MonoBehaviour
         DodgeAction.Enable();
         animator = GetComponent<Animator>();
         StartImmune();
+
+        if (SceneManager.GetActiveScene().name == "Limbo")
+        {
+            AudioManager.Instance.PlayBackgroundMusic();
+        }
     }
 
     // Update is called once per frame
@@ -119,6 +128,8 @@ public class PlayerController : MonoBehaviour
 
         if (Time.time - dodge_time >= 2.0f)
         {
+            AudioManager.Instance.PlaySoundEffect(dodgeSound, 0.3f);
+
             animator.SetBool("is_dodging", true);
             is_dodging = true;
             dodge_time = Time.time;
@@ -188,8 +199,11 @@ public class PlayerController : MonoBehaviour
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);
+
+            AudioManager.Instance.PlaySoundEffect(damageSound, 0.2f); // Balanced volume
             return true;
-        }else if (health > 0)
+        }
+        else if (health > 0)
         {
             current_health = Mathf.Clamp(current_health + (health*heal_mult), 0, max_health);
             Debug.Log(current_health + "/" + max_health);

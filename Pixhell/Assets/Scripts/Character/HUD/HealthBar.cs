@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class HealthBar : MonoBehaviour
@@ -8,6 +9,9 @@ public class HealthBar : MonoBehaviour
 
     public Sprite healthChunkImg;
     public Image healthBar;
+    public Sprite healthBarBorder;
+
+    TextMeshProUGUI text;
     PlayerController character;
     GameObject[] bars;
     int barCount = 100;
@@ -39,6 +43,8 @@ public class HealthBar : MonoBehaviour
         for (int i = barCount - 1; i >= 0; i--) {
             bars[i].gameObject.SetActive(i < showing);
         }
+
+        text.text = character.health + " / " + character.max_health;
     }
 
     void GenerateHealthBar() {
@@ -69,7 +75,7 @@ public class HealthBar : MonoBehaviour
         // Overlay border on top
         GameObject duplicatedSprite = new GameObject("DuplicatedBorder");
         Image duplicatedHealthChunk = duplicatedSprite.AddComponent<Image>();
-        duplicatedHealthChunk.sprite = healthBar.sprite;
+        duplicatedHealthChunk.sprite = healthBarBorder;
 
         duplicatedSprite.transform.SetParent(transform, false);
 
@@ -79,6 +85,23 @@ public class HealthBar : MonoBehaviour
         rectDuplicated.anchorMax = new Vector2(0, 0.5f);
         rectDuplicated.pivot = new Vector2(0, 0.5f); // Left-center pivot
         rectDuplicated.anchoredPosition = new Vector2(0, 0);
+
+        // TextBox
+        GameObject healthText = new GameObject("healthText");
+        text = healthText.AddComponent<TextMeshProUGUI>();
+        text.transform.SetParent(transform, false);
+        
+
+        RectTransform textRect = healthText.GetComponent<RectTransform>();
+        textRect.sizeDelta = new Vector2(healthBar.rectTransform.rect.width, healthBar.rectTransform.rect.height); // Match height
+        textRect.anchorMin = new Vector2(0, 0.5f);
+        textRect.anchorMax = new Vector2(0, 0.5f);
+        textRect.pivot = new Vector2(0, 0.5f); // Left-center pivot
+        textRect.anchoredPosition = new Vector2(0, 0);
+        text.alignment = TextAlignmentOptions.Center;
+        text.color = Color.white;
+        text.outlineWidth = 0.2f;
+        text.outlineColor = Color.black;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {

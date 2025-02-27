@@ -282,6 +282,8 @@ MonoBehaviour:
   is_dodging: 0
   max_health: 100
   is_vulnerable: 1
+  dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
+  damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
   animator: {fileID: 0}
   projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
 --- !u!95 &5980619562306250965
@@ -319,3 +321,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
+  levelUpSound: {fileID: 8300000, guid: 71ebde97277783b41b3f43b4682d987e, type: 3}

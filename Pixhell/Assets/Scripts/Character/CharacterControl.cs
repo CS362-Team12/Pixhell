@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     protected float damage = 25.0f;
     protected float projectile_speed_mult = 1.0f;
 
+    [Header("Audio Settings")] // New header for clarity
+    [SerializeField] protected AudioClip dodgeSound;
+    [SerializeField] protected AudioClip damageSound;
 
     public Animator animator;
 
@@ -118,6 +121,20 @@ public class PlayerController : MonoBehaviour
 
         if (Time.time - dodge_time >= 2.0f)
         {
+            if (AudioManager.Instance != null)
+            {
+                AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
+                if (audioSource != null && dodgeSound != null)
+                {
+                    audioSource.PlayOneShot(dodgeSound);
+                    Debug.Log("Dodge sound played: " + dodgeSound.name);
+                }
+                else
+                {
+                    Debug.LogError("AudioSource or dodgeSound is null in dodge_roll");
+                }
+            }
+
             animator.SetBool("is_dodging", true);
             is_dodging = true;
             dodge_time = Time.time;
@@ -187,8 +204,25 @@ public class PlayerController : MonoBehaviour
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);
+
+            // Play damage sound when health decreases
+            if (AudioManager.Instance != null)
+            {
+                AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
+                if (audioSource != null && damageSound != null)
+                {
+                    audioSource.PlayOneShot(damageSound);
+                    Debug.Log("Damage sound played: " + damageSound.name);
+                }
+                else
+                {
+                    Debug.LogError("AudioSource or damageSound is null in ChangeHealth");
+                }
+            }
+
             return true;
-        }else if (health > 0)
+        }
+        else if (health > 0)
         {
             current_health = Mathf.Clamp(current_health + (health*heal_mult), 0, max_health);
             Debug.Log(current_health + "/" + max_health);

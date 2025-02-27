@@ -2,14 +2,16 @@ using UnityEngine;
 using static GameConstants;
 
 public class Enemy : MonoBehaviour
-{    
-    protected float health = 100.0f;
+{
+    public float max_health = 100.0f;
+    public float health = 100.0f;
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
 
     public GameObject player;
     public GameObject XPDrop;
     public GameObject DamageText;
+    [SerializeField] FloatingHpBar healthBar;
 
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
@@ -42,6 +44,8 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        healthBar = GetComponentInChildren<FloatingHpBar>();
+        healthBar.UpdateHealthBar(health, max_health);
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
         currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
@@ -93,6 +97,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage) 
     {
         health -= damage;
+        healthBar.UpdateHealthBar(health, max_health);
         Debug.Log("Took " + damage + " damage!");
         if (health <= 0) {
             //Should be replaced with a death animation? 

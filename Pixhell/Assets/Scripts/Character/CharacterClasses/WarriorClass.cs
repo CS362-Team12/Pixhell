@@ -3,7 +3,7 @@ using UnityEngine;
 public class WarriorClass : PlayerController
 {
     
-    protected float attack_range = 1.5f;
+    protected float attack_range = 1.7f;
     public LayerMask enemyLayers;
 
     protected override void Start()

@@ -406,7 +406,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -682028510724069188, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: attack_range
-      value: 0.85
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1403697649868078611, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Name
@@ -461,7 +461,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6326460203903690011, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}

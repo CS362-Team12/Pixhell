@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WarriorClass : PlayerController
 {
-    public Transform AttackPoint;
-    public float attack_range = .85f;
+    
+    protected float attack_range = 1.5f;
     public LayerMask enemyLayers;
 
     protected override void Start()
@@ -27,32 +27,31 @@ public class WarriorClass : PlayerController
         {
             if (Time.time - attack_time >= attack_speed / attack_speed_mult)
             {
-                Vector2 forward_direction = transform.right;
-                float attack_angle = 180f;
                 animator.SetTrigger("Attack");
                 attack_time = Time.time;
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, attack_range, enemyLayers);
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 attackDirection = (mousePosition - transform.position).normalized;
+                Debug.DrawLine(transform.position, transform.position + (Vector3)attackDirection * attack_range, Color.red, 0.2f);
+                float attack_angle = 180f;
+
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attack_range, enemyLayers);
                 
                 foreach (Collider2D enemy in hitEnemies)
                 {
-                    Vector2 enemy_direction = (enemy.transform.position - transform.position).normalized;
-                    float angle = Vector2.Angle(forward_direction, enemy_direction);
-                    if (m_FacingRight && angle <= attack_angle / 2 || !m_FacingRight && angle*-1 <= attack_angle*-1 / 2) // Only affect enemies in front of the swing
+                    Vector2 enemyDirection = (enemy.transform.position - transform.position).normalized;
+                    float angle = Vector2.SignedAngle(attackDirection, enemyDirection);
+
+                    // Check if enemy is within attack arc
+                    if (Mathf.Abs(angle) <= attack_angle / 2)
                     {
                         Enemy target = enemy.GetComponent<Enemy>();
                         if (target != null)
                         {
-                            target.TakeDamage(damage*damage_mult); // Reduced AOE damage
+                            target.TakeDamage(damage * damage_mult);
                         }
                     }
                 }
             }
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        if (AttackPoint == null)
-            return;
-        Gizmos.DrawWireSphere(AttackPoint.position, attack_range);
     }
 }

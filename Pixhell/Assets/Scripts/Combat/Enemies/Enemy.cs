@@ -1,5 +1,6 @@
 using UnityEngine;
 using static GameConstants;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {    
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;
+    private bool is_dead = false;
 
     public Animator animator;
 
@@ -52,30 +54,39 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var currState = GetCurrentState();
-        if (currState == MOVING) {
-            Move();
-        } else if (currState == ATTACKING) {
-            Attack();
-        } else if (currState == IDLING) {
-            // If you wish to do something in the Idle phase
-            Idle();
-        }
-
-        float x = gameObject.transform.position.x;
-        float player_x = player.transform.position.x;
-        if ((x > player_x && facingRight) || (x < player_x && !facingRight))
+        if (!is_dead)
         {
-            Flip();
-        }
-        //Update timer, with randomness so each enemy is a little different. 
-        // Spawns should also spawn in increments if possible
-        currStateTime += Time.deltaTime;
-        //If time is passed, move to next state, wrapping
-        if (currStateTime >= currTimer) {
-            currIndex = (currIndex+1) % states.Length;
-            currStateTime = 0;
-            currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+            var currState = GetCurrentState();
+            if (currState == MOVING)
+            {
+                Move();
+            }
+            else if (currState == ATTACKING)
+            {
+                Attack();
+            }
+            else if (currState == IDLING)
+            {
+                // If you wish to do something in the Idle phase
+                Idle();
+            }
+
+            float x = gameObject.transform.position.x;
+            float player_x = player.transform.position.x;
+            if ((x > player_x && facingRight) || (x < player_x && !facingRight))
+            {
+                Flip();
+            }
+            //Update timer, with randomness so each enemy is a little different. 
+            // Spawns should also spawn in increments if possible
+            currStateTime += Time.deltaTime;
+            //If time is passed, move to next state, wrapping
+            if (currStateTime >= currTimer)
+            {
+                currIndex = (currIndex + 1) % states.Length;
+                currStateTime = 0;
+                currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+            }
         }
     }
 
@@ -104,10 +115,22 @@ public class Enemy : MonoBehaviour
         Debug.Log("Took " + damage + " damage!");
         animator.SetTrigger("hit");
         if (health <= 0) {
-            //Should be replaced with a death animation? 
-            Instantiate(XPDrop, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            animator.SetTrigger("dead");
+            is_dead = true;
+            StartCoroutine(die());
         }
+    }
+
+    private IEnumerator die()
+    {
+        // Get the length of the teleport animation
+        float animationDuration = 1.667f;
+        Debug.Log("Enemy Slain");   
+        // Wait for the animation to finish
+        yield return new WaitForSeconds(animationDuration);
+
+        Instantiate(XPDrop, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)

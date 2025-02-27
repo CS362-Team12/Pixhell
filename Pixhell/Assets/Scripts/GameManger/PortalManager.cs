@@ -26,7 +26,7 @@ public class Portal : MonoBehaviour
     {
         // Get the length of the teleport animation
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float animationDuration = stateInfo.length + 0.75f;
+        float animationDuration = stateInfo.length;
 
         // Wait for the animation to finish
         yield return new WaitForSeconds(animationDuration);

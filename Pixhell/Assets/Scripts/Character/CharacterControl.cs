@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     protected Vector2 move;
     protected bool m_FacingRight = true;
     protected float horizontal_move;
+    public bool is_teleporting = false;
 
     [Header("Move Speed")]
     protected float base_speed = 1.0f;

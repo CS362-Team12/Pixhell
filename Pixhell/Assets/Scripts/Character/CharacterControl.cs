@@ -181,7 +181,8 @@ public class PlayerController : MonoBehaviour
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
         if (current_health <= 0) {
-            // GAME OVER
+            GameObject gameOverController = GameObject.Find("EventSystem");
+            gameOverController.GetComponent<GameOverController>().TurnOnMenu();
         }
         if (damaged)
         {

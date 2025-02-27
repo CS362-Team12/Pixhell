@@ -24,4 +24,16 @@ public class LevelUp : MonoBehaviour
             UpgradeController.GetComponent<UpgradeController>().TriggerLevelUp();
         }
     }
+
+    public float GetNextXPRequirement() {
+        return levelCaps[Mathf.Min(level, levelCaps.Length-1)];
+    }
+
+    public float GetLevel() {
+        return level;
+    }
+
+    public float GetExperience() {
+        return experience;
+    }
 }

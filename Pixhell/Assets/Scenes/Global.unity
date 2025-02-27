@@ -2449,8 +2449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0311d8961b711d459709dba45f76ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthChunk: {fileID: 1388387509582903204, guid: 095ad795fb9279e4dbe1713d27c03f66, type: 3}
-  healthBar: {fileID: 0}
+  healthChunkImg: {fileID: 1388387509582903204, guid: 095ad795fb9279e4dbe1713d27c03f66, type: 3}
+  healthBar: {fileID: 1297788566}
 --- !u!1 &1354739158
 GameObject:
   m_ObjectHideFlags: 0

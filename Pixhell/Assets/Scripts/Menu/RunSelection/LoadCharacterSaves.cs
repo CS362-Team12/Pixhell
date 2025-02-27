@@ -39,6 +39,7 @@ public class LoadCharacterSaves : MonoBehaviour
             {
                 string firstLine = reader.ReadLine(); // Read the first line of the file
                 string secondLine = reader.ReadLine();
+                string thirdLine = reader.ReadLine();
 
                 // Instantiate a new button from the prefab
                 GameObject newButton = Instantiate(buttonPrefab.gameObject, panelContainer);
@@ -57,7 +58,7 @@ public class LoadCharacterSaves : MonoBehaviour
                 }
 
                 // Set the button's text
-                buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + "\n" + filePath + "\n" + secondLine;
+                buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + "\n" + filePath + "\n" + secondLine + "\n" + thirdLine;
                 Button button = newButton.GetComponent<Button>();
                 // Add button functionality
                 button.onClick.AddListener(() => EnterRun(filePath));
@@ -134,6 +135,7 @@ public class LoadCharacterSaves : MonoBehaviour
         using (StreamWriter writer = new StreamWriter(filePath))
         {
             writer.WriteLine("Arena: 1");
+            writer.WriteLine("Coins: 0");
             writer.WriteLine("Items:");
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

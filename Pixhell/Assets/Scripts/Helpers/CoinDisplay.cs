@@ -3,9 +3,16 @@ using UnityEngine;
 public class CoinDisplay : MonoBehaviour
 {
     public TextMeshProUGUI text;
+    public bool showLabel = true;
 
     void Update()
     {
-        text.text = "Coins: " + GameManager.coins.ToString();
+        if (showLabel) {
+            text.text = "Coins: " + GameManager.coins.ToString();
+        }
+        else {
+            text.text = GameManager.coins.ToString();
+        }
+        
     }
 }

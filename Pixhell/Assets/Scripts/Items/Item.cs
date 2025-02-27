@@ -10,12 +10,13 @@ public class Item {
     public float attackSpeed;
     public float health;
     public float movementSpeed;
+    public int cost;
 
     public Item() {
         this.id = -1;
     }
 
-    public Item(int id, string name, string desc, string imagePath, float d, float aS, float h, float mS) {
+    public Item(int id, string name, string desc, string imagePath, float d, float aS, float h, float mS, int cost) {
         this.id = id;
         this.name = name;
         this.description = desc;
@@ -24,6 +25,7 @@ public class Item {
         this.attackSpeed = aS;
         this.health = h;
         this.movementSpeed = mS;
+        this.cost = cost;
     }
 
 }

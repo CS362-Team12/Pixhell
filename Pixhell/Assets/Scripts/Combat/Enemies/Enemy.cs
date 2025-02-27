@@ -6,6 +6,9 @@ public class Enemy : MonoBehaviour
     protected float health = 100.0f;
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
+    public bool facingRight = true;
+
+    public Animator animator;
 
     public GameObject player;
     public GameObject XPDrop;
@@ -58,7 +61,13 @@ public class Enemy : MonoBehaviour
             // If you wish to do something in the Idle phase
             Idle();
         }
-        
+
+        float x = gameObject.transform.position.x;
+        float player_x = player.transform.position.x;
+        if ((x > player_x && facingRight) || (x < player_x && !facingRight))
+        {
+            Flip();
+        }
         //Update timer, with randomness so each enemy is a little different. 
         // Spawns should also spawn in increments if possible
         currStateTime += Time.deltaTime;
@@ -80,7 +89,7 @@ public class Enemy : MonoBehaviour
     // Default, nothing as of right now
     public virtual void Attack() 
     {
-        Debug.Log("Attack not implemented yet");
+        // Debug.Log("Attack not implemented yet");
     }
 
     // Default, nothing 
@@ -93,6 +102,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         Debug.Log("Took " + damage + " damage!");
+        animator.SetTrigger("hit");
         if (health <= 0) {
             //Should be replaced with a death animation? 
             Instantiate(XPDrop, transform.position, Quaternion.identity);
@@ -108,5 +118,16 @@ public class Enemy : MonoBehaviour
         {
             target.TakeDamage(collisionDamage);  // Call the TakeDamage method
         }
+    }
+
+    protected void Flip()
+    {
+        // Switch the way the player is labelled as facing.
+        facingRight = !facingRight;
+
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

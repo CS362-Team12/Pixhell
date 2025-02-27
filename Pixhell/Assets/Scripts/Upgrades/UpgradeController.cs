@@ -137,19 +137,7 @@ public class UpgradeController : MonoBehaviour
         upgrade.ApplyUpgrade();
         upgrade.SetSelected(true);
 
-        if (AudioManager.Instance != null)
-        {
-            AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-            if (audioSource != null && selectSound != null)
-            {
-                audioSource.PlayOneShot(selectSound);
-                Debug.Log("Select upgrade sound played: " + selectSound.name);
-            }
-            else
-            {
-                Debug.LogError("AudioSource or selectSound is null in ChooseUpgrade");
-            }
-        }
+        AudioManager.Instance.PlaySoundEffect(selectSound, 0.3f);
 
         // Unselect temp select upgrades so they can show up again, if not selected or if reusable
         for (int i = 0; i < 3; i++) {

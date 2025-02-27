@@ -9,13 +9,6 @@ public class ArrowSound : MonoBehaviour
     {
         if (!isPlayerArrow) return; // Skip sound for non-player arrows
 
-        if (AudioManager.Instance != null)
-        {
-            AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-            if (audioSource != null && arrowFireSound != null)
-            {
-                audioSource.PlayOneShot(arrowFireSound);
-            }
-        }
+        AudioManager.Instance.PlaySoundEffect(arrowFireSound, 0.15f);
     }
 }

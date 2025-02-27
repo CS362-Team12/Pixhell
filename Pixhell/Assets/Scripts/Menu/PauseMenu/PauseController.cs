@@ -1,72 +1,111 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class PauseController : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     private bool isPaused;
     private string prevScene;
-
-
+    public Slider bgmSlider; // Add this for volume control
 
     void Start()
     {
-        pauseMenuUI.SetActive(false);  // Initially hide the pause menu
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("pauseMenuUI is not assigned in PauseController");
+        }
         prevScene = SceneManager.GetActiveScene().name;
+
+        if (SceneManager.GetActiveScene().name == "StartMenu" || SceneManager.GetActiveScene().name == "SelectRun")
+        {
+            AudioManager.Instance.StopBackgroundMusic();
+        }
+
+        // Setup slider
+        if (bgmSlider != null)
+        {
+            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+            bgmSlider.minValue = 0f;
+            bgmSlider.maxValue = 0.5f;
+            bgmSlider.value = 0.1f; // Default volume matches BGM
+            Debug.Log("BGM Slider initialized");
+        }
+        else
+        {
+            Debug.LogWarning("bgmSlider is not assigned in PauseController");
+        }
     }
 
     void Update()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        if (prevScene != currentScene && isPaused == true) {
+        if (prevScene != currentScene && isPaused)
+        {
             TogglePause(true);
         }
-
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
-            bool isPaused;
         }
         prevScene = currentScene;
-
     }
 
-    public void TogglePause(bool allowToggle=false)
-    // Toggles the current pause setting
-    // Takes a force parameter that will allow the toggle to happen even on menus where it should not be allowed
+    public void TogglePause(bool allowToggle = false)
     {
-        if ((SceneManager.GetActiveScene().name == "StartMenu" || SceneManager.GetActiveScene().name == "SelectRun") && !allowToggle) {
+        if ((SceneManager.GetActiveScene().name == "StartMenu" || SceneManager.GetActiveScene().name == "SelectRun") && !allowToggle)
+        {
             return;
         }
         GameManager.LogPlayerData();
 
         isPaused = !isPaused;
-        pauseMenuUI.SetActive(isPaused);  // Show/hide the pause menu
-        Time.timeScale = isPaused ? 0f : 1f;  // Freeze gameplay time when paused
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(isPaused);
+        }
+        Time.timeScale = isPaused ? 0f : 1f;
         GameObject player = GameObject.FindWithTag("Player");
-        if (player != null) { // Ensure that the scene has a player obj
-            player.GetComponent<PlayerController>().enabled = isPaused ? false: true;
+        if (player != null)
+        {
+            player.GetComponent<PlayerController>().enabled = !isPaused;
             SceneButtonBehavior();
+
+            if (isPaused)
+            {
+                AudioManager.Instance.PauseBackgroundMusic();
+            }
+            else
+            {
+                AudioManager.Instance.ResumeBackgroundMusic();
+            }
         }
     }
 
-    void SceneButtonBehavior() 
+    void SceneButtonBehavior()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        
-        if (isPaused) {
-                Button lobbyButton = GameObject.Find("PauseLobbyButton").GetComponent<Button>();
-            if (currentScene.name == "Limbo") {
+        if (isPaused)
+        {
+            Button lobbyButton = GameObject.Find("PauseLobbyButton").GetComponent<Button>();
+            if (SceneManager.GetActiveScene().name == "Limbo")
+            {
                 lobbyButton.interactable = false;
                 lobbyButton.GetComponent<Image>().color = Color.grey;
             }
-            else {
+            else
+            {
                 lobbyButton.interactable = true;
                 lobbyButton.GetComponent<Image>().color = Color.white;
             }
-      }
+        }
+    }
 
+    void SetBGMVolume(float volume)
+    {
+        AudioManager.Instance.SetMusicVolume(volume);
     }
 }

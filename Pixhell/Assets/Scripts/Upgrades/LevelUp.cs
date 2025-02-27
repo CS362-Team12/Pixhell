@@ -23,19 +23,7 @@ public class LevelUp : MonoBehaviour
             experience -= levelCaps[level];
             level++;
 
-            if (AudioManager.Instance != null)
-            {
-                AudioSource audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-                if (audioSource != null && levelUpSound != null)
-                {
-                    audioSource.PlayOneShot(levelUpSound);
-                    Debug.Log("Level-up sound played: " + levelUpSound.name);
-                }
-                else
-                {
-                    Debug.LogError("AudioSource or levelUpSound is null in LevelUp");
-                }
-            }
+            AudioManager.Instance.PlaySoundEffect(levelUpSound, 0.4f);
 
             GameObject UpgradeController = GameObject.Find("EventSystem");
             UpgradeController.GetComponent<UpgradeController>().TriggerLevelUp();

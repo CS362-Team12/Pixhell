@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonSound : MonoBehaviour
 {
@@ -7,22 +8,18 @@ public class ButtonSound : MonoBehaviour
 
     void Start()
     {
-        if (AudioManager.Instance != null)
+        if (audioSource == null && AudioManager.Instance != null)
         {
-            audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-            if (audioSource != null)
+            AudioSource[] sources = AudioManager.Instance.GetComponents<AudioSource>();
+            if (sources.Length >= 2)
             {
-                Debug.Log("Linked to AudioManager.Instance’s AudioSource on " + gameObject.name);
+                audioSource = sources[0];
+                Debug.Log("AudioSource assigned from AudioManager for effects on " + gameObject.name);
             }
             else
             {
-                Debug.LogError("AudioManager.Instance has no AudioSource!");
+                Debug.LogError("Not enough AudioSources on AudioManager for " + gameObject.name);
             }
-        }
-        else
-        {
-            Debug.LogError("AudioManager.Instance is null on " + gameObject.name);
-            audioSource = gameObject.AddComponent<AudioSource>(); // Fallback
         }
     }
 
@@ -31,11 +28,17 @@ public class ButtonSound : MonoBehaviour
         if (audioSource != null && soundClip != null)
         {
             audioSource.PlayOneShot(soundClip);
-            Debug.Log("Played sound: " + soundClip.name);
+            Debug.Log("Button sound played: " + soundClip.name);
+
+            if (gameObject.name.Contains("Start") && SceneManager.GetActiveScene().name == "StartMenu")
+            {
+                // Optional: AudioManager.Instance.PlayBackgroundMusic();
+            }
         }
         else
         {
-            Debug.LogError("Cannot play sound on " + gameObject.name + ": AudioSource or SoundClip is null");
+            if (audioSource == null) Debug.LogError("AudioSource is null in ButtonSound on " + gameObject.name);
+            if (soundClip == null) Debug.LogError("soundClip is null in ButtonSound on " + gameObject.name);
         }
     }
 }

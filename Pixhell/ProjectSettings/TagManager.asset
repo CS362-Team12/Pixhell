@@ -6,7 +6,7 @@ TagManager:
   tags:
   - UpgradeManager
   - Enemy
-  - Portal
+  - GameOverMenu
   layers:
   - Default
   - TransparentFX

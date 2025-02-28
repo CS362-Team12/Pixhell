@@ -3,8 +3,9 @@ using static GameConstants;
 using System.Collections;
 
 public class Enemy : MonoBehaviour
-{    
-    protected float health = 100.0f;
+{
+    public float max_health = 100.0f;
+    public float health = 100.0f;
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;
@@ -12,9 +13,10 @@ public class Enemy : MonoBehaviour
 
     public Animator animator;
 
-    public GameObject player;
+    protected GameObject player;
     public GameObject XPDrop;
     public GameObject DamageText;
+    // [SerializeField] FloatingHpBar healthBar;
 
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
@@ -47,6 +49,8 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //healthBar = GetComponentInChildren<FloatingHpBar>();
+        //healthBar.UpdateHealthBar(health, max_health);
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
         currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
@@ -151,8 +155,8 @@ public class Enemy : MonoBehaviour
     private IEnumerator Die()
     {
         // Get the length of the teleport animation
-        float animationDuration = 1.667f;
-        Debug.Log("Enemy Slain");   
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Enemy Slain");
         // Wait for the animation to finish
         yield return new WaitForSeconds(animationDuration);
 
@@ -164,7 +168,7 @@ public class Enemy : MonoBehaviour
     {
         // Collision Damage
         var target = other.GetComponent<PlayerController>(); 
-        if (target != null || !is_dead)
+        if (target != null && !is_dead)
         {
             target.TakeDamage(collisionDamage);  // Call the TakeDamage method
         }

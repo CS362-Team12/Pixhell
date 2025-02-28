@@ -22,7 +22,6 @@ public class Archer : Enemy
         // var player = GameObject.FindWithTag("Player");
         animator.SetBool("is_moving", true);
         animator.SetBool("is_shooting", false);
-        Debug.Log("MOVING");
         angle += orbitSpeed * Time.deltaTime;
 
         // Calculate the new position using trig

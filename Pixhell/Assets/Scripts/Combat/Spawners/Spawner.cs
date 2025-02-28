@@ -13,10 +13,12 @@ public class Spawner : MonoBehaviour
     string sceneName;
     string waveDataFilePath;
     public bool spawning;
+    int spawnersRunning;
     public int currentWave;
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         spawning = false;
+        spawnersRunning = 0;
         player = GameObject.FindWithTag("Player");
         sceneName = scene.name;
         waveDataFilePath = Path.Combine(Application.streamingAssetsPath, "Arenas", sceneName + ".csv");
@@ -35,19 +37,34 @@ public class Spawner : MonoBehaviour
             if (waveLines.Length == 0) { break; }
                 
             foreach (string line in waveLines) {
-                StartCoroutine(SpawnWave(line));
+                StartCoroutine(SpawnLine(line));
             }
             yield return new WaitUntil(IsNoEnemies);
+            Debug.Log(currentWave);
             currentWave++;
         }
     }
 
     bool IsNoEnemies()
     {
-        return GameObject.FindGameObjectsWithTag("Enemy").Length == 0;
+        if (spawnersRunning > 0) {
+            return false;
+        }
+        Scene targetScene = SceneManager.GetSceneByName(sceneName);
+        GameObject[] rootObjects = targetScene.GetRootGameObjects();
+        foreach (var rootObj in rootObjects)
+        {
+            Debug.Log(rootObj.name);
+            if (rootObj.CompareTag("Enemy"))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
-    IEnumerator SpawnWave(string line) {
+    IEnumerator SpawnLine(string line) {
+        spawnersRunning += 1;
         string[] parts = line.Split(',');
         string enemyType = parts[1];
         int count = int.Parse(parts[2]);
@@ -58,6 +75,7 @@ public class Spawner : MonoBehaviour
             SpawnEnemy(enemyType);
             yield return new WaitForSeconds(timeToSpawn / count);
         }
+        spawnersRunning -= 1;
     }
 
     void SpawnEnemy(string enemyType) {
@@ -69,6 +87,7 @@ public class Spawner : MonoBehaviour
             Debug.LogError("Enemy prefab not found: " + enemyType);
         }
     }
+
 
     string[] getWaveLines(string[] allLines) {
         return allLines.Where(line => line.StartsWith(currentWave.ToString() + ",")).ToArray();

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.IO;
-using System.Linq;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
@@ -46,7 +46,7 @@ public class Spawner : MonoBehaviour
     IEnumerator RunSpawnScript() {
         string[] lines = File.ReadAllLines(waveDataFilePath);
         while (spawning) {
-            string[] waveLines = getWaveLines(lines);
+            string[] waveLines = GetWaveLines(lines);
             if (waveLines.Length == 0) { break; }
                 
             foreach (string line in waveLines) {
@@ -115,8 +115,16 @@ public class Spawner : MonoBehaviour
         return player.transform.position + new Vector3(xMod * minSpawnDistance, yMod * minSpawnDistance, 0);
     }
 
-    string[] getWaveLines(string[] allLines) {
-        return allLines.Where(line => line.StartsWith(currentWave.ToString() + ",")).ToArray();
+    string[] GetWaveLines(string[] allLines) {
+        List<string> filteredLines = new List<string>();
+        foreach (var line in allLines)
+        {
+            if (line.StartsWith(currentWave.ToString() + ","))
+            {
+                filteredLines.Add(line);
+            }
+        }
+        return filteredLines.ToArray();
     }
 
     void Start() {

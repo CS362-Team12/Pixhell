@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     public GameObject XPDrop;
     public GameObject DamageText;
 
+    [Header("Audio Settings")]
+    [SerializeField] protected AudioClip deathSound;
+
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
     // 2. Attack: Perform the attack animation and effects
@@ -152,7 +155,14 @@ public class Enemy : MonoBehaviour
     {
         // Get the length of the teleport animation
         float animationDuration = 1.667f;
-        Debug.Log("Enemy Slain");   
+        Debug.Log("Enemy Slain");
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySoundEffect(deathSound, 0.1f); // Balanced volume
+            Debug.Log("Enemy death sound played: " + (deathSound != null ? deathSound.name : "none"));
+        }
+
         // Wait for the animation to finish
         yield return new WaitForSeconds(animationDuration);
 

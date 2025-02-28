@@ -41,6 +41,7 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
         }
+        GameManager.SavePlayerData();
         SceneManager.LoadScene("Limbo");
     }
 

@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     protected Vector2 move;
     protected bool m_FacingRight = true;
     protected float horizontal_move;
+    public bool is_teleporting = false;
 
     [Header("Move Speed")]
     protected float base_speed = 1.0f;
@@ -106,13 +107,13 @@ public class PlayerController : MonoBehaviour
             {
                 Flip();
             }
-            if (SprintAction.IsPressed() && move != Vector2.zero)
+            if (SprintAction.IsPressed() && move != Vector2.zero && !animator.GetBool("is_teleporting"))
             {
                 animator.SetFloat("speed", 6);
                 Vector2 position = (Vector2)transform.position + move * 5.5f * Time.deltaTime * speed_mult;
                 transform.position = position;
             }
-            else if (MoveAction.IsPressed())
+            else if (MoveAction.IsPressed() && !animator.GetBool("is_teleporting"))
             {
                 animator.SetFloat("speed", 4);
                 Vector2 position = (Vector2)transform.position + move * 3.0f * Time.deltaTime * speed_mult;

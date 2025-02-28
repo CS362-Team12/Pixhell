@@ -8,6 +8,7 @@ using System.Linq;
 public class Spawner : MonoBehaviour
 {
 
+    public float minSpawnDistance = 7f;
     public GameObject tempTestPrefab;
     GameObject player;
     string sceneName;
@@ -15,9 +16,11 @@ public class Spawner : MonoBehaviour
     public bool spawning;
     int spawnersRunning;
     public int currentWave;
+    public bool scriptCompleted;
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         spawning = false;
+        scriptCompleted = false;
         spawnersRunning = 0;
         player = GameObject.FindWithTag("Player");
         sceneName = scene.name;
@@ -27,7 +30,17 @@ public class Spawner : MonoBehaviour
             spawning = true;
             currentWave = 1;
             StartCoroutine(RunSpawnScript());
+            StartCoroutine(ArenaCompleted());
         }
+    }
+
+    IEnumerator ArenaCompleted()
+    {
+        while (!scriptCompleted)
+        {
+            yield return null;
+        }
+        SceneManager.LoadScene("Limbo");
     }
 
     IEnumerator RunSpawnScript() {
@@ -43,6 +56,7 @@ public class Spawner : MonoBehaviour
             Debug.Log(currentWave);
             currentWave++;
         }
+        scriptCompleted = true;
     }
 
     bool IsNoEnemies()
@@ -82,12 +96,24 @@ public class Spawner : MonoBehaviour
         //GameObject enemyPrefab = Resources.Load<GameObject>("Enemies/" + enemyType);
         GameObject enemyPrefab = tempTestPrefab;
         if (enemyPrefab != null) {
-            Instantiate(enemyPrefab, player.transform.position + new Vector3(1f,1f,0f), Quaternion.identity);
+            Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
         } else {
             Debug.LogError("Enemy prefab not found: " + enemyType);
         }
     }
 
+    Vector3 GetRandomSpawnPosition() 
+    {
+        float xMod = 0f;
+        float yMod = 0f;
+        while (Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.2f)
+        {
+            xMod = (UnityEngine.Random.value - 0.5f) * 2f;
+            yMod = (UnityEngine.Random.value - 0.5f) * 2f;
+        }
+        
+        return player.transform.position + new Vector3(xMod * minSpawnDistance, yMod * minSpawnDistance, 0);
+    }
 
     string[] getWaveLines(string[] allLines) {
         return allLines.Where(line => line.StartsWith(currentWave.ToString() + ",")).ToArray();

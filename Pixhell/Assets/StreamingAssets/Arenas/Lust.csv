@@ -1,4 +1,4 @@
-wave,enemy,count,time_to_spawn,delay_after_start_of_wave,endsGame
-1,archer,5,5,3,no
-1,archer,5,5,3,no
-2,archer,1,1,1,yes
+wave,enemy,count,time_to_spawn,delay_after_start_of_wave
+1,archer,5,5,3
+1,archer,1,1,10
+2,archer,5,0.1,1

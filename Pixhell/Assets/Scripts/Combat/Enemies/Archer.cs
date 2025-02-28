@@ -16,6 +16,7 @@ public class Archer : Enemy
         // Move, then wait a little, launch arrow, wait a little
         states = new int[] { MOVING, IDLING, ATTACKING, IDLING };
         timers = new float[] { 3f, 0.75f, 0f, 0.75f };
+        coinLevel = 1;
     }
 
     public override void Move() {

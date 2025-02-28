@@ -14,23 +14,29 @@ public class CoinDisplay : MonoBehaviour
 
     void Update()
     {
-        if (showLabel) {
-            text.text = "Coins: " + GameManager.coins.ToString();
+        if (text != null) {
+            if (showLabel && text) {
+                text.text = "Coins: " + GameManager.coins.ToString();
+            }
+            else {
+                text.text = GameManager.coins.ToString();
+            }
         }
-        else {
-            text.text = GameManager.coins.ToString();
-        }
+        
         
     }
 
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        GameObject obj = this.gameObject;
-        obj.SetActive(false);
-        if (scene.name != "StartMenu" && scene.name != "SelectRun") {
-            obj.SetActive(true);
+        if (text != null) {
+            GameObject obj = this.gameObject;
+            obj.SetActive(false);
+            if (scene.name != "StartMenu" && scene.name != "SelectRun") {
+                obj.SetActive(true);
+            }
         }
+        
     
     }
 }

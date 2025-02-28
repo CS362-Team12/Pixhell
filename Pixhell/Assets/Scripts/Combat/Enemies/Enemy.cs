@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public bool facingRight = true;
     private bool is_dead = false;
 
+    public int coinLevel = 1;
+
     public Animator animator;
 
     protected GameObject player;
@@ -162,6 +164,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(animationDuration);
 
         Instantiate(XPDrop, transform.position, Quaternion.identity);
+        GameManager.coins += CoinCalculator();
         Destroy(gameObject);
     }
 
@@ -187,5 +190,10 @@ public class Enemy : MonoBehaviour
         childscale.x *= -1;
         healthBar.transform.localScale = childscale;
         transform.localScale = theScale;
+    }
+
+    protected int CoinCalculator() {
+        float randomValue = (UnityEngine.Random.value + 0.5f) * coinLevel * coinLevel;
+        return (int) Mathf.Floor(randomValue);
     }
 }

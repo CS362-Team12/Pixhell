@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8572317475000366003}
   - component: {fileID: 1580209906646987884}
   - component: {fileID: 2223985703466966044}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArcherObject
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,14 +148,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44dedf0d162d23340b920d014ef638fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  max_health: 100
+  health: 100
+  facingRight: 1
+  animator: {fileID: 2223985703466966044}
   XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   projectilePrefab: {fileID: 4627103214006155261, guid: 88aa2d4373adc3747a3ba1c44a05a12f, type: 3}
   orbitRadius: 3.5
   orbitSpeed: 0.5
-  facingRight: 1
-  animator: {fileID: 2223985703466966044}
 --- !u!95 &2223985703466966044
 Animator:
   serializedVersion: 7

@@ -1,0 +1,4 @@
+wave,enemy,count,time_to_spawn,delay_after_start_of_wave
+1,archer,10,5,3
+1,archer,1,1,10
+2,archer,5,0.1,1

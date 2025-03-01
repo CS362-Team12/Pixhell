@@ -35,7 +35,7 @@ public class HealthBar : MonoBehaviour
     }
 
     void UpdateHealthDisplay() {
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         character = characterObj.GetComponent<PlayerController>();
         float percent = character.health / character.max_health;
         float showing = percent * barCount;
@@ -49,7 +49,7 @@ public class HealthBar : MonoBehaviour
 
     void GenerateHealthBar() {
         healthBar = GetComponent<Image>();
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         character = characterObj.GetComponent<PlayerController>();
         prevHealth = character.health;
 
@@ -110,7 +110,7 @@ public class HealthBar : MonoBehaviour
             Destroy(child.gameObject);
         }
         healthBar.gameObject.SetActive(false);
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         if (characterObj != null) {
             character = characterObj.GetComponent<PlayerController>();
             if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "CharacterSelect") {

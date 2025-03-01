@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 108339565}
   - component: {fileID: 108339566}
   - component: {fileID: 108339567}
+  - component: {fileID: 108339568}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -261,6 +262,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 600269222}
+--- !u!114 &108339568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108339560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f4a8c620d5b914f8d72543691852bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archerVariant: {fileID: 6382819400039394144, guid: e2c8fdd0fecf9454e8657e15a95c1be8, type: 3}
+  warriorVariant: {fileID: 5833284294872134040, guid: 51165c0dbffcde6489b9f83f48dad3cc, type: 3}
+  mageVariant: {fileID: 788912662318594314, guid: a49eb33f853638d4e9b47a7ce9e05761, type: 3}
 --- !u!1 &156038810
 GameObject:
   m_ObjectHideFlags: 0

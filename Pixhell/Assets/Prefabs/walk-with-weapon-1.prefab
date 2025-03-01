@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 8640907151943126642}
   - component: {fileID: 3815007933092154987}
   - component: {fileID: 7978585362922117303}
+  - component: {fileID: 138948448430177903}
   - component: {fileID: -682028510724069188}
+  - component: {fileID: -6528304411385973004}
   - component: {fileID: 6745676285347251144}
   - component: {fileID: 5980619562306250965}
   - component: {fileID: -9124712430784119024}
@@ -120,6 +122,128 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &138948448430177903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122f5d6588a6a654a94e8f90bd4f7475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7d247512-b7d1-472c-8c90-ed24a31963a1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 4f7716a5-7bca-4754-8970-bc4d7c27730a
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 8770f79d-b22a-478b-872f-6356d347ccba
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 74f5c178-768c-4886-8edc-e0e0dbf77411
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 201735bc-a586-4eda-bb3e-60c665fc067c
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: c49d7793-48cd-4ae0-9bf7-304a0e71c24a
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  SprintAction:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5f771533-6fae-481c-9566-6a0c471401e2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3524746b-620e-4cba-916a-cdcd11d2d59f
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sprint
+      m_Flags: 0
+    m_Flags: 0
+  SpecialOne:
+    m_Name: Special One
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c02297b1-593f-4eb7-9a4e-21a1bc6330fe
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  SpecialTwo:
+    m_Name: Special Two
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 55b7954f-2f45-49a0-964a-fc7145591c35
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  DodgeAction:
+    m_Name: Dodge
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3cec43d4-b7ba-46ab-a3d1-8c270bb801c1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 25124028-28a5-4566-ad60-1ec1346e639b
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge
+      m_Flags: 0
+    m_Flags: 0
+  is_teleporting: 1
+  speed: 3
+  is_dodging: 0
+  max_health: 100
+  is_vulnerable: 1
+  dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
+  damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
+  animator: {fileID: 5980619562306250965}
+  projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
 --- !u!114 &-682028510724069188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +251,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403697649868078611}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bca71260cbd49d64b89770db412f3b88, type: 3}
   m_Name: 
@@ -233,14 +357,139 @@ MonoBehaviour:
       m_Action: Dodge
       m_Flags: 0
     m_Flags: 0
+  is_teleporting: 0
   speed: 3
   is_dodging: 0
   max_health: 100
   is_vulnerable: 1
+  dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
+  damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
   animator: {fileID: 5980619562306250965}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &-6528304411385973004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403697649868078611}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e6b212c021b1848b0d1e9c660b51b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c50d9d3a-7c4d-4f88-8115-14a5996bc736
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 87e3d0e5-67f2-4559-90b2-2e8b03485a13
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: e2f172d7-a975-4ff8-b4ce-b516f06dc697
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: b4953e8f-c8c7-4ccb-8b27-d3fb6124a916
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: f6fa62b9-08eb-4909-8f1d-bb7705e4560b
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 86e9b610-0adf-4d56-bb47-8e5101f1e26f
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  SprintAction:
+    m_Name: Sprint
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 26bab85a-0e5f-466a-9af7-ff9d176bc3a4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 47d910a4-adc1-44c8-8f16-98b15a7c3b31
+      m_Path: <Keyboard>/shift
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Sprint
+      m_Flags: 0
+    m_Flags: 0
+  SpecialOne:
+    m_Name: Special One
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c0049ce9-991c-4113-8c84-940360525110
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  SpecialTwo:
+    m_Name: Special Two
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e7576f52-37d9-4bc6-b411-10dc3c94f778
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  DodgeAction:
+    m_Name: Dodge
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 97e2c9a9-5c28-4558-aff8-0c706c2cbe25
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d3e33c2e-1b38-4959-819f-3abfdb406505
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dodge
+      m_Flags: 0
+    m_Flags: 0
+  is_teleporting: 0
+  speed: 3
+  is_dodging: 0
+  max_health: 100
+  is_vulnerable: 1
+  dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
+  damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
+  animator: {fileID: 5980619562306250965}
+  projectilePrefab: {fileID: 1283419919620192332, guid: f0468a0b0db74c5418f6a5abed2e9606, type: 3}
 --- !u!61 &6745676285347251144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -322,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
+  levelUpSound: {fileID: 0}
 --- !u!1 &6326460203903690011
 GameObject:
   m_ObjectHideFlags: 0

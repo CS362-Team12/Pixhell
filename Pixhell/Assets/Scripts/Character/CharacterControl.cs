@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void Start()
     {
+        Debug.Log("start");
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement

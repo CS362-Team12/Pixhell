@@ -113,7 +113,7 @@ public class HealthBar : MonoBehaviour
         GameObject characterObj = GameObject.Find("walk-with-weapon-1");
         if (characterObj != null) {
             character = characterObj.GetComponent<PlayerController>();
-            if (scene.name != "StartMenu" && scene.name != "SelectRun") {
+            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "CharacterSelect") {
                 GenerateHealthBar();
                 healthBar.gameObject.SetActive(true);
             }

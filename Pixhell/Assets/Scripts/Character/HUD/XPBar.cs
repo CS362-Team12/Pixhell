@@ -112,7 +112,7 @@ public class XPBar : MonoBehaviour
         GameObject characterObj = GameObject.Find("walk-with-weapon-1");
         if (characterObj != null) {
             character = characterObj.GetComponent<LevelUp>();
-            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "Limbo") {
+            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "Limbo" && scene.name != "CharacterSelect") {
                 GeneratexpBar();
                 UpdatexpDisplay();
                 xpBar.gameObject.SetActive(true);

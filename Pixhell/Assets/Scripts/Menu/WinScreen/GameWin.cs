@@ -31,12 +31,12 @@ public class GameWin : MonoBehaviour
         string currentScene = SceneManager.GetActiveScene().name;
         winText.text = currentScene + " has been defeated!";
         loadText.text = "";
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         if (circles[GameManager.maxArena] == SceneManager.GetActiveScene().name)
         {
             winText.text = "<color=#FFFFFF>" + circles[GameManager.maxArena + 1] + "</color> has been unlocked!";
             GameManager.maxArena += 1;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
         }
 
         for (int i = 3; i > 0; i--)

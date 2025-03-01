@@ -8,6 +8,7 @@ using TMPro;
 public class UpgradeController : MonoBehaviour
 {
     public GameObject upgradeMenuUI;
+    GameObject player;
     bool isPaused = false;
     public Upgrade[][] upgrades;
     // luck is currently not implemented
@@ -36,6 +37,7 @@ public class UpgradeController : MonoBehaviour
         Debug.Log("Scene Loaded: Reseting Upgrades");
         upgradeMenuUI.SetActive(false);
         setUpgrades();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -79,7 +81,6 @@ public class UpgradeController : MonoBehaviour
         isPaused = !isPaused;
         upgradeMenuUI.SetActive(isPaused);  // Show/hide the pause menu
         Time.timeScale = isPaused ? 0f : 1f;  // Freeze gameplay time when paused
-        GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerController>().enabled = isPaused ? false: true;
         GameObject pauseManager = GameObject.Find("EventSystem");
         pauseManager.GetComponent<PauseController>().enabled = isPaused ? false: true;
@@ -152,8 +153,7 @@ public class UpgradeController : MonoBehaviour
             chosenUpgrades[i].SetTempSelected(false);
         }
         
-
         TogglePause();
-        // TODO: Apply Invincibility
+        player.GetComponent<PlayerController>().StartImmune();
     }
 }

@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     // StartImmune and ImmuneTimer are together. They determine the length of Invulnerability 
-    protected void StartImmune()
+    public void StartImmune()
     {
         is_vulnerable = false;
         StartCoroutine(ImmuneTimer());

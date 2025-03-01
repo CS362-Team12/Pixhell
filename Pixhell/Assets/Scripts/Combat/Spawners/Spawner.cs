@@ -70,7 +70,6 @@ public class Spawner : MonoBehaviour
         GameObject[] rootObjects = targetScene.GetRootGameObjects();
         foreach (var rootObj in rootObjects)
         {
-            Debug.Log(rootObj.name);
             if (rootObj.CompareTag("Enemy"))
             {
                 return false;

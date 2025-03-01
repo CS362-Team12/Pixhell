@@ -126,15 +126,11 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("hit");
             if (health <= 0)
             {
-                int random_num = Random.Range(0, 9);
                 animator.SetTrigger("dead");
                 animator.SetBool("is_dead", true);
                 is_dead = true;
                 StartCoroutine(Die());
-                if (random_num == 0)
-                {
-                    Instantiate(player_hp, transform.position, Quaternion.identity);
-                }
+                
             }
 
             // Trigger floating text to show damage
@@ -171,6 +167,12 @@ public class Enemy : MonoBehaviour
 
         Instantiate(XPDrop, transform.position, Quaternion.identity);
         GameManager.coins += CoinCalculator();
+        int random_num = Random.Range(0, 9);
+        if (random_num == 0)
+        {
+            Instantiate(player_hp, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 

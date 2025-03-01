@@ -281,7 +281,7 @@ public class PlayerController : MonoBehaviour
     public void UpdateHealth(float increase) 
     {
         max_health += increase;
-        current_health = max_health;
+        current_health += increase;
     }
 
     public void UpdateImmunity(float increase)

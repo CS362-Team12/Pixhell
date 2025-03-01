@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;
     private bool is_dead = false;
+    protected float chargeDistance = 10f;
+    protected float chargeTime = 0.8f;
 
     public int coinLevel = 1;
 
@@ -29,10 +31,10 @@ public class Enemy : MonoBehaviour
     // These should be overwritten for most enemies
 
     // This array says which state it is in for certain times
-    protected int[] states = { MOVING, ATTACKING, IDLING };
+    protected int[] states = { MOVING, ATTACKING, IDLING, CHARGING };
     
     // Tracks how long each state lasts. 0 means just for one frame
-    protected float[] timers = { 2f, 0f, 1f };
+    protected float[] timers = { 2f, 0f, 1f, 2f };
     
     // IMPORTANT: This tracks the INDEX of states currently being used. 
     // states[currIndex] = currState; There is a function for this
@@ -43,6 +45,11 @@ public class Enemy : MonoBehaviour
     float currStateTime = 0;
     // To add randomness, we store the current timer so we can add randomness to it
     float currTimer;
+
+    private Vector3 chargeStartPosition;
+    private Vector3 chargeTargetPosition;
+    private Vector3 chargeDirection;
+    [SerializeField] private float distanceCharged;
 
     int GetCurrentState()
     {
@@ -78,10 +85,21 @@ public class Enemy : MonoBehaviour
                 // If you wish to do something in the Idle phase
                 Idle();
             }
+            else if (currState == CHARGING)
+            {
+                if (distanceCharged == -1f)
+                {
+                    chargeStartPosition = transform.position;
+                    chargeTargetPosition = player.transform.position;
+                    chargeDirection = (chargeTargetPosition - chargeStartPosition).normalized;
+                    distanceCharged = 0f;
+                }
+                Charge();
+            }
 
             float x = gameObject.transform.position.x;
             float player_x = player.transform.position.x;
-            if ((x > player_x && facingRight) || (x < player_x && !facingRight))
+            if (((x > player_x && facingRight) || (x < player_x && !facingRight)))
             {
                 Flip();
             }
@@ -94,8 +112,14 @@ public class Enemy : MonoBehaviour
                 currIndex = (currIndex + 1) % states.Length;
                 currStateTime = 0;
                 currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+                ResetVariables();
             }
         }
+    }
+
+    void ResetVariables()
+    {
+        distanceCharged = -1;
     }
 
     // Default, move towards player
@@ -115,6 +139,15 @@ public class Enemy : MonoBehaviour
     public virtual void Idle() 
     {
         return;
+    }
+
+    public virtual void Charge()
+    {
+        if (distanceCharged < chargeDistance)
+        {
+            transform.position += chargeDirection * (chargeDistance / chargeTime) * Time.deltaTime;
+            distanceCharged += (chargeDistance / chargeTime) * Time.deltaTime;
+        }
     }
 
     public void TakeDamage(float damage) 

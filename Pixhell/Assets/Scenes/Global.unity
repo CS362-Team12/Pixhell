@@ -2590,7 +2590,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpawnDistance: 7
-  tempTestPrefab: {fileID: 5085792645026659305, guid: 980b5b7fcd5c07e43b8d83622e64fdd8, type: 3}
   spawning: 0
   currentWave: 0
   scriptCompleted: 0

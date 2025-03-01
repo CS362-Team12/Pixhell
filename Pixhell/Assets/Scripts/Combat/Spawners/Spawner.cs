@@ -9,7 +9,6 @@ public class Spawner : MonoBehaviour
 {
 
     public float minSpawnDistance = 7f;
-    public GameObject tempTestPrefab;
     GameObject player;
     string sceneName;
     string waveDataFilePath;
@@ -94,8 +93,7 @@ public class Spawner : MonoBehaviour
     }
 
     void SpawnEnemy(string enemyType) {
-        //GameObject enemyPrefab = Resources.Load<GameObject>("Enemies/" + enemyType);
-        GameObject enemyPrefab = tempTestPrefab;
+        GameObject enemyPrefab = Resources.Load<GameObject>("Enemies/" + enemyType + "Object");
         if (enemyPrefab != null) {
             Instantiate(enemyPrefab, GetRandomSpawnPosition(), Quaternion.identity);
         } else {

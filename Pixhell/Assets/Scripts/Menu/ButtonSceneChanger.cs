@@ -17,6 +17,7 @@ public class ButtonSceneChanger : MonoBehaviour {
     }
 
     void OnClick() {
+        GameManager.SavePlayerData();
         SceneManager.LoadScene(sceneName);
     }
 

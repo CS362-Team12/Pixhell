@@ -22,14 +22,18 @@ public class UpgradeController : MonoBehaviour
 
     // Array coordinates for upgrade to force being selected
     // Set to -1 to turn off, attched to DEBUG to be off for non DEBUG builds
-    int[] forcedUpgrade = {-1, 4};
+    int[] forcedUpgrade = {-1, 3};
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip selectSound;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Scene Loaded: Reseting Upgrades");
         upgradeMenuUI.SetActive(false);
         setUpgrades();
     }

@@ -19,8 +19,9 @@ public class LevelUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (experience >= levelCaps[Mathf.Min(level, levelCaps.Length-1)]) {
-            experience -= levelCaps[level];
+        int nextXP = (int) GetNextXPRequirement();
+        if (experience >= nextXP) {
+            experience -= nextXP;
             level++;
 
             AudioManager.Instance.PlaySoundEffect(levelUpSound, 0.4f);

@@ -15,5 +15,4 @@ public class Envy : Enemy
         coinLevel = 3;
 
     }
-
 }

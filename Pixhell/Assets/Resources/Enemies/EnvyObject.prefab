@@ -206,8 +206,8 @@ Transform:
   m_GameObject: {fileID: 5408544262164514203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 2.9768, y: 0, z: 0}
+  m_LocalScale: {x: 6.1512003, y: 6.1512003, z: 6.1512003}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3106640563090786361}
@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1388387509582903204, guid: 095ad795fb9279e4dbe1713d27c03f66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e4460827a2fe4f43b83b4c9c55ec1dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -305,14 +305,14 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.0022656322}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 1.83}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.28, y: 0.96}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6, y: 1.8461026}
+  m_Size: {x: 0.6, y: 0.5}
   m_EdgeRadius: 0
 --- !u!95 &4241939201859382658
 Animator:
@@ -324,7 +324,7 @@ Animator:
   m_GameObject: {fileID: 5408544262164514203}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f91441ab35bf41f4a8361c145e831300, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -351,8 +351,10 @@ MonoBehaviour:
   max_health: 1000
   health: 100
   facingRight: 1
+  is_boss: 1
+  boss_text: {fileID: 0}
   coinLevel: 3
-  animator: {fileID: 0}
+  animator: {fileID: 4241939201859382658}
   XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   healthBar: {fileID: 7626382044546091671}
@@ -469,7 +471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -728.61, y: -410.91}
+  m_AnchoredPosition: {x: -728.548, y: -410.125}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6503110718333315212

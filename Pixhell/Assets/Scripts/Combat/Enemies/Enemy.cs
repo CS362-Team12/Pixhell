@@ -1,6 +1,7 @@
 using UnityEngine;
 using static GameConstants;
 using System.Collections;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class Enemy : MonoBehaviour
     private bool is_dead = false;
     protected float chargeDistance = 10f;
     protected float chargeTime = 0.8f;
-
+    public bool is_boss = false;
+    public TextMeshProUGUI boss_text;
     public int coinLevel = 1;
 
     public Animator animator;
@@ -65,6 +67,10 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
         currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+        if (is_boss)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -94,6 +100,7 @@ public class Enemy : MonoBehaviour
                     chargeTargetPosition = player.transform.position;
                     chargeDirection = (chargeTargetPosition - chargeStartPosition).normalized;
                     distanceCharged = 0f;
+                    animator.SetTrigger("dash");
                 }
                 Charge();
             }
@@ -146,6 +153,7 @@ public class Enemy : MonoBehaviour
     {
         if (distanceCharged < chargeDistance)
         {
+            
             transform.position += chargeDirection * (chargeDistance / chargeTime) * Time.deltaTime;
             distanceCharged += (chargeDistance / chargeTime) * Time.deltaTime;
         }

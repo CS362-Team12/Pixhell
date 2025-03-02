@@ -178,6 +178,9 @@ public class Enemy : MonoBehaviour
         Instantiate(XPDrop, transform.position, Quaternion.identity);
         GameManager.coins += CoinCalculator();
         int random_num = Random.Range(0, 9);
+        if (DEBUG) {
+            random_num = Random.Range(0, 2);
+        }
         if (random_num == 0)
         {
             Instantiate(player_hp, transform.position, Quaternion.identity);

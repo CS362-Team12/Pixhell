@@ -1,4 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UIElements;
+
 
 public class WarriorClass : PlayerController
 {
@@ -48,6 +52,24 @@ public class WarriorClass : PlayerController
                 Debug.DrawLine(transform.position, transform.position + (Vector3)attackDirection * attack_range, Color.red, .2f);
                 float attack_angle = 120f;
 
+
+
+                GameObject slash_animation = Instantiate(slash_prefab, transform.position + (Vector3)attackDirection.normalized * attack_range, Quaternion.identity, transform);
+
+                // slash_animation.transform.position += 30 * attack_range * (Vector3)attackDirection; 
+                if (!m_FacingRight)
+                {
+                    Vector3 scale = slash_animation.transform.localScale;
+                    scale.x *= -1;
+                    slash_animation.transform.localScale = scale; 
+                }
+
+                float slash_angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+                slash_animation.transform.rotation = Quaternion.Euler(0, 0, slash_angle);
+
+
+                StartCoroutine(KillSlash(slash_animation));
+
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attack_range, enemyLayers);
                 
                 foreach (Collider2D enemy in hitEnemies)
@@ -67,5 +89,18 @@ public class WarriorClass : PlayerController
                 }
             }
         }
+    }
+
+    private IEnumerator KillSlash(GameObject slash)
+    {
+        // Get the length of the slash animation
+        Animator anim = slash.GetComponent<Animator>();
+        anim.SetFloat("AnimationSpeed", attack_speed_mult);
+        float animationDuration = anim.GetCurrentAnimatorStateInfo(0).length / attack_speed_mult;
+        
+        // Wait for the animation to finish
+        yield return new WaitForSeconds(animationDuration);
+
+        Destroy(slash);
     }
 }

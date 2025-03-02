@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] protected AudioClip attackSound;
     [SerializeField] protected AudioClip playerdeathSound;
 
+    [Header("GameObjects")] // Gameobjects for character use
     public Animator animator;
+    public GameObject slash_prefab;
 
 
     protected virtual void Start()

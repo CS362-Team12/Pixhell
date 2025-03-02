@@ -47,6 +47,7 @@ public class WarriorClass : PlayerController
                 {
                     Vector3 scale = slash_animation.transform.localScale;
                     scale.x *= -1;
+                    scale.y *= -1;
                     slash_animation.transform.localScale = scale; 
                 }
 

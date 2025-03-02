@@ -29,7 +29,7 @@ public class Archer : Enemy
         float x = Mathf.Cos(angle) * orbitRadius;
         float y = Mathf.Sin(angle) * orbitRadius;
         
-        // Update the position of the object (relative to the target's position)
+        // Update the position of the object (relative to the target's position) 
         Vector3 target = new Vector3(player.transform.position.x + x, player.transform.position.y + y, transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }

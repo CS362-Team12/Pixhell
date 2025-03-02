@@ -97,6 +97,10 @@ public class Enemy : MonoBehaviour
                 }
                 Charge();
             }
+            else if (currState == HOMINGATTACK)
+            {
+                HomingShot();
+            }
 
             float x = gameObject.transform.position.x;
             float player_x = player.transform.position.x;
@@ -149,6 +153,10 @@ public class Enemy : MonoBehaviour
             transform.position += chargeDirection * (chargeDistance / chargeTime) * Time.deltaTime;
             distanceCharged += (chargeDistance / chargeTime) * Time.deltaTime;
         }
+    }
+
+    public virtual void HomingShot() {
+        
     }
 
     public void TakeDamage(float damage) 

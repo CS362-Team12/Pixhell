@@ -3,18 +3,23 @@ using static GameConstants;
 using System.Collections;
 
 public class Enemy : MonoBehaviour
-{    
-    protected float health = 100.0f;
+{
+    public float max_health = 100.0f;
+    public float health = 100.0f;
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;
     private bool is_dead = false;
 
+    public int coinLevel = 1;
+
     public Animator animator;
 
-    public GameObject player;
+    protected GameObject player;
     public GameObject XPDrop;
     public GameObject DamageText;
+    [SerializeField] FloatingHpBar healthBar;
+    public GameObject player_hp;
 
     [Header("Audio Settings")]
     [SerializeField] protected AudioClip deathSound;
@@ -50,6 +55,8 @@ public class Enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        healthBar = GetComponentInChildren<FloatingHpBar>();
+        healthBar.UpdateHealthBar(health, max_health);
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
         currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
@@ -117,6 +124,7 @@ public class Enemy : MonoBehaviour
     {
         if (!is_dead) {
             health -= damage;
+            healthBar.UpdateHealthBar(health, max_health);
             Debug.Log("Took " + damage + " damage!");
             animator.SetTrigger("hit");
             if (health <= 0)
@@ -125,6 +133,7 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("is_dead", true);
                 is_dead = true;
                 StartCoroutine(Die());
+                
             }
 
             // Trigger floating text to show damage
@@ -154,7 +163,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator Die()
     {
         // Get the length of the teleport animation
-        float animationDuration = 1.667f;
+        float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
         Debug.Log("Enemy Slain");
 
         if (AudioManager.Instance != null)
@@ -167,6 +176,13 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(animationDuration);
 
         Instantiate(XPDrop, transform.position, Quaternion.identity);
+        GameManager.coins += CoinCalculator();
+        int random_num = Random.Range(0, 9);
+        if (random_num == 0)
+        {
+            Instantiate(player_hp, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 
@@ -174,7 +190,7 @@ public class Enemy : MonoBehaviour
     {
         // Collision Damage
         var target = other.GetComponent<PlayerController>(); 
-        if (target != null || !is_dead)
+        if (target != null && !is_dead)
         {
             target.TakeDamage(collisionDamage);  // Call the TakeDamage method
         }
@@ -186,8 +202,16 @@ public class Enemy : MonoBehaviour
         facingRight = !facingRight;
 
         // Multiply the player's x local scale by -1.
+        Vector3 childscale = healthBar.transform.localScale;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
+        childscale.x *= -1;
+        healthBar.transform.localScale = childscale;
         transform.localScale = theScale;
+    }
+
+    protected int CoinCalculator() {
+        float randomValue = (UnityEngine.Random.value + 0.5f) * coinLevel * coinLevel;
+        return (int) Mathf.Floor(randomValue);
     }
 }

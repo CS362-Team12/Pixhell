@@ -6,7 +6,7 @@ TagManager:
   tags:
   - UpgradeManager
   - Enemy
-  - Portal
+  - GameOverMenu
   layers:
   - Default
   - TransparentFX
@@ -21,7 +21,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Enemy
   - Over
   - Projectiles
   - Character

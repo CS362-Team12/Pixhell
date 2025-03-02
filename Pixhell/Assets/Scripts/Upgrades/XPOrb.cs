@@ -34,7 +34,8 @@ public class XPOrb : MonoBehaviour
     {
         // Collision Damage
         var target = other.GetComponent<LevelUp>(); 
-        if (target != null)
+        var playerComponent = other.GetComponent<PlayerController>();
+        if (target != null && !playerComponent.IsDead())
         {
             target.experience += XPAmount;
             Destroy(gameObject);

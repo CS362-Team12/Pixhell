@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void Start()
     {
         health = max_health;
         healthBar = GetComponentInChildren<FloatingHpBar>();
@@ -103,6 +103,10 @@ public class Enemy : MonoBehaviour
                     animator.SetTrigger("dash");
                 }
                 Charge();
+            }
+            else if (currState == HOMINGATTACK)
+            {
+                HomingShot();
             }
 
             float x = gameObject.transform.position.x;
@@ -157,6 +161,10 @@ public class Enemy : MonoBehaviour
             transform.position += chargeDirection * (chargeDistance / chargeTime) * Time.deltaTime;
             distanceCharged += (chargeDistance / chargeTime) * Time.deltaTime;
         }
+    }
+
+    public virtual void HomingShot() {
+        
     }
 
     public void TakeDamage(float damage) 

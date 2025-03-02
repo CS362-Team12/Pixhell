@@ -299,6 +299,10 @@ public class PlayerController : MonoBehaviour
         damage_mult += increase;
     }
 
+    public bool IsDead() {
+        return is_dead;
+    }
+
     // Basic attacks for players
     protected virtual void BasicAttack(Vector2 move)
     {

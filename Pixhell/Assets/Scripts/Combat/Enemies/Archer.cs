@@ -15,8 +15,21 @@ public class Archer : Enemy
     {
         // Move, then wait a little, launch arrow, wait a little
         states = new int[] { MOVING, IDLING, ATTACKING, IDLING };
-        timers = new float[] { 3f, 0.75f, 0f, 0.75f };
+        timers = new float[] { 4f, 0.75f, 0f, 0.75f };
         coinLevel = 1;
+    }
+
+    public override void Start() {
+        base.Start();
+        Vector3 relativePos = transform.position - player.transform.position;
+        angle = Mathf.Atan2(relativePos.x, relativePos.y);
+
+        orbitRadius *= Random.Range(0.8f, 1.2f);
+        orbitSpeed *= Random.Range(0.8f, 1.2f);
+
+        if (Random.Range(0, 1) == 0) {
+            orbitSpeed *= -1;
+        }
     }
 
     public override void Move() {

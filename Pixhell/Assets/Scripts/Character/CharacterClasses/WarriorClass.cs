@@ -6,6 +6,9 @@ public class WarriorClass : PlayerController
     protected float attack_range = 1.7f;
     public LayerMask enemyLayers;
 
+    [Header("Warrior Audio")]
+    [SerializeField] private AudioClip warriorAttackSound;
+
     protected override void Start()
     {
         base.Start();
@@ -13,8 +16,8 @@ public class WarriorClass : PlayerController
         current_health = max_health;
         attack_speed *= 1.2f;
         speed_mult *= 1f;
-
     }
+
     protected override void Update()
     {
         base.Update();
@@ -29,6 +32,17 @@ public class WarriorClass : PlayerController
             {
                 animator.SetTrigger("Attack");
                 attack_time = Time.time;
+
+                if (warriorAttackSound != null)
+                {
+                    AudioManager.Instance.PlaySoundEffect(warriorAttackSound, 0.6f);
+                    Debug.Log("Warrior attack sound played: " + warriorAttackSound.name);
+                }
+                else
+                {
+                    Debug.LogWarning("Warrior attack sound not assigned");
+                }
+
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 attackDirection = (mousePosition - transform.position).normalized;
                 Debug.DrawLine(transform.position, transform.position + (Vector3)attackDirection * attack_range, Color.red, .2f);

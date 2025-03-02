@@ -168,7 +168,7 @@ public class Enemy : MonoBehaviour
 
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySoundEffect(deathSound, 0.1f); // Balanced volume
+            AudioManager.Instance.PlaySoundEffect(deathSound, 0.2f);
             Debug.Log("Enemy death sound played: " + (deathSound != null ? deathSound.name : "none"));
         }
 

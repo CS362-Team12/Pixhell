@@ -1,3 +1,0 @@
-Arena: 1
-Coins: 25
-Items:1,4,3,2

@@ -220,7 +220,8 @@ public class PlayerController : MonoBehaviour
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
         if (current_health <= 0 && !is_dead) {
-            // GAME OVER
+            GameObject gameOverController = GameObject.Find("EventSystem");
+            gameOverController.GetComponent<GameOverController>().TurnOnMenu();
             animator.SetTrigger("death");
             is_dead = true;
             StartCoroutine(FreezeOnDeath());
@@ -298,6 +299,10 @@ public class PlayerController : MonoBehaviour
     public void UpdateDamage(float increase)
     {
         damage_mult += increase;
+    }
+
+    public bool IsDead() {
+        return is_dead;
     }
 
     // Basic attacks for players

@@ -1,3 +1,0 @@
-Arena: 1
-Coins: 0
-Items:

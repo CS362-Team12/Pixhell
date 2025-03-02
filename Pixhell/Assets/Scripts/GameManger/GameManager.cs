@@ -51,12 +51,15 @@ public static class GameManager {
     }
 
     public static void SavePlayerData() {
-        using (StreamWriter writer = new StreamWriter(runIDPath))
-        {
+        
+        if (runIDPath != null) {
+            using (StreamWriter writer = new StreamWriter(runIDPath))
+            {
             writer.WriteLine("Arena: " + maxArena);
             writer.WriteLine("Coins: " + coins);
             string idList = string.Join(",", inventory.items.Select(item => item.id.ToString()).ToArray());
             writer.WriteLine("Items:" + idList);
+            }
         }
     }
 

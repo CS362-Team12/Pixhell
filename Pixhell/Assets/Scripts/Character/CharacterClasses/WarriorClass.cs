@@ -40,13 +40,12 @@ public class WarriorClass : PlayerController
 
 
 
-                GameObject slash_animation = Instantiate(slash_prefab, transform.position + (Vector3)attackDirection.normalized * attack_range, Quaternion.identity, transform);
+                GameObject slash_animation = Instantiate(slash_prefab, transform.position + (Vector3)attackDirection.normalized * attack_range, Quaternion.identity);
 
                 // slash_animation.transform.position += 30 * attack_range * (Vector3)attackDirection; 
                 if (!m_FacingRight)
                 {
                     Vector3 scale = slash_animation.transform.localScale;
-                    scale.x *= -1;
                     scale.y *= -1;
                     slash_animation.transform.localScale = scale; 
                 }

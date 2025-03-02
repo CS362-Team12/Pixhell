@@ -233,11 +233,15 @@ MonoBehaviour:
       m_Action: Dodge
       m_Flags: 0
     m_Flags: 0
+  is_teleporting: 0
   speed: 3
   is_dodging: 0
   max_health: 100
   is_vulnerable: 1
+  dodgeSound: {fileID: 0}
+  damageSound: {fileID: 0}
   animator: {fileID: 5980619562306250965}
+  slash_prefab: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192
@@ -322,6 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
+  levelUpSound: {fileID: 0}
 --- !u!1 &6326460203903690011
 GameObject:
   m_ObjectHideFlags: 0

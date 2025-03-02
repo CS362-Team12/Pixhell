@@ -16,7 +16,7 @@ public class XPOrbSound : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySoundEffect(pickupSound, 0.15f); // Max volume
+            AudioManager.Instance.PlaySoundEffect(pickupSound, 0.15f);
             Debug.Log("XP Orb sound played: " + pickupSound.name + " at volume 1.0");
         }
     }

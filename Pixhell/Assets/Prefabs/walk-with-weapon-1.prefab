@@ -238,13 +238,16 @@ MonoBehaviour:
   is_dodging: 0
   max_health: 100
   is_vulnerable: 1
-  dodgeSound: {fileID: 0}
-  damageSound: {fileID: 0}
+  dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
+  damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
+  attackSound: {fileID: 8300000, guid: a0c2888f7098ba3479819ed8887c8651, type: 3}
+  playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}
   animator: {fileID: 5980619562306250965}
   slash_prefab: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192
+  warriorAttackSound: {fileID: 8300000, guid: a0c2888f7098ba3479819ed8887c8651, type: 3}
 --- !u!61 &6745676285347251144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -326,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
-  levelUpSound: {fileID: 0}
+  levelUpSound: {fileID: 8300000, guid: c2f2cce954a71e343928b70b55647c47, type: 3}
 --- !u!1 &6326460203903690011
 GameObject:
   m_ObjectHideFlags: 0

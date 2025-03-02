@@ -238,6 +238,7 @@ MonoBehaviour:
   is_dodging: 0
   max_health: 100
   is_vulnerable: 1
+  deaths: 0
   dodgeSound: {fileID: 0}
   damageSound: {fileID: 0}
   animator: {fileID: 5980619562306250965}

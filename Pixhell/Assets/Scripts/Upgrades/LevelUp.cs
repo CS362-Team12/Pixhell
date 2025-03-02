@@ -20,7 +20,7 @@ public class LevelUp : MonoBehaviour
     void Update()
     {
         int nextXP = (int) GetNextXPRequirement();
-        if (experience >= nextXP) {
+        if (experience >= nextXP && !gameObject.GetComponent<PlayerController>().IsDead()) {
             experience -= nextXP;
             level++;
 

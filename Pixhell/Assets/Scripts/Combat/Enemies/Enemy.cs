@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public GameObject XPDrop;
     public GameObject DamageText;
     [SerializeField] FloatingHpBar healthBar;
+    public GameObject player_hp;
 
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
@@ -129,6 +130,7 @@ public class Enemy : MonoBehaviour
                 animator.SetBool("is_dead", true);
                 is_dead = true;
                 StartCoroutine(Die());
+                
             }
 
             // Trigger floating text to show damage
@@ -165,6 +167,15 @@ public class Enemy : MonoBehaviour
 
         Instantiate(XPDrop, transform.position, Quaternion.identity);
         GameManager.coins += CoinCalculator();
+        int random_num = Random.Range(0, 9);
+        if (DEBUG) {
+            random_num = Random.Range(0, 2);
+        }
+        if (random_num == 0)
+        {
+            Instantiate(player_hp, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 

@@ -63,7 +63,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] protected AudioClip dodgeSound;
     [SerializeField] protected AudioClip damageSound;
 
+    [Header("GameObjects")] // Gameobjects for character use
     public Animator animator;
+    public GameObject slash_prefab;
 
 
     protected virtual void Start()
@@ -297,6 +299,10 @@ public class PlayerController : MonoBehaviour
     public void UpdateDamage(float increase)
     {
         damage_mult += increase;
+    }
+
+    public bool IsDead() {
+        return is_dead;
     }
 
     // Basic attacks for players

@@ -18,14 +18,17 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Character with tag '" + characterTag + "' not found.");
+            Debug.Log("Character with tag '" + characterTag + "' not found.");
         }
     }
     private void Update()
     {
         cinemachineCamera = GetComponent<CinemachineCamera>();
-
+        
         GameObject character = GameObject.FindGameObjectWithTag("Player");
+        if (!character) {
+            return;
+        }
         cinemachineCamera.Follow = character.transform;
         cinemachineCamera.LookAt = character.transform;
     }

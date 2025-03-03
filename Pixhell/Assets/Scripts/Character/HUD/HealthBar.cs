@@ -28,7 +28,10 @@ public class HealthBar : MonoBehaviour
 
     }
     void Update() {
-        if (prevHealth != character.health) {
+        if (!character) {
+            return;
+        }
+        if (character && prevHealth != character.health) {
             Debug.Log("UPDATING HEALTH");
             UpdateHealthDisplay();
          }
@@ -51,6 +54,11 @@ public class HealthBar : MonoBehaviour
     void GenerateHealthBar() {
         healthBar = GetComponent<Image>();
         GameObject characterObj = GameObject.FindWithTag("Player");
+        if (!characterObj) {
+            Debug.Log("Character Not Found");
+            return;
+        }
+        
         character = characterObj.GetComponent<PlayerController>();
         prevHealth = character.health;
 

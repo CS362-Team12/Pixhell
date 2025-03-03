@@ -14,7 +14,8 @@ public class Portal : MonoBehaviour
     {
         // animator = GetComponent<Animator>();
         if (other.CompareTag("Player") && !animator.GetBool("is_teleporting"))
-        {
+        {   
+            animator = other.GetComponent<Animator>();
             animator.SetBool("is_teleporting", true);
             Debug.Log("TELEPORTING");
             GameObject player = GameObject.FindWithTag("Player");

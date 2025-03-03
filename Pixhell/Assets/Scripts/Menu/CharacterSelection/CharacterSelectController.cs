@@ -19,6 +19,11 @@ public class CharacterSelectController : MonoBehaviour
     }
 
     public void UpdateCharacter() {
+        var scene = SceneManager.GetActiveScene().name;
+        if (scene == "StartMenu" || scene == "SelectRun" || scene == "CharacterSelect") {
+            Debug.Log("Wrong Scene, not spawning a character");
+            return;
+        }
         Vector3 position = new Vector3(-3.5f, 0);
         Quaternion rotation = Quaternion.Euler(0, 0, 0);
         //GameObject player = GameObject.FindWithTag("Player");

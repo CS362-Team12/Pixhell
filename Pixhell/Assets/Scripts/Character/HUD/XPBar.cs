@@ -27,6 +27,9 @@ public class XPBar : MonoBehaviour
     }
 
     void Update() {
+        if (!character) {
+            return;
+        }
         if (prevxp != character.GetExperience()) {
             Debug.Log("UPDATING xp");
             UpdatexpDisplay();
@@ -50,6 +53,11 @@ public class XPBar : MonoBehaviour
     void GeneratexpBar() {
         xpBar = GetComponent<Image>();
         GameObject characterObj = GameObject.FindWithTag("Player");
+        if (!characterObj) {
+            Debug.Log("Character Not Found");
+            return;
+        }
+        
         character = characterObj.GetComponent<LevelUp>();
         prevxp = character.GetExperience();
 

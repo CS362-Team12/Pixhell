@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Threading;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     protected float dodge_time = -2f;
     public bool is_dodging = false;
     protected float dash_mult = 1.0f;
+    public bool on_cooldown = false;
 
     [Header("Attack Settings")]
     protected float attack_speed = 1.0f;
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject slash_prefab;
 
+    public Image DodgeImage;
 
     protected virtual void Start()
     {
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement
+        DodgeImage = GameObject.Find("OnCooldown").GetComponent<Image>();
         Debug.Log(GameManager.inventory.totalHealthMod);
         speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
         damage_mult = (1 + GameManager.inventory.totalDamageMod);
@@ -87,6 +91,7 @@ public class PlayerController : MonoBehaviour
         SprintAction.Enable();
         DodgeAction.Enable();
         animator = GetComponent<Animator>();
+        DodgeImage.fillAmount = 0f;
         StartImmune();
 
         if (SceneManager.GetActiveScene().name == "Limbo")
@@ -145,6 +150,14 @@ public class PlayerController : MonoBehaviour
             {
                 stopTime = 0f; // Reset when moving
             }
+            if (on_cooldown)
+            {
+                DodgeImage.fillAmount = (2f - Time.time + dodge_time) / 2f;
+                if (DodgeImage.fillAmount == 0f)
+                {
+                    on_cooldown = false;
+                }
+            }
         }
 
     }
@@ -158,10 +171,10 @@ public class PlayerController : MonoBehaviour
         if (Time.time - dodge_time >= 2.0f)
         {
             AudioManager.Instance.PlaySoundEffect(dodgeSound, 0.3f);
-
             animator.SetBool("is_dodging", true);
             is_dodging = true;
             dodge_time = Time.time;
+            on_cooldown = true;
             is_vulnerable = false;
             float startTime = Time.time;
             while (Time.time < startTime + dodge_duration)
@@ -175,6 +188,7 @@ public class PlayerController : MonoBehaviour
             is_vulnerable = true;
         }
     }
+
     // StartImmune and ImmuneTimer are together. They determine the length of Invulnerability 
     protected void StartImmune()
     {

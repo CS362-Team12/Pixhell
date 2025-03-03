@@ -14,6 +14,11 @@ public class ArcherClass : PlayerController
         attack_speed_mult *= 1.1f;
     }
 
+    public override void ResetPlayerStats()
+    {
+        Start();
+    }
+
     protected override void Update()
     {
         base.Update();

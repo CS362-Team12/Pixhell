@@ -13,6 +13,11 @@ public class MageClass : PlayerController
         speed_mult *= 1.2f;
         attack_speed_mult *= 1.15f;
     }
+
+    public override void ResetPlayerStats()
+    {
+        Start();
+    }
     protected override void BasicAttack(Vector2 move)
     {
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())

@@ -18,8 +18,14 @@ public class WarriorClass : PlayerController
         base.Start();
         max_health *= 1.25f;
         current_health = max_health;
-        attack_speed *= 1.2f;
+        attack_speed_mult *= 1.2f;
         speed_mult *= 1f;
+    }
+
+    public override void ResetPlayerStats()
+    {
+        Debug.Log("WARRIOR");
+        Start();
     }
 
     protected override void Update()

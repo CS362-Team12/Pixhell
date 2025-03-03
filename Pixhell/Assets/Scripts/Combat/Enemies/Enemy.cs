@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
         
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
-        currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+        currTimer = timers[currIndex] * Random.Range(0.85f, 1.15f);
         if (is_boss)
         {
             GameObject bar_canvas = GameObject.Find("BossBar");

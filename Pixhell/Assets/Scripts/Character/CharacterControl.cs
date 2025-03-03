@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void Start()
     {
+        Debug.Log("start");
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement
@@ -79,7 +80,6 @@ public class PlayerController : MonoBehaviour
         speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
         damage_mult = (1 + GameManager.inventory.totalDamageMod);
         max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
-        current_health = max_health;
         attack_speed_mult = attack_speed_mult + GameManager.inventory.totalAttackSpeedMod;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();

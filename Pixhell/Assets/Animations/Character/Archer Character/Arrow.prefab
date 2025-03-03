@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2998173426275458320}
   - component: {fileID: 5581171599088177477}
+  - component: {fileID: 3927001160267717629}
   - component: {fileID: 2970525818660695397}
   - component: {fileID: 1424745570550875450}
   - component: {fileID: -5405064936005996137}
-  - component: {fileID: 8052224816016335928}
-  - component: {fileID: 3896244132236052071}
   m_Layer: 15
-  m_Name: Mage
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -943592288, guid: 4bd7e27cfe517944aa33b51a2eb1ce0c, type: 3}
+  m_Sprite: {fileID: 6126648108844445559, guid: c573a7c34909a0c4591e67eded328b40, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,6 +91,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3927001160267717629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283419919620192332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a231665f776fdd4b995920e98592963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &2970525818660695397
 Rigidbody2D:
   serializedVersion: 5
@@ -157,13 +168,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.21333334, y: 0.21333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.24, y: 0.13}
+  m_Size: {x: 0.2, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &-5405064936005996137
 MonoBehaviour:
@@ -179,41 +190,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowFireSound: {fileID: 8300000, guid: 7ce5b78f7258c2f499f3e13997f717e6, type: 3}
   isPlayerArrow: 1
---- !u!114 &8052224816016335928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283419919620192332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87d68458c7d2974f939a406b72edf8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy_hit:
-    serializedVersion: 2
-    m_Bits: 8192
-  aoe_radius: 2
---- !u!95 &3896244132236052071
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283419919620192332}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9041eb526bfa5324785c2286b29fbf00, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

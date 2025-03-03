@@ -8,33 +8,37 @@ using System.Collections;
 public class Portal : MonoBehaviour
 {
     public string sceneToLoad;
-    public Animator animator;
+    // public Animator animator;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         // animator = GetComponent<Animator>();
-        if (other.CompareTag("Player") && !animator.GetBool("is_teleporting"))
+        
+        if (other.CompareTag("Player"))
         {   
-            animator = other.GetComponent<Animator>();
-            animator.SetBool("is_teleporting", true);
-            Debug.Log("TELEPORTING");
-            GameObject player = GameObject.FindWithTag("Player");
-            player.transform.position = transform.position + new Vector3(0, 0.25f, 0);
-            StartCoroutine(LoadSceneAfterAnimation());
+            Animator animator = other.GetComponent<Animator>();
+            if (!animator.GetBool("is_teleporting"))
+            {
+                animator.SetBool("is_teleporting", true);
+                Debug.Log("TELEPORTING");
+                GameObject player = GameObject.FindWithTag("Player");
+                player.transform.position = transform.position + new Vector3(0, 0.25f, 0);
+                StartCoroutine(LoadSceneAfterAnimation(animator));
+            }
         }
         // Debug.Log(animator.is_teleporting);
     }
 
-    private IEnumerator LoadSceneAfterAnimation()
+    private IEnumerator LoadSceneAfterAnimation(Animator animator)
     {
         // Get the length of the teleport animation
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         float animationDuration = stateInfo.length;
 
         // Wait for the animation to finish
-        yield return new WaitForSeconds(animationDuration);
+        yield return new WaitForSeconds(0.69f);
 
         // Load the scene
-        SceneManager.LoadScene(sceneToLoad);
+        //SceneManager.LoadScene(sceneToLoad);
     }
 }

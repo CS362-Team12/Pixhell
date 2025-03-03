@@ -4,7 +4,7 @@ using TMPro;
 public static class GameConstants
 {   
     // Turn to false for user builds. Use this to run stuff in debug mode only
-    public const bool DEBUG = true;
+    public const bool DEBUG = false;
     
     // Upgrade Constants
     public const int COMMON = 0;

@@ -13,9 +13,10 @@ public class Portal : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // animator = GetComponent<Animator>();
-        if (other.CompareTag("Player") && !animator.GetBool("is_teleporting"))
+        if (other.CompareTag("Player") && (!animator || !animator.GetBool("is_teleporting")))
         {   
             animator = other.GetComponent<Animator>();
+            Debug.Log(animator);
             animator.SetBool("is_teleporting", true);
             Debug.Log("TELEPORTING");
             GameObject player = GameObject.FindWithTag("Player");

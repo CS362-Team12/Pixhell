@@ -8,6 +8,7 @@ using TMPro;
 public class UpgradeController : MonoBehaviour
 {
     public GameObject upgradeMenuUI;
+    GameObject player;
     bool isPaused = false;
     public Upgrade[][] upgrades;
     // luck is currently not implemented
@@ -27,11 +28,16 @@ public class UpgradeController : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioClip selectSound;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Scene Loaded: Reseting Upgrades");
         upgradeMenuUI.SetActive(false);
         setUpgrades();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -48,22 +54,26 @@ public class UpgradeController : MonoBehaviour
             new AttackDamageUp_U("Attack Damage Up", "Increases attack damage by 10%.", COMMON, 0.1f),
             new MoveSpeedUp_U("Move Speed Up", "Increases move speed by 10%.", COMMON, 0.1f),
             new DashRangeUp_U("Dash Range Up", "Increases dash distance by 30%.", COMMON, 0.3f),
+            new MaxHealthUp_U("Max Health Up", "Increases max health by 20%.", COMMON, 0.2f),
         };
         upgrades[UNCOMMON] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up+", "Increases attack speed by 20%.", UNCOMMON, 0.2f),
             new AttackDamageUp_U("Attack Damage Up+", "Increases attack damage by 20%.", UNCOMMON, 0.2f),
             new MoveSpeedUp_U("Move Speed Up+", "Increases move speed by 20%.", UNCOMMON, 0.2f),
+            new MaxHealthUp_U("Max Health Up+", "Increases max health by 30%.", UNCOMMON, 0.3f),
         };
         upgrades[RARE] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up++", "Increases attack speed by 30%.", RARE, 0.3f),
             new AttackDamageUp_U("Attack Damage Up++", "Increases attack damage by 30%.", RARE, 0.3f),
             new MoveSpeedUp_U("Move Speed Up++", "Increases move speed by 30%.", RARE, 0.3f),
+            new MaxHealthUp_U("Max Health Up++", "Increases max health by 40%.", RARE, 0.4f),
         };
         upgrades[LEGENDARY] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up+++", "Increases attack speed by 50%.", LEGENDARY, 0.5f),
             new AttackDamageUp_U("Attack Damage Up+++", "Increases attack damage by 50%.", LEGENDARY, 0.5f),
             new MoveSpeedUp_U("Move Speed Up+++", "Increases move speed by 50%.", LEGENDARY, 0.5f),
             new DashRangeUp_U("Dash Range Up+", "Doubles dash distance.", LEGENDARY, 1f),
+            new MaxHealthUp_U("Max Health Up+++", "Increases max health by 60%.", LEGENDARY, 0.6f),
         };
     }
 
@@ -71,7 +81,6 @@ public class UpgradeController : MonoBehaviour
         isPaused = !isPaused;
         upgradeMenuUI.SetActive(isPaused);  // Show/hide the pause menu
         Time.timeScale = isPaused ? 0f : 1f;  // Freeze gameplay time when paused
-        GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerController>().enabled = isPaused ? false: true;
         GameObject pauseManager = GameObject.Find("EventSystem");
         pauseManager.GetComponent<PauseController>().enabled = isPaused ? false: true;
@@ -144,8 +153,7 @@ public class UpgradeController : MonoBehaviour
             chosenUpgrades[i].SetTempSelected(false);
         }
         
-
         TogglePause();
-        // TODO: Apply Invincibility
+        player.GetComponent<PlayerController>().StartImmune();
     }
 }

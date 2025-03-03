@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     protected float seconds = 1f;
     float heal_mult = 1.0f;
     protected bool is_dead = false;
+    public float deaths = 0;
 
 
     [Header("Damage Settings")]
@@ -222,6 +223,7 @@ public class PlayerController : MonoBehaviour
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
         if (current_health <= 0 && !is_dead) {
+            deaths++;
             GameObject gameOverController = GameObject.Find("EventSystem");
             gameOverController.GetComponent<GameOverController>().TurnOnMenu();
             animator.SetTrigger("death");
@@ -240,7 +242,18 @@ public class PlayerController : MonoBehaviour
 
     protected IEnumerator FreezeOnDeath()
     {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("DeathAnimation"))
+        {
+            yield break;
+        }
+
+        BoxCollider2D hitbox = GetComponent<BoxCollider2D>();
+        hitbox.size = new Vector2(.6f, .25f);
+        hitbox.offset = new Vector2(-.2f, -.2f);
+        animator.SetTrigger("death");
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length/2);
+
         animator.enabled = false;
     }
 

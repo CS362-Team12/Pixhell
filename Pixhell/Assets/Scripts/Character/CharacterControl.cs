@@ -38,11 +38,14 @@ public class PlayerController : MonoBehaviour
     protected float dash_mult = 1.0f;
 
     [Header("Attack Settings")]
+    protected float base_attack_speed = 1f;
     protected float attack_speed = 1.0f;
     protected float attack_speed_mult = 1.0f;
     protected float attack_time = -2f;
 
     [Header("Health Settings")]
+    
+    public float base_health = 100f;
     public float max_health = 100f;
     protected float current_health;
     public float health { get { return current_health; } }
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Damage Settings")]
+    protected float base_damage_mult = 1.0f;
     protected float damage_mult = 1.0f;
     protected float damage = 25.0f;
     protected float projectile_speed_mult = 1.0f;
@@ -77,10 +81,10 @@ public class PlayerController : MonoBehaviour
         speed_mult = base_speed;
         // Enables Movement
         Debug.Log(GameManager.inventory.totalHealthMod);
-        speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
-        damage_mult = (1 + GameManager.inventory.totalDamageMod);
-        max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
-        attack_speed_mult = attack_speed_mult + GameManager.inventory.totalAttackSpeedMod;
+        speed_mult = (base_speed + GameManager.inventory.totalMovementSpeedMod);
+        damage_mult = (base_damage_mult + GameManager.inventory.totalDamageMod);
+        max_health = base_health * (1 + GameManager.inventory.totalHealthMod);
+        attack_speed_mult = base_attack_speed + GameManager.inventory.totalAttackSpeedMod;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();
         SprintAction.Enable();
@@ -93,6 +97,12 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlayBackgroundMusic();
         }
     }
+
+    public virtual void ResetPlayerStats()
+    {
+        Start();
+    }
+
 
     // Update is called once per frame
     protected virtual void Update()

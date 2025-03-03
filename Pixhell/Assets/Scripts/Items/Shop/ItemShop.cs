@@ -61,6 +61,9 @@ public class ItemShop : MonoBehaviour
         if (shopShowing) {
             LoadShop();
         }
+        else {
+            player.GetComponent<PlayerController>().ResetPlayerStats();
+        }
         
     }
 

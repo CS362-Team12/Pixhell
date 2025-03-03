@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool is_teleporting = false;
 
     [Header("Move Speed")]
-    protected float base_speed = 1.0f;
+    protected float base_speed = 0.9f;
     protected float speed_mult;
     public float speed = 3.0f;
     protected float stopTime = 0f;
@@ -40,11 +40,14 @@ public class PlayerController : MonoBehaviour
     public bool on_cooldown = false;
 
     [Header("Attack Settings")]
+    protected float base_attack_speed = 1f;
     protected float attack_speed = 1.0f;
     protected float attack_speed_mult = 1.0f;
     protected float attack_time = -2f;
 
     [Header("Health Settings")]
+    
+    public float base_health = 100f;
     public float max_health = 100f;
     protected float current_health;
     public float health { get { return current_health; } }
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Damage Settings")]
+    protected float base_damage_mult = 1.0f;
     protected float damage_mult = 1.0f;
     protected float damage = 25.0f;
     protected float projectile_speed_mult = 1.0f;
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject slash_prefab;
 
+    // Image for dodge cooldown indicator
     public Image DodgeImage;
 
     protected virtual void Start()
@@ -80,16 +85,18 @@ public class PlayerController : MonoBehaviour
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement
-        DodgeImage = GameObject.Find("OnCooldown").GetComponent<Image>();
+        DodgeImage = GameObject.Find("DashOnCooldown").GetComponent<Image>();
         Debug.Log(GameManager.inventory.totalHealthMod);
-        speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
-        damage_mult = (1 + GameManager.inventory.totalDamageMod);
-        max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
-        attack_speed_mult = attack_speed_mult + GameManager.inventory.totalAttackSpeedMod;
+        speed_mult = (base_speed + GameManager.inventory.totalMovementSpeedMod);
+        damage_mult = (base_damage_mult + GameManager.inventory.totalDamageMod);
+        max_health = base_health * (1 + GameManager.inventory.totalHealthMod);
+        attack_speed_mult = base_attack_speed + GameManager.inventory.totalAttackSpeedMod;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();
         SprintAction.Enable();
         DodgeAction.Enable();
+        SpecialOne.Enable();
+        SpecialTwo.Enable();
         animator = GetComponent<Animator>();
         DodgeImage.fillAmount = 0f;
         StartImmune();
@@ -99,6 +106,12 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlayBackgroundMusic();
         }
     }
+
+    public virtual void ResetPlayerStats()
+    {
+        Start();
+    }
+
 
     // Update is called once per frame
     protected virtual void Update()
@@ -120,7 +133,7 @@ public class PlayerController : MonoBehaviour
             if (SprintAction.IsPressed() && move != Vector2.zero && !animator.GetBool("is_teleporting"))
             {
                 animator.SetFloat("speed", 6);
-                Vector2 position = (Vector2)transform.position + move * 5.5f * Time.deltaTime * speed_mult;
+                Vector2 position = (Vector2)transform.position + move * 5f * Time.deltaTime * speed_mult;
                 transform.position = position;
             }
             else if (MoveAction.IsPressed() && !animator.GetBool("is_teleporting"))
@@ -179,7 +192,7 @@ public class PlayerController : MonoBehaviour
             float startTime = Time.time;
             while (Time.time < startTime + dodge_duration)
             {
-                Vector2 position = (Vector2)transform.position + move * 10f * Time.deltaTime * dash_mult * (speed_mult/4f);
+                Vector2 position = (Vector2)transform.position + move * 30f * Time.deltaTime * dash_mult * (speed_mult/4f);
                 transform.position = position;
                 yield return null;
             }
@@ -190,7 +203,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // StartImmune and ImmuneTimer are together. They determine the length of Invulnerability 
-    protected void StartImmune()
+    public void StartImmune()
     {
         is_vulnerable = false;
         StartCoroutine(ImmuneTimer());
@@ -314,7 +327,7 @@ public class PlayerController : MonoBehaviour
     public void UpdateHealth(float increase) 
     {
         max_health += increase;
-        current_health = max_health;
+        current_health += increase;
     }
 
     public void UpdateImmunity(float increase)
@@ -342,5 +355,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player Attacked");
         //AudioManager.Instance.PlaySoundEffect(attackSound, 0.2f);
         //Debug.Log("Player Attacked with sound: " + (attackSound != null ? attackSound.name : "none"));
+    }
+
+    protected virtual void Special1(Vector2 move)
+    {
+        Debug.Log("Player used ability 1");
+    }
+
+    protected virtual void Special2(int arrow_amount)
+    {
+        Debug.Log("Player used ability 2");
     }
 }

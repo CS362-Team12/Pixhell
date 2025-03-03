@@ -61,6 +61,9 @@ public class ItemShop : MonoBehaviour
         if (shopShowing) {
             LoadShop();
         }
+        else {
+            player.GetComponent<PlayerController>().ResetPlayerStats();
+        }
         
     }
 
@@ -134,8 +137,8 @@ public class ItemShop : MonoBehaviour
 
         // Adjust the RectTransform for the cost text to position it in the top-right corner
         RectTransform costRect = costTextObject.GetComponent<RectTransform>();
-        costRect.sizeDelta = new Vector2(150, 30); // Set the size of the cost text box
-        costRect.anchoredPosition = new Vector2(0.5f * buttonSize - 90, 0.5f * buttonSize - 20); // Position in top-right corner
+        costRect.sizeDelta = new Vector2(300, 30); // Set the size of the cost text box
+        costRect.anchoredPosition = new Vector2(0.5f * buttonSize - 160, 0.5f * buttonSize - 20); // Position in top-right corner
 
 
         Button button = newButton.GetComponent<Button>();

@@ -12,20 +12,16 @@ public class AbilityCooldown : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //foreach (Transform child in healthBar.transform)
-        //{
-        //    Destroy(child.gameObject);
-        //}
-        //healthBar.gameObject.SetActive(false);
         GameObject characterObj = GameObject.FindWithTag("Player");
-        gameObject.SetActive(false);
         if (characterObj != null)
         {
             if (scene.name != "StartMenu" && scene.name != "SelectRun")
             {
                 gameObject.SetActive(true);
             }
-        }
-
+        } else
+        {
+            gameObject.SetActive(false);
+        }  
     }
 }

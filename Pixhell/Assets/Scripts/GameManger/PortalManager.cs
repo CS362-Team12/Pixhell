@@ -19,7 +19,7 @@ public class Portal : MonoBehaviour
             animator.SetBool("is_teleporting", true);
             Debug.Log("TELEPORTING");
             GameObject player = GameObject.FindWithTag("Player");
-            player.transform.position = transform.position;
+            player.transform.position = transform.position + new Vector3(0, 0.25f, 0);
             StartCoroutine(LoadSceneAfterAnimation());
         }
         // Debug.Log(animator.is_teleporting);
@@ -38,31 +38,3 @@ public class Portal : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 }
-
-
-
-
-
-/*
-// WILL NEED UPDATING TO BE INTERACTIVE
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public Animator animator;
-public class Portal : MonoBehaviour
-{
-    public string sceneToLoad;
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        animator = GetComponent<Animator>();
-        if (other.CompareTag("Player"))
-        {
-            animator.SetBool("is_teleporting", true);
-            
-            SceneManager.LoadScene(sceneToLoad);
-        }
-    }
-}
-*/

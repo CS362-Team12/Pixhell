@@ -109,4 +109,13 @@ public class WarriorClass : PlayerController
 
         Destroy(slash);
     }
+
+    protected override void Special1(Vector2 move)
+    {
+        if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
+        || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
+        {
+
+        }
+    }
 }

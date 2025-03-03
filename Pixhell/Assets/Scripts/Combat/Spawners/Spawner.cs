@@ -40,8 +40,8 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
         }
-        GameManager.SavePlayerData();
-        SceneManager.LoadScene("Limbo");
+        GameWin win = transform.parent.Find("WinScreen").GetComponent<GameWin>();
+        win.OnGameWin();
     }
 
     IEnumerator RunSpawnScript() {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static GameConstants;
 
@@ -46,14 +47,23 @@ public class Archer : Enemy
         Vector3 target = new Vector3(player.transform.position.x + x, player.transform.position.y + y, transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
-
-    public override void Attack() {
+    private IEnumerator AttackCoroutine()
+    {
         animator.SetTrigger("attack");
 
+        // Wait for the animation to complete
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length -.5f);
+
+        // Instantiate projectile after animation finishes
         Vector2 direction = ((Vector2)(player.transform.position - transform.position)).normalized;
-        GameObject projectileObject = Instantiate(projectilePrefab, transform.position + Vector3.up * .15f, Quaternion.identity);
+        Vector2 spawnPosition = transform.position + new Vector3(0, -.07f);
+        GameObject projectileObject = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
         EnemyProjectile projectile = projectileObject.GetComponent<EnemyProjectile>();
         projectile.Launch(direction, 6.5f);
+    }
+
+    public override void Attack() {
+        StartCoroutine(AttackCoroutine());
     }
 
 }

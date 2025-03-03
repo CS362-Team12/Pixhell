@@ -18,8 +18,8 @@ public class LevelUp : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (experience >= levelCaps[Mathf.Min(level, levelCaps.Length-1)]) {
+    {   
+        if (experience >= levelCaps[Mathf.Min(level, levelCaps.Length-1)] && !gameObject.GetComponent<PlayerController>().IsDead()) {
             experience -= levelCaps[level];
             level++;
 

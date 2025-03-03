@@ -7,7 +7,7 @@ public class PauseController : MonoBehaviour
     public GameObject pauseMenuUI;
     private bool isPaused;
     private string prevScene;
-    public Slider bgmSlider; // Add this for volume control
+    public Slider bgmSlider;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class PauseController : MonoBehaviour
             bgmSlider.onValueChanged.AddListener(SetBGMVolume);
             bgmSlider.minValue = 0f;
             bgmSlider.maxValue = 0.5f;
-            bgmSlider.value = 0.1f; // Default volume matches BGM
+            bgmSlider.value = 0.1f;
             Debug.Log("BGM Slider initialized");
         }
         else

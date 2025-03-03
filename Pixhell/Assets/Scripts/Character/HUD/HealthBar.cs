@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -24,8 +25,8 @@ public class HealthBar : MonoBehaviour
     void Start() {
         SceneManager.sceneLoaded += OnSceneLoaded;
         GenerateHealthBar();
-    }
 
+    }
     void Update() {
         if (prevHealth != character.health) {
             Debug.Log("UPDATING HEALTH");
@@ -102,6 +103,7 @@ public class HealthBar : MonoBehaviour
         text.color = Color.white;
         text.outlineWidth = 0.2f;
         text.outlineColor = Color.black;
+        text.text = character.health + " / " + character.max_health;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
@@ -116,6 +118,7 @@ public class HealthBar : MonoBehaviour
             if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "CharacterSelect") {
                 GenerateHealthBar();
                 healthBar.gameObject.SetActive(true);
+                UpdateHealthDisplay();
             }
         }
     

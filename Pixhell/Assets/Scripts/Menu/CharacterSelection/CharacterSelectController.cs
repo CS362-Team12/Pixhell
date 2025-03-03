@@ -6,11 +6,11 @@ public class CharacterSelectController : MonoBehaviour
     public GameObject archerVariant;
     public GameObject warriorVariant;
     public GameObject mageVariant;
+    public string character = "NONE";
 
-    string character = "NONE";
-
-    void OnEnable() {
+    void Start() {
         SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
@@ -19,36 +19,39 @@ public class CharacterSelectController : MonoBehaviour
     }
 
     public void UpdateCharacter() {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player) {
-            // Instantiate variant and destory old character
-            switch(character) {
+        Vector3 position = new Vector3(-3.5f, 0);
+        Quaternion rotation = Quaternion.Euler(0, 0, 0);
+        //GameObject player = GameObject.FindWithTag("Player");
+        //if (player) {
+        // Instantiate variant and destory old character
+        switch (character) {
                 case "Archer":
-                    Destroy(GameObject.Find("WarriorVariant"));
-                    Destroy(GameObject.Find("MageVariant"));
+
+                    //Destroy(GameObject.Find("WarriorVariant"));
+                    //Destroy(GameObject.Find("MageVariant"));
                     //Debug.Log("Creating Archer Variant");
-                    //Instantiate(archerVariant, player.transform.position, player.transform.rotation);
+                    Instantiate(archerVariant, position, rotation);
                     break;
                 case "Warrior":
-                    Destroy(GameObject.Find("ArcherVariant"));
-                    Destroy(GameObject.Find("MageVariant"));
-                    //Debug.Log("Creating Warrior Variant");
-                    //Instantiate(warriorVariant, player.transform.position, player.transform.rotation);
+                    //Destroy(GameObject.Find("ArcherVariant"));
+                    //Destroy(GameObject.Find("MageVariant"));
+                    Debug.Log("Creating Warrior Variant");
+                    Instantiate(warriorVariant, position, rotation);
                     break;
                 case "Mage":
-                    Destroy(GameObject.Find("ArcherVariant"));
-                    Destroy(GameObject.Find("WarriorVariant"));
+                    //Destroy(GameObject.Find("ArcherVariant"));
+                    //Destroy(GameObject.Find("WarriorVariant"));
                     //Debug.Log("Creating Mage Variant");
-                    //Instantiate(mageVariant, player.transform.position, player.transform.rotation);
+                    Instantiate(mageVariant, position, rotation);
                     break;
-                default:
+               /* default:
                     Debug.LogError("CHARACTER NOT FOUND: SETTING TO ARCHER AS DEFAULT");
                     Destroy(GameObject.Find("WarriorVariant"));
                     Destroy(GameObject.Find("MageVariant"));
                     //Debug.Log("Creating Archer Variant");
                     //Instantiate(archerVariant, player.transform.position, player.transform.rotation);
-                    break;
-            }
+                    break;*/
+            //}
             //Debug.Log("Destorying old player: ");
             //Debug.Log(player);
             //Destroy(player);

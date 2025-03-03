@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class FloatingHpBar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     [SerializeField] public Slider slider;
     public void UpdateHealthBar(float currentValue, float maxValue)
     {

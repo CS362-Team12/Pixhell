@@ -129,6 +129,7 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("hit");
             if (health <= 0)
             {
+                GetComponent<BoxCollider2D>().enabled = false;
                 animator.SetTrigger("dead");
                 animator.SetBool("is_dead", true);
                 is_dead = true;

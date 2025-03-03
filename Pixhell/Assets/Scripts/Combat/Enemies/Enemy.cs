@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public bool facingRight = true;
     private bool is_dead = false;
     protected float chargeDistance = 10f;
-    protected float chargeTime = 0.8f;
+    protected float chargeTime = 1f;
 
     public bool is_boss = false;
     public string boss_name;

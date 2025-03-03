@@ -1,8 +1,17 @@
 id,name,description,imagePath,damage,attackSpeed,health,movementSpeed,cost
-4,Starter Ring,Increases all stats by 5%,Items/starter_ring.png,5,5,5,5,0
-1,Speed Ring,Increases movement speed by 10%,Items/speed_ring.png,0,0,0,10,10
-2,Super Ring,Massively boosts all player stats,Items/super_ring.png,150,150,150,150,100
-3,Damage Ring,Increases attack damage by 15%,Items/damage_ring.png,15,0,0,0,5
-5,Swiftstrike Charm,Increases attack speed by 30%,Items/swiftstrike_charm.png,0,30,0,0,50
-6,Tank Charm,Increases health by 50%,Items/tank_charm.png,0,0,50,0,200
-7,Gold Ring,Increases all stats by 15%,Items/gold_ring.png,15,15,15,15,250
+1,Starter Ring,Increases all stats by 5%,Items/starter_ring.png,5,5,5,5,0
+2,Speed Ring I,Increases movement speed by 10%,Items/speed_ring.png,0,0,0,10,5
+3,Damage Ring I,Increases attack damage by 15%,Items/damage_ring.png,15,0,0,0,10
+4,Swiftstrike Charm I,Increases attack speed by 10%,Items/swiftstrike_charm.png,0,10,0,0,5
+5,Tank Charm I,Increases health by 10%,Items/tank_charm.png,0,0,10,0,10
+6,Speed Ring II,Increases movement speed by 20%,Items/speed_ring.png,0,0,0,20,50
+7,Damage Ring II,Increases attack damage by 30%,Items/damage_ring.png,30,0,0,0,100
+8,Swiftstrike Charm II,Increases attack speed by 20%,Items/swiftstrike_charm.png,0,20,0,0,50
+9,Tank Charm II,Increases health by 20%,Items/tank_charm.png,0,0,20,0,50
+10,Gold Ring I,Increases all stats by 15%,Items/gold_ring.png,15,15,15,15,250
+11,Speed Ring III,Increases movement speed by 30%,Items/speed_ring.png,0,0,0,30,500
+12,Damage Ring III,Increases attack damage by 45%,Items/damage_ring.png,45,0,0,0,1000
+13,Swiftstrike Charm III,Increases attack speed by 30%,Items/swiftstrike_charm.png,0,30,0,0,500
+14,Tank Charm III,Increases health by 30%,Items/tank_charm.png,0,0,30,0,500
+15,Gold Ring II,Increases all stats by 30%,Items/gold_ring.png,30,30,30,30,1500
+16,Super Ring,Massively boosts all player stats,Items/super_ring.png,150,150,150,150,10000

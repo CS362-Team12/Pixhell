@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a093eb2a7334a4889334801139f898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 120
+  max_health: 80
   health: 100
   facingRight: 1
   is_boss: 0

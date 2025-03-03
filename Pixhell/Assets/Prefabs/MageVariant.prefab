@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MageVariant
       objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8640907151943126642, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

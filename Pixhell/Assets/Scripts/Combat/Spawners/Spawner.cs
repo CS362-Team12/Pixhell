@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class Spawner : MonoBehaviour
 {
 
-    public float minSpawnDistance = 7f;
+    public float minSpawnDistance = 10f;
     GameObject player;
     string sceneName;
     string waveDataFilePath;
@@ -105,7 +105,7 @@ public class Spawner : MonoBehaviour
     {
         float xMod = 0f;
         float yMod = 0f;
-        while (Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.2f)
+        while (Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.4f)
         {
             xMod = (UnityEngine.Random.value - 0.5f) * 2f;
             yMod = (UnityEngine.Random.value - 0.5f) * 2f;

@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     public bool facingRight = true;
     private bool is_dead = false;
     protected float chargeDistance = 10f;
-    protected float chargeTime = 1f;
 
     public bool is_boss = false;
     public string boss_name;
@@ -81,7 +80,7 @@ public class Enemy : MonoBehaviour
         
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
-        currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+        currTimer = timers[currIndex] * Random.Range(0.85f, 1.15f);
         if (is_boss)
         {
             GameObject bar_canvas = GameObject.Find("BossBar");
@@ -188,8 +187,8 @@ public class Enemy : MonoBehaviour
         if (distanceCharged < chargeDistance)
         {
             
-            transform.position += chargeDirection * (chargeDistance / chargeTime) * Time.deltaTime;
-            distanceCharged += (chargeDistance / chargeTime) * Time.deltaTime;
+            transform.position += chargeDirection * (chargeDistance / currTimer) * Time.deltaTime;
+            distanceCharged += (chargeDistance / currTimer) * Time.deltaTime;
         }
     }
 
@@ -215,7 +214,7 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("hit");
             if (health <= 0)
             {
-                GetComponent<BoxCollider2D>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
                 animator.SetTrigger("dead");
                 animator.SetBool("is_dead", true);
                 is_dead = true;

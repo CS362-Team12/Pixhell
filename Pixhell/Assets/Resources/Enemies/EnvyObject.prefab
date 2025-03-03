@@ -352,7 +352,7 @@ MonoBehaviour:
   health: 100
   facingRight: 1
   is_boss: 1
-  boss_text: {fileID: 0}
+  boss_name: Envy
   coinLevel: 3
   animator: {fileID: 4241939201859382658}
   XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}

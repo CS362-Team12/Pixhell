@@ -1,7 +1,11 @@
 using UnityEngine;
+
 using static GameConstants;
 using System.Collections;
 using TMPro;
+using static UnityEngine.RuleTile.TilingRuleOutput;
+using Transform = UnityEngine.Transform;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,8 +17,11 @@ public class Enemy : MonoBehaviour
     private bool is_dead = false;
     protected float chargeDistance = 10f;
     protected float chargeTime = 0.8f;
+
     public bool is_boss = false;
-    public TextMeshProUGUI boss_text;
+    public string boss_name;
+    private BossBar boss_script;
+
     public int coinLevel = 1;
 
     public Animator animator;
@@ -69,7 +76,22 @@ public class Enemy : MonoBehaviour
         currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
         if (is_boss)
         {
+            GameObject bar_canvas = GameObject.Find("BossBar");
 
+
+            Transform bar_slider_transform = bar_canvas.transform.Find("Boss");
+            GameObject bar_slider = bar_slider_transform.gameObject;
+            bar_slider.SetActive(true);
+
+            boss_script = bar_slider.GetComponent<BossBar>();
+
+            Transform bar_text_trans = bar_slider.transform.Find("BossName");
+            GameObject bar_text = bar_text_trans.gameObject;
+
+            TextMeshProUGUI boss_text = bar_text.GetComponent<TextMeshProUGUI>();
+
+            boss_text.text = boss_name;
+            boss_script.update_boss(true);
         }
     }
 
@@ -171,6 +193,12 @@ public class Enemy : MonoBehaviour
     {
         if (!is_dead) {
             health -= damage;
+
+            if (is_boss)
+            {
+                boss_script.UpdateHealthBar(health, max_health);
+            }
+
             healthBar.UpdateHealthBar(health, max_health);
             Debug.Log("Took " + damage + " damage!");
             animator.SetTrigger("hit");
@@ -222,8 +250,13 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(player_hp, transform.position, Quaternion.identity);
         }
-
+        if (is_boss)
+        {
+            BossBar temp = GetComponent<BossBar>();
+            temp.update_boss(true);
+        }
         Destroy(gameObject);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)

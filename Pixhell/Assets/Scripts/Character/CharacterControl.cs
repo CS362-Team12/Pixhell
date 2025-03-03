@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Threading;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     protected float dodge_time = -2f;
     public bool is_dodging = false;
     protected float dash_mult = 1.0f;
+    public bool on_cooldown = false;
 
     [Header("Attack Settings")]
     protected float attack_speed = 1.0f;
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
     protected float seconds = 1f;
     float heal_mult = 1.0f;
     protected bool is_dead = false;
+    public float deaths = 0;
 
 
     [Header("Damage Settings")]
@@ -69,23 +72,26 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject slash_prefab;
 
+    public Image DodgeImage;
 
     protected virtual void Start()
     {
+        Debug.Log("start");
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement
+        DodgeImage = GameObject.Find("OnCooldown").GetComponent<Image>();
         Debug.Log(GameManager.inventory.totalHealthMod);
         speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
         damage_mult = (1 + GameManager.inventory.totalDamageMod);
         max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
-        current_health = max_health;
         attack_speed_mult = attack_speed_mult + GameManager.inventory.totalAttackSpeedMod;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();
         SprintAction.Enable();
         DodgeAction.Enable();
         animator = GetComponent<Animator>();
+        DodgeImage.fillAmount = 0f;
         StartImmune();
 
         if (SceneManager.GetActiveScene().name == "Limbo")
@@ -144,6 +150,14 @@ public class PlayerController : MonoBehaviour
             {
                 stopTime = 0f; // Reset when moving
             }
+            if (on_cooldown)
+            {
+                DodgeImage.fillAmount = (2f - Time.time + dodge_time) / 2f;
+                if (DodgeImage.fillAmount == 0f)
+                {
+                    on_cooldown = false;
+                }
+            }
         }
 
     }
@@ -157,10 +171,10 @@ public class PlayerController : MonoBehaviour
         if (Time.time - dodge_time >= 2.0f)
         {
             AudioManager.Instance.PlaySoundEffect(dodgeSound, 0.3f);
-
             animator.SetBool("is_dodging", true);
             is_dodging = true;
             dodge_time = Time.time;
+            on_cooldown = true;
             is_vulnerable = false;
             float startTime = Time.time;
             while (Time.time < startTime + dodge_duration)
@@ -174,6 +188,7 @@ public class PlayerController : MonoBehaviour
             is_vulnerable = true;
         }
     }
+
     // StartImmune and ImmuneTimer are together. They determine the length of Invulnerability 
     protected void StartImmune()
     {
@@ -222,6 +237,7 @@ public class PlayerController : MonoBehaviour
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
         if (current_health <= 0 && !is_dead) {
+            deaths++;
             GameObject gameOverController = GameObject.Find("EventSystem");
             gameOverController.GetComponent<GameOverController>().TurnOnMenu();
             animator.SetTrigger("death");
@@ -240,7 +256,18 @@ public class PlayerController : MonoBehaviour
 
     protected IEnumerator FreezeOnDeath()
     {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("DeathAnimation"))
+        {
+            yield break;
+        }
+
+        BoxCollider2D hitbox = GetComponent<BoxCollider2D>();
+        hitbox.size = new Vector2(.6f, .25f);
+        hitbox.offset = new Vector2(-.2f, -.2f);
+        animator.SetTrigger("death");
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length/2);
+
         animator.enabled = false;
     }
 

@@ -32,7 +32,7 @@ public class CoinDisplay : MonoBehaviour
         if (text != null) {
             GameObject obj = this.gameObject;
             obj.SetActive(false);
-            if (scene.name != "StartMenu" && scene.name != "SelectRun") {
+            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "CharacterSelect") {
                 obj.SetActive(true);
             }
         }

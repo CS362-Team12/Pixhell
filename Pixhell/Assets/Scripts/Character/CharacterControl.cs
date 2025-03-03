@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     protected float seconds = 1f;
     float heal_mult = 1.0f;
     protected bool is_dead = false;
+    public float deaths = 0;
 
 
     [Header("Damage Settings")]
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     protected virtual void Start()
     {
+        Debug.Log("start");
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement
@@ -83,7 +85,6 @@ public class PlayerController : MonoBehaviour
         speed_mult = (1 + GameManager.inventory.totalMovementSpeedMod);
         damage_mult = (1 + GameManager.inventory.totalDamageMod);
         max_health = max_health * (1 + GameManager.inventory.totalHealthMod);
-        current_health = max_health;
         attack_speed_mult = attack_speed_mult + GameManager.inventory.totalAttackSpeedMod;
         rigidbody2d = GetComponent<Rigidbody2D>();
         MoveAction.Enable();
@@ -236,6 +237,7 @@ public class PlayerController : MonoBehaviour
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
         if (current_health <= 0 && !is_dead) {
+            deaths++;
             GameObject gameOverController = GameObject.Find("EventSystem");
             gameOverController.GetComponent<GameOverController>().TurnOnMenu();
             animator.SetTrigger("death");
@@ -254,7 +256,18 @@ public class PlayerController : MonoBehaviour
 
     protected IEnumerator FreezeOnDeath()
     {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("DeathAnimation"))
+        {
+            yield break;
+        }
+
+        BoxCollider2D hitbox = GetComponent<BoxCollider2D>();
+        hitbox.size = new Vector2(.6f, .25f);
+        hitbox.offset = new Vector2(-.2f, -.2f);
+        animator.SetTrigger("death");
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length/2);
+
         animator.enabled = false;
     }
 

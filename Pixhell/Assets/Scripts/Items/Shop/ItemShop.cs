@@ -12,6 +12,8 @@ public class ItemShop : MonoBehaviour
     GameObject itemShopUI;
     public bool shopShowing;
 
+    PauseController pauseController;
+
     GameObject itemsPanel;
     public GameObject infoPanel;
     public int count;
@@ -27,6 +29,7 @@ public class ItemShop : MonoBehaviour
 
     void Start() {
         itemShopUI = transform.Find("ItemShopUI").gameObject;
+        pauseController = GameObject.Find("EventSystem").GetComponent<PauseController>();
         shopShowing = false;
         itemShopUI.SetActive(false);
         count = 0;
@@ -37,7 +40,8 @@ public class ItemShop : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!shopShowing) {
+
+        if (!shopShowing && !pauseController.isPaused) {
             ToggleUI();
         }
     }

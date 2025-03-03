@@ -6,19 +6,18 @@ using UnityEngine.UI;
 public class ArcherClass : PlayerController
 {
     public GameObject projectilePrefab;
-    float special_1_cooldown = 1f;
+    float special_1_cooldown = 14f;
     float special_1_time = -2f;
     bool special_1_on_cooldown = false;
-    public Image PiercingImage;
+    Image PiercingImage;
 
 
-    float special_2_cooldown = 2f;
+    float special_2_cooldown = 10f;
     float special_2_time = -2f;
     bool special_2_on_cooldown = false;
     int volley_arrow_count;
-    public Image VolleyImage;
+    Image VolleyImage;
 
-    public GameObject ProjectilePrefab;
     public GameObject PiercingPrefab;
 
 
@@ -32,13 +31,14 @@ public class ArcherClass : PlayerController
         speed_mult *= 1.2f;
         attack_speed_mult *= 1.1f;
 
-        VolleyImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
-        VolleyImage.fillAmount = 0f;
-
         PiercingImage = GameObject.Find("SpecialOneOnCooldown").GetComponent<Image>();
         PiercingImage.fillAmount = 0f;
 
+        VolleyImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
+        VolleyImage.fillAmount = 0f;
+
         volley_arrow_count = 5;
+
         GameObject test = GameObject.FindWithTag("IconManager");
         test.GetComponent<IconManager>().InsertIcon("Archer");
     }
@@ -90,8 +90,10 @@ public class ArcherClass : PlayerController
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0f;
                 Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
+
                 GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                 ArcherProjectile projectile = projectileObject.GetComponent<ArcherProjectile>();
+
                 projectile.Launch(direction, 6.5f, projectile_speed_mult, damage, damage_mult);
             }
         }
@@ -110,36 +112,40 @@ public class ArcherClass : PlayerController
                 Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
 
                 GameObject projectileObject = Instantiate(PiercingPrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
-                ArcherProjectile projectile = projectileObject.GetComponent<ArcherProjectile>();
+                PiercingArrow projectile = projectileObject.GetComponent<PiercingArrow>();
 
-                projectile.Launch(direction, 6.5f, projectile_speed_mult, damage, damage_mult);
+                projectile.Launch(direction, 10f, projectile_speed_mult, damage + 10, damage_mult);
             }
         }
     }
 
     protected override void Special2(int arrow_amount)
     {
-        if (Time.time - special_2_time >= special_2_cooldown)
+        if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
+        || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
         {
-            special_2_time = Time.time;
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-            Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
-            float x = direction.x;
-            float y = direction.y;
-            float angle = 60 / (arrow_amount - 1) * -Mathf.PI / 180;
-
-            // PI/6 = 30 degrees, clockwise and counter-clockwise, for a total of 60 degrees cone
-            Vector2 arrow_direction = new(x * Mathf.Cos(Mathf.PI / 6f) - y * Mathf.Sin(Mathf.PI / 6f), x * Mathf.Sin(Mathf.PI / 6f) + y * Mathf.Cos(Mathf.PI / 6f));
-
-            for (int i = 0; i < arrow_amount; i++)
+            if (Time.time - special_2_time >= special_2_cooldown)
             {
-                GameObject projectileObject = Instantiate(ProjectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
-                ArcherProjectile projectile = projectileObject.GetComponent<ArcherProjectile>();
-                projectile.Launch(arrow_direction, 6.5f, projectile_speed_mult, damage, damage_mult);
-                x = arrow_direction.x;
-                y = arrow_direction.y;
-                arrow_direction = new Vector2(x * Mathf.Cos(angle) - y * Mathf.Sin(angle), x * Mathf.Sin(angle) + y * Mathf.Cos(angle));
+                special_2_time = Time.time;
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0f;
+                Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
+                float x = direction.x;
+                float y = direction.y;
+                float angle = 60 / (arrow_amount - 1) * -Mathf.PI / 180;
+
+                // PI/6 = 30 degrees, clockwise and counter-clockwise, for a total of 60 degrees cone
+                Vector2 arrow_direction = new(x * Mathf.Cos(Mathf.PI / 6f) - y * Mathf.Sin(Mathf.PI / 6f), x * Mathf.Sin(Mathf.PI / 6f) + y * Mathf.Cos(Mathf.PI / 6f));
+
+                for (int i = 0; i < arrow_amount; i++)
+                {
+                    GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
+                    ArcherProjectile projectile = projectileObject.GetComponent<ArcherProjectile>();
+                    projectile.Launch(arrow_direction, 6.5f, projectile_speed_mult, damage, damage_mult);
+                    x = arrow_direction.x;
+                    y = arrow_direction.y;
+                    arrow_direction = new Vector2(x * Mathf.Cos(angle) - y * Mathf.Sin(angle), x * Mathf.Sin(angle) + y * Mathf.Cos(angle));
+                }
             }
         }
     }

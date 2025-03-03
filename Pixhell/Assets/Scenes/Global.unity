@@ -662,7 +662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -750, y: 100}
+  m_AnchoredPosition: {x: -600, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260499671
@@ -1567,8 +1567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040810bf0e9d23f469c0700f76eb86fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  archer_1: {fileID: 8211880219036761192, guid: 82b013815bf25bf41b731778463d68f1, type: 3}
-  archer_2: {fileID: 7438238293846639985, guid: 3764f19aa196fb449be94736a3d7996f, type: 3}
+  archer_1: {fileID: 7438238293846639985, guid: 3764f19aa196fb449be94736a3d7996f, type: 3}
+  archer_2: {fileID: 8211880219036761192, guid: 82b013815bf25bf41b731778463d68f1, type: 3}
   warrior_1: {fileID: -6211648682532063752, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   warrior_2: {fileID: -2164224423321271568, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   mage_1: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
@@ -6007,7 +6007,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -600, y: 100}
+  m_AnchoredPosition: {x: -750, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814774383
@@ -6680,8 +6680,8 @@ RectTransform:
   - {fileID: 521410164}
   - {fileID: 607587584}
   - {fileID: 1705309043}
-  - {fileID: 260499670}
   - {fileID: 1814774382}
+  - {fileID: 260499670}
   - {fileID: 442321090}
   m_Father: {fileID: 108339561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

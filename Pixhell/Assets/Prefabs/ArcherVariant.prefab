@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: PiercingPrefab
       value: 
-      objectReference: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+      objectReference: {fileID: 1283419919620192332, guid: c94596e30a0becc46bc95864e866648b, type: 3}
     - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: ProjectilePrefab
       value: 

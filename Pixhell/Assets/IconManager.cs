@@ -15,21 +15,17 @@ public class IconManager : MonoBehaviour
     public Sprite mage_1;
     public Sprite mage_2;
 
-    public Image SpecialOneIcon;
-    public Image SpecialOneCD;
+    Image SpecialOneIcon;
+    Image SpecialOneCD;
 
-    public Image SpecialTwoIcon;
-    public Image SpecialTwoCD;
+    Image SpecialTwoIcon;
+    Image SpecialTwoCD;
 
     public string player_c;
 
-    GameObject characterObj;
-
     void Start()
     {
-        Debug.Log("Generateddddddddddddddddddddddddd");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        Debug.Log("DONEEEEEEEEEEEEEEEEEEEEEEEEE");
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -55,8 +51,6 @@ public class IconManager : MonoBehaviour
         SpecialTwoIcon = GameObject.Find("SpecialTwoIcon").GetComponent<Image>();
         SpecialTwoCD = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
 
-        //characterObj = GameObject.FindWithTag("Player");
-        //Debug.Log(characterObj);
         Debug.Log(player_class);
         if (player_class == "Archer")
         {

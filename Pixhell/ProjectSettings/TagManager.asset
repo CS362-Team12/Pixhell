@@ -7,6 +7,8 @@ TagManager:
   - UpgradeManager
   - Enemy
   - GameOverMenu
+  - Portal
+  - IconManager
   layers:
   - Default
   - TransparentFX

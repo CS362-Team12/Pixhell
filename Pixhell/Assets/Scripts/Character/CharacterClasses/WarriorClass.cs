@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Security.Cryptography;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UIElements;
@@ -18,8 +18,16 @@ public class WarriorClass : PlayerController
         base.Start();
         max_health *= 1.25f;
         current_health = max_health;
-        attack_speed *= 1.2f;
+        attack_speed_mult *= 1.2f;
         speed_mult *= 1f;
+        GameObject test = GameObject.FindWithTag("IconManager");
+        test.GetComponent<IconManager>().InsertIcon("Warrior");
+    }
+
+    public override void ResetPlayerStats()
+    {
+        Debug.Log("WARRIOR");
+        Start();
     }
 
     protected override void Update()
@@ -54,13 +62,13 @@ public class WarriorClass : PlayerController
 
 
 
-                GameObject slash_animation = Instantiate(slash_prefab, transform.position + (Vector3)attackDirection.normalized * attack_range, Quaternion.identity, transform);
+                GameObject slash_animation = Instantiate(slash_prefab, transform.position + (Vector3)attackDirection.normalized * attack_range, Quaternion.identity);
 
                 // slash_animation.transform.position += 30 * attack_range * (Vector3)attackDirection; 
                 if (!m_FacingRight)
                 {
                     Vector3 scale = slash_animation.transform.localScale;
-                    scale.x *= -1;
+                    scale.y *= -1;
                     slash_animation.transform.localScale = scale; 
                 }
 
@@ -102,5 +110,14 @@ public class WarriorClass : PlayerController
         yield return new WaitForSeconds(animationDuration);
 
         Destroy(slash);
+    }
+
+    protected override void Special1(Vector2 move)
+    {
+        if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
+        || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
+        {
+
+        }
     }
 }

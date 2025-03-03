@@ -13,12 +13,14 @@ public class Portal : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // animator = GetComponent<Animator>();
-        if (other.CompareTag("Player") && !animator.GetBool("is_teleporting"))
-        {
+        if (other.CompareTag("Player") && (!animator || !animator.GetBool("is_teleporting")))
+        {   
+            animator = other.GetComponent<Animator>();
+            Debug.Log(animator);
             animator.SetBool("is_teleporting", true);
             Debug.Log("TELEPORTING");
-            GameObject player = GameObject.Find("walk-with-weapon-1");
-            player.transform.position = transform.position;
+            GameObject player = GameObject.FindWithTag("Player");
+            player.transform.position = transform.position + new Vector3(0, 0.25f, 0);
             StartCoroutine(LoadSceneAfterAnimation());
         }
         // Debug.Log(animator.is_teleporting);
@@ -37,31 +39,3 @@ public class Portal : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 }
-
-
-
-
-
-/*
-// WILL NEED UPDATING TO BE INTERACTIVE
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public Animator animator;
-public class Portal : MonoBehaviour
-{
-    public string sceneToLoad;
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        animator = GetComponent<Animator>();
-        if (other.CompareTag("Player"))
-        {
-            animator.SetBool("is_teleporting", true);
-            
-            SceneManager.LoadScene(sceneToLoad);
-        }
-    }
-}
-*/

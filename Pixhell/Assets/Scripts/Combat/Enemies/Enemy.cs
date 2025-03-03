@@ -1,6 +1,11 @@
 using UnityEngine;
+
 using static GameConstants;
 using System.Collections;
+using TMPro;
+using static UnityEngine.RuleTile.TilingRuleOutput;
+using Transform = UnityEngine.Transform;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +15,11 @@ public class Enemy : MonoBehaviour
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;
     private bool is_dead = false;
+    protected float chargeDistance = 10f;
+
+    public bool is_boss = false;
+    public string boss_name;
+    private BossBar boss_script;
 
     public int coinLevel = 1;
 
@@ -32,10 +42,10 @@ public class Enemy : MonoBehaviour
     // These should be overwritten for most enemies
 
     // This array says which state it is in for certain times
-    protected int[] states = { MOVING, ATTACKING, IDLING };
+    protected int[] states = { MOVING, ATTACKING, IDLING, CHARGING };
     
     // Tracks how long each state lasts. 0 means just for one frame
-    protected float[] timers = { 2f, 0f, 1f };
+    protected float[] timers = { 2f, 0f, 1f, 2f };
     
     // IMPORTANT: This tracks the INDEX of states currently being used. 
     // states[currIndex] = currState; There is a function for this
@@ -47,19 +57,49 @@ public class Enemy : MonoBehaviour
     // To add randomness, we store the current timer so we can add randomness to it
     float currTimer;
 
+    private Vector3 chargeStartPosition;
+    private Vector3 chargeTargetPosition;
+    private Vector3 chargeDirection;
+    [SerializeField] private float distanceCharged;
+
     int GetCurrentState()
     {
         return states[currIndex];
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void Start()
     {
-        healthBar = GetComponentInChildren<FloatingHpBar>();
-        healthBar.UpdateHealthBar(health, max_health);
+        health = max_health;
+        if (!is_boss)
+        {
+            healthBar = GetComponentInChildren<FloatingHpBar>();
+            healthBar.UpdateHealthBar(health, max_health);
+        }
+
+        
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
-        currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+        currTimer = timers[currIndex] * Random.Range(0.85f, 1.15f);
+        if (is_boss)
+        {
+            GameObject bar_canvas = GameObject.Find("BossBar");
+
+
+            Transform bar_slider_transform = bar_canvas.transform.Find("Boss");
+            GameObject bar_slider = bar_slider_transform.gameObject;
+            bar_slider.SetActive(true);
+
+            boss_script = bar_slider.GetComponent<BossBar>();
+
+            Transform bar_text_trans = bar_slider.transform.Find("BossName");
+            GameObject bar_text = bar_text_trans.gameObject;
+
+            TextMeshProUGUI boss_text = bar_text.GetComponent<TextMeshProUGUI>();
+
+            boss_text.text = boss_name;
+            boss_script.update_boss(true);
+        }
     }
 
     // Update is called once per frame
@@ -81,10 +121,26 @@ public class Enemy : MonoBehaviour
                 // If you wish to do something in the Idle phase
                 Idle();
             }
+            else if (currState == CHARGING)
+            {
+                if (distanceCharged == -1f)
+                {
+                    chargeStartPosition = transform.position;
+                    chargeTargetPosition = player.transform.position;
+                    chargeDirection = (chargeTargetPosition - chargeStartPosition).normalized;
+                    distanceCharged = 0f;
+                    animator.SetTrigger("dash");
+                }
+                Charge();
+            }
+            else if (currState == HOMINGATTACK)
+            {
+                HomingShot();
+            }
 
             float x = gameObject.transform.position.x;
             float player_x = player.transform.position.x;
-            if ((x > player_x && facingRight) || (x < player_x && !facingRight))
+            if (((x > player_x && facingRight) || (x < player_x && !facingRight)))
             {
                 Flip();
             }
@@ -97,8 +153,14 @@ public class Enemy : MonoBehaviour
                 currIndex = (currIndex + 1) % states.Length;
                 currStateTime = 0;
                 currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
+                ResetVariables();
             }
         }
+    }
+
+    void ResetVariables()
+    {
+        distanceCharged = -1;
     }
 
     // Default, move towards player
@@ -120,15 +182,39 @@ public class Enemy : MonoBehaviour
         return;
     }
 
+    public virtual void Charge()
+    {
+        if (distanceCharged < chargeDistance)
+        {
+            
+            transform.position += chargeDirection * (chargeDistance / currTimer) * Time.deltaTime;
+            distanceCharged += (chargeDistance / currTimer) * Time.deltaTime;
+        }
+    }
+
+    public virtual void HomingShot() {
+        
+    }
+
     public void TakeDamage(float damage) 
     {
         if (!is_dead) {
             health -= damage;
-            healthBar.UpdateHealthBar(health, max_health);
+
+            if (is_boss)
+            {
+                boss_script.UpdateHealthBar(health, max_health);
+            } else
+            {
+                healthBar.UpdateHealthBar(health, max_health);
+            }
+
+            
             Debug.Log("Took " + damage + " damage!");
             animator.SetTrigger("hit");
             if (health <= 0)
             {
+                GetComponent<Collider2D>().enabled = false;
                 animator.SetTrigger("dead");
                 animator.SetBool("is_dead", true);
                 is_dead = true;
@@ -146,6 +232,10 @@ public class Enemy : MonoBehaviour
     void ShowDamageText(float damage)
     {
         GameObject DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
+        if (is_boss)
+        {
+            DmgText.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+        }
         // DmgText.transform.SetParent(transform.parent, true);
         DmgText.transform.position = transform.position;
         
@@ -185,8 +275,9 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(player_hp, transform.position, Quaternion.identity);
         }
-
+        
         Destroy(gameObject);
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -205,11 +296,14 @@ public class Enemy : MonoBehaviour
         facingRight = !facingRight;
 
         // Multiply the player's x local scale by -1.
-        Vector3 childscale = healthBar.transform.localScale;
+        if (!is_boss)
+        {
+            Vector3 childscale = healthBar.transform.localScale;
+            childscale.x *= -1;
+            healthBar.transform.localScale = childscale;
+        }
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
-        childscale.x *= -1;
-        healthBar.transform.localScale = childscale;
         transform.localScale = theScale;
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ArrowSound : MonoBehaviour
 {
     public AudioClip arrowFireSound;
-    [SerializeField] private bool isPlayerArrow = true; // Set in Inspector
+    [SerializeField] private bool isPlayerArrow = true;
 
     void Start()
     {

@@ -5,9 +5,12 @@ using UnityEngine;
 public class CollectibleHealth : MonoBehaviour
 {
     float health =25.0f;
+    public Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+        animator.Play("hp_rotate"); 
         
     }
 

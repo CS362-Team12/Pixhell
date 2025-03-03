@@ -14163,6 +14163,14 @@ PrefabInstance:
       propertyPath: SprintAction.m_Name
       value: Sprint
       objectReference: {fileID: 0}
+    - target: {fileID: -682028510724069188, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -682028510724069188, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: slash_prefab
+      value: 
+      objectReference: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
     - target: {fileID: 1403697649868078611, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Name
       value: walk-with-weapon-1

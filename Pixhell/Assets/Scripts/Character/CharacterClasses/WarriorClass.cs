@@ -20,6 +20,8 @@ public class WarriorClass : PlayerController
         current_health = max_health;
         attack_speed_mult *= 1.2f;
         speed_mult *= 1f;
+        GameObject test = GameObject.FindWithTag("IconManager");
+        test.GetComponent<IconManager>().InsertIcon("Warrior");
     }
 
     public override void ResetPlayerStats()

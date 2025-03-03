@@ -12,6 +12,8 @@ public class MageClass : PlayerController
         damage *= .48f;
         speed_mult *= 1.2f;
         attack_speed_mult *= 1.15f;
+        GameObject test = GameObject.FindWithTag("IconManager");
+        test.GetComponent<IconManager>().InsertIcon("Mage");
     }
 
     public override void ResetPlayerStats()

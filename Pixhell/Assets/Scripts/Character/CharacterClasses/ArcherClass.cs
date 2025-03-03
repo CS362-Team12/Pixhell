@@ -32,13 +32,15 @@ public class ArcherClass : PlayerController
         speed_mult *= 1.2f;
         attack_speed_mult *= 1.1f;
 
-        VolleyImage = GameObject.Find("SpecialOneOnCooldown").GetComponent<Image>();
+        VolleyImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
         VolleyImage.fillAmount = 0f;
 
-        PiercingImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
+        PiercingImage = GameObject.Find("SpecialOneOnCooldown").GetComponent<Image>();
         PiercingImage.fillAmount = 0f;
 
         volley_arrow_count = 5;
+        GameObject test = GameObject.FindWithTag("IconManager");
+        test.GetComponent<IconManager>().InsertIcon("Archer");
     }
 
     public override void ResetPlayerStats()

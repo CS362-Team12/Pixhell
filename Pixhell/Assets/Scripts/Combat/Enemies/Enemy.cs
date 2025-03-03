@@ -69,8 +69,13 @@ public class Enemy : MonoBehaviour
     public virtual void Start()
     {
         health = max_health;
-        healthBar = GetComponentInChildren<FloatingHpBar>();
-        healthBar.UpdateHealthBar(health, max_health);
+        if (!is_boss)
+        {
+            healthBar = GetComponentInChildren<FloatingHpBar>();
+            healthBar.UpdateHealthBar(health, max_health);
+        }
+
+        
         player = GameObject.FindWithTag("Player");
         // Multiply by a scale, so that it's relative
         currTimer = timers[currIndex] * Random.Range(0.8f, 1.2f);
@@ -197,9 +202,12 @@ public class Enemy : MonoBehaviour
             if (is_boss)
             {
                 boss_script.UpdateHealthBar(health, max_health);
+            } else
+            {
+                healthBar.UpdateHealthBar(health, max_health);
             }
 
-            healthBar.UpdateHealthBar(health, max_health);
+            
             Debug.Log("Took " + damage + " damage!");
             animator.SetTrigger("hit");
             if (health <= 0)
@@ -221,6 +229,10 @@ public class Enemy : MonoBehaviour
     void ShowDamageText(float damage)
     {
         GameObject DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
+        if (is_boss)
+        {
+            DmgText.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+        }
         // DmgText.transform.SetParent(transform.parent, true);
         DmgText.transform.position = transform.position;
         
@@ -271,11 +283,14 @@ public class Enemy : MonoBehaviour
         facingRight = !facingRight;
 
         // Multiply the player's x local scale by -1.
-        Vector3 childscale = healthBar.transform.localScale;
+        if (!is_boss)
+        {
+            Vector3 childscale = healthBar.transform.localScale;
+            childscale.x *= -1;
+            healthBar.transform.localScale = childscale;
+        }
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
-        childscale.x *= -1;
-        healthBar.transform.localScale = childscale;
         transform.localScale = theScale;
     }
 

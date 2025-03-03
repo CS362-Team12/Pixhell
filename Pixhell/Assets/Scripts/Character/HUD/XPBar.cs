@@ -27,6 +27,9 @@ public class XPBar : MonoBehaviour
     }
 
     void Update() {
+        if (!character) {
+            return;
+        }
         if (prevxp != character.GetExperience()) {
             Debug.Log("UPDATING xp");
             UpdatexpDisplay();
@@ -35,7 +38,7 @@ public class XPBar : MonoBehaviour
     }
 
     void UpdatexpDisplay() {
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         character = characterObj.GetComponent<LevelUp>();
         float percent = character.GetExperience() / character.GetNextXPRequirement();
         float showing = percent * barCount;
@@ -49,7 +52,12 @@ public class XPBar : MonoBehaviour
 
     void GeneratexpBar() {
         xpBar = GetComponent<Image>();
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
+        if (!characterObj) {
+            Debug.Log("Character Not Found");
+            return;
+        }
+        
         character = characterObj.GetComponent<LevelUp>();
         prevxp = character.GetExperience();
 
@@ -109,10 +117,10 @@ public class XPBar : MonoBehaviour
             Destroy(child.gameObject);
         }
         xpBar.gameObject.SetActive(false);
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         if (characterObj != null) {
             character = characterObj.GetComponent<LevelUp>();
-            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "Limbo") {
+            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "Limbo" && scene.name != "CharacterSelect") {
                 GeneratexpBar();
                 UpdatexpDisplay();
                 xpBar.gameObject.SetActive(true);

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -24,10 +25,13 @@ public class HealthBar : MonoBehaviour
     void Start() {
         SceneManager.sceneLoaded += OnSceneLoaded;
         GenerateHealthBar();
-    }
 
+    }
     void Update() {
-        if (prevHealth != character.health) {
+        if (!character) {
+            return;
+        }
+        if (character && prevHealth != character.health) {
             Debug.Log("UPDATING HEALTH");
             UpdateHealthDisplay();
          }
@@ -35,7 +39,7 @@ public class HealthBar : MonoBehaviour
     }
 
     void UpdateHealthDisplay() {
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         character = characterObj.GetComponent<PlayerController>();
         float percent = character.health / character.max_health;
         float showing = percent * barCount;
@@ -49,7 +53,12 @@ public class HealthBar : MonoBehaviour
 
     void GenerateHealthBar() {
         healthBar = GetComponent<Image>();
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
+        if (!characterObj) {
+            Debug.Log("Character Not Found");
+            return;
+        }
+        
         character = characterObj.GetComponent<PlayerController>();
         prevHealth = character.health;
 
@@ -102,6 +111,7 @@ public class HealthBar : MonoBehaviour
         text.color = Color.white;
         text.outlineWidth = 0.2f;
         text.outlineColor = Color.black;
+        text.text = character.health + " / " + character.max_health;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
@@ -110,12 +120,13 @@ public class HealthBar : MonoBehaviour
             Destroy(child.gameObject);
         }
         healthBar.gameObject.SetActive(false);
-        GameObject characterObj = GameObject.Find("walk-with-weapon-1");
+        GameObject characterObj = GameObject.FindWithTag("Player");
         if (characterObj != null) {
             character = characterObj.GetComponent<PlayerController>();
-            if (scene.name != "StartMenu" && scene.name != "SelectRun") {
+            if (scene.name != "StartMenu" && scene.name != "SelectRun" && scene.name != "CharacterSelect") {
                 GenerateHealthBar();
                 healthBar.gameObject.SetActive(true);
+                UpdateHealthDisplay();
             }
         }
     

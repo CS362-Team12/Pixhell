@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] FloatingHpBar healthBar;
     public GameObject player_hp;
 
+    [Header("Audio Settings")]
+    [SerializeField] protected AudioClip deathSound;
+
     // Three states, hopefully turned into constants later:
     // 1. Moving: Perform the move code
     // 2. Attack: Perform the attack animation and effects
@@ -162,12 +165,22 @@ public class Enemy : MonoBehaviour
         // Get the length of the teleport animation
         float animationDuration = animator.GetCurrentAnimatorStateInfo(0).length;
         Debug.Log("Enemy Slain");
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySoundEffect(deathSound, 0.2f);
+            Debug.Log("Enemy death sound played: " + (deathSound != null ? deathSound.name : "none"));
+        }
+
         // Wait for the animation to finish
         yield return new WaitForSeconds(animationDuration);
 
         Instantiate(XPDrop, transform.position, Quaternion.identity);
         GameManager.coins += CoinCalculator();
         int random_num = Random.Range(0, 9);
+        if (DEBUG) {
+            random_num = Random.Range(0, 2);
+        }
         if (random_num == 0)
         {
             Instantiate(player_hp, transform.position, Quaternion.identity);

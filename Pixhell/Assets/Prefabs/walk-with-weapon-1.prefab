@@ -364,132 +364,14 @@ MonoBehaviour:
   is_vulnerable: 1
   dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
   damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
+  attackSound: {fileID: 8300000, guid: a0c2888f7098ba3479819ed8887c8651, type: 3}
+  playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}
   animator: {fileID: 5980619562306250965}
+  slash_prefab: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192
---- !u!114 &-6528304411385973004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403697649868078611}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e6b212c021b1848b0d1e9c660b51b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c50d9d3a-7c4d-4f88-8115-14a5996bc736
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: 87e3d0e5-67f2-4559-90b2-2e8b03485a13
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: e2f172d7-a975-4ff8-b4ce-b516f06dc697
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: b4953e8f-c8c7-4ccb-8b27-d3fb6124a916
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: f6fa62b9-08eb-4909-8f1d-bb7705e4560b
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 86e9b610-0adf-4d56-bb47-8e5101f1e26f
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    m_Flags: 0
-  SprintAction:
-    m_Name: Sprint
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 26bab85a-0e5f-466a-9af7-ff9d176bc3a4
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 47d910a4-adc1-44c8-8f16-98b15a7c3b31
-      m_Path: <Keyboard>/shift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Sprint
-      m_Flags: 0
-    m_Flags: 0
-  SpecialOne:
-    m_Name: Special One
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c0049ce9-991c-4113-8c84-940360525110
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  SpecialTwo:
-    m_Name: Special Two
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e7576f52-37d9-4bc6-b411-10dc3c94f778
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  DodgeAction:
-    m_Name: Dodge
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 97e2c9a9-5c28-4558-aff8-0c706c2cbe25
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d3e33c2e-1b38-4959-819f-3abfdb406505
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Dodge
-      m_Flags: 0
-    m_Flags: 0
-  is_teleporting: 0
-  speed: 3
-  is_dodging: 0
-  max_health: 100
-  is_vulnerable: 1
-  dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
-  damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
-  animator: {fileID: 5980619562306250965}
-  projectilePrefab: {fileID: 1283419919620192332, guid: f0468a0b0db74c5418f6a5abed2e9606, type: 3}
+  warriorAttackSound: {fileID: 8300000, guid: a0c2888f7098ba3479819ed8887c8651, type: 3}
 --- !u!61 &6745676285347251144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -571,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 0
-  levelUpSound: {fileID: 0}
+  levelUpSound: {fileID: 8300000, guid: c2f2cce954a71e343928b70b55647c47, type: 3}
 --- !u!1 &6326460203903690011
 GameObject:
   m_ObjectHideFlags: 0

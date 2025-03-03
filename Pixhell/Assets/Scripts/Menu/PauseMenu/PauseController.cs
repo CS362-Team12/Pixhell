@@ -85,6 +85,10 @@ public class PauseController : MonoBehaviour
                 AudioManager.Instance.ResumeBackgroundMusic();
             }
         }
+        if (SceneManager.GetActiveScene().name == "CharacterSelect")
+        {
+            SceneButtonBehavior();
+        }
     }
 
     void SceneButtonBehavior()
@@ -92,7 +96,7 @@ public class PauseController : MonoBehaviour
         if (isPaused)
         {
             Button lobbyButton = GameObject.Find("PauseLobbyButton").GetComponent<Button>();
-            if (SceneManager.GetActiveScene().name == "Limbo")
+            if (SceneManager.GetActiveScene().name == "Limbo" || SceneManager.GetActiveScene().name == "CharacterSelect")
             {
                 lobbyButton.interactable = false;
                 lobbyButton.GetComponent<Image>().color = Color.grey;

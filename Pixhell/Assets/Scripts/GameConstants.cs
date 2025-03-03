@@ -18,4 +18,6 @@ public static class GameConstants
     public const int MOVING = 0;
     public const int ATTACKING = 1;
     public const int IDLING = 2;
+    public const int CHARGING = 3;
+    public const int HOMINGATTACK = 4;
 }

@@ -364,6 +364,7 @@ MonoBehaviour:
   is_dodging: 0
   max_health: 100
   is_vulnerable: 1
+  deaths: 0
   dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
   damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
   playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}

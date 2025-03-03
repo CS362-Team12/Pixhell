@@ -13,6 +13,8 @@ Please refer to documentation/Pixhell Developer Documentation for instructions o
 ## Running
 Please refer to documentation/Pixhell User Documentation for insturction on installing and running the user version. This is our suggestion for testing. 
 
+Note: Due to difficulites getting markdown images to show up in a reasonable amount of time, documentation is currently in PDF form. 
+
 ## Use Cases
 -  Left clicking while controlling the character performs an attack
   - Implemented and working fully

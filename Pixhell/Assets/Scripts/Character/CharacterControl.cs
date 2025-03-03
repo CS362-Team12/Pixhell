@@ -59,9 +59,11 @@ public class PlayerController : MonoBehaviour
     protected float damage = 25.0f;
     protected float projectile_speed_mult = 1.0f;
 
-    [Header("Audio Settings")] // New header for clarity
+    [Header("Audio Settings")]
     [SerializeField] protected AudioClip dodgeSound;
     [SerializeField] protected AudioClip damageSound;
+    //[SerializeField] protected AudioClip attackSound;
+    [SerializeField] protected AudioClip playerdeathSound;
 
     [Header("GameObjects")] // Gameobjects for character use
     public Animator animator;
@@ -224,6 +226,8 @@ public class PlayerController : MonoBehaviour
             gameOverController.GetComponent<GameOverController>().TurnOnMenu();
             animator.SetTrigger("death");
             is_dead = true;
+            AudioManager.Instance.PlaySoundEffect(playerdeathSound, 0.2f);
+            Debug.Log("Player death sound played: " + (playerdeathSound != null ? playerdeathSound.name : "none"));
             StartCoroutine(FreezeOnDeath());
         }
         if (damaged && !is_dead)
@@ -248,7 +252,7 @@ public class PlayerController : MonoBehaviour
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
             Debug.Log(current_health + "/" + max_health);
 
-            AudioManager.Instance.PlaySoundEffect(damageSound, 0.2f); // Balanced volume
+            AudioManager.Instance.PlaySoundEffect(damageSound, 0.2f);
             return true;
         }
         else if (health > 0)
@@ -309,5 +313,7 @@ public class PlayerController : MonoBehaviour
     protected virtual void BasicAttack(Vector2 move)
     {
         Debug.Log("Player Attacked");
+        //AudioManager.Instance.PlaySoundEffect(attackSound, 0.2f);
+        //Debug.Log("Player Attacked with sound: " + (attackSound != null ? attackSound.name : "none"));
     }
 }

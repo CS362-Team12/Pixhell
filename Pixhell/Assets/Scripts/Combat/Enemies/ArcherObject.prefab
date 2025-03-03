@@ -474,6 +474,7 @@ MonoBehaviour:
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   healthBar: {fileID: 3960859312315344120}
   player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
+  deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
   projectilePrefab: {fileID: 4627103214006155261, guid: 88aa2d4373adc3747a3ba1c44a05a12f, type: 3}
   orbitRadius: 3.5
   orbitSpeed: 0.5

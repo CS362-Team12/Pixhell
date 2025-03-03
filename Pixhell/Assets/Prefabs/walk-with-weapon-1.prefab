@@ -240,7 +240,6 @@ MonoBehaviour:
   is_vulnerable: 1
   dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
   damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
-  attackSound: {fileID: 8300000, guid: a0c2888f7098ba3479819ed8887c8651, type: 3}
   playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}
   animator: {fileID: 5980619562306250965}
   slash_prefab: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
@@ -278,7 +277,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

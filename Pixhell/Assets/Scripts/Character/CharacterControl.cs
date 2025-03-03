@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject slash_prefab;
 
+    // Image for dodge cooldown indicator
     public Image DodgeImage;
 
     protected virtual void Start()
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
         // Sets base values
         speed_mult = base_speed;
         // Enables Movement
-        DodgeImage = GameObject.Find("OnCooldown").GetComponent<Image>();
+        DodgeImage = GameObject.Find("DashOnCooldown").GetComponent<Image>();
         Debug.Log(GameManager.inventory.totalHealthMod);
         speed_mult = (base_speed + GameManager.inventory.totalMovementSpeedMod);
         damage_mult = (base_damage_mult + GameManager.inventory.totalDamageMod);
@@ -94,6 +95,8 @@ public class PlayerController : MonoBehaviour
         MoveAction.Enable();
         SprintAction.Enable();
         DodgeAction.Enable();
+        SpecialOne.Enable();
+        SpecialTwo.Enable();
         animator = GetComponent<Animator>();
         DodgeImage.fillAmount = 0f;
         StartImmune();
@@ -352,5 +355,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player Attacked");
         //AudioManager.Instance.PlaySoundEffect(attackSound, 0.2f);
         //Debug.Log("Player Attacked with sound: " + (attackSound != null ? attackSound.name : "none"));
+    }
+
+    protected virtual void Special1(Vector2 move)
+    {
+        Debug.Log("Player used ability 1");
+    }
+
+    protected virtual void Special2(int arrow_amount)
+    {
+        Debug.Log("Player used ability 2");
     }
 }

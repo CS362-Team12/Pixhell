@@ -250,11 +250,7 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(player_hp, transform.position, Quaternion.identity);
         }
-        if (is_boss)
-        {
-            BossBar temp = GetComponent<BossBar>();
-            temp.update_boss(true);
-        }
+        
         Destroy(gameObject);
         
     }

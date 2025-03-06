@@ -9,6 +9,7 @@ TagManager:
   - GameOverMenu
   - Portal
   - IconManager
+  - AllowSpawns
   layers:
   - Default
   - TransparentFX

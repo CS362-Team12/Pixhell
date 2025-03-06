@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Spawner : MonoBehaviour
     int spawnersRunning;
     public int currentWave;
     public bool scriptCompleted;
+    Tilemap spawnTilemap;
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         StopAllCoroutines();
@@ -29,6 +31,8 @@ public class Spawner : MonoBehaviour
         if (File.Exists(waveDataFilePath)) {
             spawning = true;
             currentWave = 1;
+            GameObject grid = GameObject.FindWithTag("AllowSpawns");
+            spawnTilemap = grid.GetComponentInChildren<Tilemap>();
             StartCoroutine(RunSpawnScript());
             StartCoroutine(ArenaCompleted());
         }
@@ -108,13 +112,24 @@ public class Spawner : MonoBehaviour
     {
         float xMod = 0f;
         float yMod = 0f;
-        while (Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.4f)
+        int overflowCatcher = 80;
+        while ((Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.4f) || !(OnTilemap(xMod, yMod)) && overflowCatcher > 0)
         {
             xMod = (UnityEngine.Random.value - 0.5f) * 2f;
             yMod = (UnityEngine.Random.value - 0.5f) * 2f;
+            overflowCatcher -= 1;
         }
         
         return player.transform.position + new Vector3(xMod * minSpawnDistance, yMod * minSpawnDistance, 0);
+    }
+
+    bool OnTilemap(float xMod, float yMod)
+    {
+        Vector3 spawnPosition = player.transform.position + new Vector3(xMod * minSpawnDistance, yMod * minSpawnDistance, 0);
+        Vector3Int posOnTilemap = spawnTilemap.WorldToCell(spawnPosition);
+        TileBase tile = spawnTilemap.GetTile(posOnTilemap);
+
+        return tile != null;
     }
 
     string[] GetWaveLines(string[] allLines) {

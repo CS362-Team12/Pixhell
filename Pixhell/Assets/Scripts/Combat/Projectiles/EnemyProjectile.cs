@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
-    float damage = 25.0f;
+    public float damage = 25.0f;
 
     // Awake is called when the Projectile GameObject is instantiated
     void Awake()

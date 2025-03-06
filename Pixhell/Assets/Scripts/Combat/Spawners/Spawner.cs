@@ -78,18 +78,21 @@ public class Spawner : MonoBehaviour
     }
 
     IEnumerator SpawnLine(string line) {
-        spawnersRunning += 1;
         string[] parts = line.Split(',');
         string enemyType = parts[1];
         int count = int.Parse(parts[2]);
         float timeToSpawn = float.Parse(parts[3]);
         float delay = float.Parse(parts[4]);
+        if (count > 0) {
+        spawnersRunning += 1;
         yield return new WaitForSeconds(delay);
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count - 1; i++) {
             SpawnEnemy(enemyType);
             yield return new WaitForSeconds(timeToSpawn / count);
         }
+        SpawnEnemy(enemyType);
         spawnersRunning -= 1;
+        }
     }
 
     void SpawnEnemy(string enemyType) {

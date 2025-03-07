@@ -12,17 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 7125f907b8d051e46b2b02e3e140e0ed
   - enabled: 1
-    path: Assets/Scenes/SelectRun.unity
-    guid: f2ab78ac43d28fc4181c62f9bd0a2672
-  - enabled: 1
-    path: Assets/Scenes/CharacterSelect.unity
-    guid: 0230e0e10eac47046b9b56de9c6b63a2
-  - enabled: 1
     path: Assets/Scenes/Limbo.unity
     guid: 30cad61f31c2013438ffafd354096e3c
   - enabled: 1
     path: Assets/Scenes/Lust.unity
     guid: f4bf7bb8cff02e04bb5f52769a9de2cd
+  - enabled: 1
+    path: Assets/Scenes/SelectRun.unity
+    guid: f2ab78ac43d28fc4181c62f9bd0a2672
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: 0230e0e10eac47046b9b56de9c6b63a2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

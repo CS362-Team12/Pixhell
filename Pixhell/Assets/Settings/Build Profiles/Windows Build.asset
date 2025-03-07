@@ -30,6 +30,8 @@ MonoBehaviour:
     m_path: Assets/Scenes/Limbo.unity
   - m_enabled: 1
     m_path: Assets/Scenes/Lust.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/CharacterSelect.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:

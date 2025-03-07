@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3780356187344639781}
   - component: {fileID: 8763820420315836964}
   - component: {fileID: 6117230430567463084}
-  - component: {fileID: 320607438353000508}
+  - component: {fileID: 6873837992105879685}
   m_Layer: 13
   m_Name: SpearThrowerObject
   m_TagString: Enemy
@@ -159,7 +159,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &320607438353000508
+--- !u!114 &6873837992105879685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 922393634303512934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddbfa1990d1d5d443a0fee7ea32896bc, type: 3}
+  m_Script: {fileID: 11500000, guid: f649b2c113ccef74893eac750e9fb23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   max_health: 100
@@ -177,16 +177,14 @@ MonoBehaviour:
   is_boss: 0
   boss_name: 
   coinLevel: 2
-  animator: {fileID: 6117230430567463084}
-  XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
-  DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
-  healthBar: {fileID: 8340975827215675443}
-  player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
-  deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
+  animator: {fileID: 0}
+  XPDrop: {fileID: 0}
+  DamageText: {fileID: 0}
+  healthBar: {fileID: 0}
+  player_hp: {fileID: 0}
+  deathSound: {fileID: 0}
   distanceCharged: 0
-  projectilePrefab: {fileID: 1272851684503538511, guid: 561d004e9cec0fc448280bcdae325f48, type: 3}
-  orbitRadius: 0
-  orbitSpeed: 0
+  projectilePrefab: {fileID: 0}
 --- !u!1 &2053802399836085020
 GameObject:
   m_ObjectHideFlags: 0

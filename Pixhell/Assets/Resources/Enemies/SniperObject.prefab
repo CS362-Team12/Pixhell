@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 8751160971363164657}
   - component: {fileID: 1826286418403303298}
   - component: {fileID: 8175044564415655981}
-  - component: {fileID: 6115989838289809037}
   m_Layer: 13
   m_Name: SniperObject
   m_TagString: Enemy
@@ -234,34 +233,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6115989838289809037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2970939749135685592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddbfa1990d1d5d443a0fee7ea32896bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_health: 100
-  health: 100
-  facingRight: 1
-  is_boss: 0
-  boss_name: 
-  coinLevel: 2
-  animator: {fileID: 8175044564415655981}
-  XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
-  DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
-  healthBar: {fileID: 6438304746310928585}
-  player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
-  deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
-  distanceCharged: 0
-  projectilePrefab: {fileID: 4597018620344685425, guid: b79b3d0b675c24f4f92e3ebe742fa4d9, type: 3}
-  orbitRadius: 0
-  orbitSpeed: 0
 --- !u!1 &4708034961208001281
 GameObject:
   m_ObjectHideFlags: 0

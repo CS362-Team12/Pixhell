@@ -1137,7 +1137,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.2728484
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2641,7 +2641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Lust
-  animator: {fileID: 5980619562306250965, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
 --- !u!61 &1631073179
 BoxCollider2D:
   m_ObjectHideFlags: 0

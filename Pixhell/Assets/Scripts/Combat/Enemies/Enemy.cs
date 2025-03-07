@@ -290,6 +290,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        var target = other.GetComponent<PlayerController>(); 
+        Debug.Log("Collision!");
+        if (target != null && !is_dead)
+        {
+            target.TakeDamage(collisionDamage);
+        }
+    }
+
     protected void Flip()
     {
         // Switch the way the player is labelled as facing.

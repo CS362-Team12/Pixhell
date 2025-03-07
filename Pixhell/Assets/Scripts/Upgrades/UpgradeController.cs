@@ -23,7 +23,7 @@ public class UpgradeController : MonoBehaviour
 
     // Array coordinates for upgrade to force being selected
     // Set to -1 to turn off, attched to DEBUG to be off for non DEBUG builds
-    int[] forcedUpgrade = {UNCOMMON, 4};
+    int[] forcedUpgrade = {LEGENDARY, 5};
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip selectSound;
@@ -54,6 +54,7 @@ public class UpgradeController : MonoBehaviour
             new MoveSpeedUp_U("Move Speed Up", "Increases move speed by 10%.", COMMON, 0.1f),
             new DashRangeUp_U("Dash Range Up", "Increases dash distance by 30%.", COMMON, 0.3f),
             new MaxHealthUp_U("Max Health Up", "Increases max health by 20%.", COMMON, 0.2f),
+            new AbilityAttackDamageUp_U("Ability Attack Damage Up", "Increases ability attack damage by 20%.", COMMON, 0.2f),
         };
         upgrades[UNCOMMON] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up+", "Increases attack speed by 20%.", UNCOMMON, 0.2f),
@@ -61,12 +62,14 @@ public class UpgradeController : MonoBehaviour
             new MoveSpeedUp_U("Move Speed Up+", "Increases move speed by 20%.", UNCOMMON, 0.2f),
             new MaxHealthUp_U("Max Health Up+", "Increases max health by 30%.", UNCOMMON, 0.3f),
             new LargeQuiver_U_A("Large Quiver", "Double the number of arrows launched from your arrow volley.", UNCOMMON, 2.0f),
+            new AbilityAttackDamageUp_U("Ability Attack Damage Up+", "Increases ability attack damage by 30%.", UNCOMMON, 0.3f),
         };
         upgrades[RARE] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up++", "Increases attack speed by 30%.", RARE, 0.3f),
             new AttackDamageUp_U("Attack Damage Up++", "Increases attack damage by 30%.", RARE, 0.3f),
             new MoveSpeedUp_U("Move Speed Up++", "Increases move speed by 30%.", RARE, 0.3f),
             new MaxHealthUp_U("Max Health Up++", "Increases max health by 40%.", RARE, 0.4f),
+            new AbilityAttackDamageUp_U("Ability Attack Damage Up++", "Increases ability attack damage by 50%.", COMMON, 0.5f),
         };
         upgrades[LEGENDARY] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up+++", "Increases attack speed by 50%.", LEGENDARY, 0.5f),
@@ -74,6 +77,7 @@ public class UpgradeController : MonoBehaviour
             new MoveSpeedUp_U("Move Speed Up+++", "Increases move speed by 50%.", LEGENDARY, 0.5f),
             new DashRangeUp_U("Dash Range Up+", "Doubles dash distance.", LEGENDARY, 1f),
             new MaxHealthUp_U("Max Health Up+++", "Increases max health by 60%.", LEGENDARY, 0.6f),
+            new AbilityAttackDamageUp_U("Ability Attack Damage Up+++", "Increases ability attack damage by 70%.", LEGENDARY, 0.7f),
         };
     }
 

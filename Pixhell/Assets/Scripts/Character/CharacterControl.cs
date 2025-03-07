@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     protected float damage_mult = 1.0f;
     protected float damage = 25.0f;
     protected float projectile_speed_mult = 1.0f;
+    protected float ability_damage_mult = 1.0f;
 
     [Header("Audio Settings")]
     [SerializeField] protected AudioClip dodgeSound;
@@ -343,6 +344,11 @@ public class PlayerController : MonoBehaviour
     public void UpdateDamage(float increase)
     {
         damage_mult += increase;
+    }
+
+    public void UpdateAbilityDamage(float increase)
+    {
+        ability_damage_mult += increase;
     }
 
     public bool IsDead() {

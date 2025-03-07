@@ -151,4 +151,9 @@ public class ArcherClass : PlayerController
             }
         }
     }
+
+    public void IncreaseArrowVolley(float extraArrows) {
+        volley_arrow_count = (int) (extraArrows*volley_arrow_count);
+        Debug.Log(volley_arrow_count);
+    }
 }

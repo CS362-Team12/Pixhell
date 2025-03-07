@@ -23,7 +23,7 @@ public class UpgradeController : MonoBehaviour
 
     // Array coordinates for upgrade to force being selected
     // Set to -1 to turn off, attched to DEBUG to be off for non DEBUG builds
-    int[] forcedUpgrade = {LEGENDARY, 3};
+    int[] forcedUpgrade = {UNCOMMON, 4};
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip selectSound;
@@ -60,6 +60,7 @@ public class UpgradeController : MonoBehaviour
             new AttackDamageUp_U("Attack Damage Up+", "Increases attack damage by 20%.", UNCOMMON, 0.2f),
             new MoveSpeedUp_U("Move Speed Up+", "Increases move speed by 20%.", UNCOMMON, 0.2f),
             new MaxHealthUp_U("Max Health Up+", "Increases max health by 30%.", UNCOMMON, 0.3f),
+            new LargeQuiver_U_A("Large Quiver", "Double the number of arrows launched from your arrow volley.", UNCOMMON, 2.0f),
         };
         upgrades[RARE] = new Upgrade[] { 
             new AttackSpeedUp_U("Attack Speed Up++", "Increases attack speed by 30%.", RARE, 0.3f),

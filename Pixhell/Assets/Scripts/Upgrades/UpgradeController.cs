@@ -23,7 +23,7 @@ public class UpgradeController : MonoBehaviour
 
     // Array coordinates for upgrade to force being selected
     // Set to -1 to turn off, attched to DEBUG to be off for non DEBUG builds
-    int[] forcedUpgrade = {-1, 3};
+    int[] forcedUpgrade = {LEGENDARY, 3};
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip selectSound;
@@ -106,7 +106,6 @@ public class UpgradeController : MonoBehaviour
             var loopCount = 0;
             
             // FORCED UPGRADE DEBUG OPTION
-            Debug.Log(DEBUG);
             if (DEBUG && forcedUpgrade[0] != -1 && upgrades[forcedUpgrade[0]][forcedUpgrade[1]].IsValid()) {
                 Debug.Log("Forced Upgrade Active");
                 chosenUpgrades[i] = upgrades[forcedUpgrade[0]][forcedUpgrade[1]];

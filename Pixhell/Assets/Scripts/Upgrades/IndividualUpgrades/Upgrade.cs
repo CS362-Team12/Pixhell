@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using static GameConstants;
+using System.Linq;
 
 
 
@@ -16,6 +17,8 @@ public class Upgrade
     bool selected = false;
     // Selected in the current upgrade cycle
     bool tempSelected = false;
+    // All characters are valid by default
+    protected string[] valid_characters = {"Archer", "Warrior", "Mage"};
     
 
     public PlayerController player;
@@ -44,6 +47,16 @@ public class Upgrade
     }
 
     public bool IsValid() {
+        var character = GameObject.Find("EventSystem").GetComponent<CharacterSelectController>().character;
+
+        Debug.Log(title);
+        Debug.Log(character);
+        Debug.Log(valid_characters.Length);
+        // Current player character isn't in the allowed character set
+        if (!valid_characters.Contains(character)) {
+            return false;
+        }
+
         // Already picked in this upgrade cycle, can't be picked
         if (tempSelected) {
             return false;

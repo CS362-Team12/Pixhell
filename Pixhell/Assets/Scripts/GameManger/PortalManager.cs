@@ -36,9 +36,9 @@ public class Portal : MonoBehaviour
         float animationDuration = stateInfo.length;
 
         // Wait for the animation to finish
-        yield return new WaitForSeconds(0.69f);
+        yield return new WaitForSeconds(animationDuration);
 
         // Load the scene
-        //SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

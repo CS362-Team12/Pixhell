@@ -269,7 +269,9 @@ public class Enemy : MonoBehaviour
         GameManager.coins += CoinCalculator();
         int random_num = Random.Range(0, 9);
         if (DEBUG) {
+#pragma warning disable CS0162 // Unreachable code detected
             random_num = Random.Range(0, 2);
+#pragma warning restore CS0162 // Unreachable code detected
         }
         if (random_num == 0)
         {

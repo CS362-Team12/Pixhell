@@ -40,6 +40,7 @@ public class SpearThrower : Enemy
     }
 
     public override void Attack() {
+
         StartCoroutine(AttackCoroutine());
     }
 

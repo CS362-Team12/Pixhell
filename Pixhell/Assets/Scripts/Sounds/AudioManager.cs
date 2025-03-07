@@ -1,14 +1,20 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [Header("Background Music")]
-    [SerializeField] private AudioClip backgroundMusic;
-    private AudioSource bgmSource;
+    [Header("Background Music Tracks")]
+    [SerializeField] private AudioClip lobbyTrack;      // For StartMenu, SelectRun, CharacterSelect, Limbo
+    [SerializeField] private AudioClip gameplayTrack;  // Default for other scenes (e.g., Lust)
+    private AudioSource gameplayBgmSource;             // For gameplay BGM
+    private AudioSource lobbyBgmSource;                // For lobby BGM
     private AudioSource effectSource;
-    private bool isMusicPlaying = false;
+    private bool isGameplayMusicPlaying = false;
+    private bool isLobbyMusicPlaying = false;
+    private AudioClip currentGameplayTrack;
+    private AudioClip currentLobbyTrack;
 
     void Awake()
     {
@@ -18,19 +24,21 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             effectSource = gameObject.AddComponent<AudioSource>();
-            bgmSource = gameObject.AddComponent<AudioSource>();
-            if (backgroundMusic != null)
-            {
-                bgmSource.clip = backgroundMusic;
-                bgmSource.loop = true;
-                bgmSource.volume = 0.1f;
-                bgmSource.playOnAwake = false;
-                Debug.Log("BGM setup complete: " + backgroundMusic.name);
-            }
-            else
-            {
-                Debug.LogError("Background Music clip is not assigned in AudioManager");
-            }
+            gameplayBgmSource = gameObject.AddComponent<AudioSource>();
+            lobbyBgmSource = gameObject.AddComponent<AudioSource>();
+
+            gameplayBgmSource.loop = true;
+            gameplayBgmSource.volume = 0.1f; // Gameplay default
+            gameplayBgmSource.playOnAwake = false;
+
+            lobbyBgmSource.loop = true;
+            lobbyBgmSource.volume = 0.015f; // Lobby default (15% of gameplay)
+            lobbyBgmSource.playOnAwake = false;
+
+            string sceneName = SceneManager.GetActiveScene().name;
+            currentGameplayTrack = null;
+            currentLobbyTrack = null;
+            UpdateBGMForScene(sceneName);
         }
         else
         {
@@ -38,65 +46,164 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySoundEffect(AudioClip clip, float volume = 0.4f)
+    void OnEnable()
     {
-        if (effectSource != null && clip != null)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateBGMForScene(scene.name);
+    }
+
+    private void UpdateBGMForScene(string sceneName)
+    {
+        AudioClip newTrack = GetTrackForScene(sceneName);
+        if (newTrack != null)
         {
-            effectSource.PlayOneShot(clip, volume);
-            Debug.Log("Sound effect played: " + clip.name + " at volume " + volume);
+            if (newTrack == lobbyTrack && newTrack != currentLobbyTrack)
+            {
+                StopGameplayMusic();
+                lobbyBgmSource.clip = newTrack;
+                currentLobbyTrack = newTrack;
+                currentGameplayTrack = null;
+                PlayLobbyMusic();
+                Debug.Log("Lobby BGM switched to: " + newTrack.name + " at volume " + lobbyBgmSource.volume);
+            }
+            else if (newTrack == gameplayTrack && newTrack != currentGameplayTrack)
+            {
+                StopLobbyMusic();
+                gameplayBgmSource.clip = newTrack;
+                currentGameplayTrack = newTrack;
+                currentLobbyTrack = null;
+                PlayGameplayMusic();
+                Debug.Log("Gameplay BGM switched to: " + newTrack.name + " at volume " + gameplayBgmSource.volume);
+            }
         }
     }
 
-    public void PlayBackgroundMusic()
+    private AudioClip GetTrackForScene(string sceneName)
     {
-        if (bgmSource != null && bgmSource.clip != null && !isMusicPlaying)
+        switch (sceneName)
         {
-            bgmSource.Play();
-            isMusicPlaying = true;
-            Debug.Log("Background music started: " + bgmSource.clip.name);
+            case "StartMenu":
+            case "SelectRun":
+            case "CharacterSelect":
+            case "Limbo":
+                return lobbyTrack;
+            default:
+                return gameplayTrack;
         }
-        else
+    }
+
+    public void PlayGameplayMusic()
+    {
+        if (gameplayBgmSource != null && gameplayBgmSource.clip != null && !isGameplayMusicPlaying)
         {
-            Debug.LogError("Cannot play BGM: bgmSource or clip is null, or already playing");
+            gameplayBgmSource.Play();
+            isGameplayMusicPlaying = true;
+            Debug.Log("Gameplay music started: " + gameplayBgmSource.clip.name);
+        }
+    }
+
+    public void PlayLobbyMusic()
+    {
+        if (lobbyBgmSource != null && lobbyBgmSource.clip != null && !isLobbyMusicPlaying)
+        {
+            lobbyBgmSource.Play();
+            isLobbyMusicPlaying = true;
+            Debug.Log("Lobby music started: " + lobbyBgmSource.clip.name);
         }
     }
 
     public void PauseBackgroundMusic()
     {
-        if (bgmSource != null && isMusicPlaying)
+        if (isGameplayMusicPlaying)
         {
-            bgmSource.Pause();
-            isMusicPlaying = false;
-            Debug.Log("Background music paused");
+            gameplayBgmSource.Pause();
+            isGameplayMusicPlaying = false;
+            Debug.Log("Gameplay music paused");
+        }
+        if (isLobbyMusicPlaying)
+        {
+            lobbyBgmSource.Pause();
+            isLobbyMusicPlaying = false;
+            Debug.Log("Lobby music paused");
         }
     }
 
     public void ResumeBackgroundMusic()
     {
-        if (bgmSource != null && !isMusicPlaying && bgmSource.clip != null)
+        if (!isGameplayMusicPlaying && gameplayBgmSource.clip != null)
         {
-            bgmSource.UnPause();
-            isMusicPlaying = true;
-            Debug.Log("Background music resumed");
+            gameplayBgmSource.UnPause();
+            isGameplayMusicPlaying = true;
+            Debug.Log("Gameplay music resumed");
+        }
+        if (!isLobbyMusicPlaying && lobbyBgmSource.clip != null)
+        {
+            lobbyBgmSource.UnPause();
+            isLobbyMusicPlaying = true;
+            Debug.Log("Lobby music resumed");
         }
     }
 
-    public void StopBackgroundMusic()
+    public void StopGameplayMusic()
     {
-        if (bgmSource != null)
+        if (gameplayBgmSource != null)
         {
-            bgmSource.Stop();
-            isMusicPlaying = false;
-            Debug.Log("Background music stopped");
+            gameplayBgmSource.Stop();
+            isGameplayMusicPlaying = false;
+            Debug.Log("Gameplay music stopped");
         }
     }
 
-    public void SetMusicVolume(float volume)
+    public void StopLobbyMusic()
     {
-        if (bgmSource != null)
+        if (lobbyBgmSource != null)
         {
-            bgmSource.volume = Mathf.Clamp01(volume);
-            Debug.Log("BGM volume set to: " + volume);
+            lobbyBgmSource.Stop();
+            isLobbyMusicPlaying = false;
+            Debug.Log("Lobby music stopped");
+        }
+    }
+
+    public void SetGameplayMusicVolume(float volume)
+    {
+        if (gameplayBgmSource != null)
+        {
+            gameplayBgmSource.volume = Mathf.Clamp01(volume); // 0-0.5 range
+            Debug.Log("Gameplay BGM volume set to: " + gameplayBgmSource.volume);
+        }
+    }
+
+    public void SetLobbyMusicVolume(float volume)
+    {
+        if (lobbyBgmSource != null)
+        {
+            lobbyBgmSource.volume = Mathf.Clamp01(volume); // 0-0.5 range
+            Debug.Log("Lobby BGM volume set to: " + lobbyBgmSource.volume);
+        }
+    }
+
+    public void PlaySoundEffect(AudioClip clip, float volume = 1f)
+    {
+        if (effectSource != null && clip != null)
+        {
+            effectSource.PlayOneShot(clip, volume);
+        }
+    }
+
+    public void SetEffectVolume(float volume)
+    {
+        if (effectSource != null)
+        {
+            effectSource.volume = Mathf.Clamp01(volume);
         }
     }
 }

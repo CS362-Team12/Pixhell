@@ -261,7 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3704a869f2e61ad499722d35455796d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: 50171e77de214384ca14e3a2a2df9dff, type: 3}
+  lobbyTrack: {fileID: 8300000, guid: 4c5037f3232344546a39637d47f7a409, type: 3}
+  gameplayTrack: {fileID: 8300000, guid: 50171e77de214384ca14e3a2a2df9dff, type: 3}
 --- !u!1 &776734955
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +557,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781655504}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b829a7b89b1f184a8b388cbe122d141, type: 3}
   m_Name: 

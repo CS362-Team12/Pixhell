@@ -8,6 +8,7 @@ public class PauseController : MonoBehaviour
     public bool isPaused;
     private string prevScene;
     public Slider bgmSlider;
+    public Slider lobbyBgmSlider;
 
     void Start()
     {
@@ -21,24 +22,34 @@ public class PauseController : MonoBehaviour
         }
         prevScene = SceneManager.GetActiveScene().name;
 
-        if (SceneManager.GetActiveScene().name == "StartMenu" || SceneManager.GetActiveScene().name == "SelectRun")
-        {
-            AudioManager.Instance.StopBackgroundMusic();
-        }
-
         // Setup slider
         if (bgmSlider != null)
         {
-            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+            bgmSlider.onValueChanged.AddListener(SetGameplayBGMVolume);
             bgmSlider.minValue = 0f;
             bgmSlider.maxValue = 0.5f;
-            bgmSlider.value = 0.1f;
-            Debug.Log("BGM Slider initialized");
+            bgmSlider.value = 0.1f; // Gameplay default
+            Debug.Log("Gameplay BGM Slider initialized");
         }
-        else
+
+        if (lobbyBgmSlider != null)
         {
-            Debug.LogWarning("bgmSlider is not assigned in PauseController");
+            lobbyBgmSlider.onValueChanged.AddListener(SetLobbyBGMVolume);
+            lobbyBgmSlider.minValue = 0f;
+            lobbyBgmSlider.maxValue = 0.15f;
+            lobbyBgmSlider.value = 0.015f; // Lobby default
+            Debug.Log("Lobby BGM Slider initialized");
         }
+    }
+
+    void SetGameplayBGMVolume(float volume)
+    {
+        AudioManager.Instance.SetGameplayMusicVolume(volume);
+    }
+
+    void SetLobbyBGMVolume(float volume)
+    {
+        AudioManager.Instance.SetLobbyMusicVolume(volume);
     }
 
     void Update()
@@ -107,10 +118,5 @@ public class PauseController : MonoBehaviour
                 lobbyButton.GetComponent<Image>().color = Color.white;
             }
         }
-    }
-
-    void SetBGMVolume(float volume)
-    {
-        AudioManager.Instance.SetMusicVolume(volume);
     }
 }

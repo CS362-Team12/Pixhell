@@ -1,5 +1,6 @@
 wave,enemy,count,time_to_spawn,delay_after_start_of_wave
-1,archer,200,30,3
+1,archer,4,30,3
+1,spearthrower,5,30,3
 2,glob,6,20,0
 3,glob,5,30,0
 3,archer,5,30,0

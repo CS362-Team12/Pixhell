@@ -9,6 +9,5 @@ public class ExamplePlayModeTest
     public IEnumerator ExampleTest()
     {
         Assert.AreEqual(1, 1);
-
     }
 }

@@ -323,7 +323,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
   distanceCharged: 0
   homingProjectilePrefab: {fileID: 0}
-  projectilePrefab: {fileID: 4597018620344685425, guid: b79b3d0b675c24f4f92e3ebe742fa4d9, type: 3}
+  projectilePrefab: {fileID: 7576121961923661227, guid: 02de6f1d19ba0e146bbaf3a77bdcb3be, type: 3}
   volleyCount: 6
 --- !u!1 &6743888866938209925
 GameObject:

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseController : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-    private bool isPaused;
+    public bool isPaused;
     private string prevScene;
     public Slider bgmSlider;
 
@@ -44,11 +44,12 @@ public class PauseController : MonoBehaviour
     void Update()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        if (prevScene != currentScene && isPaused)
+        bool itemShopClosed = GameObject.Find("ItemShop") != null ? !GameObject.Find("ItemShop").GetComponent<ItemShop>().shopShowing : true;
+        if (prevScene != currentScene && isPaused && itemShopClosed)
         {
             TogglePause(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape) && itemShopClosed)
         {
             TogglePause();
         }
@@ -84,6 +85,10 @@ public class PauseController : MonoBehaviour
                 AudioManager.Instance.ResumeBackgroundMusic();
             }
         }
+        if (SceneManager.GetActiveScene().name == "CharacterSelect")
+        {
+            SceneButtonBehavior();
+        }
     }
 
     void SceneButtonBehavior()
@@ -91,7 +96,7 @@ public class PauseController : MonoBehaviour
         if (isPaused)
         {
             Button lobbyButton = GameObject.Find("PauseLobbyButton").GetComponent<Button>();
-            if (SceneManager.GetActiveScene().name == "Limbo")
+            if (SceneManager.GetActiveScene().name == "Limbo" || SceneManager.GetActiveScene().name == "CharacterSelect")
             {
                 lobbyButton.interactable = false;
                 lobbyButton.GetComponent<Image>().color = Color.grey;

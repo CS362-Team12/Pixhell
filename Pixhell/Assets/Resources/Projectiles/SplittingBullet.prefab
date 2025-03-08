@@ -180,5 +180,5 @@ MonoBehaviour:
   timeToLive: 2
   currentTime: 0
   willSplit: 1
-  splitCount: 6
+  splitCount: 3
   projectilePrefab: {fileID: 4597018620344685425, guid: b79b3d0b675c24f4f92e3ebe742fa4d9, type: 3}

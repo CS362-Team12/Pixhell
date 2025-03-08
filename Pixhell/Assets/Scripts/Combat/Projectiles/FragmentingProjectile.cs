@@ -8,7 +8,7 @@ public class FragmentingProjectile : EnemyProjectile
     public float timeToLive = 2f;
     public float currentTime = 0f;
     public bool willSplit = true;
-    public float splitCount = 2;
+    public float splitCount = 3;
     public GameObject projectilePrefab;
 
     override public void Awake()

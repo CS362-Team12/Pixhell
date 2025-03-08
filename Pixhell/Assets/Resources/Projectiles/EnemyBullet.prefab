@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34117602de05ad44e805d0e3c2e0290f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  rigidbody2d: {fileID: 0}
+  damage: 25
 --- !u!212 &6909023135286552615
 SpriteRenderer:
   m_ObjectHideFlags: 0

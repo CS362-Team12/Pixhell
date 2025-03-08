@@ -199,17 +199,17 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage) 
     {
-        if (!is_dead) {
+        if (damage < 0) {
+            health -= damage;
+            health = Mathf.Min(health, max_health);
+            Debug.Log("Healed for " + -damage + " health!");
+            UpdateHealthBar();
+            ShowDamageText(damage);
+            // Animator stuff if needed
+        } else if (!is_dead) {
             health -= damage;
 
-            if (is_boss)
-            {
-                boss_script.UpdateHealthBar(health, max_health);
-            } else
-            {
-                healthBar.UpdateHealthBar(health, max_health);
-            }
-
+            UpdateHealthBar();
             
             Debug.Log("Took " + damage + " damage!");
             animator.SetTrigger("hit");
@@ -230,6 +230,16 @@ public class Enemy : MonoBehaviour
 
     }
 
+    void UpdateHealthBar() {
+        if (is_boss)
+        {
+            boss_script.UpdateHealthBar(health, max_health);
+        } else
+        {
+            healthBar.UpdateHealthBar(health, max_health);
+        }
+    }
+
     void ShowDamageText(float damage)
     {
         GameObject DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
@@ -247,7 +257,15 @@ public class Enemy : MonoBehaviour
             Debug.Log("FLIPS: " + DmgText.transform.localScale.x);
         }
         
-        DmgText.GetComponent<TextMesh>().text = damage.ToString();
+        
+        if (damage < 0) {
+            DmgText.GetComponent<TextMesh>().color = Color.green;
+            DmgText.GetComponent<TextMesh>().text = (-damage).ToString();
+        } else {
+            // Color defaults red
+            DmgText.GetComponent<TextMesh>().text = damage.ToString();
+        }
+
         Debug.Log("FLIPS AFTER: " + DmgText.transform.localScale.x);
     }
 

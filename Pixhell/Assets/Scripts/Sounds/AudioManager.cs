@@ -32,10 +32,11 @@ public class AudioManager : MonoBehaviour
             gameplayBgmSource.playOnAwake = false;
 
             lobbyBgmSource.loop = true;
-            lobbyBgmSource.volume = 0.015f; // Lobby default (15% of gameplay)
+            lobbyBgmSource.volume = 0.015f; // Lobby default
             lobbyBgmSource.playOnAwake = false;
 
             string sceneName = SceneManager.GetActiveScene().name;
+            Debug.Log("Initial scene: " + sceneName);
             currentGameplayTrack = null;
             currentLobbyTrack = null;
             UpdateBGMForScene(sceneName);
@@ -58,32 +59,35 @@ public class AudioManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Scene loaded: " + scene.name);
         UpdateBGMForScene(scene.name);
     }
 
     private void UpdateBGMForScene(string sceneName)
     {
         AudioClip newTrack = GetTrackForScene(sceneName);
-        if (newTrack != null)
+        Debug.Log("Track for " + sceneName + ": " + (newTrack != null ? newTrack.name : "null"));
+        if (newTrack == null) return;
+
+        // Stop both to ensure clean switch
+        StopGameplayMusic();
+        StopLobbyMusic();
+
+        if (newTrack == lobbyTrack)
         {
-            if (newTrack == lobbyTrack && newTrack != currentLobbyTrack)
-            {
-                StopGameplayMusic();
-                lobbyBgmSource.clip = newTrack;
-                currentLobbyTrack = newTrack;
-                currentGameplayTrack = null;
-                PlayLobbyMusic();
-                Debug.Log("Lobby BGM switched to: " + newTrack.name + " at volume " + lobbyBgmSource.volume);
-            }
-            else if (newTrack == gameplayTrack && newTrack != currentGameplayTrack)
-            {
-                StopLobbyMusic();
-                gameplayBgmSource.clip = newTrack;
-                currentGameplayTrack = newTrack;
-                currentLobbyTrack = null;
-                PlayGameplayMusic();
-                Debug.Log("Gameplay BGM switched to: " + newTrack.name + " at volume " + gameplayBgmSource.volume);
-            }
+            lobbyBgmSource.clip = newTrack;
+            currentLobbyTrack = newTrack;
+            currentGameplayTrack = null;
+            PlayLobbyMusic();
+            Debug.Log("Lobby BGM switched to: " + newTrack.name + " at volume " + lobbyBgmSource.volume);
+        }
+        else // Default to gameplayTrack
+        {
+            gameplayBgmSource.clip = newTrack;
+            currentGameplayTrack = newTrack;
+            currentLobbyTrack = null;
+            PlayGameplayMusic();
+            Debug.Log("Gameplay BGM switched to: " + newTrack.name + " at volume " + gameplayBgmSource.volume);
         }
     }
 
@@ -107,7 +111,11 @@ public class AudioManager : MonoBehaviour
         {
             gameplayBgmSource.Play();
             isGameplayMusicPlaying = true;
-            Debug.Log("Gameplay music started: " + gameplayBgmSource.clip.name);
+            Debug.Log("Gameplay music started: " + gameplayBgmSource.clip.name + " at volume " + gameplayBgmSource.volume);
+        }
+        else
+        {
+            Debug.LogWarning("Gameplay music not started. Source: " + (gameplayBgmSource != null) + ", Clip: " + (gameplayBgmSource?.clip?.name ?? "null") + ", Playing: " + isGameplayMusicPlaying);
         }
     }
 
@@ -117,7 +125,7 @@ public class AudioManager : MonoBehaviour
         {
             lobbyBgmSource.Play();
             isLobbyMusicPlaying = true;
-            Debug.Log("Lobby music started: " + lobbyBgmSource.clip.name);
+            Debug.Log("Lobby music started: " + lobbyBgmSource.clip.name + " at volume " + lobbyBgmSource.volume);
         }
     }
 
@@ -204,6 +212,7 @@ public class AudioManager : MonoBehaviour
         if (effectSource != null)
         {
             effectSource.volume = Mathf.Clamp01(volume);
+            Debug.Log("Effect volume set to: " + effectSource.volume);
         }
     }
 }

@@ -194,7 +194,7 @@ public class Enemy : MonoBehaviour
     }
 
     public virtual void HomingShot() {
-        
+        // Overridable
     }
 
     public void TakeDamage(float damage) 

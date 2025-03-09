@@ -69,7 +69,7 @@ public class Upgrade
     }
 
     public virtual void ApplyUpgrade() {
-        Debug.Log("Upgrae not implemented");
+        Debug.Log("Upgrade not implemented");
     }
 
 

@@ -14,12 +14,13 @@ public class MageProjectile : MonoBehaviour
         Destroy(gameObject, 5f);
     }
 
-    public void Launch(Vector2 direction, float force, float force_mult, float dam, float dam_mult)
+    public void Launch(Vector2 direction, float force, float force_mult, float dam, float dam_mult, float aoe_mult)
     {
         rigidbody2d.AddForce(direction.normalized * (force * force_mult), ForceMode2D.Impulse);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
         damage = dam * dam_mult;
+        aoe_radius *= aoe_mult;
     }
 
     void OnTriggerEnter2D(Collider2D other)

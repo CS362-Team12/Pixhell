@@ -75,7 +75,7 @@ public class Healer : Enemy
         animator.SetTrigger("attack");
 
         // Wait for the animation to complete
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length -.5f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length -.1f);
 
         // Instantiate heal circle after animation finishes
         Vector2 spawnPosition = transform.position;

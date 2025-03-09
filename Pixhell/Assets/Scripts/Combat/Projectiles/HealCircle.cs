@@ -4,7 +4,7 @@ using static GameConstants;
 
 public class HealCircle : MonoBehaviour
 {
-    float healAmount = 8f;
+    float healAmount = .1f;
     float healTicks = 6;
     float healTime = 1.5f;
     private Collider2D collider;
@@ -39,7 +39,7 @@ public class HealCircle : MonoBehaviour
             {
                 // Heal Animations?
                 Debug.Log("Object with tag found: " + obj.name);
-                obj.GetComponent<Enemy>().TakeDamage(-healAmount);
+                obj.GetComponent<Enemy>().HealPercentage(healAmount);
             }
         }
 

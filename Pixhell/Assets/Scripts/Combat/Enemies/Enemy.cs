@@ -280,6 +280,10 @@ public class Enemy : MonoBehaviour
         // Overridable
     }
 
+    public void HealPercentage(float healPercentage) {
+        TakeDamage((int) max_health*healPercentage*-1);
+    }
+
     public void TakeDamage(float damage) 
     {
         if (damage < 0) {

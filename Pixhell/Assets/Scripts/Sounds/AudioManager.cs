@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Background Music Tracks")]
     [SerializeField] private AudioClip lobbyTrack;      // For StartMenu, SelectRun, CharacterSelect, Limbo
-    [SerializeField] private AudioClip gameplayTrack;  // Default for other scenes (e.g., Lust)
+    [SerializeField] private AudioClip gameplayTrack;  // Default for other scenes (e.g., Lust, Gluttony)
+    [SerializeField] private AudioClip bossTrack;      // For boss fights
     private AudioSource gameplayBgmSource;             // For gameplay BGM
     private AudioSource lobbyBgmSource;                // For lobby BGM
     private AudioSource effectSource;
@@ -15,6 +16,10 @@ public class AudioManager : MonoBehaviour
     private bool isLobbyMusicPlaying = false;
     private AudioClip currentGameplayTrack;
     private AudioClip currentLobbyTrack;
+    private bool isBossActive = false; // Tracks boss state
+
+    [Header("Button Sound")]
+    [SerializeField] private AudioClip buttonClickSound;
 
     void Awake()
     {
@@ -32,13 +37,11 @@ public class AudioManager : MonoBehaviour
             gameplayBgmSource.playOnAwake = false;
 
             lobbyBgmSource.loop = true;
-            lobbyBgmSource.volume = 0.015f; // Lobby default
+            lobbyBgmSource.volume = 0.08f; // Lobby default
             lobbyBgmSource.playOnAwake = false;
 
             string sceneName = SceneManager.GetActiveScene().name;
-            Debug.Log("Initial scene: " + sceneName);
-            currentGameplayTrack = null;
-            currentLobbyTrack = null;
+            Debug.Log("Initial scene: " + sceneName);      
             UpdateBGMForScene(sceneName);
         }
         else
@@ -65,63 +68,73 @@ public class AudioManager : MonoBehaviour
 
     private void UpdateBGMForScene(string sceneName)
     {
-        AudioClip newTrack = GetTrackForScene(sceneName);
-        Debug.Log("Track for " + sceneName + ": " + (newTrack != null ? newTrack.name : "null"));
-        if (newTrack == null) return;
-
-        // Stop both to ensure clean switch
         StopGameplayMusic();
         StopLobbyMusic();
 
-        if (newTrack == lobbyTrack)
+        switch (sceneName)
         {
-            lobbyBgmSource.clip = newTrack;
-            currentLobbyTrack = newTrack;
-            currentGameplayTrack = null;
-            PlayLobbyMusic();
-            Debug.Log("Lobby BGM switched to: " + newTrack.name + " at volume " + lobbyBgmSource.volume);
-        }
-        else // Default to gameplayTrack
-        {
-            gameplayBgmSource.clip = newTrack;
-            currentGameplayTrack = newTrack;
-            currentLobbyTrack = null;
-            PlayGameplayMusic();
-            Debug.Log("Gameplay BGM switched to: " + newTrack.name + " at volume " + gameplayBgmSource.volume);
+            case "Limbo":
+                lobbyBgmSource.clip = lobbyTrack;
+                currentLobbyTrack = lobbyTrack;
+                currentGameplayTrack = null;
+                PlayLobbyMusic();
+                Debug.Log("Lobby BGM started for Limbo: " + lobbyTrack.name + " at volume " + lobbyBgmSource.volume);
+                break;
+            case "Lust":
+            case "Gluttony": // Add more gameplay scenes here
+                gameplayBgmSource.clip = gameplayTrack;
+                currentGameplayTrack = gameplayTrack;
+                currentLobbyTrack = null;
+                PlayGameplayMusic();
+                Debug.Log("Gameplay BGM started for " + sceneName + ": " + gameplayTrack.name + " at volume " + gameplayBgmSource.volume);
+                break;
+            default:
+                currentLobbyTrack = null;
+                currentGameplayTrack = null;
+                Debug.Log("No BGM for scene: " + sceneName);
+                break;
         }
     }
 
-    private AudioClip GetTrackForScene(string sceneName)
+    public void StartBossMusic()
     {
-        switch (sceneName)
+        if (gameplayBgmSource.clip != bossTrack)
         {
-            case "StartMenu":
-            case "SelectRun":
-            case "CharacterSelect":
-            case "Limbo":
-                return lobbyTrack;
-            default:
-                return gameplayTrack;
+            StopGameplayMusic();
+            gameplayBgmSource.clip = bossTrack;
+            currentGameplayTrack = bossTrack;
+            PlayGameplayMusic();
+            isBossActive = true;
+            Debug.Log("Boss music started: " + bossTrack.name);
+        }
+    }
+
+    public void StopBossMusic()
+    {
+        if (isBossActive)
+        {
+            StopGameplayMusic();
+            gameplayBgmSource.clip = gameplayTrack;
+            currentGameplayTrack = gameplayTrack;
+            PlayGameplayMusic();
+            isBossActive = false;
+            Debug.Log("Boss music stopped, reverted to: " + gameplayTrack.name);
         }
     }
 
     public void PlayGameplayMusic()
     {
-        if (gameplayBgmSource != null && gameplayBgmSource.clip != null && !isGameplayMusicPlaying)
+        if (gameplayBgmSource != null && gameplayBgmSource.clip != null && !gameplayBgmSource.isPlaying)
         {
             gameplayBgmSource.Play();
             isGameplayMusicPlaying = true;
             Debug.Log("Gameplay music started: " + gameplayBgmSource.clip.name + " at volume " + gameplayBgmSource.volume);
         }
-        else
-        {
-            Debug.LogWarning("Gameplay music not started. Source: " + (gameplayBgmSource != null) + ", Clip: " + (gameplayBgmSource?.clip?.name ?? "null") + ", Playing: " + isGameplayMusicPlaying);
-        }
     }
 
     public void PlayLobbyMusic()
     {
-        if (lobbyBgmSource != null && lobbyBgmSource.clip != null && !isLobbyMusicPlaying)
+        if (lobbyBgmSource != null && lobbyBgmSource.clip != null && !lobbyBgmSource.isPlaying)
         {
             lobbyBgmSource.Play();
             isLobbyMusicPlaying = true;
@@ -185,7 +198,7 @@ public class AudioManager : MonoBehaviour
     {
         if (gameplayBgmSource != null)
         {
-            gameplayBgmSource.volume = Mathf.Clamp01(volume); // 0-0.5 range
+            gameplayBgmSource.volume = Mathf.Clamp01(volume);
             Debug.Log("Gameplay BGM volume set to: " + gameplayBgmSource.volume);
         }
     }
@@ -194,7 +207,7 @@ public class AudioManager : MonoBehaviour
     {
         if (lobbyBgmSource != null)
         {
-            lobbyBgmSource.volume = Mathf.Clamp01(volume); // 0-0.5 range
+            lobbyBgmSource.volume = Mathf.Clamp01(volume);
             Debug.Log("Lobby BGM volume set to: " + lobbyBgmSource.volume);
         }
     }
@@ -204,6 +217,20 @@ public class AudioManager : MonoBehaviour
         if (effectSource != null && clip != null)
         {
             effectSource.PlayOneShot(clip, volume);
+            //test
+        }
+    }
+
+    public void PlayButtonClickSound()
+    {
+        if (buttonClickSound != null)
+        {
+            PlaySoundEffect(buttonClickSound, 0.5f);
+            Debug.Log("Button click sound triggered: " + buttonClickSound.name); // Your log
+        }
+        else
+        {
+            Debug.LogWarning("No button click sound assigned in AudioManager");
         }
     }
 
@@ -212,7 +239,7 @@ public class AudioManager : MonoBehaviour
         if (effectSource != null)
         {
             effectSource.volume = Mathf.Clamp01(volume);
-            Debug.Log("Effect volume set to: " + effectSource.volume);
+            //Debug.Log("Effect volume set to: " + effectSource.volume);
         }
     }
 }

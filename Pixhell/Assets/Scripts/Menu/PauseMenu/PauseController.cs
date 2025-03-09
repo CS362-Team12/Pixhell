@@ -36,8 +36,8 @@ public class PauseController : MonoBehaviour
         {
             lobbyBgmSlider.onValueChanged.AddListener(SetLobbyBGMVolume);
             lobbyBgmSlider.minValue = 0f;
-            lobbyBgmSlider.maxValue = 0.15f;
-            lobbyBgmSlider.value = 0.015f; // Lobby default
+            lobbyBgmSlider.maxValue = 0.3f;
+            lobbyBgmSlider.value = 0.08f; // Lobby default
             Debug.Log("Lobby BGM Slider initialized");
         }
     }

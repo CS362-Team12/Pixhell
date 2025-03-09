@@ -110,15 +110,18 @@ public class Enemy : MonoBehaviour
             var currState = GetCurrentState();
             if (currState == MOVING)
             {
+                animator.SetBool("is_moving", false);
                 Move();
             }
             else if (currState == ATTACKING)
             {
+                animator.SetBool("is_moving", false);
                 Attack();
             }
             else if (currState == IDLING)
             {
                 // If you wish to do something in the Idle phase
+                animator.SetBool("is_moving", false);
                 Idle();
             }
             else if (currState == CHARGING)

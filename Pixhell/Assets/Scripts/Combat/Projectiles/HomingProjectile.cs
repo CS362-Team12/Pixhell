@@ -20,9 +20,9 @@ public class HomingProjectile : EnemyProjectile
         float targetAngle = Mathf.Atan2(optimalDirection.y, optimalDirection.x) * Mathf.Rad2Deg;
         float currentAngle = transform.eulerAngles.z;
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
-        Debug.Log("Angles " + angleDifference);
+        // Debug.Log("Angles " + angleDifference);
         float rotationStep = Mathf.Clamp(angleDifference, -rotationSpeed * Time.deltaTime, rotationSpeed * Time.deltaTime);
-        Debug.Log("Set " + rotationStep);
+        // Debug.Log("Set " + rotationStep);
         transform.rotation = Quaternion.Euler(0, 0, currentAngle + rotationStep);
         rigidbody2d.linearVelocity = transform.right * rigidbody2d.linearVelocity.magnitude;
 

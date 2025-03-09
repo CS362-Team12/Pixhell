@@ -25,7 +25,7 @@ public class Gluttony : Enemy
     private IEnumerator AttackCoroutine()
     {
         // Shoots volleys of bullets
-        animator.SetTrigger("attack");
+        animator.SetTrigger("attack1");
 
         // Wait for the animation to complete
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length -.5f);
@@ -59,7 +59,7 @@ public class Gluttony : Enemy
 
     private IEnumerator HomingAttackCoroutine()
     {
-        animator.SetTrigger("attack");
+        animator.SetTrigger("homing");
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length -.5f);
 

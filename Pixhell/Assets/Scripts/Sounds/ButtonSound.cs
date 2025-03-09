@@ -35,10 +35,5 @@ public class ButtonSound : MonoBehaviour
                 // Optional: AudioManager.Instance.PlayBackgroundMusic();
             }
         }
-        else
-        {
-            if (audioSource == null) Debug.LogError("AudioSource is null in ButtonSound on " + gameObject.name);
-            if (soundClip == null) Debug.LogError("soundClip is null in ButtonSound on " + gameObject.name);
-        }
     }
 }

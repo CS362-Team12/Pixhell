@@ -2646,7 +2646,7 @@ GameObject:
   - component: {fileID: 1631073179}
   - component: {fileID: 1631073178}
   m_Layer: 0
-  m_Name: Portal
+  m_Name: LimboPortal
   m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3096,6 +3096,154 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50dd97bba2fa9194ab32b25ee35a7866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1737622322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1737622326}
+  - component: {fileID: 1737622325}
+  - component: {fileID: 1737622324}
+  - component: {fileID: 1737622323}
+  m_Layer: 0
+  m_Name: GluttonyPortal
+  m_TagString: Portal
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1737622323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737622322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ca73b0ba06c9b48bd466881f9fd0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Gluttony
+--- !u!61 &1737622324
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737622322}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.03202939, y: 1.5822625}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.752975, y: 3.1894302}
+  m_EdgeRadius: 0
+--- !u!212 &1737622325
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737622322}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1737622326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737622322}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.5, y: -1.21, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1766868332
 GameObject:
   m_ObjectHideFlags: 0
@@ -14113,6 +14261,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.02
       objectReference: {fileID: 0}
+    - target: {fileID: 4256687501509901606, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
+      propertyPath: m_Size.x
+      value: 0.600441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256687501509901606, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
+      propertyPath: m_Offset.x
+      value: -6.5516605
+      objectReference: {fileID: 0}
     - target: {fileID: 5398714754583801497, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
       propertyPath: m_Name
       value: Right wall Tilemap
@@ -14120,6 +14276,10 @@ PrefabInstance:
     - target: {fileID: 8480765589192093506, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
       propertyPath: m_Name
       value: 'Right wall '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944878841790448632, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
+      propertyPath: isRight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9003832065153368482, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14235,13 +14395,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8959370677535990772, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5398714754583801497, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
       propertyPath: m_Name
       value: Left wall Tilemap
       objectReference: {fileID: 0}
     - target: {fileID: 8480765589192093506, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
       propertyPath: m_Name
-      value: Left wall grid
+      value: Left Wall
       objectReference: {fileID: 0}
     - target: {fileID: 9003832065153368482, guid: 0251fd84a924d9f4a969bbb782611f77, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14299,6 +14463,14 @@ PrefabInstance:
     - target: {fileID: 2216464481896498787, guid: 6b912cefacc629c4f96871d671d45ff7, type: 3}
       propertyPath: m_Name
       value: Bottom Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861841732777430909, guid: 6b912cefacc629c4f96871d671d45ff7, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6704178
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861841732777430909, guid: 6b912cefacc629c4f96871d671d45ff7, type: 3}
+      propertyPath: m_Offset.y
+      value: -3.294807
       objectReference: {fileID: 0}
     - target: {fileID: 4311109190728681325, guid: 6b912cefacc629c4f96871d671d45ff7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14397,6 +14569,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7400293430107696817, guid: ccb63470aa257ba44b463d232cd9db59, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4642963
+      objectReference: {fileID: 0}
+    - target: {fileID: 7400293430107696817, guid: ccb63470aa257ba44b463d232cd9db59, type: 3}
+      propertyPath: m_Offset.y
+      value: 4.8666534
+      objectReference: {fileID: 0}
     - target: {fileID: 8319232706337957683, guid: ccb63470aa257ba44b463d232cd9db59, type: 3}
       propertyPath: m_Name
       value: Upper Wall
@@ -14416,6 +14596,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1059163532}
   - {fileID: 1631073181}
+  - {fileID: 1737622326}
   - {fileID: 1541613756}
   - {fileID: 1798724555}
   - {fileID: 1134215100}

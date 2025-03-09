@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mage_homing_missile_0: 3787819355491432321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

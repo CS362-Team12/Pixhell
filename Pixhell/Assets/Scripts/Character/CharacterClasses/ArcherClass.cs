@@ -39,7 +39,7 @@ public class ArcherClass : PlayerController
         VolleyImage.fillAmount = 0f;
         special_2_time = -special_2_cooldown;
 
-        volley_arrow_count = 5;
+        volley_arrow_count = 10;
 
         GameObject test = GameObject.FindWithTag("IconManager");
         test.GetComponent<IconManager>().InsertIcon("Archer");

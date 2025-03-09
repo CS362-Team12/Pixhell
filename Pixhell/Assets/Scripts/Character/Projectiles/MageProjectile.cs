@@ -31,7 +31,7 @@ public class MageProjectile : MonoBehaviour
         }
         if (!other.CompareTag("ChainLightning"))
         {
-            //Explode();
+            Explode();
             Destroy(gameObject);
         }
 

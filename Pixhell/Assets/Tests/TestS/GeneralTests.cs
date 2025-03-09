@@ -15,6 +15,7 @@ public class GeneralTests : MonoBehaviour
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 
+    // James
     [UnityTest]
     public IEnumerator TestButtonClickTakesYouToSelectRunScene()
     {
@@ -27,11 +28,18 @@ public class GeneralTests : MonoBehaviour
         Assert.AreEqual("SelectRun", SceneManager.GetActiveScene().name);
     }
 
+    // Joshua
     [UnityTest]
-    public IEnumerator CheckIfPauseMenuPausesOnStartMenu()
+    public IEnumerator CheckIfArcherSpawns()
     {
+        SceneManager.LoadScene("CharacterSelect", LoadSceneMode.Single);
         yield return null;
-        Input.simulateKeyPress = KeyCode.Escape;
-        Assert.AreEqual(GameObject.Find("EventSystem").GetComponent<PauseController>().isPaused, false);
+        Assert.AreEqual(GameObject.FindWithTag("Player"), null);
+        yield return new WaitForSeconds(1);
+        GameObject archerButton = GameObject.Find("CharacterButton1");
+        archerButton.GetComponent<Button>().onClick.Invoke();
+        yield return new WaitForSeconds(1);
+        Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
+        Assert.AreEqual(GameObject.FindWithTag("Player").name, "ArcherVariant(Clone)");
     }
 }

@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 7bf37669e59202644b908ba732a5d214
+guid: b10ac60c4e14664489ca8da2dab60f1e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2973316298065051161
-    second: attack2_template1_0
-  - first:
-      213: 6688844176913359800
-    second: attack2_template1_1
+      213: 6267140613057735880
+    second: pngtree-mysterious-magic-circle-png-image_6532961_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack2_template1_0
+      name: pngtree-mysterious-magic-circle-png-image_6532961_0
       rect:
         serializedVersion: 2
-        x: 443
-        y: 211
-        width: 742
-        height: 1330
+        x: 0
+        y: 0
+        width: 1200
+        height: 1200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91efb077b67534920800000000000000
-      internalID: 2973316298065051161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack2_template1_1
-      rect:
-        serializedVersion: 2
-        x: 1041
-        y: 1349
-        width: 552
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b36cd2075c83dc50800000000000000
-      internalID: 6688844176913359800
+      spriteID: 8cceabece2b59f650800000000000000
+      internalID: 6267140613057735880
       vertices: []
       indices: 
       edges: []
@@ -159,9 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      attack2_template1_0: 2973316298065051161
-      attack2_template1_1: 6688844176913359800
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

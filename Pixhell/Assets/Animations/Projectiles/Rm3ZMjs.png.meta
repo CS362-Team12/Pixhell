@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 7bf37669e59202644b908ba732a5d214
+guid: b36bab8c02f5a48458f46fd7101ff71c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2973316298065051161
-    second: attack2_template1_0
-  - first:
-      213: 6688844176913359800
-    second: attack2_template1_1
+      213: -3747891180189875454
+    second: Rm3ZMjs_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: attack2_template1_0
+      name: Rm3ZMjs_0
       rect:
         serializedVersion: 2
-        x: 443
-        y: 211
-        width: 742
-        height: 1330
+        x: 0
+        y: 0
+        width: 1100
+        height: 1100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91efb077b67534920800000000000000
-      internalID: 2973316298065051161
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: attack2_template1_1
-      rect:
-        serializedVersion: 2
-        x: 1041
-        y: 1349
-        width: 552
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b36cd2075c83dc50800000000000000
-      internalID: 6688844176913359800
+      spriteID: 20386fb24d0dcfbc0800000000000000
+      internalID: -3747891180189875454
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      attack2_template1_0: 2973316298065051161
-      attack2_template1_1: 6688844176913359800
+      Rm3ZMjs_0: -3747891180189875454
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

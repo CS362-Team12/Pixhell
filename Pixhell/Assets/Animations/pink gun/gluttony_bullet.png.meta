@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gluttony_bullet_0: 3990007589299115193
+      gluttony_bullet_1: 2383578591510834821
+      gluttony_bullet_2: -5346751327252501533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

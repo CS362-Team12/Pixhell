@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - GameOverMenu
   - Portal
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Character
   - Under
   - Ground
-  - 
+  - Wall
   - 
   - 
   - 

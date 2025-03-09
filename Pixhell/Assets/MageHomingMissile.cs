@@ -23,7 +23,6 @@ public class MageHomingMissile : MonoBehaviour
         {
             rotateSpeed = (rotateSpeed <= 180f) ? rotateSpeed += Time.deltaTime * 60f : 180f;
             Vector2 optimalDirection = ((Vector2)(target.transform.position - transform.position)).normalized;
-            Debug.LogWarning(optimalDirection);
             float targetAngle = Mathf.Atan2(optimalDirection.y, optimalDirection.x) * Mathf.Rad2Deg;
             float currentAngle = transform.eulerAngles.z;
             float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
@@ -44,7 +43,6 @@ public class MageHomingMissile : MonoBehaviour
     public void setTarget(GameObject enemyTarget)
     {
         target = enemyTarget;
-        Debug.LogWarning(target);
     }
 
     void OnTriggerEnter2D(Collider2D other)

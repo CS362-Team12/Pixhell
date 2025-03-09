@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour
     // Run this function when taking damage from a damage source
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
+
         if (current_health <= 0 && !is_dead) {
             deaths++;
             GameObject gameOverController = GameObject.Find("EventSystem");
@@ -288,6 +289,12 @@ public class PlayerController : MonoBehaviour
     // Run this function when you don't want to trigger invinciblity frames
     public bool ChangeHealth(float health)
     {
+        var waveController = GameObject.Find("WaveController").GetComponent<Spawner>();
+        var completed = waveController.IsArenaCompleted();
+        if (completed) {
+            return false;
+        }
+
         if (is_vulnerable && health < 0 && Time.time - hit_time >= invincibility_time)
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);

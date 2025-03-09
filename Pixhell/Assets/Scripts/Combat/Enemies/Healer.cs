@@ -15,8 +15,11 @@ public class Healer : Enemy
     }
 
     public override void Start() {
+        
         base.Start();
-        speed *= .3f;
+        speed *= .4f;
+        max_health *= .75f;
+        health *= .75f;
     }
     
     public override void Move() {
@@ -26,7 +29,6 @@ public class Healer : Enemy
         
         var closestEnemy = FindClosestEnemy();
         if (closestEnemy) {
-            Debug.Log(closestEnemy);
             var step = speed*Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, closestEnemy.transform.position, step);
         } else {
@@ -51,7 +53,6 @@ public class Healer : Enemy
         foreach (GameObject obj in objectsWithTag)
         {
             // Skip itself and other healers
-            Debug.Log(obj.name);
             if (obj.name == "HealerObject(Clone)") {
                 continue;
             }

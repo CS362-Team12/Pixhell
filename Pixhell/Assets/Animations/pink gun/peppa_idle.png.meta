@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      peppa_idle_0: 6745344741233670053
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

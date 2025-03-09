@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      peppa_walk_0: 2350875260556216100
+      peppa_walk_1: 3627354099940475410
+      peppa_walk_2: 7309362065433465024
+      peppa_walk_3: 8314581289109504002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

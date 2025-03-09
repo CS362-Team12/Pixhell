@@ -713,6 +713,7 @@ GameObject:
   - component: {fileID: 1151276900}
   - component: {fileID: 1151276899}
   - component: {fileID: 1151276898}
+  - component: {fileID: 1151276902}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -842,13 +843,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151276896}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b829a7b89b1f184a8b388cbe122d141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 488144853}
-  soundClip: {fileID: 8300000, guid: 367bf9a26c3fe944b8e791020510a879, type: 3}
+  clickSound: {fileID: 8300000, guid: cc7a8b7988a029d499f12a946f841b20, type: 3}
 --- !u!1 &1230255450
 GameObject:
   m_ObjectHideFlags: 0

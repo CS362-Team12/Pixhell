@@ -100,11 +100,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         DodgeImage.fillAmount = 0f;
         StartImmune();
-
-        if (SceneManager.GetActiveScene().name == "Limbo")
-        {
-            AudioManager.Instance.PlayBackgroundMusic();
-        }
     }
 
     public virtual void ResetPlayerStats()

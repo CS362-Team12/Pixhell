@@ -9,6 +9,7 @@ TagManager:
   - GameOverMenu
   - Portal
   - IconManager
+  - AllowSpawns
   - ChainLightning
   - MageHomingMissile
   layers:

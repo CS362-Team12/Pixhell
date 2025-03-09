@@ -7,20 +7,21 @@ public class MageClass : PlayerController
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject projectilePrefab;
 
-    float special_1_cooldown = 2f;
+    float special_1_cooldown = 15f;
     float special_1_time;
     bool special_1_on_cooldown = false;
-    Image LightningImage;
+    
 
 
-    float special_2_cooldown = 2f;
+    float special_2_cooldown = 10f;
     float special_2_time;
     bool special_2_on_cooldown = false;
     public int missile_count;
-    
-    public GameObject MageHomingMissile;
+
+    Image LightningImage;
     Image HomingImage;
 
+    public GameObject MageHomingMissile;
     public ChainLightning chainLightning;
 
 

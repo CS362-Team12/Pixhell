@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class ArcherClass : PlayerController
 {
     public GameObject projectilePrefab;
-    float special_1_cooldown = 14f;
+    float special_1_cooldown = 12f;
     float special_1_time;
     bool special_1_on_cooldown = false;
     Image PiercingImage;
 
 
-    float special_2_cooldown = 10f;
+    float special_2_cooldown = 8f;
     float special_2_time;
     bool special_2_on_cooldown = false;
     int volley_arrow_count;

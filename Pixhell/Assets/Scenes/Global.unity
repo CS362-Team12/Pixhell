@@ -1571,8 +1571,8 @@ MonoBehaviour:
   archer_2: {fileID: 8211880219036761192, guid: 82b013815bf25bf41b731778463d68f1, type: 3}
   warrior_1: {fileID: 5908257470138330340, guid: 0ff9e324cb9ec9e48943f7f7fbf09b83, type: 3}
   warrior_2: {fileID: 874022971560964515, guid: 3084a3071cf0ee84783f2893826d35b6, type: 3}
-  mage_1: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
-  mage_2: {fileID: 7244790015186340409, guid: 4e51b95fbcd317d4cb931ab75a3c8e41, type: 3}
+  mage_1: {fileID: 1781937086033352542, guid: 4e5351264ff65104084c68fd1af12c53, type: 3}
+  mage_2: {fileID: 3787819355491432321, guid: 066dc9c0024ccfa47b50ded83ebc65ae, type: 3}
   player_c: 
 --- !u!1 &474341953
 GameObject:

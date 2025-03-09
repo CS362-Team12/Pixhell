@@ -8,7 +8,10 @@ TagManager:
   - Enemy
   - GameOverMenu
   - Portal
-  - Wall
+  - IconManager
+  - AllowSpawns
+  - ChainLightning
+  - MageHomingMissile
   layers:
   - Default
   - TransparentFX
@@ -29,7 +32,7 @@ TagManager:
   - Character
   - Under
   - Ground
-  - Wall
+  - 
   - 
   - 
   - 

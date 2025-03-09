@@ -283,6 +283,9 @@ public class PlayerController : MonoBehaviour
     // Run this function when you don't want to trigger invinciblity frames
     public bool ChangeHealth(float health)
     {
+        if (is_dead) {
+            return false;
+        }
         if (is_vulnerable && health < 0 && Time.time - hit_time >= invincibility_time)
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);

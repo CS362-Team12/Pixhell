@@ -5,29 +5,24 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    Rigidbody2D rigidbody2d;
-    float damage = 25.0f;
+    public Rigidbody2D rigidbody2d;
+    public float damage = 25.0f;
 
     // Awake is called when the Projectile GameObject is instantiated
-    void Awake()
+    public virtual void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 10f);
     }
 
-    void Update()
-    {
-
-    }
-
-    public void Launch(Vector2 direction, float force)
+    public virtual void Launch(Vector2 direction, float force)
     {
         rigidbody2d.AddForce(direction.normalized * force, ForceMode2D.Impulse);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         var target = other.GetComponent<PlayerController>(); 
         if (target != null)

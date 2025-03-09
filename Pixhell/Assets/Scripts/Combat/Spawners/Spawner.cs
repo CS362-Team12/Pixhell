@@ -85,9 +85,13 @@ public class Spawner : MonoBehaviour
         float timeToSpawn = float.Parse(parts[3]);
         float delay = float.Parse(parts[4]);
         yield return new WaitForSeconds(delay);
-        for (int i = 0; i < count; i++) {
+
+        // Fence Post: Spawn an enemy, then enter the waiting lool
+        // 3 enemies spawn: spawn, wait, spawn, wait, spawn
+        SpawnEnemy(enemyType);
+        for (int i = 0; i < count-1; i++) {
+            yield return new WaitForSeconds(timeToSpawn / (count - 1));
             SpawnEnemy(enemyType);
-            yield return new WaitForSeconds(timeToSpawn / count);
         }
         spawnersRunning -= 1;
     }

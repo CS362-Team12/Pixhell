@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 384362155}
   - component: {fileID: 384362153}
   - component: {fileID: 384362157}
+  - component: {fileID: 384362158}
   m_Layer: 5
   m_Name: CharacterButton1
   m_TagString: Untagged
@@ -625,7 +626,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 384362155}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 384362158}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &384362155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +691,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 384362153}
   character: Archer
+--- !u!114 &384362158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384362150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b829a7b89b1f184a8b388cbe122d141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: 2a7dfdef1d637fd499fb8486a12ca50b, type: 3}
 --- !u!1 &492565817
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,6 +1061,7 @@ GameObject:
   - component: {fileID: 1012898011}
   - component: {fileID: 1012898010}
   - component: {fileID: 1012898013}
+  - component: {fileID: 1012898014}
   m_Layer: 5
   m_Name: CharacterButton3
   m_TagString: Untagged
@@ -1109,7 +1136,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1012898011}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1012898014}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1012898011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,6 +1201,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1012898010}
   character: Mage
+--- !u!114 &1012898014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012898007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b829a7b89b1f184a8b388cbe122d141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: 2a7dfdef1d637fd499fb8486a12ca50b, type: 3}
 --- !u!1 &1139159308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1816,7 @@ GameObject:
   - component: {fileID: 1459372241}
   - component: {fileID: 1459372240}
   - component: {fileID: 1459372243}
+  - component: {fileID: 1459372244}
   m_Layer: 5
   m_Name: CharacterButton2
   m_TagString: Untagged
@@ -1838,7 +1891,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1459372241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1459372244}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlayClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1459372241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,6 +1956,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1459372240}
   character: Warrior
+--- !u!114 &1459372244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459372237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b829a7b89b1f184a8b388cbe122d141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: 2a7dfdef1d637fd499fb8486a12ca50b, type: 3}
 --- !u!1 &1582190086
 GameObject:
   m_ObjectHideFlags: 0

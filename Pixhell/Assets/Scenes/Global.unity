@@ -1569,14 +1569,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archer_1: {fileID: 7438238293846639985, guid: 3764f19aa196fb449be94736a3d7996f, type: 3}
   archer_2: {fileID: 8211880219036761192, guid: 82b013815bf25bf41b731778463d68f1, type: 3}
-  warrior_1: {fileID: -6211648682532063752, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
-  warrior_2: {fileID: -2164224423321271568, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
-  mage_1: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
-  mage_2: {fileID: 7244790015186340409, guid: 4e51b95fbcd317d4cb931ab75a3c8e41, type: 3}
-  SpecialOneIcon: {fileID: 0}
-  SpecialOneCD: {fileID: 0}
-  SpecialTwoIcon: {fileID: 0}
-  SpecialTwoCD: {fileID: 0}
+  archer_dash: {fileID: 7698785630747174561, guid: 21e3bf5fa9734bd479dbfdb8343ad637, type: 3}
+  warrior_1: {fileID: 5908257470138330340, guid: 0ff9e324cb9ec9e48943f7f7fbf09b83, type: 3}
+  warrior_2: {fileID: 874022971560964515, guid: 3084a3071cf0ee84783f2893826d35b6, type: 3}
+  warrior_dash: {fileID: 2501182836106491185, guid: 74d9424bace3e0b4d9c108ae49eb2564, type: 3}
+  mage_1: {fileID: 1781937086033352542, guid: 4e5351264ff65104084c68fd1af12c53, type: 3}
+  mage_2: {fileID: 3787819355491432321, guid: 066dc9c0024ccfa47b50ded83ebc65ae, type: 3}
+  mage_dash: {fileID: -7059116154090591493, guid: 9db9108f55f77b74c917c730181ff774, type: 3}
   player_c: 
 --- !u!1 &474341953
 GameObject:
@@ -3041,7 +3040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.19995117, y: -6}
+  m_AnchoredPosition: {x: 0.19995117, y: -6.000061}
   m_SizeDelta: {x: 1582.5999, y: 791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817634561
@@ -6724,7 +6723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.19995117, y: -6}
+  m_AnchoredPosition: {x: 0.19995117, y: -6.000061}
   m_SizeDelta: {x: 1582.5999, y: 791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1962207138
@@ -6799,7 +6798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.20019531, y: -6}
+  m_AnchoredPosition: {x: 0.20019531, y: -6.000061}
   m_SizeDelta: {x: 1582.5999, y: 791}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999951516

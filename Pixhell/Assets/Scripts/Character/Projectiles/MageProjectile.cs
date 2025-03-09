@@ -25,13 +25,17 @@ public class MageProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Enemy target = other.GetComponent<Enemy>();
-        if (target != null)
+        var target = other.GetComponent<Enemy>();
+        if (target != null )
         {
             target.TakeDamage(damage + damage*aoeMult);  // Call the TakeDamage method
         }
-        Explode(target);
-        Destroy(gameObject);
+        if (!other.CompareTag("ChainLightning"))
+        {
+            Explode(target);
+            Destroy(gameObject);
+        }
+
     }
 
     void Explode(Enemy objectHit)

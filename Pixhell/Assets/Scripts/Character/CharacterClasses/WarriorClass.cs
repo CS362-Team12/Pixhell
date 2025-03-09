@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 
 public class WarriorClass : PlayerController
@@ -13,6 +13,23 @@ public class WarriorClass : PlayerController
     [Header("Warrior Audio")]
     [SerializeField] private AudioClip warriorAttackSound;
 
+    // Rage for 5 sec, heal 4% missing health for every enemy hit
+    float special_1_cooldown = 30f;
+    float special_1_time;
+    bool special_1_on_cooldown = false;
+    bool is_raging = false;
+
+    // Next Attack deals 50% more damage
+    float special_2_cooldown = 4f;
+    float special_2_time;
+    bool special_2_on_cooldown = false;
+    bool is_enhanced = false;
+
+    Image RageImage;
+    Image EnhanceImage;
+
+    public ParticleSystem particle;
+
     protected override void Start()
     {
         base.Start();
@@ -20,6 +37,15 @@ public class WarriorClass : PlayerController
         current_health = max_health;
         attack_speed_mult *= 1.2f;
         speed_mult *= 1f;
+
+        RageImage = GameObject.Find("SpecialOneOnCooldown").GetComponent<Image>();
+        RageImage.fillAmount = 0f;
+        special_1_time = -special_1_cooldown;
+
+        EnhanceImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
+        EnhanceImage.fillAmount = 0f;
+        special_2_time = -special_2_cooldown;
+
         GameObject test = GameObject.FindWithTag("IconManager");
         test.GetComponent<IconManager>().InsertIcon("Warrior");
     }
@@ -33,7 +59,36 @@ public class WarriorClass : PlayerController
     protected override void Update()
     {
         base.Update();
-        
+        if (SpecialOne.IsPressed())
+        {
+            Special1();
+            special_1_on_cooldown = true;
+        }
+        if (Time.time - special_1_time > 5f)
+        {
+            is_raging = false;
+        }
+        if (special_1_on_cooldown)
+        {
+            RageImage.fillAmount = (special_1_cooldown - Time.time + special_1_time) / special_1_cooldown;
+            if (RageImage.fillAmount == 0f)
+            {
+                special_1_on_cooldown = false;
+            }
+        }
+        if (SpecialTwo.IsPressed())
+        {
+            Special2();
+            special_2_on_cooldown = true;
+        }
+        if (special_2_on_cooldown)
+        {
+            EnhanceImage.fillAmount = (special_2_cooldown - Time.time + special_2_time) / special_2_cooldown;
+            if (EnhanceImage.fillAmount == 0f)
+            {
+                special_2_on_cooldown = false;
+            }
+        }
     }
     protected override void BasicAttack(Vector2 move)
     {
@@ -91,10 +146,24 @@ public class WarriorClass : PlayerController
                         Enemy target = enemy.GetComponent<Enemy>();
                         if (target != null)
                         {
-                            target.TakeDamage(damage * damage_mult);
+                            if (is_raging)
+                            {
+                                current_health += (float)System.Math.Round(.04f * (max_health - current_health), 2);
+                            }
+                            if (is_enhanced)
+                            {
+                                damage_mult += .5f;
+                                target.TakeDamage(damage * damage_mult);
+                                damage_mult -= .5f;
+                            }
+                            else
+                            {
+                                target.TakeDamage(damage * damage_mult);
+                            }
                         }
                     }
                 }
+                is_enhanced = false;
             }
         }
     }
@@ -105,19 +174,37 @@ public class WarriorClass : PlayerController
         Animator anim = slash.GetComponent<Animator>();
         anim.SetFloat("AnimationSpeed", attack_speed_mult);
         float animationDuration = anim.GetCurrentAnimatorStateInfo(0).length / attack_speed_mult;
-        
+
         // Wait for the animation to finish
         yield return new WaitForSeconds(animationDuration);
 
         Destroy(slash);
     }
 
-    protected override void Special1(Vector2 move)
+    protected void Special1()
     {
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
         {
+            if (Time.time - special_1_time >= special_1_cooldown)
+            {
+                special_1_time = Time.time;
+                is_raging = true;
+                particle.Play();
+            }
+        }
+    }
 
+    protected void Special2()
+    {
+        if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
+        || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
+        {
+            if (Time.time - special_2_time >= special_2_cooldown)
+            {
+                special_2_time = Time.time;
+                is_enhanced = true;
+            }
         }
     }
 }

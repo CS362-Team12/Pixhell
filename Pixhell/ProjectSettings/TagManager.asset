@@ -9,6 +9,8 @@ TagManager:
   - GameOverMenu
   - Portal
   - IconManager
+  - ChainLightning
+  - MageHomingMissile
   layers:
   - Default
   - TransparentFX

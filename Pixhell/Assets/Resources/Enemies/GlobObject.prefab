@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 8087501735144925975}
   - component: {fileID: 3627714395175380483}
   - component: {fileID: 740865663721628840}
+  - component: {fileID: 7202386194318955862}
   m_Layer: 13
   m_Name: GlobObject
   m_TagString: Enemy
@@ -586,3 +587,30 @@ MonoBehaviour:
   player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
   deathSound: {fileID: 0}
   distanceCharged: 0
+--- !u!50 &7202386194318955862
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898763487051077133}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

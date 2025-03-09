@@ -32,7 +32,8 @@ public class EnemyProjectile : MonoBehaviour
             if (!target.is_dodging) {
                 Destroy(gameObject);
             }
-        } else {
+        } else if (!other.CompareTag("ChainLightning"))
+        {
             // Don't collide and destory itself from enemies
             var enemy = other.GetComponent<Enemy>();
             if (enemy == null) { 

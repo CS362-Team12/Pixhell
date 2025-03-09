@@ -195,6 +195,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   aoe_radius: 2
+  chainLightning: {fileID: 3209633526161924285, guid: 5bdc7618cf9fbde4197e19bc848e9bd9, type: 3}
 --- !u!95 &3896244132236052071
 Animator:
   serializedVersion: 7

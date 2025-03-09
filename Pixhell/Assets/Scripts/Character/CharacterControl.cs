@@ -186,6 +186,7 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.Instance.PlaySoundEffect(dodgeSound, 0.3f);
             animator.SetBool("is_dodging", true);
+            animator.SetTrigger("dodge");
             is_dodging = true;
             dodge_time = Time.time;
             on_cooldown = true;

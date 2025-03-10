@@ -7,6 +7,9 @@ public class CollectibleHealth : MonoBehaviour
     float health =25.0f;
     public Animator animator;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip pickupSound;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,6 +22,7 @@ public class CollectibleHealth : MonoBehaviour
     {
         
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController controller = other.GetComponent<PlayerController>();
@@ -26,6 +30,15 @@ public class CollectibleHealth : MonoBehaviour
         if (controller != null && controller.health < controller.max_health)
         {
             controller.ChangeHealth(health);
+            if (pickupSound != null)
+            {
+                AudioManager.Instance.PlaySoundEffect(pickupSound, 0.35f);
+                Debug.Log("Health pickup sound played: " + pickupSound.name);
+            }
+            else
+            {
+                Debug.LogWarning("No pickup sound assigned to CollectibleHealth");
+            }
             Destroy(gameObject);
         }
 

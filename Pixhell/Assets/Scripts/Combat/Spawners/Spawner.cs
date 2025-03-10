@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Spawner : MonoBehaviour
     int spawnersRunning;
     public int currentWave;
     public bool scriptCompleted;
+    Tilemap spawnTilemap;
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         StopAllCoroutines();
@@ -29,6 +31,8 @@ public class Spawner : MonoBehaviour
         if (File.Exists(waveDataFilePath)) {
             spawning = true;
             currentWave = 1;
+            GameObject grid = GameObject.FindWithTag("AllowSpawns");
+            spawnTilemap = grid.GetComponentInChildren<Tilemap>();
             StartCoroutine(RunSpawnScript());
             StartCoroutine(ArenaCompleted());
         }
@@ -82,18 +86,21 @@ public class Spawner : MonoBehaviour
     }
 
     IEnumerator SpawnLine(string line) {
-        spawnersRunning += 1;
         string[] parts = line.Split(',');
         string enemyType = parts[1];
         int count = int.Parse(parts[2]);
         float timeToSpawn = float.Parse(parts[3]);
         float delay = float.Parse(parts[4]);
+        if (count > 0) {
+        spawnersRunning += 1;
         yield return new WaitForSeconds(delay);
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count - 1; i++) {
             SpawnEnemy(enemyType);
             yield return new WaitForSeconds(timeToSpawn / count);
         }
+        SpawnEnemy(enemyType);
         spawnersRunning -= 1;
+        }
     }
 
     void SpawnEnemy(string enemyType) {
@@ -109,13 +116,24 @@ public class Spawner : MonoBehaviour
     {
         float xMod = 0f;
         float yMod = 0f;
-        while (Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.4f)
+        int overflowCatcher = 80;
+        while ((Mathf.Sqrt(xMod * xMod + yMod * yMod) < 0.4f) || !(OnTilemap(xMod, yMod)) && overflowCatcher > 0)
         {
             xMod = (UnityEngine.Random.value - 0.5f) * 2f;
             yMod = (UnityEngine.Random.value - 0.5f) * 2f;
+            overflowCatcher -= 1;
         }
         
         return player.transform.position + new Vector3(xMod * minSpawnDistance, yMod * minSpawnDistance, 0);
+    }
+
+    bool OnTilemap(float xMod, float yMod)
+    {
+        Vector3 spawnPosition = player.transform.position + new Vector3(xMod * minSpawnDistance, yMod * minSpawnDistance, 0);
+        Vector3Int posOnTilemap = spawnTilemap.WorldToCell(spawnPosition);
+        TileBase tile = spawnTilemap.GetTile(posOnTilemap);
+
+        return tile != null;
     }
 
     string[] GetWaveLines(string[] allLines) {

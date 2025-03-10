@@ -31,7 +31,7 @@ public class MageClass : PlayerController
         base.Start();
         max_health *= .75f;
         current_health = max_health;
-        damage *= .48f;
+        damage *= .35f;
         speed_mult *= 1.2f;
         attack_speed_mult *= 1.15f;
 

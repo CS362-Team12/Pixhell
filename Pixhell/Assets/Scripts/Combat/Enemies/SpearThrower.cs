@@ -23,6 +23,7 @@ public class SpearThrower : Enemy
         angle = Mathf.Atan2(relativePos.x, relativePos.y);
         speed = 1.1f;
         max_health = 200;
+        health = 200;
     }
     private IEnumerator AttackCoroutine()
     {

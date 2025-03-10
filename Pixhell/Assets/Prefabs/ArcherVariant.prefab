@@ -13,10 +13,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1283419919620192332, guid: 0d8d31d9cd69cfe42910985d39285ba0, type: 3}
-    - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: PiercingPrefab
       value: 
       objectReference: {fileID: 1283419919620192332, guid: c94596e30a0becc46bc95864e866648b, type: 3}
@@ -24,6 +20,10 @@ PrefabInstance:
       propertyPath: ProjectilePrefab
       value: 
       objectReference: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+    - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1283419919620192332, guid: 0d8d31d9cd69cfe42910985d39285ba0, type: 3}
     - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: SpecialOne.m_SingletonActionBindings.Array.size
       value: 1
@@ -77,12 +77,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 56925fe2f7d53354abffcf2f8b6e2d4e, type: 2}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1364484
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Size.y
-      value: 0.45
+      value: 0.3865407
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.04155826
       objectReference: {fileID: 0}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Offset.y
-      value: 0.03
+      value: -0.0017296374
       objectReference: {fileID: 0}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x

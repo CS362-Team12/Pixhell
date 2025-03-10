@@ -144,23 +144,13 @@ public class LoadCharacterSaves : MonoBehaviour
             string filePath = generalPath + "/" + randomString;
             using (StreamWriter writer = new StreamWriter(filePath))
             {
+                DateTime localDate = DateTime.Now;
+                writer.WriteLine("Last Played: " + localDate);
                 writer.WriteLine("Arena: 1");
                 writer.WriteLine("Coins: 0");
-                writer.WriteLine("Items:");
             }
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        // Create the new file with the unique filename
-        string filePath = generalPath + "/" + randomString;
-        using (StreamWriter writer = new StreamWriter(filePath))
-        {
-            DateTime localDate = DateTime.Now;
-            writer.WriteLine("Last played: " + localDate);
-            writer.WriteLine("Arena: 1");
-            writer.WriteLine("Coins: 0");
-        }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void EnterRun(string filePath) {

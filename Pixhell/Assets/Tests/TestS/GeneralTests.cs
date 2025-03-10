@@ -43,6 +43,48 @@ public class GeneralTests : MonoBehaviour
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "ArcherVariant(Clone)");
     }
 
+    // James
+    [UnityTest]
+    public IEnumerator TestRunSelectCreateButton()
+    {
+        yield return null;
+        SceneManager.LoadScene("SelectRun", LoadSceneMode.Single);
+        yield return null;
+        GameObject createButton = GameObject.Find("CreateNewRunButton");
+        GameObject[] objs = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        int count = 0;
+        foreach (GameObject obj in objs) 
+        { 
+            if (obj.name == "RunButtonPrefab(Clone)")
+            {
+                count++; 
+            }
+            
+        }
+        createButton.GetComponent<Button>().onClick.Invoke();
+        yield return null;
+        objs = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        int newCount = 0;
+        foreach (GameObject obj in objs) 
+        { 
+            if (obj.name == "RunButtonPrefab(Clone)")
+            {
+                newCount++;
+                Transform deleteButtonTransform = obj.transform.Find("DeleteRunButton");
+                Button deleteButton = deleteButtonTransform.GetComponent<Button>();
+                deleteButton.onClick.Invoke();
+            }
+            
+        }
+        if (count >= 3) {
+            Assert.AreEqual(newCount, count);
+        }
+        else {
+            Assert.AreEqual(newCount - 1, count);
+        }
+        
+    }
+
     // Brendan
     [UnityTest]
     public IEnumerator CheckIfMageSpawns()

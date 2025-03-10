@@ -304,6 +304,7 @@ public class Enemy : MonoBehaviour
             {
                 GetComponent<Collider2D>().enabled = false;
                 animator.SetTrigger("dead");
+                
                 // animator.SetBool("is_dead", true);
                 is_dead = true;
                 StartCoroutine(Die());

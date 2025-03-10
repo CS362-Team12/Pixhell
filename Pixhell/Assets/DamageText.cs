@@ -1,3 +1,4 @@
+using System.Xml;
 using UnityEngine;
 
 public class DamageText : MonoBehaviour
@@ -13,6 +14,6 @@ public class DamageText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.localScale = transform.parent.localScale.normalized * .5f/transform.parent.localScale.magnitude;
     }
 }

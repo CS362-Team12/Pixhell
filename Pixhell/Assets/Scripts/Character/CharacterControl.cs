@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             on_cooldown = true;
             is_vulnerable = false;
             float startTime = Time.time;
-            while (Time.time < startTime + dodge_duration)
+            while (Time.time < startTime + dodge_duration && is_dodging)
             {
                 Vector2 position = (Vector2)transform.position + move * 30f * Time.deltaTime * dash_mult * (speed_mult/4f);
                 transform.position = position;
@@ -246,6 +246,7 @@ public class PlayerController : MonoBehaviour
     // Run this function when taking damage from a damage source
     public bool TakeDamage(float damage) {
         bool damaged = ChangeHealth(-damage);
+
         if (current_health <= 0 && !is_dead) {
             deaths++;
             GameObject gameOverController = GameObject.Find("EventSystem");
@@ -284,9 +285,18 @@ public class PlayerController : MonoBehaviour
     // Run this function when you don't want to trigger invinciblity frames
     public bool ChangeHealth(float health)
     {
+
+        var waveController = GameObject.Find("WaveController").GetComponent<Spawner>();
+        var completed = waveController.IsArenaCompleted();
+        if (completed) {
+            return false;
+        }
+
+
         if (is_dead) {
             return false;
         }
+
         if (is_vulnerable && health < 0 && Time.time - hit_time >= invincibility_time)
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
@@ -348,6 +358,12 @@ public class PlayerController : MonoBehaviour
     public void UpdateAbilityDamage(float increase)
     {
         ability_damage_mult += increase;
+    }
+
+    public void SetIsDodging(bool isDodging)
+    {
+        is_dodging = isDodging;
+
     }
 
     public bool IsDead() {

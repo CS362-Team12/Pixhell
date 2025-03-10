@@ -23,6 +23,7 @@ public class Portal : MonoBehaviour
                 Debug.Log("TELEPORTING");
                 GameObject player = GameObject.FindWithTag("Player");
                 player.transform.position = transform.position + new Vector3(0, 0.25f, 0);
+                player.GetComponent<PlayerController>().SetIsDodging(false);
                 StartCoroutine(LoadSceneAfterAnimation(animator));
             }
         }

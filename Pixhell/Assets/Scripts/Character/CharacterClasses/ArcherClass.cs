@@ -116,7 +116,7 @@ public class ArcherClass : PlayerController
                 GameObject projectileObject = Instantiate(PiercingPrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                 PiercingArrow projectile = projectileObject.GetComponent<PiercingArrow>();
 
-                projectile.Launch(direction, 10f, projectile_speed_mult, damage + 10, damage_mult);
+                projectile.Launch(direction, 10f, projectile_speed_mult, damage + 10, ability_damage_mult);
             }
         }
     }
@@ -143,12 +143,17 @@ public class ArcherClass : PlayerController
                 {
                     GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                     ArcherProjectile projectile = projectileObject.GetComponent<ArcherProjectile>();
-                    projectile.Launch(arrow_direction, 6.5f, projectile_speed_mult, damage, damage_mult);
+                    projectile.Launch(arrow_direction, 6.5f, projectile_speed_mult, damage, ability_damage_mult);
                     x = arrow_direction.x;
                     y = arrow_direction.y;
                     arrow_direction = new Vector2(x * Mathf.Cos(angle) - y * Mathf.Sin(angle), x * Mathf.Sin(angle) + y * Mathf.Cos(angle));
                 }
             }
         }
+    }
+
+    public void IncreaseArrowVolley(float extraArrows) {
+        volley_arrow_count = (int) (extraArrows*volley_arrow_count);
+        Debug.Log(volley_arrow_count);
     }
 }

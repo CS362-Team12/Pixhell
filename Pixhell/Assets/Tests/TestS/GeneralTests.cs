@@ -43,6 +43,14 @@ public class GeneralTests : MonoBehaviour
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "ArcherVariant(Clone)");
     }
 
+    // Joshua
+    [UnityTest]
+    public IEnumerator CheckIfDEBUGIsOff()
+    {
+        yield return new WaitForSeconds(.5f); 
+        Assert.AreEqual(GameObject.Find("DebugObject(Clone)"), null);
+    }
+
     // Brendan
     [UnityTest]
     public IEnumerator CheckIfMageSpawns()
@@ -59,13 +67,15 @@ public class GeneralTests : MonoBehaviour
     }
 
     //Brendan 
+    [UnityTest]
     public IEnumerator CheckIfLustPauseWorks()
     {
         SceneManager.LoadScene("Lust", LoadSceneMode.Single);
         yield return null;
         Assert.AreEqual(GameObject.FindWithTag("PauseController"), null);
-        yield return new WaitForSeconds(.5);
+        yield return new WaitForSeconds(.5f);
     }
+
     // Chris
     [UnityTest]
     public IEnumerator CheckIfLimboLoads()
@@ -73,6 +83,7 @@ public class GeneralTests : MonoBehaviour
         yield return LoadSceneAndCheck("Limbo");
     }
 
+    // Chris
     [UnityTest]
     public IEnumerator CheckIfLustLoads()
     {

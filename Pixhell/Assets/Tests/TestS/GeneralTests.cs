@@ -57,4 +57,32 @@ public class GeneralTests : MonoBehaviour
         Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "MageVariant(Clone)");
     }
+    // Chris
+    [UnityTest]
+    public IEnumerator CheckIfLimboLoads()
+    {
+        yield return LoadSceneAndCheck("Limbo");
+    }
+
+    [UnityTest]
+    public IEnumerator CheckIfLustLoads()
+    {
+        yield return LoadSceneAndCheck("Lust");
+    }
+
+    private IEnumerator LoadSceneAndCheck(string sceneName)
+    {
+        // Load scene asynchronously
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+        // Wait until the scene is fully loaded
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        // Check if the active scene is the one we loaded
+        Assert.AreEqual(sceneName, SceneManager.GetActiveScene().name, $"Scene {sceneName} failed to load.");
+    }
 }
+

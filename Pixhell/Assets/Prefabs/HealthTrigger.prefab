@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: -6504962773899544055}
+  pickupSound: {fileID: 8300000, guid: 9ac7dfc9202e5b54fa875755ec084588, type: 3}
 --- !u!95 &-6504962773899544055
 Animator:
   serializedVersion: 7

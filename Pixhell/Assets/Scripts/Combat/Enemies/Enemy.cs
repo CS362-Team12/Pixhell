@@ -57,6 +57,12 @@ public class Enemy : MonoBehaviour
     // To add randomness, we store the current timer so we can add randomness to it
     float currTimer;
 
+    private bool panicState = false;
+    private float panicStateStartPercentage = .3f;
+    private float panicStateEndPercentage = .5f;
+    // Random offset so enemies don't stack on top of each other
+    private Vector3 panicRandomOffset;
+
     private Vector3 chargeStartPosition;
     private Vector3 chargeTargetPosition;
     private Vector3 chargeDirection;
@@ -84,22 +90,31 @@ public class Enemy : MonoBehaviour
         if (is_boss)
         {
             GameObject bar_canvas = GameObject.Find("BossBar");
-
-
             Transform bar_slider_transform = bar_canvas.transform.Find("Boss");
             GameObject bar_slider = bar_slider_transform.gameObject;
             bar_slider.SetActive(true);
 
             boss_script = bar_slider.GetComponent<BossBar>();
-
             Transform bar_text_trans = bar_slider.transform.Find("BossName");
             GameObject bar_text = bar_text_trans.gameObject;
 
             TextMeshProUGUI boss_text = bar_text.GetComponent<TextMeshProUGUI>();
-
             boss_text.text = boss_name;
             boss_script.update_boss(true);
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StartBossMusic();
+            }
         }
+
+        // Generate panic offset
+        var offset = .5f;
+        panicRandomOffset = new Vector3(
+            Random.Range(-offset, offset),
+            Random.Range(-offset, offset),
+            Random.Range(-offset, offset)
+        );
     }
 
     // Update is called once per frame
@@ -107,18 +122,47 @@ public class Enemy : MonoBehaviour
     {
         if (!is_dead)
         {
+            float x = gameObject.transform.position.x;
+            float player_x = player.transform.position.x;
+            if (((x > player_x && facingRight) || (x < player_x && !facingRight)))
+            {
+                Flip();
+            }
+
+            // Health panic state overrule
+            var healthPercentage = health/max_health;
+            if (healthPercentage <= panicStateStartPercentage || panicState) {
+                // Low health, find healing!
+                if (healthPercentage >= panicStateEndPercentage) {
+                    panicState = false;
+                }
+                else {
+                    panicState = true;
+                    var healFound = MoveToHealing();
+                    if (healFound) {
+                        // State timer resets to beginning of timer if healing is found
+                        currStateTime = 0;
+                        return;
+                    }
+                }
+                
+            }
+
             var currState = GetCurrentState();
             if (currState == MOVING)
             {
+                animator.SetBool("is_moving", false);
                 Move();
             }
             else if (currState == ATTACKING)
             {
+                animator.SetBool("is_moving", false);
                 Attack();
             }
             else if (currState == IDLING)
             {
                 // If you wish to do something in the Idle phase
+                animator.SetBool("is_moving", false);
                 Idle();
             }
             else if (currState == CHARGING)
@@ -138,12 +182,7 @@ public class Enemy : MonoBehaviour
                 HomingShot();
             }
 
-            float x = gameObject.transform.position.x;
-            float player_x = player.transform.position.x;
-            if (((x > player_x && facingRight) || (x < player_x && !facingRight)))
-            {
-                Flip();
-            }
+            
             //Update timer, with randomness so each enemy is a little different. 
             // Spawns should also spawn in increments if possible
             currStateTime += Time.deltaTime;
@@ -167,7 +206,53 @@ public class Enemy : MonoBehaviour
     public virtual void Move() 
     {
         var step = speed*Time.deltaTime;
+        animator.SetBool("is_moving", true);
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+    }
+
+    public bool MoveToHealing() {
+        var closestHealCircle = FindClosestHealCircle();
+        if (!closestHealCircle) {
+            return false;
+        }
+        // Move a little faster than normal, since we're reseting state timers
+        var step = speed*Time.deltaTime*1.4f;
+        animator.SetBool("is_moving", true);
+
+        // Add random panic offset so enemies don't stack
+        Vector3 targetPosition = closestHealCircle.transform.position + panicRandomOffset;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+        return true;
+    }  
+
+    GameObject FindClosestHealCircle() {
+        // Get all GameObjects with the specified tag
+        GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag("HealCircle");
+
+        GameObject closestObject = null;
+        float closestDistance = Mathf.Infinity;
+
+        // Current position
+        Vector3 currentPosition = transform.position;
+
+        // Loop through all objects with the tag
+        foreach (GameObject obj in objectsWithTag)
+        {
+            // Skip itself and other healers
+            if (obj.name == "HealerObject(Clone)") {
+                continue;
+            }
+
+            // Calculate distance
+            float distance = Vector3.Distance(currentPosition, obj.transform.position);
+
+            // Check if it's the closest
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestObject = obj;
+            }
+        }
+        return closestObject;
     }
 
     // Default, nothing as of right now
@@ -193,22 +278,26 @@ public class Enemy : MonoBehaviour
     }
 
     public virtual void HomingShot() {
-        
+        // Overridable
+    }
+
+    public void HealPercentage(float healPercentage) {
+        TakeDamage((int) max_health*healPercentage*-1);
     }
 
     public void TakeDamage(float damage) 
     {
-        if (!is_dead) {
+        if (damage < 0) {
+            health -= damage;
+            health = Mathf.Min(health, max_health);
+            Debug.Log("Healed for " + -damage + " health!");
+            UpdateHealthBar();
+            ShowDamageText(damage);
+            // Animator stuff if needed
+        } else if (!is_dead) {
             health -= damage;
 
-            if (is_boss)
-            {
-                boss_script.UpdateHealthBar(health, max_health);
-            } else
-            {
-                healthBar.UpdateHealthBar(health, max_health);
-            }
-
+            UpdateHealthBar();
             
             Debug.Log("Took " + damage + " damage!");
             animator.SetTrigger("hit");
@@ -229,6 +318,16 @@ public class Enemy : MonoBehaviour
 
     }
 
+    void UpdateHealthBar() {
+        if (is_boss)
+        {
+            boss_script.UpdateHealthBar(health, max_health);
+        } else
+        {
+            healthBar.UpdateHealthBar(health, max_health);
+        }
+    }
+
     void ShowDamageText(float damage)
     {
         GameObject DmgText = Instantiate(DamageText, transform.position, Quaternion.identity, transform);
@@ -246,7 +345,15 @@ public class Enemy : MonoBehaviour
             Debug.Log("FLIPS: " + DmgText.transform.localScale.x);
         }
         
-        DmgText.GetComponent<TextMesh>().text = damage.ToString();
+        
+        if (damage < 0) {
+            DmgText.GetComponent<TextMesh>().color = Color.green;
+            DmgText.GetComponent<TextMesh>().text = (-damage).ToString();
+        } else {
+            // Color defaults red
+            DmgText.GetComponent<TextMesh>().text = damage.ToString();
+        }
+
         Debug.Log("FLIPS AFTER: " + DmgText.transform.localScale.x);
     }
 
@@ -260,6 +367,11 @@ public class Enemy : MonoBehaviour
         {
             AudioManager.Instance.PlaySoundEffect(deathSound, 0.2f);
             Debug.Log("Enemy death sound played: " + (deathSound != null ? deathSound.name : "none"));
+
+            if (is_boss)
+            {
+                AudioManager.Instance.StopBossMusic();
+            }
         }
 
         // Wait for the animation to finish
@@ -289,6 +401,16 @@ public class Enemy : MonoBehaviour
         if (target != null && !is_dead)
         {
             target.TakeDamage(collisionDamage);  // Call the TakeDamage method
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        var target = other.GetComponent<PlayerController>(); 
+        Debug.Log("Collision!");
+        if (target != null && !is_dead)
+        {
+            target.TakeDamage(collisionDamage);
         }
     }
 

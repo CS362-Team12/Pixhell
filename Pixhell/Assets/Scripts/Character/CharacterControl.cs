@@ -101,11 +101,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         DodgeImage.fillAmount = 0f;
         StartImmune();
-
-        if (SceneManager.GetActiveScene().name == "Limbo")
-        {
-            AudioManager.Instance.PlayBackgroundMusic();
-        }
     }
 
     public virtual void ResetPlayerStats()
@@ -289,6 +284,9 @@ public class PlayerController : MonoBehaviour
     // Run this function when you don't want to trigger invinciblity frames
     public bool ChangeHealth(float health)
     {
+        if (is_dead) {
+            return false;
+        }
         if (is_vulnerable && health < 0 && Time.time - hit_time >= invincibility_time)
         {
             current_health = Mathf.Clamp(current_health + health, 0, max_health);
@@ -356,7 +354,6 @@ public class PlayerController : MonoBehaviour
         return is_dead;
     }
 
-    // Basic attacks for players
     protected virtual void BasicAttack(Vector2 move)
     {
         Debug.Log("Player Attacked");
@@ -364,13 +361,13 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Player Attacked with sound: " + (attackSound != null ? attackSound.name : "none"));
     }
 
-    protected virtual void Special1(Vector2 move)
-    {
-        Debug.Log("Player used ability 1");
-    }
+    //protected virtual void Special1()
+    //{
+    //    Debug.Log("Player used ability 1");
+    //}
 
-    protected virtual void Special2(int arrow_amount)
-    {
-        Debug.Log("Player used ability 2");
-    }
+    //protected virtual void Special2()
+    //{
+    //    Debug.Log("Player used ability 2");
+    //}
 }

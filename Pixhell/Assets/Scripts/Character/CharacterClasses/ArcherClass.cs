@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class ArcherClass : PlayerController
 {
     public GameObject projectilePrefab;
-    float special_1_cooldown = 14f;
+    float special_1_cooldown = 12f;
     float special_1_time;
     bool special_1_on_cooldown = false;
     Image PiercingImage;
 
 
-    float special_2_cooldown = 10f;
+    float special_2_cooldown = 8f;
     float special_2_time;
     bool special_2_on_cooldown = false;
     int volley_arrow_count;
@@ -33,13 +33,13 @@ public class ArcherClass : PlayerController
 
         PiercingImage = GameObject.Find("SpecialOneOnCooldown").GetComponent<Image>();
         PiercingImage.fillAmount = 0f;
-        special_1_time = -14f;
+        special_1_time = -special_1_cooldown;
 
         VolleyImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
         VolleyImage.fillAmount = 0f;
-        special_2_time = -10f;
+        special_2_time = -special_2_cooldown;
 
-        volley_arrow_count = 5;
+        volley_arrow_count = 10;
 
         GameObject test = GameObject.FindWithTag("IconManager");
         test.GetComponent<IconManager>().InsertIcon("Archer");
@@ -55,7 +55,7 @@ public class ArcherClass : PlayerController
         base.Update();
         if (SpecialOne.IsPressed())
         {
-            Special1(move);
+            Special1();
             special_1_on_cooldown = true;
         }
         if (special_1_on_cooldown)
@@ -101,7 +101,7 @@ public class ArcherClass : PlayerController
         }
     }
 
-    protected override void Special1(Vector2 move)
+    protected void Special1()
     {
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
@@ -121,7 +121,7 @@ public class ArcherClass : PlayerController
         }
     }
 
-    protected override void Special2(int arrow_amount)
+    protected void Special2(int arrow_amount)
     {
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))

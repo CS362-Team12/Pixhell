@@ -42,4 +42,19 @@ public class GeneralTests : MonoBehaviour
         Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "ArcherVariant(Clone)");
     }
+
+    // Brendan
+    [UnityTest]
+    public IEnumerator CheckIfMageSpawns()
+    {
+        SceneManager.LoadScene("CharacterSelect", LoadSceneMode.Single);
+        yield return null;
+        Assert.AreEqual(GameObject.FindWithTag("Player"), null);
+        yield return new WaitForSeconds(1);
+        GameObject archerButton = GameObject.Find("CharacterButton3");
+        archerButton.GetComponent<Button>().onClick.Invoke();
+        yield return new WaitForSeconds(1);
+        Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
+        Assert.AreEqual(GameObject.FindWithTag("Player").name, "MageVariant(Clone)");
+    }
 }

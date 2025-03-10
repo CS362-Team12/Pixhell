@@ -109,12 +109,13 @@ public class GeneralTests : MonoBehaviour
 
     //Brendan 
     [UnityTest]
-    public IEnumerator CheckIfLustPauseWorks()
+    public IEnumerator CheckIfFloorExists()
     {
         SceneManager.LoadScene("Lust", LoadSceneMode.Single);
         yield return null;
-        Assert.AreEqual(GameObject.FindWithTag("PauseController"), null);
-        yield return new WaitForSeconds(.5f);
+        Assert.NotNull(GameObject.Find("Grid"));
+        yield return null;
+
     }
 
     // Chris
@@ -235,7 +236,7 @@ public class GeneralTests : MonoBehaviour
         //Teleport player to portal and check if in lust after
         GameObject player = GameObject.FindWithTag("Player");
         GameObject portal = GameObject.Find("LimboPortal");
-        player.transform.position = new Vector3(10.5f, 0, 0);
+        player.transform.position = new Vector3(1.89f, 0.76f, 0);
         yield return new WaitForSeconds(3);
         Assert.AreEqual("Lust", SceneManager.GetActiveScene().name);
     }

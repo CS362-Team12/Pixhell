@@ -238,14 +238,19 @@ MonoBehaviour:
   is_teleporting: 1
   speed: 3
   is_dodging: 0
+  on_cooldown: 0
+  base_health: 100
   max_health: 100
   is_vulnerable: 1
+  deaths: 0
   dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
   damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
   playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}
   animator: {fileID: 5980619562306250965}
   slash_prefab: {fileID: 0}
+  DodgeImage: {fileID: 0}
   projectilePrefab: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+  PiercingPrefab: {fileID: 0}
 --- !u!114 &-682028510724069188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +367,8 @@ MonoBehaviour:
   is_teleporting: 0
   speed: 3
   is_dodging: 0
+  on_cooldown: 0
+  base_health: 100
   max_health: 100
   is_vulnerable: 1
   deaths: 0
@@ -370,6 +377,7 @@ MonoBehaviour:
   playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}
   animator: {fileID: 5980619562306250965}
   slash_prefab: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
+  DodgeImage: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8192
@@ -490,13 +498,17 @@ MonoBehaviour:
   is_teleporting: 0
   speed: 3
   is_dodging: 0
+  on_cooldown: 0
+  base_health: 100
   max_health: 100
   is_vulnerable: 1
+  deaths: 0
   dodgeSound: {fileID: 8300000, guid: 1b60741c66353744aa3a6774dbd331c2, type: 3}
   damageSound: {fileID: 8300000, guid: ffd4a61f7a800514a943ade214997919, type: 3}
   playerdeathSound: {fileID: 8300000, guid: 342e95aea2fe6684d9d45a1465410334, type: 3}
   animator: {fileID: 5980619562306250965}
   slash_prefab: {fileID: 1938982435507245981, guid: 9b61e7af6d158724eaa196d1507bcaf5, type: 3}
+  DodgeImage: {fileID: 0}
   projectilePrefab: {fileID: 1283419919620192332, guid: f0468a0b0db74c5418f6a5abed2e9606, type: 3}
 --- !u!61 &6745676285347251144
 BoxCollider2D:
@@ -511,7 +523,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

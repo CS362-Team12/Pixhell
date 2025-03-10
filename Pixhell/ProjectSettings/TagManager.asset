@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - GameOverMenu
   - Portal
+  - Wall
   - IconManager
   - AllowSpawns
   - ChainLightning
@@ -32,7 +33,7 @@ TagManager:
   - Character
   - Under
   - Ground
-  - 
+  - Wall
   - 
   - 
   - 

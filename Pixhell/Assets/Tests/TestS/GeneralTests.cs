@@ -109,12 +109,13 @@ public class GeneralTests : MonoBehaviour
 
     //Brendan 
     [UnityTest]
-    public IEnumerator CheckIfLustPauseWorks()
+    public IEnumerator CheckIfFloorExists()
     {
         SceneManager.LoadScene("Lust", LoadSceneMode.Single);
         yield return null;
-        Assert.AreEqual(GameObject.FindWithTag("PauseController"), null);
-        yield return new WaitForSeconds(.5f);
+        Assert.NotNull(GameObject.Find("Grid"));
+        yield return null;
+
     }
 
     // Chris

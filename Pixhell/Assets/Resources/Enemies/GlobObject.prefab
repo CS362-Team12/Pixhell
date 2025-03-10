@@ -422,8 +422,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.9768, y: 0, z: 0}
-  m_LocalScale: {x: 3.0756, y: 3.0756, z: 3.0756}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8197011979528108}
   m_Father: {fileID: 0}
@@ -541,7 +541,7 @@ PolygonCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.32999998, y: 0, z: 0.41, w: 0.58}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.28, y: 0.96}
     newSize: {x: 0.64, y: 0.64}
@@ -585,7 +585,7 @@ MonoBehaviour:
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   healthBar: {fileID: 6058316037654601533}
   player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
   distanceCharged: 0
 --- !u!50 &7202386194318955862
 Rigidbody2D:

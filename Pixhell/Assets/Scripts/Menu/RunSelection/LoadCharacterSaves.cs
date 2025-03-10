@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using System.Linq;
 using TMPro;
+using System.Collections;
 
 public class LoadCharacterSaves : MonoBehaviour
 {
@@ -77,6 +78,9 @@ public class LoadCharacterSaves : MonoBehaviour
 
                 buttonRect.anchoredPosition = new Vector2(buttonPositionX, 0); // Add gap and position the button
 
+                Button deleteButton = newButton.transform.Find("DeleteRunButton").GetComponent<Button>();
+                
+                deleteButton.onClick.AddListener(() => DeleteRun(filePath));
                 runCount++; // Increment the run count after positioning each button
             }
         } 
@@ -118,16 +122,33 @@ public class LoadCharacterSaves : MonoBehaviour
         // Used to generate a new, fresh run
         // Called when user presses +New button
         // Add the new run to the existing panel
-        string generalPath = path + "/Runs";
-
-        string[] allFiles = Directory.GetFiles(generalPath, "*", SearchOption.TopDirectoryOnly);
-        // Go through all run files in this directory
-        // For each one, add to existing list of runs in the menu (some kind of scroll thing that shows runs you can click on
-        string randomString = Pixhell.HelperFunctions.HelperFunctions.GenerateRandomString(10) + ".txt";
-        // Ensure that the filename doesn't already exist
-        while (Array.Exists(allFiles, file => Path.GetFileName(file) == randomString))
+        if (runCount >= 3)
         {
-            randomString = Pixhell.HelperFunctions.HelperFunctions.GenerateRandomString(10) + ".txt";  // Regenerate filename if it exists
+            StartCoroutine(ShowWarningText("You must delete an existing run to create a new one!", 1.5f));
+
+        }
+        else {
+            string generalPath = path + "/Runs";
+
+            string[] allFiles = Directory.GetFiles(generalPath, "*", SearchOption.TopDirectoryOnly);
+            // Go through all run files in this directory
+            // For each one, add to existing list of runs in the menu (some kind of scroll thing that shows runs you can click on
+            string randomString = Pixhell.HelperFunctions.HelperFunctions.GenerateRandomString(10) + ".txt";
+            // Ensure that the filename doesn't already exist
+            while (Array.Exists(allFiles, file => Path.GetFileName(file) == randomString))
+            {
+                randomString = Pixhell.HelperFunctions.HelperFunctions.GenerateRandomString(10) + ".txt";  // Regenerate filename if it exists
+            }
+
+            // Create the new file with the unique filename
+            string filePath = generalPath + "/" + randomString;
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine("Arena: 1");
+                writer.WriteLine("Coins: 0");
+                writer.WriteLine("Items:");
+            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // Create the new file with the unique filename
@@ -156,5 +177,32 @@ public class LoadCharacterSaves : MonoBehaviour
         Destroy(tempButton);
 
         return width;
+    }
+
+    private IEnumerator ShowWarningText(string message, float duration)
+    {
+        // Create new Text GameObject
+        GameObject textObj = new GameObject("WarningText");
+        textObj.transform.SetParent(panelContainer.transform, false); // Attach to canvas
+
+        // Add Text component
+        TextMeshProUGUI textComponent = textObj.AddComponent<TextMeshProUGUI>();
+        textComponent.text = message;
+        textComponent.fontSize = 36;
+        textComponent.color = Color.red;
+        textComponent.alignment = TextAlignmentOptions.Center;
+        RectTransform rectTransform = textObj.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(0, 0);
+        rectTransform.sizeDelta = new Vector2(1000, 100);
+        // Wait for duration and destroy
+        yield return new WaitForSecondsRealtime(duration);
+        Destroy(textObj);
+    }
+
+
+    void DeleteRun(string filePath)
+    {
+        File.Delete(filePath);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

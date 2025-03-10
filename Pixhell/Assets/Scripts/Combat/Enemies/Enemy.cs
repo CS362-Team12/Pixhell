@@ -90,21 +90,22 @@ public class Enemy : MonoBehaviour
         if (is_boss)
         {
             GameObject bar_canvas = GameObject.Find("BossBar");
-
-
             Transform bar_slider_transform = bar_canvas.transform.Find("Boss");
             GameObject bar_slider = bar_slider_transform.gameObject;
             bar_slider.SetActive(true);
 
             boss_script = bar_slider.GetComponent<BossBar>();
-
             Transform bar_text_trans = bar_slider.transform.Find("BossName");
             GameObject bar_text = bar_text_trans.gameObject;
 
             TextMeshProUGUI boss_text = bar_text.GetComponent<TextMeshProUGUI>();
-
             boss_text.text = boss_name;
             boss_script.update_boss(true);
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StartBossMusic();
+            }
         }
 
         // Generate panic offset
@@ -348,10 +349,10 @@ public class Enemy : MonoBehaviour
         
         if (damage < 0) {
             DmgText.GetComponent<TextMesh>().color = Color.green;
-            DmgText.GetComponent<TextMesh>().text = (-damage).ToString();
+            DmgText.GetComponent<TextMesh>().text = (-damage).ToString("n2");
         } else {
             // Color defaults red
-            DmgText.GetComponent<TextMesh>().text = damage.ToString();
+            DmgText.GetComponent<TextMesh>().text = damage.ToString("n2");
         }
 
         Debug.Log("FLIPS AFTER: " + DmgText.transform.localScale.x);
@@ -367,6 +368,11 @@ public class Enemy : MonoBehaviour
         {
             AudioManager.Instance.PlaySoundEffect(deathSound, 0.2f);
             Debug.Log("Enemy death sound played: " + (deathSound != null ? deathSound.name : "none"));
+
+            if (is_boss)
+            {
+                AudioManager.Instance.StopBossMusic();
+            }
         }
 
         // Wait for the animation to finish

@@ -236,7 +236,7 @@ public class GeneralTests : MonoBehaviour
         //Teleport player to portal and check if in lust after
         GameObject player = GameObject.FindWithTag("Player");
         GameObject portal = GameObject.Find("LimboPortal");
-        player.transform.position = new Vector3(10.5f, 0, 0);
+        player.transform.position = new Vector3(1.89f, 0.76f, 0);
         yield return new WaitForSeconds(3);
         Assert.AreEqual("Lust", SceneManager.GetActiveScene().name);
     }

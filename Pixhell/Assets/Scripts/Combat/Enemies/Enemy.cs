@@ -216,7 +216,7 @@ public class Enemy : MonoBehaviour
             return false;
         }
         // Move a little faster than normal, since we're reseting state timers
-        var step = speed*Time.deltaTime*1.4f;
+        var step = speed*Time.deltaTime*1.7f;
         animator.SetBool("is_moving", true);
 
         // Add random panic offset so enemies don't stack

@@ -8,13 +8,27 @@ using System.Collections;
 public class Portal : MonoBehaviour
 {
     public string sceneToLoad;
-    // public Animator animator;
+    public float sceneNumber = 10;
+    public Sprite isActiveImage;
+    public Sprite notActiveImage;
+
+    void Start()
+    {
+        SpriteRenderer render = GetComponent<SpriteRenderer>();
+        if (sceneNumber <= GameManager.maxArena)
+        {
+            render.sprite = isActiveImage;
+        }
+        else{
+            render.sprite = notActiveImage;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         // animator = GetComponent<Animator>();
         
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && sceneNumber <= GameManager.maxArena)
         {   
             Animator animator = other.GetComponent<Animator>();
             if (!animator.GetBool("is_teleporting"))

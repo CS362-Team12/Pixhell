@@ -38,9 +38,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public bool IsArenaCompleted() {
+        return scriptCompleted && !player.GetComponent<PlayerController>().IsDead();
+    }
+
     IEnumerator ArenaCompleted()
     {
-        while (!scriptCompleted)
+        while (!IsArenaCompleted())
         {
             yield return null;
         }

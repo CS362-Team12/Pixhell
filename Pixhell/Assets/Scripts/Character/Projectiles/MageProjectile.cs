@@ -6,6 +6,7 @@ public class MageProjectile : MonoBehaviour
     float damage;
     public LayerMask enemy_hit;
     public float aoe_radius = 2f;
+    float aoeMult = .8f;
 
     // Awake is called when the Projectile GameObject is instantiated
     void Awake()
@@ -28,26 +29,26 @@ public class MageProjectile : MonoBehaviour
         var target = other.GetComponent<Enemy>();
         if (target != null )
         {
-            target.TakeDamage(damage);  // Call the TakeDamage method
+            target.TakeDamage(damage + damage*aoeMult);  // Call the TakeDamage method
         }
         if (!other.CompareTag("ChainLightning"))
         {
-            Explode();
+            Explode(target);
             Destroy(gameObject);
         }
 
     }
 
-    void Explode()
+    void Explode(Enemy objectHit)
     {
         Vector2 explosion_point = transform.position;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(explosion_point, aoe_radius, enemy_hit);
         foreach (Collider2D enemy in hitEnemies)
         {
             Enemy target = enemy.GetComponent<Enemy>();
-            if (target != null)
+            if (target != null && target != objectHit)
             {
-                target.TakeDamage(damage * .8f);
+                target.TakeDamage(damage*aoeMult);
             }
         }
 

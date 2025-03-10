@@ -9,6 +9,7 @@ public class PauseController : MonoBehaviour
     private string prevScene;
     public Slider bgmSlider;
     public Slider lobbyBgmSlider;
+    Spawner spawner;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class PauseController : MonoBehaviour
             lobbyBgmSlider.value = 0.08f; // Lobby default
             Debug.Log("Lobby BGM Slider initialized");
         }
+
+        spawner = GameObject.Find("WaveController").GetComponent<Spawner>();
     }
 
     void SetGameplayBGMVolume(float volume)
@@ -60,7 +63,7 @@ public class PauseController : MonoBehaviour
         {
             TogglePause(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && itemShopClosed)
+        else if (Input.GetKeyDown(KeyCode.Escape) && itemShopClosed && !spawner.IsArenaCompleted())
         {
             TogglePause();
         }

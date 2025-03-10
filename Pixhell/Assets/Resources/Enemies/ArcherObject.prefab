@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 8572317475000366003}
   - component: {fileID: 1580209906646987884}
   - component: {fileID: 2223985703466966044}
+  - component: {fileID: -2489152634688091940}
   m_Layer: 13
   m_Name: ArcherObject
   m_TagString: Enemy
@@ -423,7 +424,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -441,7 +442,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.084136344, y: -0.19898912}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -451,7 +452,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.19667973, y: 0.58664495}
   m_EdgeRadius: 0
 --- !u!114 &1580209906646987884
 MonoBehaviour:
@@ -468,14 +469,16 @@ MonoBehaviour:
   max_health: 100
   health: 100
   facingRight: 1
+  is_boss: 0
+  boss_name: 
   coinLevel: 1
   animator: {fileID: 2223985703466966044}
   XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   healthBar: {fileID: 3960859312315344120}
   player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
-  distanceCharged: 0
   deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
+  distanceCharged: 0
   projectilePrefab: {fileID: 4627103214006155261, guid: 88aa2d4373adc3747a3ba1c44a05a12f, type: 3}
   orbitRadius: 4
   orbitSpeed: 0.2
@@ -501,6 +504,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &-2489152634688091940
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085792645026659305}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8520794106074805314
 GameObject:
   m_ObjectHideFlags: 0

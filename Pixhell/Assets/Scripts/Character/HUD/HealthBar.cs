@@ -48,7 +48,7 @@ public class HealthBar : MonoBehaviour
             bars[i].gameObject.SetActive(i < showing);
         }
 
-        text.text = character.health + " / " + character.max_health;
+        text.text = Mathf.Round(character.health * 100) / 100 + " / " + Mathf.Round(character.max_health * 100) / 100;
     }
 
     void GenerateHealthBar() {

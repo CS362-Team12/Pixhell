@@ -8,7 +8,12 @@ TagManager:
   - Enemy
   - GameOverMenu
   - Portal
+  - Wall
   - IconManager
+  - AllowSpawns
+  - ChainLightning
+  - MageHomingMissile
+  - HealCircle
   layers:
   - Default
   - TransparentFX
@@ -21,7 +26,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Camera
   - 
   - Enemy
   - Over
@@ -29,7 +34,7 @@ TagManager:
   - Character
   - Under
   - Ground
-  - 
+  - Wall
   - 
   - 
   - 

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using InventoryClass;
 using System.Linq;
+using System;
 
 public static class GameManager {
     // Accessable Player info for current run

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class ArcherClass : PlayerController
 {
     public GameObject projectilePrefab;
-    float special_1_cooldown = 14f;
+    float special_1_cooldown = 8f;
     float special_1_time;
     bool special_1_on_cooldown = false;
     Image PiercingImage;
 
 
-    float special_2_cooldown = 10f;
+    float special_2_cooldown = 14f;
     float special_2_time;
     bool special_2_on_cooldown = false;
     int volley_arrow_count;
@@ -33,11 +33,11 @@ public class ArcherClass : PlayerController
 
         PiercingImage = GameObject.Find("SpecialOneOnCooldown").GetComponent<Image>();
         PiercingImage.fillAmount = 0f;
-        special_1_time = -14f;
+        special_1_time = -special_1_cooldown;
 
         VolleyImage = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
         VolleyImage.fillAmount = 0f;
-        special_2_time = -10f;
+        special_2_time = -special_2_cooldown;
 
         volley_arrow_count = 5;
 
@@ -55,7 +55,7 @@ public class ArcherClass : PlayerController
         base.Update();
         if (SpecialOne.IsPressed())
         {
-            Special1(move);
+            Special1();
             special_1_on_cooldown = true;
         }
         if (special_1_on_cooldown)
@@ -82,6 +82,7 @@ public class ArcherClass : PlayerController
     }
     protected override void BasicAttack(Vector2 move)
     {
+        // Big Arrow
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
         {
@@ -101,7 +102,7 @@ public class ArcherClass : PlayerController
         }
     }
 
-    protected override void Special1(Vector2 move)
+    protected void Special1()
     {
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
@@ -116,13 +117,14 @@ public class ArcherClass : PlayerController
                 GameObject projectileObject = Instantiate(PiercingPrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                 PiercingArrow projectile = projectileObject.GetComponent<PiercingArrow>();
 
-                projectile.Launch(direction, 10f, projectile_speed_mult, damage + 10, damage_mult);
+                projectile.Launch(direction, 10f, projectile_speed_mult, damage + 10, ability_damage_mult);
             }
         }
     }
 
-    protected override void Special2(int arrow_amount)
+    protected void Special2(int arrow_amount)
     {
+        // Volley
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())
         || (SprintAction.IsPressed() && stopTime >= minStopDuration && !DodgeAction.IsPressed()))
         {
@@ -143,12 +145,17 @@ public class ArcherClass : PlayerController
                 {
                     GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                     ArcherProjectile projectile = projectileObject.GetComponent<ArcherProjectile>();
-                    projectile.Launch(arrow_direction, 6.5f, projectile_speed_mult, damage, damage_mult);
+                    projectile.Launch(arrow_direction, 6.5f, projectile_speed_mult, damage, ability_damage_mult);
                     x = arrow_direction.x;
                     y = arrow_direction.y;
                     arrow_direction = new Vector2(x * Mathf.Cos(angle) - y * Mathf.Sin(angle), x * Mathf.Sin(angle) + y * Mathf.Cos(angle));
                 }
             }
         }
+    }
+
+    public void IncreaseArrowVolley(float extraArrows) {
+        volley_arrow_count = (int) (extraArrows*volley_arrow_count);
+        Debug.Log(volley_arrow_count);
     }
 }

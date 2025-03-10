@@ -19,7 +19,7 @@ public class SkeletonWarrior : Enemy
         Vector3 relativePos = transform.position - player.transform.position;
         angle = Mathf.Atan2(relativePos.x, relativePos.y);
         speed = 1.3f;
-        max_health *= 2.5;
+        max_health *= 2.5f;
         collisionDamage = 50;
         chargeDistance = 3f;
         coinLevel = 2;

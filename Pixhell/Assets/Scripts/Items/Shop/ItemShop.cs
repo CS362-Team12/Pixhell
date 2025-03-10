@@ -40,7 +40,7 @@ public class ItemShop : MonoBehaviour
 
     void OnMouseDown()
     {
-
+        Debug.Log("CLICKING");
         if (!shopShowing && !pauseController.isPaused) {
             ToggleUI();
         }

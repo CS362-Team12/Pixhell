@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 8087501735144925975}
   - component: {fileID: 3627714395175380483}
   - component: {fileID: 740865663721628840}
+  - component: {fileID: 7202386194318955862}
   m_Layer: 13
   m_Name: GlobObject
   m_TagString: Enemy
@@ -421,8 +422,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.9768, y: 0, z: 0}
-  m_LocalScale: {x: 3.0756, y: 3.0756, z: 3.0756}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8197011979528108}
   m_Father: {fileID: 0}
@@ -520,7 +521,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -584,5 +585,32 @@ MonoBehaviour:
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   healthBar: {fileID: 6058316037654601533}
   player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
   distanceCharged: 0
+--- !u!50 &7202386194318955862
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898763487051077133}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

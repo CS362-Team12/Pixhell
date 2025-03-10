@@ -8,18 +8,24 @@ public class IconManager : MonoBehaviour
     [Header("Icons")]
     public Sprite archer_1;
     public Sprite archer_2;
+    public Sprite archer_dash;
 
     public Sprite warrior_1;
     public Sprite warrior_2;
+    public Sprite warrior_dash;
 
     public Sprite mage_1;
     public Sprite mage_2;
+    public Sprite mage_dash;
 
     Image SpecialOneIcon;
     Image SpecialOneCD;
 
     Image SpecialTwoIcon;
     Image SpecialTwoCD;
+
+    Image DashIcon;
+    Image DashCD;
 
     public string player_c;
 
@@ -51,6 +57,9 @@ public class IconManager : MonoBehaviour
         SpecialTwoIcon = GameObject.Find("SpecialTwoIcon").GetComponent<Image>();
         SpecialTwoCD = GameObject.Find("SpecialTwoOnCooldown").GetComponent<Image>();
 
+        DashIcon = GameObject.Find("DashIcon").GetComponent<Image>();
+        DashCD = GameObject.Find("DashOnCooldown").GetComponent<Image>();
+
         Debug.Log(player_class);
         if (player_class == "Archer")
         {
@@ -59,6 +68,9 @@ public class IconManager : MonoBehaviour
 
             SpecialTwoIcon.sprite = archer_2;
             SpecialTwoCD.sprite = archer_2;
+
+            DashIcon.sprite = archer_dash;
+            DashCD.sprite = archer_dash;
         }
         else if (player_class == "Warrior")
         {
@@ -67,6 +79,9 @@ public class IconManager : MonoBehaviour
 
             SpecialTwoIcon.sprite = warrior_2;
             SpecialTwoCD.sprite = warrior_2;
+
+            DashIcon.sprite = warrior_dash;
+            DashCD.sprite = warrior_dash;
         }
         else
         {
@@ -75,6 +90,9 @@ public class IconManager : MonoBehaviour
 
             SpecialTwoIcon.sprite = mage_2;
             SpecialTwoCD.sprite = mage_2;
+
+            DashIcon.sprite = mage_dash;
+            DashCD.sprite = mage_dash;
         }
     }
 }

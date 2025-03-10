@@ -24,6 +24,50 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: missile_count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: chainLightning
+      value: 
+      objectReference: {fileID: 3209633526161924285, guid: 5bdc7618cf9fbde4197e19bc848e9bd9, type: 3}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: MageHomingMissile
+      value: 
+      objectReference: {fileID: 1283419919620192332, guid: 4b5edb85bbc3f3441b31d8cafa0cbc2b, type: 3}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialOne.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialTwo.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialOne.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 356b0365-60f4-4470-a1d2-552148f1160f
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialTwo.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 1ba4e8df-c283-4a4b-b7ba-299da38dbba8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialOne.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/q
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialTwo.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialOne.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Special One
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270268221461707039, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: SpecialTwo.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Special Two
+      objectReference: {fileID: 0}
     - target: {fileID: 3815007933092154987, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -34,11 +78,23 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: bf43efe714f9a5e4291f532f3a91ed74, type: 2}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Size.x
-      value: 0.6
+      value: 0.37819245
       objectReference: {fileID: 0}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_Size.y
-      value: 0.92
+      value: 0.84823847
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.026918396
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.055880785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -59,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978585362922117303, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 8640907151943126642, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_LocalScale.x

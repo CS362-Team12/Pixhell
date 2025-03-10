@@ -1,39 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ButtonSound : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public AudioClip soundClip;
+    [SerializeField] private AudioClip clickSound; // Assign in Inspector
 
-    void Start()
+    public void PlayClickSound()
     {
-        if (audioSource == null && AudioManager.Instance != null)
+        if (clickSound != null)
         {
-            AudioSource[] sources = AudioManager.Instance.GetComponents<AudioSource>();
-            if (sources.Length >= 2)
-            {
-                audioSource = sources[0];
-                Debug.Log("AudioSource assigned from AudioManager for effects on " + gameObject.name);
-            }
-            else
-            {
-                Debug.LogError("Not enough AudioSources on AudioManager for " + gameObject.name);
-            }
+            AudioManager.Instance.PlaySoundEffect(clickSound, 0.2f);
+            Debug.Log("Button sound played: " + clickSound.name);
         }
-    }
 
-    public void PlaySound()
-    {
-        if (audioSource != null && soundClip != null)
+        else
         {
-            audioSource.PlayOneShot(soundClip);
-            Debug.Log("Button sound played: " + soundClip.name);
-
-            if (gameObject.name.Contains("Start") && SceneManager.GetActiveScene().name == "StartMenu")
-            {
-                // Optional: AudioManager.Instance.PlayBackgroundMusic();
-            }
+            Debug.LogWarning("No click sound assigned to ButtonSound on " + gameObject.name);
         }
     }
 }

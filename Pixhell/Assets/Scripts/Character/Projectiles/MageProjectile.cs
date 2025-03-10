@@ -6,6 +6,7 @@ public class MageProjectile : MonoBehaviour
     float damage;
     public LayerMask enemy_hit;
     public float aoe_radius = 2f;
+    float aoeMult = .8f;
 
     // Awake is called when the Projectile GameObject is instantiated
     void Awake()
@@ -14,36 +15,40 @@ public class MageProjectile : MonoBehaviour
         Destroy(gameObject, 5f);
     }
 
-    public void Launch(Vector2 direction, float force, float force_mult, float dam, float dam_mult)
+    public void Launch(Vector2 direction, float force, float force_mult, float dam, float dam_mult, float aoe_mult)
     {
         rigidbody2d.AddForce(direction.normalized * (force * force_mult), ForceMode2D.Impulse);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
         damage = dam * dam_mult;
+        aoe_radius *= aoe_mult;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         var target = other.GetComponent<Enemy>();
-        if (target != null)
+        if (target != null )
         {
-            target.TakeDamage(damage);  // Call the TakeDamage method
-
+            target.TakeDamage(damage + damage*aoeMult);  // Call the TakeDamage method
         }
-        Explode();
-        Destroy(gameObject);
+        if (!other.CompareTag("ChainLightning"))
+        {
+            Explode(target);
+            Destroy(gameObject);
+        }
+
     }
 
-    void Explode()
+    void Explode(Enemy objectHit)
     {
         Vector2 explosion_point = transform.position;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(explosion_point, aoe_radius, enemy_hit);
         foreach (Collider2D enemy in hitEnemies)
         {
             Enemy target = enemy.GetComponent<Enemy>();
-            if (target != null)
+            if (target != null && target != objectHit)
             {
-                target.TakeDamage(damage * .8f);
+                target.TakeDamage(damage*aoeMult);
             }
         }
 

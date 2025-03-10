@@ -2577,10 +2577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterTag: Player
-  minX: -1.1
-  maxX: 2.5
-  minY: -1.5
-  maxY: 7
 --- !u!114 &1541613758
 MonoBehaviour:
   m_ObjectHideFlags: 0

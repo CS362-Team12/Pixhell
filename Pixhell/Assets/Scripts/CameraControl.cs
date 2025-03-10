@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Unity.Cinemachine;
 
 public class CameraFollow : MonoBehaviour
@@ -24,11 +25,13 @@ public class CameraFollow : MonoBehaviour
     private void Update()
     {
         cinemachineCamera = GetComponent<CinemachineCamera>();
-        
+        Scene activeScene = SceneManager.GetActiveScene();
+
         GameObject character = GameObject.FindGameObjectWithTag("Player");
         if (!character) {
             return;
         }
+
         cinemachineCamera.Follow = character.transform;
         cinemachineCamera.LookAt = character.transform;
     }

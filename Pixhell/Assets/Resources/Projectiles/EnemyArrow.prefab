@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34117602de05ad44e805d0e3c2e0290f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody2d: {fileID: 0}
+  damage: 25
 --- !u!212 &2313977334913436843
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,7 +126,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 40960
+    m_Bits: 43008
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -145,7 +147,7 @@ BoxCollider2D:
     m_Bits: 65536
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 34816
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

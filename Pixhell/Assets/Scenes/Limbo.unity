@@ -1153,7 +1153,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.2728484
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1178,7 +1178,7 @@ Transform:
   m_GameObject: {fileID: 1059163529}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.048, y: 0.227, z: -1}
+  m_LocalPosition: {x: -3.623, y: 0.217, z: -210}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2689,6 +2689,7 @@ MonoBehaviour:
   sceneNumber: 1
   isActiveImage: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
   notActiveImage: {fileID: -6554754374259841135, guid: be7c4856a4c8cbe4697ccb993e6fae65, type: 3}
+  teleportSound: {fileID: 8300000, guid: 13a569e63c5f7594ea60b2c01495a15f, type: 3}
 --- !u!61 &1631073179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3155,6 +3156,7 @@ MonoBehaviour:
   sceneNumber: 2
   isActiveImage: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
   notActiveImage: {fileID: -6554754374259841135, guid: be7c4856a4c8cbe4697ccb993e6fae65, type: 3}
+  teleportSound: {fileID: 8300000, guid: 13a569e63c5f7594ea60b2c01495a15f, type: 3}
 --- !u!61 &1737622324
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8976,7 +8978,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834366598}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

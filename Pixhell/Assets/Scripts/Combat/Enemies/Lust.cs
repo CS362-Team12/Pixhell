@@ -12,6 +12,7 @@ public class Lust : Enemy
         max_health = 1000f;
         collisionDamage = 35f;
         coinLevel = 3;
+        is_boss = true;
     }
     
 }

@@ -8,7 +8,9 @@ TagManager:
   - Enemy
   - GameOverMenu
   - Portal
+  - Wall
   - IconManager
+  - AllowSpawns
   - ChainLightning
   - MageHomingMissile
   layers:
@@ -31,7 +33,7 @@ TagManager:
   - Character
   - Under
   - Ground
-  - 
+  - Wall
   - 
   - 
   - 

@@ -348,10 +348,10 @@ public class Enemy : MonoBehaviour
         
         if (damage < 0) {
             DmgText.GetComponent<TextMesh>().color = Color.green;
-            DmgText.GetComponent<TextMesh>().text = (-damage).ToString();
+            DmgText.GetComponent<TextMesh>().text = (-damage).ToString("n2");
         } else {
             // Color defaults red
-            DmgText.GetComponent<TextMesh>().text = damage.ToString();
+            DmgText.GetComponent<TextMesh>().text = damage.ToString("n2");
         }
 
         Debug.Log("FLIPS AFTER: " + DmgText.transform.localScale.x);

@@ -13,10 +13,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1283419919620192332, guid: 0d8d31d9cd69cfe42910985d39285ba0, type: 3}
-    - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: PiercingPrefab
       value: 
       objectReference: {fileID: 1283419919620192332, guid: c94596e30a0becc46bc95864e866648b, type: 3}
@@ -24,6 +20,10 @@ PrefabInstance:
       propertyPath: ProjectilePrefab
       value: 
       objectReference: {fileID: 1283419919620192332, guid: 9409a939a8357ce40a9c883222fd9ca3, type: 3}
+    - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1283419919620192332, guid: 0d8d31d9cd69cfe42910985d39285ba0, type: 3}
     - target: {fileID: 138948448430177903, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: SpecialOne.m_SingletonActionBindings.Array.size
       value: 1
@@ -85,6 +85,10 @@ PrefabInstance:
       value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -103,6 +107,10 @@ PrefabInstance:
     - target: {fileID: 6745676285347251144, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978585362922117303, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 8640907151943126642, guid: 33640c6bd9defcb4ea50dadceefa058b, type: 3}
       propertyPath: m_LocalScale.x

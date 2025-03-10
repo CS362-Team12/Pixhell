@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 8942579116353257710}
   - component: {fileID: 1944510273008004324}
   - component: {fileID: 614507803088626535}
+  - component: {fileID: -4157317372354579035}
   m_Layer: 13
   m_Name: SkeletonWarriorObject
   m_TagString: Enemy
@@ -275,8 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24d0571dd12fa14285cd4b03ba58ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 100
-  health: 100
   facingRight: 1
   is_boss: 0
   boss_name: 
@@ -354,6 +353,33 @@ PolygonCollider2D:
       - {x: 0.08449627, y: -0.28445342}
       - {x: 0.07449627, y: -0.14445342}
   m_UseDelaunayMesh: 0
+--- !u!50 &-4157317372354579035
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4397012996904947353}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4489511420888346669
 GameObject:
   m_ObjectHideFlags: 0

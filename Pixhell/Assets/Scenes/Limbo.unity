@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 21562047}
   - component: {fileID: 21562049}
   - component: {fileID: 21562048}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 317053582}
   - component: {fileID: 317053584}
   - component: {fileID: 317053583}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: InfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 502209720}
   - component: {fileID: 502209722}
   - component: {fileID: 502209721}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: InfoImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 724335753}
   - component: {fileID: 724335755}
   - component: {fileID: 724335754}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1153,7 +1153,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.2728484
+  orthographic size: 2.8754673
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1178,7 +1178,7 @@ Transform:
   m_GameObject: {fileID: 1059163529}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.048, y: 0.227, z: -1}
+  m_LocalPosition: {x: -3.623, y: 0.217, z: -210}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1272,7 +1272,7 @@ GameObject:
   - component: {fileID: 1088592785}
   - component: {fileID: 1088592784}
   - component: {fileID: 1088592783}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: PlayerCoinsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 1198903175}
   - component: {fileID: 1198903177}
   - component: {fileID: 1198903176}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1839,7 +1839,7 @@ GameObject:
   - component: {fileID: 1335309584}
   - component: {fileID: 1335309586}
   - component: {fileID: 1335309585}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: InfoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1917,7 +1917,7 @@ GameObject:
   - component: {fileID: 1358546563}
   - component: {fileID: 1358546565}
   - component: {fileID: 1358546564}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2180,7 +2180,7 @@ GameObject:
   - component: {fileID: 1457384376}
   - component: {fileID: 1457384375}
   - component: {fileID: 1457384378}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: ItemShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2290,7 +2290,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2300,10 +2300,10 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1040439
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1040439
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 1505263489}
   - component: {fileID: 1505263488}
   - component: {fileID: 1505263487}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: CloseItemShopButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2577,10 +2577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterTag: Player
-  minX: -1.1
-  maxX: 2.5
-  minY: -1.5
-  maxY: 7
 --- !u!114 &1541613758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,7 +2816,7 @@ GameObject:
   - component: {fileID: 1684836280}
   - component: {fileID: 1684836282}
   - component: {fileID: 1684836281}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3003,7 +2999,7 @@ GameObject:
   - component: {fileID: 1728264659}
   - component: {fileID: 1728264658}
   - component: {fileID: 1728264661}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: BackPageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8560,7 +8556,7 @@ GameObject:
   - component: {fileID: 1789321147}
   - component: {fileID: 1789321146}
   - component: {fileID: 1789321145}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: PurchaseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8728,7 +8724,7 @@ GameObject:
   - component: {fileID: 1816289551}
   - component: {fileID: 1816289550}
   - component: {fileID: 1816289549}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: ItemShopUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8835,7 +8831,7 @@ GameObject:
   - component: {fileID: 1824055797}
   - component: {fileID: 1824055796}
   - component: {fileID: 1824055799}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: NextPageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8980,7 +8976,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834366598}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -9003,7 +8999,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -9023,7 +9019,9 @@ PolygonCollider2D:
       - {x: -6.669841, y: 5.436901}
       - {x: -6.636491, y: -3.942368}
       - {x: 12.206773, y: -4.0332613}
-      - {x: 12.171543, y: 5.3889856}
+      - {x: 12.174826, y: 1.2932312}
+      - {x: 12.143633, y: 5.419812}
+      - {x: 9.307829, y: 5.4520464}
   m_UseDelaunayMesh: 0
 --- !u!4 &1834366600
 Transform:
@@ -9051,7 +9049,7 @@ GameObject:
   - component: {fileID: 1836955573}
   - component: {fileID: 1836955575}
   - component: {fileID: 1836955574}
-  m_Layer: 14
+  m_Layer: 1
   m_Name: BlurPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14721,6 +14719,7 @@ SceneRoots:
   - {fileID: 1631073181}
   - {fileID: 1737622326}
   - {fileID: 1541613756}
+  - {fileID: 1834366600}
   - {fileID: 1798724555}
   - {fileID: 1134215100}
   - {fileID: 1427471753}
@@ -14744,4 +14743,3 @@ SceneRoots:
   - {fileID: 24320062334013077}
   - {fileID: 7121808484557839950}
   - {fileID: 1699004335}
-  - {fileID: 1834366600}

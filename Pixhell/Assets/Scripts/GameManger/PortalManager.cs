@@ -12,6 +12,9 @@ public class Portal : MonoBehaviour
     public Sprite isActiveImage;
     public Sprite notActiveImage;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip teleportSound;
+
     void Start()
     {
         SpriteRenderer render = GetComponent<SpriteRenderer>();
@@ -35,6 +38,12 @@ public class Portal : MonoBehaviour
             {
                 animator.SetBool("is_teleporting", true);
                 Debug.Log("TELEPORTING");
+
+                if (teleportSound != null && AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySoundEffect(teleportSound, 0.04f);
+                }
+
                 GameObject player = GameObject.FindWithTag("Player");
                 player.transform.position = transform.position + new Vector3(0, 0.25f, 0);
                 player.GetComponent<PlayerController>().SetIsDodging(false);

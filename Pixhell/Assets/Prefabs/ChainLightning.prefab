@@ -4975,6 +4975,7 @@ MonoBehaviour:
   chain_amount: 10
   endObject: {fileID: 0}
   particle: {fileID: -5869502522511049703}
+  chainLightningSound: {fileID: 8300000, guid: 0fd7fdd4d908a2e49802b5bf128eb988, type: 3}
 --- !u!1 &7664598862346907215
 GameObject:
   m_ObjectHideFlags: 0

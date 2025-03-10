@@ -25,8 +25,6 @@ public static class GameManager {
         inventory.resetInventory();
         using (StreamReader reader = new StreamReader(filePath)) 
         {
-            // Read date
-            string date = reader.ReadLine();
             // Read Arena
             maxArena = int.Parse(reader.ReadLine().Split(" ")[1]);
 
@@ -36,20 +34,20 @@ public static class GameManager {
             // Read Coins
             coins = int.Parse(coinLine.Split(" ")[1]);
             
-            //// Read Items
-            //string itemLine = reader.ReadLine().Substring(6);
-            //Debug.Log("ITEMLINE: " + itemLine);
-            //string[] items = itemLine.Split(',');
-            //Debug.Log("Item count: " + items.Length);
-            //for (int i = 0; i < items.Length; i++) {
-            //    string itemId = items[i];
-            //    Debug.Log("Current i for loop: " + i);
-            //    if (itemId.Length > 0) {
-            //        Debug.Log("Added item" +  items.Length);
-            //        inventory.addItem(int.Parse(itemId));
-            //    }
+            // Read Items
+            string itemLine = reader.ReadLine().Substring(6);
+            Debug.Log("ITEMLINE: " + itemLine);
+            string[] items = itemLine.Split(',');
+            Debug.Log("Item count: " + items.Length);
+            for (int i = 0; i < items.Length; i++) {
+                string itemId = items[i];
+                Debug.Log("Current i for loop: " + i);
+                if (itemId.Length > 0) {
+                    Debug.Log("Added item" +  items.Length);
+                    inventory.addItem(int.Parse(itemId));
+                }
             
-            //}
+            }
         }
     }
 
@@ -58,10 +56,10 @@ public static class GameManager {
         if (runIDPath != null) {
             using (StreamWriter writer = new StreamWriter(runIDPath))
             {
-                DateTime localDate = DateTime.Now;
-                writer.WriteLine("Last played: " +  localDate);
-                writer.WriteLine("Arena: " + maxArena);
-                writer.WriteLine("Coins: " + coins);
+            writer.WriteLine("Arena: " + maxArena);
+            writer.WriteLine("Coins: " + coins);
+            string idList = string.Join(",", inventory.items.Select(item => item.id.ToString()).ToArray());
+            writer.WriteLine("Items:" + idList);
             }
         }
     }

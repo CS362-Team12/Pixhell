@@ -1,10 +1,13 @@
 wave,enemy,count,time_to_spawn,delay_after_start_of_wave
-1,archer,4,30,3
+1,archer,4,25,3
 2,glob,6,20,0
-3,glob,5,30,0
-3,archer,5,30,0
+3,glob,5,28,0
+3,archer,5,28,0
+3,healer,1,1,10
 4,archer,8,35,0
 5,glob,12,40,0
+5,healer,2,10,10
 6,glob,6,60,4
 6,glob,2,2,0
 6,lust,1,0.1,4
+6,healer,2,10,10

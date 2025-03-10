@@ -22,7 +22,7 @@ public class SpearThrower : Enemy
         Vector3 relativePos = transform.position - player.transform.position;
         angle = Mathf.Atan2(relativePos.x, relativePos.y);
         speed = 1.1f;
-        max_health = 200;
+        max_health *= 2;
     }
     private IEnumerator AttackCoroutine()
     {

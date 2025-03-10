@@ -18,8 +18,8 @@ public class Healer : Enemy
         
         base.Start();
         speed *= .4f;
-        max_health *= .75f;
-        health *= .75f;
+        max_health *= .85f;
+        health *= .85f;
     }
     
     public override void Move() {

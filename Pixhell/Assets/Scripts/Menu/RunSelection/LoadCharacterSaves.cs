@@ -59,7 +59,7 @@ public class LoadCharacterSaves : MonoBehaviour
                 }
 
                 // Set the button's text
-                buttonText.text = "CLICK TO LOAD LOBBY\n\n\n\nBUTTON DESIGN IN PROGRESS\n" + firstLine + "\n" + filePath + "\n" + secondLine + "\n" + thirdLine;
+                buttonText.text = "CLICK TO LOAD \n LOBBY\n\n\n\n" + firstLine + "\n" + secondLine + "\n" + thirdLine;
                 Button button = newButton.GetComponent<Button>();
                 // Add button functionality
                 button.onClick.AddListener(() => EnterRun(filePath));
@@ -151,6 +151,16 @@ public class LoadCharacterSaves : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
+        // Create the new file with the unique filename
+        string filePath = generalPath + "/" + randomString;
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            DateTime localDate = DateTime.Now;
+            writer.WriteLine("Last played: " + localDate);
+            writer.WriteLine("Arena: 1");
+            writer.WriteLine("Coins: 0");
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void EnterRun(string filePath) {

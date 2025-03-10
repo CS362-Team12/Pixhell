@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
             on_cooldown = true;
             is_vulnerable = false;
             float startTime = Time.time;
-            while (Time.time < startTime + dodge_duration)
+            while (Time.time < startTime + dodge_duration && is_dodging)
             {
                 Vector2 position = (Vector2)transform.position + move * 30f * Time.deltaTime * dash_mult * (speed_mult/4f);
                 transform.position = position;
@@ -352,6 +352,11 @@ public class PlayerController : MonoBehaviour
     public void UpdateDamage(float increase)
     {
         damage_mult += increase;
+    }
+
+    public void SetIsDodging(bool isDodging)
+    {
+        is_dodging = isDodging;
     }
 
     public bool IsDead() {

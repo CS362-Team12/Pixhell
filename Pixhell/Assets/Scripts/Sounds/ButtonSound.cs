@@ -11,6 +11,7 @@ public class ButtonSound : MonoBehaviour
             AudioManager.Instance.PlaySoundEffect(clickSound, 0.2f);
             Debug.Log("Button sound played: " + clickSound.name);
         }
+
         else
         {
             Debug.LogWarning("No click sound assigned to ButtonSound on " + gameObject.name);

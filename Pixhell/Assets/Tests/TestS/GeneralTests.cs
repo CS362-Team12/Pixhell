@@ -254,5 +254,40 @@ public class GeneralTests : MonoBehaviour
         Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "WarriorVariant(Clone)");
     }
+
+    // Kiet
+    [UnityTest]
+    public IEnumerator selectRunLoadCharacterScene() {
+        yield return null;
+        SceneManager.LoadScene("SelectRun", LoadSceneMode.Single);
+        yield return null;
+        GameObject createButton = GameObject.Find("CreateNewRunButton");
+        GameObject[] objs = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        int count = 0;
+        createButton.GetComponent<Button>().onClick.Invoke();
+
+        objs = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        int newCount = 0;
+        foreach (GameObject obj in objs) 
+        { 
+            if (obj.name == "RunButtonPrefab(Clone)")
+            {
+                obj.GetComponent<Button>().onClick.Invoke();
+            }
+
+        }
+        yield return null;
+        Assert.AreEqual("CharacterSelect", SceneManager.GetActiveScene().name);
+    }
+
+    // Kiet
+    [UnityTest]
+    public IEnumerator testEventSystem() {
+        yield return null;
+        SceneManager.LoadScene("Limbo", LoadSceneMode.Single);
+        yield return null;
+        GameObject EventSystem = GameObject.Find("EventSystem");
+        Assert.NotNull(EventSystem);
+    }
 }
 

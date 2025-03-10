@@ -140,4 +140,72 @@ public class GeneralTests : MonoBehaviour
         }
         Assert.IsTrue(anyPlaying, "Background music should play in Limbo scene");
     }
+
+    // Tanush
+    [UnityTest]
+    public IEnumerator PortalTakesYouToLust()
+    {
+        // Get to Select Run Screen
+        yield return null;
+        GameObject startButton = GameObject.Find("StartButton");
+        yield return new WaitForSeconds(2);
+        Assert.AreEqual("StartMenu", SceneManager.GetActiveScene().name);
+        startButton.GetComponent<Button>().onClick.Invoke();
+        yield return null;
+
+
+
+        // Select run
+
+        // Clear all previous save files
+        GameObject[] objs = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in objs)
+        {
+            if (obj.name == "RunButtonPrefab(Clone)")
+            {
+                Transform deleteButtonTransform = obj.transform.Find("DeleteRunButton");
+                Button deleteButton = deleteButtonTransform.GetComponent<Button>();
+                deleteButton.onClick.Invoke();
+            }
+
+        }
+        // Create new run and click on it
+        yield return new WaitForSeconds(1);
+        GameObject createRun = GameObject.Find("CreateNewRunButton");
+        createRun.GetComponent<Button>().onClick.Invoke();
+        yield return new WaitForSeconds(4);
+        GameObject saveButton = GameObject.Find("RunButtonPrefab(Clone)");
+        saveButton.GetComponent<Button>().onClick.Invoke();
+        yield return null;
+
+        // Select character
+        SceneManager.LoadScene("CharacterSelect", LoadSceneMode.Single);
+        yield return null;
+        GameObject archerButton = GameObject.Find("CharacterButton1");
+        archerButton.GetComponent<Button>().onClick.Invoke();
+        yield return null;
+        yield return new WaitForSeconds(1);
+
+        //Teleport player to portal and check if in lust after
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject portal = GameObject.Find("LimboPortal");
+        player.transform.position = new Vector3(10.5f, 0, 0);
+        yield return new WaitForSeconds(3);
+        Assert.AreEqual("Lust", SceneManager.GetActiveScene().name);
+    }
+
+    // Tanush
+    [UnityTest]
+    public IEnumerator CheckIfWarriorSpawns()
+    {
+        SceneManager.LoadScene("CharacterSelect", LoadSceneMode.Single);
+        yield return null;
+        Assert.AreEqual(GameObject.FindWithTag("Player"), null);
+        yield return new WaitForSeconds(1);
+        GameObject archerButton = GameObject.Find("CharacterButton2");
+        archerButton.GetComponent<Button>().onClick.Invoke();
+        yield return new WaitForSeconds(1);
+        Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
+        Assert.AreEqual(GameObject.FindWithTag("Player").name, "WarriorVariant(Clone)");
+    }
 }

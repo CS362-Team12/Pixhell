@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2d: {fileID: 0}
-  damage: 50
+  damage: 40
 --- !u!212 &2861225151024968904
 SpriteRenderer:
   m_ObjectHideFlags: 0

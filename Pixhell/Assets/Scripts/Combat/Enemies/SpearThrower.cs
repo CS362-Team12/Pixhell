@@ -22,7 +22,7 @@ public class SpearThrower : Enemy
         Vector3 relativePos = transform.position - player.transform.position;
         angle = Mathf.Atan2(relativePos.x, relativePos.y);
         speed = 1.1f;
-        max_health *= 2;
+        max_health *= 1.75f;
         health = max_health;
     }
     private IEnumerator AttackCoroutine()
@@ -37,7 +37,7 @@ public class SpearThrower : Enemy
         Vector2 spawnPosition = transform.position + new Vector3(0, -.07f);
         GameObject projectileObject = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
         EnemyProjectile projectile = projectileObject.GetComponent<EnemyProjectile>();
-        projectile.Launch(direction, 10f);
+        projectile.Launch(direction, 9f);
     }
 
     public override void Attack() {

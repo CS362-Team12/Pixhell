@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 8572317475000366003}
   - component: {fileID: 2223985703466966044}
   - component: {fileID: 5818024595955806521}
+  - component: {fileID: 5354771500778516618}
   m_Layer: 13
   m_Name: HealerObject
   m_TagString: Enemy
@@ -487,8 +488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036da5f360da73b48852286f4994908d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 100
-  health: 100
   facingRight: 1
   is_boss: 0
   boss_name: 
@@ -501,6 +500,33 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: bfe596b2c34d81544a0b602387e12523, type: 3}
   distanceCharged: 0
   healCircle: {fileID: 4627103214006155261, guid: 5964862b4ee6b604692057c8cf06d973, type: 3}
+--- !u!50 &5354771500778516618
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085792645026659305}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8520794106074805314
 GameObject:
   m_ObjectHideFlags: 0

@@ -408,7 +408,6 @@ public class Enemy : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
         var target = other.GetComponent<PlayerController>(); 
-        Debug.Log("Collision!");
         if (target != null && !is_dead)
         {
             target.TakeDamage(collisionDamage);

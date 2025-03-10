@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 4241939201859382658}
   - component: {fileID: 5992755629056484718}
   - component: {fileID: 3820512279499490653}
+  - component: {fileID: 5183784949280319252}
   m_Layer: 13
   m_Name: LustObject
   m_TagString: Enemy
@@ -302,8 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec1c0782dc5bb548b5238ddecd85cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 1000
-  health: 100
   facingRight: 1
   is_boss: 1
   boss_name: Lust
@@ -372,6 +371,33 @@ PolygonCollider2D:
       - {x: 0.07126768, y: 0.06910271}
       - {x: -0.011740735, y: 0.14912888}
   m_UseDelaunayMesh: 0
+--- !u!50 &5183784949280319252
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408544262164514203}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7697498912902055304
 GameObject:
   m_ObjectHideFlags: 0

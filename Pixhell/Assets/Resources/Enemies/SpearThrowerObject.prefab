@@ -178,7 +178,7 @@ MonoBehaviour:
   boss_name: 
   coinLevel: 2
   animator: {fileID: 6117230430567463084}
-  XPDrop: {fileID: 6435735731593564780, guid: ba270b76166b75a4da4d62416591b734, type: 3}
+  XPDrop: {fileID: 6435735731593564780, guid: d42347e861da3694f9abe4338beb5e4c, type: 3}
   DamageText: {fileID: 5642332321407825152, guid: c4054678bef875d4fae95e208b43f594, type: 3}
   healthBar: {fileID: 8340975827215675443}
   player_hp: {fileID: 3714172238136729998, guid: f038c1216934efa4689017aea0cfcc4d, type: 3}

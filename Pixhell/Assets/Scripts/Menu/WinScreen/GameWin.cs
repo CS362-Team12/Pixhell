@@ -12,6 +12,9 @@ public class GameWin : MonoBehaviour
 
     string[] circles = {"Limbo", "Lust", "Gluttony", "Greed", "Wrath", "Heresy", "Violence", "Fraud", "Treachery"};
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip victorySound;
+
     void Start()
     {
         Debug.Log("HIDING GAME WIN");
@@ -23,6 +26,10 @@ public class GameWin : MonoBehaviour
     public void OnGameWin()
     {
         gameObject.SetActive(true);
+        if (victorySound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySoundEffect(victorySound, 0.3f);
+        }
         StartCoroutine(UpdateText());
     }
 

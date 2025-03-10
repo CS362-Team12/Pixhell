@@ -20,7 +20,9 @@ public class ChainLightning : MonoBehaviour
 
     private int single_spawn;
 
-    
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip chainLightningSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,6 +54,11 @@ public class ChainLightning : MonoBehaviour
                 Instantiate(beenStruck, other.gameObject.transform);
 
                 target.TakeDamage(damage);
+
+                if (chainLightningSound != null && AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySoundEffect(chainLightningSound, 0.03f);
+                }
 
                 animator.StopPlayback();
                 collider.enabled = false;

@@ -2689,6 +2689,7 @@ MonoBehaviour:
   sceneNumber: 1
   isActiveImage: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
   notActiveImage: {fileID: -6554754374259841135, guid: be7c4856a4c8cbe4697ccb993e6fae65, type: 3}
+  teleportSound: {fileID: 8300000, guid: 13a569e63c5f7594ea60b2c01495a15f, type: 3}
 --- !u!61 &1631073179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3155,6 +3156,7 @@ MonoBehaviour:
   sceneNumber: 2
   isActiveImage: {fileID: 345652184, guid: ef5179509157c494b81f1bfe15dd94d1, type: 3}
   notActiveImage: {fileID: -6554754374259841135, guid: be7c4856a4c8cbe4697ccb993e6fae65, type: 3}
+  teleportSound: {fileID: 8300000, guid: 13a569e63c5f7594ea60b2c01495a15f, type: 3}
 --- !u!61 &1737622324
 BoxCollider2D:
   m_ObjectHideFlags: 0

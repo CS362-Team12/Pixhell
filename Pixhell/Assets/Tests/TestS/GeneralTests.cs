@@ -57,6 +57,15 @@ public class GeneralTests : MonoBehaviour
         Assert.AreNotEqual(GameObject.FindWithTag("Player"), null);
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "MageVariant(Clone)");
     }
+
+    //Brendan 
+    public IEnumerator CheckIfLustPauseWorks()
+    {
+        SceneManager.LoadScene("Lust", LoadSceneMode.Single);
+        yield return null;
+        Assert.AreEqual(GameObject.FindWithTag("PauseController"), null);
+        yield return new WaitForSeconds(.5);
+    }
     // Chris
     [UnityTest]
     public IEnumerator CheckIfLimboLoads()

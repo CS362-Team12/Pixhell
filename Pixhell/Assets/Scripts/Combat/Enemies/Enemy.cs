@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    protected float max_health = 150.0f;
-    protected float health = 150.0f;
+    protected float max_health = 120.0f;
+    protected float health = 120.0f;
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;

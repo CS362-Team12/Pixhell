@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    protected float max_health = 100.0f;
-    protected float health = 100.0f;
+    protected float max_health = 120.0f;
+    protected float health = 120.0f;
     protected float speed = 1.0f;
     protected float collisionDamage = 25.0f;
     public bool facingRight = true;
@@ -216,7 +216,7 @@ public class Enemy : MonoBehaviour
             return false;
         }
         // Move a little faster than normal, since we're reseting state timers
-        var step = speed*Time.deltaTime*1.4f;
+        var step = speed*Time.deltaTime*1.7f;
         animator.SetBool("is_moving", true);
 
         // Add random panic offset so enemies don't stack

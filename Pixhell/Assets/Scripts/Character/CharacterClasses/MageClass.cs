@@ -12,8 +12,6 @@ public class MageClass : PlayerController
     float special_1_time;
     bool special_1_on_cooldown = false;
     
-
-
     float special_2_cooldown = 10f;
     float special_2_time;
     bool special_2_on_cooldown = false;

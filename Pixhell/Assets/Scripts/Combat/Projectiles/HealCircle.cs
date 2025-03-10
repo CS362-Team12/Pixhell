@@ -4,7 +4,7 @@ using static GameConstants;
 
 public class HealCircle : MonoBehaviour
 {
-    float healAmount = .1f;
+    float healAmount = .15f;
     float healTicks = 6;
     float healTime = 1.5f;
     private Collider2D collider;

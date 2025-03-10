@@ -43,6 +43,14 @@ public class GeneralTests : MonoBehaviour
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "ArcherVariant(Clone)");
     }
 
+    // Joshua
+    [UnityTest]
+    public IEnumerator CheckIfDEBUGIsOff()
+    {
+        yield return new WaitForSeconds(.5f); 
+        Assert.AreEqual(GameObject.Find("DebugObject(Clone)"), null);
+    }
+    
     // James
     [UnityTest]
     public IEnumerator TestRunSelectCreateButton()
@@ -82,7 +90,6 @@ public class GeneralTests : MonoBehaviour
         else {
             Assert.AreEqual(newCount - 1, count);
         }
-        
     }
 
     // Brendan
@@ -100,6 +107,45 @@ public class GeneralTests : MonoBehaviour
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "MageVariant(Clone)");
     }
 
+    //Brendan 
+    [UnityTest]
+    public IEnumerator CheckIfLustPauseWorks()
+    {
+        SceneManager.LoadScene("Lust", LoadSceneMode.Single);
+        yield return null;
+        Assert.AreEqual(GameObject.FindWithTag("PauseController"), null);
+        yield return new WaitForSeconds(.5f);
+    }
+
+    // Chris
+    [UnityTest]
+    public IEnumerator CheckIfLimboLoads()
+    {
+        yield return LoadSceneAndCheck("Limbo");
+    }
+
+    // Chris
+    [UnityTest]
+    public IEnumerator CheckIfLustLoads()
+    {
+        yield return LoadSceneAndCheck("Lust");
+    }
+
+    private IEnumerator LoadSceneAndCheck(string sceneName)
+    {
+        // Load scene asynchronously
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+        // Wait until the scene is fully loaded
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        // Check if the active scene is the one we loaded
+        Assert.AreEqual(sceneName, SceneManager.GetActiveScene().name, $"Scene {sceneName} failed to load.");
+    }
+    
     // Max
     [UnityTest]
     public IEnumerator TestStartButtonTriggersSound()
@@ -209,3 +255,4 @@ public class GeneralTests : MonoBehaviour
         Assert.AreEqual(GameObject.FindWithTag("Player").name, "WarriorVariant(Clone)");
     }
 }
+

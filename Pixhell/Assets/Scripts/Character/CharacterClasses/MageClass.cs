@@ -6,6 +6,7 @@ public class MageClass : PlayerController
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject projectilePrefab;
+    private float aoe_mult = 1.0f;
 
     float special_1_cooldown = 15f;
     float special_1_time;
@@ -97,11 +98,15 @@ public class MageClass : PlayerController
                 Vector2 direction = ((Vector2)(mousePosition - transform.position)).normalized;
                 GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * .15f, Quaternion.identity);
                 MageProjectile projectile = projectileObject.GetComponent<MageProjectile>();
-                projectile.Launch(direction, 6.5f, projectile_speed_mult, damage, damage_mult);
+                projectile.Launch(direction, 6.5f, projectile_speed_mult, damage, damage_mult, aoe_mult);
             }
         }
     }
 
+    public void UpdateAreaOfEffect(float multIncrase) {
+        aoe_mult += multIncrase;
+    }
+    
     protected void Special1()
     {
         if ((!SprintAction.IsPressed() && !DodgeAction.IsPressed())

@@ -2,7 +2,7 @@
 
 ## Names and Roles:
 
-Joshua Knowles \- SCM, Deadline Management, Upgrade Design  
+Joshua Knowles \- SCM, Deadline Management, Upgrade Design and Development, Programmer
 Brendan Laus \- Item Design, Map Design, Sound Design, Programmer  
 Max Russell \- Sound Manager, Programmer  
 James Osborn \- Enemy Design, Menu Mechanics and Transitions, Programmer  
@@ -236,10 +236,14 @@ Toolset Justification:
 * We chose Unity for its powerful 2D development capabilities and extensive library of assets, which will help streamline game development. Additionally, due to the lack of experience among the teammates on any single game development platform, Unity’s simple learning curve greatly benefits our team with our strict deadline, by bringing almost all aspects of game development to one place.
 
 Team Roles Justification:  
-	Joshua Knowles \- SCM, Deadline Management, Upgrade Design
+	Joshua Knowles \- SCM, Deadline Management, Upgrade Design and Development, Programmer
 
-* Every project needs an SCM to manage deadlines, version control, documentation, and overall keep the team connected and knowledgeable. Without the SCM, team members may not know what to do to be productive and work may be wasted if something worked on is no longer needed.   
+* Every project needs an SCM to manage deadlines, version control, documentation, and overall keep the team connected and knowledgeable. Without the SCM, team members may not know what to do to be productive and work may be wasted if something worked on is no longer needed. 
 * Having a specific person dedicated to managing deadlines also ensures that things will get turned in on time and that work is done based on its priority.
+* Design and implement the upgrade system so that upgrades are balanced and provide variety to every run
+* Design enemy baseplate, allowing for easy duplication to eliminate time waste
+* Test and merge branches to eliminate as many bugs on main as possible and deal with conflicts between different branches. 
+
 
 Brendan Laus \- Map Design and minor help with Sound Design
 
@@ -689,6 +693,12 @@ To ensure that the user experience is smooth and comprehensive, Pixhell will inc
    The Help Menu will be available at all times inside the game alongside where settings will be.
 
 ### Reflections
+
+**Joshua Knowles**
+One thing I learned was that oftentimes the hardest part about any project is starting it. We had a really hard time getting the project started because most of us weren’t sure how to start. However, once we got started, things generally started moving a bit quicker. In the future, I would ensure to either start the project myself so that others can get a place to work off of, or be more direct with delegating work early on so that people have direction in what to work on near the beginning of the project.
+One other thing that I learned was that working in a group can be extremely frustrating. People don’t always tell the truth, they don’t always get their work done on time, and they don’t always communicate with the group. If I could do this project differently, I would be more assertive in my delegation, as I gave too much trust to my group members to be able to get the work done on their own. 
+One thing that went well was managing branches and PRs. While we had a few branches that went wild, a large majority of our branches were merged cleanly, with most of the issues stemming from Unity not always meshing with git/github. This is one thing that I would have kept the same if doing the project again; having one SCM manage most of the merges (besides their own) so that one person has a good idea of all of the progress and can more easily deal with merge conflicts that arise. 
+
 
 **Chris Dutton**
 

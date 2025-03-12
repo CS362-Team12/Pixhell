@@ -253,10 +253,19 @@ Max Russell \- Sound Manager, Programmer
 * Develops audio elements throughout the game and assists in designing stages for thematic consistency.  
 * Sound design and general stage appearance is important for the player’s enjoyment of any game and makes this game more memorable and unique.
 
-James Osborn \- Enemy Design, Menu Mechanics and Transitions, Programmer
+James Osborn \- Enemy Design, Menu Mechanics and Transitions, Data Storage Coordinator, Item Creator, Programmer
 
 * Will bring the core elements of the gameplay together through the menu and lobby, making the game playable.  
-* Add variety through character items for replayability
+  * Includes a starting menu, run selection screen, item shop UI, pause menu, and win screen  
+* Add variety through character items for replayability  
+  * Includes both implementing inventory system for players and sprites and behaviors for items  
+* Add enemy AI with unique attack patterns  
+* Create link between arenas and portals  
+  * Will include locking and unlocking portals depending on player progression  
+* Program walls to keep players and enemies within the arena  
+* Implement backend file storage system for all player data, allowing for multiple run saves at a time  
+  * Will include a run selection screen where players can choose to add or delete run saves  
+* Implement dynamic data storage system that continuously updates during gameplay
 
 Tanush Ojha \- Art Manager, Movement, Enemy Design, Programmer
 

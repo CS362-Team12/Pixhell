@@ -392,10 +392,6 @@ Feedback:
 
 ## 
 
-## Risks
-
-Our greatest potential risk would be picking a project that is far too large for our group size. Other potential risks include meshing everyone’s work while maintaining a clear and effective theme/style for the project. To help combat these issues, we will prioritize frequent and honest communication that focuses on work quality and open communication. Aside from this, we will set clear checkpoints for each weekly meeting, this will help us not only keep pace but check our goals to see how realistic our goals are.
-
 ## Main Goals
 
 * Eight arenas of increasing difficulty, with one mini-boss and a final boss. Beating the final boss of an arena unlocks the next one. The ninth and final arena is a single final boss  
@@ -585,27 +581,23 @@ I looked through multiple style guidelines for C\# and this one stood out as the
 
 ## Process Description
 
-### Risk Assessment
+### Risks
 
 1. **Scope Creep:**  
    1. Adding too many features beyond our initial plan can result in delays and being unable to fully finish the project in a timely manner.  
 2. **Technical Challenges:**  
    1. Issues can arise when attempting to program in collision detection or performance optimization, especially as we all are not too familiar with Unitys game engine.
-3. **Time Management:**  
-   1. We all have our other classes that we have to attend to and as we are all CS majors, everyone of us has big coding projects to attend to. If we do not balance it well we could come down to the last seconds of the project.  
-4. **Team Coordination:**  
-   1. Communication breakdowns i.e. improperly communicated objectives, ideas or goals. There can also be uneven workload distribution between the members that can cause development to slow.  
-5. **Bugs and Debugging:**  
+3. **Bugs and Debugging:**  
    1. As most of us are inexperienced with the 2d Unity game engine, bugs and logic errors will come about and be a significant challenge for us to fix. We have already seen bugs and are working hard to fix them.
-6. **Level Layout:**  
+4. **Level Layout:**  
    1. Complex 2D level designs like in Lust and Gluttony might cause player or enemy clipping through walls if Unity’s tilemap colliders aren’t aligned properly, risking stuck characters or unreachable areas.
-7. **Game Balancing:**  
+5. **Game Balancing:**  
    1. Boss mechanics could be too hard or too easy if health, damage, or timing isn’t calibrated, disrupting the intended difficulty curve. Balancing character stats might lead to unpredictable difficulty spikes if damage or health values aren’t tuned properly in playtesting.
-8. **Character Swapping Bugs:**  
+6. **Character Swapping Bugs:**  
    1. Swapping between characters in CharacterSelect could carry over incorrect stats or abilities if PlayerController isn’t fully reset, leading to gameplay inconsistencies.
-9. **Level Unlock Dependency:**  
+7. **Level Unlock Dependency:**  
    1. If a boss defeat in one circle (e.g., Lust) fails to update GameManager.maxArena, players could be locked out of the subsequent circle (Gluttony), halting progression entirely.
-10. **Projectile Misses:**
+8. **Projectile Misses:**
     1. Player-fired projectiles (e.g., arrows, mage attacks) might pass through enemies if 2D collision layers or hitbox sizes in prefabs are misconfigured.
 
 ### Project Schedule

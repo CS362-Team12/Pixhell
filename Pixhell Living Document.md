@@ -8,7 +8,7 @@ Max Russell \- Sound Manager, Programmer
 James Osborn \- Enemy Design, Menu Mechanics and Transitions, Programmer  
 Tanush Ojha \- Art Manager, Movement, Enemy Design, Programmer  
 Kiet Bui \- Character Design, Art Design, Sound Design, Programmer  
-Chris Dutton \- Design Manager, Level Design, Programmer
+Chris Dutton \- Character Development, Programmer
 
 ## Links:
 

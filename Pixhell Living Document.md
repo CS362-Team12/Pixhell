@@ -241,12 +241,17 @@ Team Roles Justification:
 * Every project needs an SCM to manage deadlines, version control, documentation, and overall keep the team connected and knowledgeable. Without the SCM, team members may not know what to do to be productive and work may be wasted if something worked on is no longer needed.   
 * Having a specific person dedicated to managing deadlines also ensures that things will get turned in on time and that work is done based on its priority.
 
-Brendan Laus \- Item Design, Map Design, Sound Design, Programmer
+Brendan Laus \- Map Design and minor help with Sound Design
 
-* Look into and implement effective 2d map creation elements that provide both visually appealing elements as well as effective gameplay variation if applicable  
-* Research and create items that will provide meaningful and understandable changes to gameplay that improve playability and synergize with certain builds  
-* Aiding others with general design on core gameplay elements, especially as they relate to both map design and potential items to be implemented.  
-* Each of the roles above will be massively important to this game, as both items and maps will provide key elements of the replayability appeal that Pixhell is striving for. 
+* Created custom tile palettes to then layer 2d tilemaps to provide physical depth and variety while avoiding potential texture meshing issues
+* Created custom wall prefabs to enable proper collisions and logical map boundaries
+* Researching Dante’s inferno to create and implement a design grounded in the themes and descriptions provided in his epic
+* Utilized the descriptions above to fully create and organize the Limbo visuals (except for the portals and item shop) as well as all of the Lust visuals
+* Aided Max on the creation and implementation of Gluttony
+* Aiding others with general design on core gameplay elements, especially as they relate to both map design and potential items to be implemented.
+* Each of the roles above will be important to this game, as maps will host the player and enemies at all times, so both texture size, design, and coloration will be important in creating a curated experience.
+
+
 
 Max Russell \- Sound Manager, Programmer
 

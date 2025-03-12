@@ -279,10 +279,16 @@ Kiet Bui \- Character Design, Art Design, Sound Design, Programmer
 * Create arts and music, which allows the user to experience what the world inside the game looks and sounds like.  
 * Putting animation for characters and enemies gives the game life.
 
-Chris Dutton \- Design Manager, Level Design, Programmer
+Chris Dutton \- Character Development, Programmer
+* Create a polymorphic class that can allow for easy control of all unique characters added to the game.
+* Develops three unique characters that fit into the overarching theme of the game
+* Implement projectiles for both enemies and the characters
+* Design hit boxes for characters that are fair and balanced
+* Add Hit boxes for enemy and characters that allow for smooth detection of damage
+* Create logic for health packs that the character can pick up from an enemy that has died
+* Animated the warrior character.
+* Designed the ability for a user to select and properly load each individual character
 
-* Makes sure all design elements fit the backdrop of the game   
-* Ensures that levels have a challenge and fit within the games universe
 
 Schedule for each member:  
 Design

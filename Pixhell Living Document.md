@@ -405,9 +405,6 @@ Feedback:
 * Implement sound design to make the game pop, both through sound effects and music  
 * Add in-depth lore and story element
 
-## Team Info
-See top of document
-
 ## Timeline
 
 Week 1: Get the basics worked out on what our game should be and look like  
@@ -499,17 +496,17 @@ Week 10: Publish the finished product.
 
 1. Scenes
 
-	Scenes in Unity are self-contained environments that store the game’s visual and functional elements. They are used to organize different aspects of the game, such as menus, lobbies, and gameplay arenas.
+   Scenes in Unity are self-contained environments that store the game’s visual and functional elements. They are used to organize different aspects of the game, such as menus, lobbies, and gameplay arenas.
 
-Functionality:  
-Separates UI elements from gameplay mechanics.  
-Loads different parts of the game depending on the player’s progression.
+   Functionality:  
+   Separates UI elements from gameplay mechanics.  
+   Loads different parts of the game depending on the player’s progression.
 
-Key Scenes:  
-Main Menu: Displays options like new game, load game, and settings.  
-Run Loading Screen: Handles transitions between game states.  
-Lobby: A hub where players can prepare before entering an arena.  
-Arenas: The core gameplay environments where combat and progression take place.
+   Key Scenes:  
+   Main Menu: Displays options like new game, load game, and settings.  
+   Run Loading Screen: Handles transitions between game states.  
+   Lobby: A hub where players can prepare before entering an arena.  
+   Arenas: The core gameplay environments where combat and progression take place.
 
 2. UI Management  
    Handles user interactions, scene transitions, and HUD updates.  
@@ -695,7 +692,7 @@ One thing that went well was managing branches and PRs. While we had a few branc
 
 **Chris Dutton**
 
-* The lesson that I learned the hardest was why it is important to make constant commits and ensure that each person knows who is working on what so they do not collide. There was a point where I had 8 hours of work not uploaded to the github and it caused major commit errors when I did finally push it. It took an entire day of github fixes to get the changes I had made integrated properly into the full game. 
+The lesson that I learned the hardest was why it is important to make constant commits and ensure that each person knows who is working on what so they do not collide. There was a point where I had 8 hours of work not uploaded to the github and it caused major commit errors when I did finally push it. It took an entire day of github fixes to get the changes I had made integrated properly into the full game. 
 I also learned that people can not be fully trusted to do work on their own when they say they will. I need to be able to manage my group better and constantly instruct individuals to make sure all tasks are finished in a timely manner.
 One positive that I was able to bring from this project as a whole was that I learned a lot about reading documentation and how to overcome challenges in programming. A lot of unity is really well documented. Every function that can be used has at least a paragraph of text that comes with it and learning to skim and read the functions to be able to understand how it works made me much better understand how documentation works in this industry.
 
@@ -709,7 +706,7 @@ This project was incredibly informative for me, especially in how I handle stres
 
 **Max Russell**
 
-* One of the most important lessons I learned from this project involved getting better at learning new tools or software. Unity is not a simple tool by any means and figuring out the basics, nonetheless the audio system, was a steep climb; I had to be very adaptable. I’ve learned a lot about Unity and C# scripting throughout this process. Another big lesson I learned from this project was utilizing all of the resources available to me. I used my teammates, youtube tutorials, and many websites to implement and polish my additions to the game. Possibly the biggest lesson I learned was prioritization and time management. Balancing a group project with regular homework assignments, all while juggling multiple other CS classes made for a challenging term from start to finish, and I feel like I have improved at managing such stress and can learn a lot about starting early and staying late, especially in a group setting.
+One of the most important lessons I learned from this project involved getting better at learning new tools or software. Unity is not a simple tool by any means and figuring out the basics, nonetheless the audio system, was a steep climb; I had to be very adaptable. I’ve learned a lot about Unity and C# scripting throughout this process. Another big lesson I learned from this project was utilizing all of the resources available to me. I used my teammates, youtube tutorials, and many websites to implement and polish my additions to the game. Possibly the biggest lesson I learned was prioritization and time management. Balancing a group project with regular homework assignments, all while juggling multiple other CS classes made for a challenging term from start to finish, and I feel like I have improved at managing such stress and can learn a lot about starting early and staying late, especially in a group setting.
 
 **Kiet Bui**
 

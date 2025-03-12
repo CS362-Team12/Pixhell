@@ -23,13 +23,13 @@ Note: Due to difficulites getting markdown images to show up in a reasonable amo
 - The player enters a new stage or enters a boss fight (stage boss or final boss) and dynamic music starts
   - Fully Implmented and functional. Background music is dynamic based on game state
 - The player completes the first level by defeating its final boss and the next arena is unlocked
-  - This needs to be slightly adjusted on the doc, but this is hypothetically implemented
+  - Fully implemented
 - The player collects enough EXP to level up and is allowed to select a new upgrade
   - Implemented and working fully
-- Interact with the NPCs and have dialogue
-  - Not Implemented and likely to be scrapped for a new Use Case
-- Hitting shift while controlling the character causes the character to dodge roll
-  - Implemented and working fully, but needs to be slightly changed to hitting "spacebar" instead of "shift"
+- Pressing ability button uses an ability
+  - Fully implemented and working
+- Hitting space while controlling the character causes the character to dodge roll
+  - Implemented and working
 
 
 Trello: https://trello.com/b/1FqZ28jJ/pt12pixhell <br>

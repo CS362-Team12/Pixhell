@@ -67,146 +67,146 @@ Games are a huge source of fun and a way for people to escape from their regular
 ## Use Cases (Functional Requirements)
 
 1.  Joshua Knowles  
-   1. Actors: Player  
-   2. Triggers: Left clicking while controlling the character  
-   3. Preconditions:   
-      1. The player has entered the game  
-      2. The player is not in a menu  
-      3. The player is not in a loading zone  
-      4. The player is not currently on their attack cooldown  
-         1. The player can not attack on every frame  
-   4. Postconditions:   
-      1. A player attack animation is played  
-      2. Enemies in the range of the attack get damaged  
-      3. A attack cooldown is triggered where the player can not attack again until it ends  
-   5. List of Steps:   
-      1. The player enters the game and chooses a character to play  
-      2. The player left clicks once in control of their character  
-         1. The player can attack in the lobby. There are no enemies to attack, but the animation takes place.   
-      3. An attack has been performed, and enemy damage has been processed.   
-      4. The player may attack again when the attack cooldown has ended  
-   6. Extensions/Variations:   
-      1. Each character has a variation  
-         1. Specific characters may vary in setup. Specific character design is not fleshed out, so this section will be complete when it is  
-   7. Failure:   
-      1. The player tries to attack when not in control of the character \- Nothing happens  
-      2. The player tries to attack when on their attack cooldown \- Nothing Happens  
+   * Actors: Player  
+   * Triggers: Left clicking while controlling the character  
+   * Preconditions:   
+      * The player has entered the game  
+      * The player is not in a menu  
+      * The player is not in a loading zone  
+      * The player is not currently on their attack cooldown  
+         * The player can not attack on every frame  
+   * Postconditions:   
+      * A player attack animation is played  
+      * Enemies in the range of the attack get damaged  
+      * A attack cooldown is triggered where the player can not attack again until it ends  
+   * List of Steps:   
+      * The player enters the game and chooses a character to play  
+      * The player left clicks once in control of their character  
+         * The player can attack in the lobby. There are no enemies to attack, but the animation takes place.   
+      * An attack has been performed, and enemy damage has been processed.   
+      * The player may attack again when the attack cooldown has ended  
+   * Extensions/Variations:   
+      * Each character has a variation  
+         * Specific characters may vary in setup. Specific character design is not fleshed out, so this section will be complete when it is  
+   * Failure:   
+      * The player tries to attack when not in control of the character \- Nothing happens  
+      * The player tries to attack when on their attack cooldown \- Nothing Happens  
 2. Brendan Laus  
-1. Actors: Player, Map elements, and Sound system
-2. Triggers: 
-   The player character's hitbox colliding with a map selection trigger
-3. Preconditions: 
-   Completion of previous maps (if applicable)
-   The player interacts with the corresponding portal
-4. Postconditions: 
-   The new map loads in with its dependencies
-   The character spawns in an appropriate location on the new map
-   The new map’s music begins to play
-5. List of Steps: 
-   1. The player character will move toward the desired map trigger (portal)
-   2. The player character’s hitbox collides with the new map trigger
-   3. The game checks that the character is eligible to play on the new map
-   4. The new map gets loaded
-   5. Old and unnecessary assets get dropped while the map loads with its associated dependencies
-   6. The player spawns into the new map at a designated spawn point
-   7. The correct map music begins to play
-6. Extensions/Variations: 
-   Each map will be accessible only through its corresponding portal
-   Each map will have different spawn points, visuals, and the proper soundtracks.
-7. Failure: 
-   If the player is ineligible to go to a given level, the portal for that level will not teleport the player at all
+   * Actors: Player, Map elements, and Sound system 
+   * Triggers: 
+      * The player character's hitbox colliding with a map selection trigger 
+   * Preconditions: 
+      * Completion of previous maps (if applicable) 
+      * The player interacts with the corresponding portal 
+   * Postconditions: 
+      * The new map loads in with its dependencies
+      * The character spawns in an appropriate location on the new map
+      * The new map’s music begins to play
+   * List of Steps: 
+      * The player character will move toward the desired map trigger (portal)
+      * The player character’s hitbox collides with the new map trigger
+      * The game checks that the character is eligible to play on the new map
+      * The new map gets loaded
+      * Old and unnecessary assets get dropped while the map loads with its associated dependencies
+      * The player spawns into the new map at a designated spawn point
+      * The correct map music begins to play
+   * Extensions/Variations: 
+      * Each map will be accessible only through its corresponding portal
+      * Each map will have different spawn points, visuals, and the proper soundtracks.
+   * Failure: 
+      * If the player is ineligible to go to a given level, the portal for that level will not teleport the player at all
 
 3.  Max Russell  
-   1. Actors: Player, Sound System  
-   2. Triggers: The player enters a new stage or enters a boss fight.  
-   3. Preconditions: The stage or boss fight has been loaded and the sound system is already initialized and functioning.  
-   4. Postconditions: The background music changes based on the specific event triggered or new location entered.  
-   5. List of Steps:   
-      1. The game detects the player has entered a new stage or has transitioned into a boss fight.  
-      2. The sound system prepares the corresponding music for the new encounter.  
-      3. The previous music stops and is replaced with the new track.  
-      4. The player hears the matching music integrated with what they are experiencing in terms of gameplay (boss music, lobby music).  
-   6. Extensions/Variations:   
-      1. In the main menu, a unique theme track plays.  
-      2. The music is intensified (faster BPM) if the player is critically low on health.
-   7. Failure:   
-      1. A file might be corrupted or missing entirely meaning there is just silence during gameplay. This could be avoided by having a default track to play in the event that there is not one already set)  
-      2. Tracks might lag or stutter. This could be avoided by pre-loading music assets ahead of time.  
+   * Actors: Player, Sound System  
+   * Triggers: The player enters a new stage or enters a boss fight.  
+   * Preconditions: The stage or boss fight has been loaded and the sound system is already initialized and functioning.  
+   * Postconditions: The background music changes based on the specific event triggered or new location entered.  
+   * List of Steps:   
+      * The game detects the player has entered a new stage or has transitioned into a boss fight.  
+      * The sound system prepares the corresponding music for the new encounter.  
+      * The previous music stops and is replaced with the new track.  
+      * The player hears the matching music integrated with what they are experiencing in terms of gameplay (boss music, lobby music).  
+   * Extensions/Variations:   
+      * In the main menu, a unique theme track plays.  
+      * The music is intensified (faster BPM) if the player is critically low on health.
+   * Failure:   
+      * A file might be corrupted or missing entirely meaning there is just silence during gameplay. This could be avoided by having a default track to play in the event that there is not one already set)  
+      * Tracks might lag or stutter. This could be avoided by pre-loading music assets ahead of time.  
 4.  James Osborn  
    The player moves from the first level to the second.  
-   1. Actors: Player, Shopkeeper  
-   2. Triggers: The player completes the first level by defeating its final boss  
-   3. Preconditions: The player has obtained powerful enough items to complete the first level and has beaten it, and talks to the shopkeeper  
-   4. Postconditions: The player enters level two  
-   5. List of Steps:   
-      1. The player beats the final boss of the first arena.  
-      2. The player exits the arena and goes to the lobby.  
-      3. The player walks over to the shopkeeper to obtain the key to arena two’s portal.  
-      4. The player uses the key to open the portal.  
-      5. The player enters the portal to start arena two.  
-   6. Extensions/Variations:  
-      1. If the player has already picked up the key from the shopkeeper previously, they can just walk straight over to the portal and open it.  
-      2. If the player has already opened the portal, they can enter the portal immediately without talking to the shopkeeper or opening the portal.  
-   7. Failure:   
-      1. The player attempts to get the key from the shopkeeper without completing arena one.  
-      2. The player attempts to use the key on the wrong portal.  
+   * Actors: Player, Shopkeeper  
+   * Triggers: The player completes the first level by defeating its final boss  
+   * Preconditions: The player has obtained powerful enough items to complete the first level and has beaten it, and talks to the shopkeeper  
+   * Postconditions: The player enters level two  
+   * List of Steps:   
+      * The player beats the final boss of the first arena.  
+      * The player exits the arena and goes to the lobby.  
+      * The player walks over to the shopkeeper to obtain the key to arena two’s portal.  
+      * The player uses the key to open the portal.  
+      * The player enters the portal to start arena two.  
+   * Extensions/Variations:  
+      * If the player has already picked up the key from the shopkeeper previously, they can just walk straight over to the portal and open it.  
+      * If the player has already opened the portal, they can enter the portal immediately without talking to the shopkeeper or opening the portal.  
+   * Failure:   
+      * The player attempts to get the key from the shopkeeper without completing arena one.  
+      * The player attempts to use the key on the wrong portal.  
 5.  Tanush Ojha  
-   1. Actors: Player, Enemies  
-   2. Triggers: The player collects enough EXP to level up  
-   3. Preconditions: The player is in an arena, the player has killed enough enemies to level up, enemies drop EXP  
-   4. Postconditions: The player gets to choose a level-up reward, level-up reward is correctly applied and works, EXP count resets, MAX exp increases  
-   5. List of Steps:   
-      1. Player levels up  
-      2. Game ‘pauses’ and level-up screen comes on  
-      3. Player selects the level up reward  
-      4. Level-up screen disappears and game is ‘unpaused’  
-      5. Player can use level up reward, or is correctly applied  
-      6. Level-up reward is reset on level fail or completion (upon level exit)  
-   6. Extensions/Variations:   
-      1. Player can get level up reward twice for additional boost, or a extension of the skill previously gained  
-      2. If player achieves all level up rewards, only money is gained  
-   7. Failure:   
-      1. Player doesn’t choose any level up reward  
-      2. Levelup screen pops up before level up  
-      3. Reward is not correctly given to player  
+   * Actors: Player, Enemies  
+   * Triggers: The player collects enough EXP to level up  
+   * Preconditions: The player is in an arena, the player has killed enough enemies to level up, enemies drop EXP  
+   * Postconditions: The player gets to choose a level-up reward, level-up reward is correctly applied and works, EXP count resets, MAX exp increases  
+   * List of Steps:   
+      * Player levels up  
+      * Game ‘pauses’ and level-up screen comes on  
+      * Player selects the level up reward  
+      * Level-up screen disappears and game is ‘unpaused’  
+      * Player can use level up reward, or is correctly applied  
+      * Level-up reward is reset on level fail or completion (upon level exit)  
+   * Extensions/Variations:   
+      * Player can get level up reward twice for additional boost, or a extension of the skill previously gained  
+      * If player achieves all level up rewards, only money is gained  
+   * Failure:   
+      * Player doesn’t choose any level up reward  
+      * Levelup screen pops up before level up  
+      * Reward is not correctly given to player  
 6.  Kiet Bui  
-   1. Actors: Player, NPCs  
-   2. Triggers: Interact with the NPCs  
-   3. Preconditions: Player is in the lobby, NPCs are present  
-   4. Postconditions: Player enters a screen where you can talk to the NPCs with multiple dialogue options.  
-   5. List of Steps:   
-      1. Player talks to the NPCs by using the interact key.  
-      2. A dialogue screen is displayed.  
-      3. Player choose one of many dialogue options.  
-      4. Player exits the dialogue screen by clicking on the “x” button or finishing the dialogue.  
-      5. That NPC is no longer able to be interacted with anymore.  
-   6. Extensions/Variations:  
-      1. Players can get rewards if they choose a certain dialogue option.  
-      2. Players can get punished if they choose certain dialogue options i.e the player gets debuffs.  
-   7. Failure:   
-      1. Player attempts to talk to NPCs again but can’t. Pop up saying the NPC has already been talked to.  
+   * Actors: Player, NPCs  
+   * Triggers: Interact with the NPCs  
+   * Preconditions: Player is in the lobby, NPCs are present  
+   * Postconditions: Player enters a screen where you can talk to the NPCs with multiple dialogue options.  
+   * List of Steps:   
+      * Player talks to the NPCs by using the interact key.  
+      * A dialogue screen is displayed.  
+      * Player choose one of many dialogue options.  
+      * Player exits the dialogue screen by clicking on the “x” button or finishing the dialogue.  
+      * That NPC is no longer able to be interacted with anymore.  
+   * Extensions/Variations:  
+      * Players can get rewards if they choose a certain dialogue option.  
+      * Players can get punished if they choose certain dialogue options i.e the player gets debuffs.  
+   * Failure:   
+      * Player attempts to talk to NPCs again but can’t. Pop up saying the NPC has already been talked to.  
 7.  Chris Dutton  
-   1. Actors: Player  
-   2. Triggers: Hitting shift while controlling the character  
-   3. Preconditions:  
-      1. The player is in a level  
-      2. The player is not in a menu  
-      3. The player is not in a loading zone  
-      4. The dodge cooldown is not currently active  
-   4. Postconditions:  
-      1. A dodge roll animation is played out  
-      2. Invincibility frames are gained for half the duration of the roll animation  
-      3. A dodge roll cool down is activated for 1 second to ensure roll is not able to  constantly abused for invincible frames  
-   5. List of Steps:  
-      1. The player enters a level  
-      2. The player shift clicks when they have control of their character  
-      3. The dodge roll is initiated and invincible frames are given to the player  
-      4. A cooldown is applied to the shift ability   
-   6. Extensions/Variations:  
-      1. The activation of the animation allows for the player to jump over small projectiles before invincibility frames are activated   
-   7. Failure:  
-      1. The player attempts to use the dodge roll ability while it is on cooldown and it does not go off  
-      2. The player presses shift while not in control of the menu and nothing happens
+   * Actors: Player  
+   * Triggers: Hitting shift while controlling the character  
+   * Preconditions:  
+      * The player is in a level  
+      * The player is not in a menu  
+      * The player is not in a loading zone  
+      * The dodge cooldown is not currently active  
+   * Postconditions:  
+      * A dodge roll animation is played out  
+      * Invincibility frames are gained for half the duration of the roll animation  
+      * A dodge roll cool down is activated for 1 second to ensure roll is not able to  constantly abused for invincible frames  
+   * List of Steps:  
+      * The player enters a level  
+      * The player shift clicks when they have control of their character  
+      * The dodge roll is initiated and invincible frames are given to the player  
+      * A cooldown is applied to the shift ability   
+   * Extensions/Variations:  
+      * The activation of the animation allows for the player to jump over small projectiles before invincibility frames are activated   
+   * Failure:  
+      * The player attempts to use the dodge roll ability while it is on cooldown and it does not go off  
+      * The player presses shift while not in control of the menu and nothing happens
 
 ## Non-functional Requirement
 

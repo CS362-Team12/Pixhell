@@ -170,21 +170,21 @@ Games are a huge source of fun and a way for people to escape from their regular
       * Levelup screen pops up before level up  
       * Reward is not correctly given to player  
 6.  Kiet Bui  
-   * Actors: Player, NPCs  
-   * Triggers: Interact with the NPCs  
-   * Preconditions: Player is in the lobby, NPCs are present  
-   * Postconditions: Player enters a screen where you can talk to the NPCs with multiple dialogue options.  
+   * Actors: Player
+   * Triggers: Pressing ability button
+   * Preconditions: 
+      * Player character is loaded
+      * Ability is off cooldown
+   * Postconditions: Ability is used
    * List of Steps:   
-      * Player talks to the NPCs by using the interact key.  
-      * A dialogue screen is displayed.  
-      * Player choose one of many dialogue options.  
-      * Player exits the dialogue screen by clicking on the “x” button or finishing the dialogue.  
-      * That NPC is no longer able to be interacted with anymore.  
+      * Player press an ability button
+      * Ability is triggered depends on the class
+      * Ability buff, debuff, or damage and enemy
+      * Ability is on cooldown
    * Extensions/Variations:  
-      * Players can get rewards if they choose a certain dialogue option.  
-      * Players can get punished if they choose certain dialogue options i.e the player gets debuffs.  
+      * Ultimate where you need to charge it instead of time based
    * Failure:   
-      * Player attempts to talk to NPCs again but can’t. Pop up saying the NPC has already been talked to.  
+      * Player tried to use an ability but it is on cooldown, nothing happens.  
 7.  Chris Dutton  
    * Actors: Player  
    * Triggers: Hitting shift while controlling the character  

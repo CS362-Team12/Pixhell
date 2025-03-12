@@ -2,7 +2,7 @@
 
 ## Names and Roles:
 
-Joshua Knowles \- SCM, Deadline Management, Upgrade Design and Development, Programmer
+Joshua Knowles \- SCM, Deadline Management, Upgrade Design and Development, Programmer  
 Brendan Laus \- Item Design, Map Design, Sound Design, Programmer  
 Max Russell \- Sound Manager, Programmer  
 James Osborn \- Enemy Design, Menu Mechanics and Transitions, Programmer  
@@ -695,6 +695,7 @@ To ensure that the user experience is smooth and comprehensive, Pixhell will inc
 ### Reflections
 
 **Joshua Knowles**
+
 One thing I learned was that oftentimes the hardest part about any project is starting it. We had a really hard time getting the project started because most of us weren’t sure how to start. However, once we got started, things generally started moving a bit quicker. In the future, I would ensure to either start the project myself so that others can get a place to work off of, or be more direct with delegating work early on so that people have direction in what to work on near the beginning of the project.
 One other thing that I learned was that working in a group can be extremely frustrating. People don’t always tell the truth, they don’t always get their work done on time, and they don’t always communicate with the group. If I could do this project differently, I would be more assertive in my delegation, as I gave too much trust to my group members to be able to get the work done on their own. 
 One thing that went well was managing branches and PRs. While we had a few branches that went wild, a large majority of our branches were merged cleanly, with most of the issues stemming from Unity not always meshing with git/github. This is one thing that I would have kept the same if doing the project again; having one SCM manage most of the merges (besides their own) so that one person has a good idea of all of the progress and can more easily deal with merge conflicts that arise. 

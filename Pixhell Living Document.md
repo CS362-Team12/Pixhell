@@ -582,8 +582,8 @@ I looked through multiple style guidelines for C\# and this one stood out as the
    1. Swapping between characters in CharacterSelect could carry over incorrect stats or abilities if PlayerController isn’t fully reset, leading to gameplay inconsistencies.
 9. **Level Unlock Dependency:**  
    1. If a boss defeat in one circle (e.g., Lust) fails to update GameManager.maxArena, players could be locked out of the subsequent circle (Gluttony), halting progression entirely.
-10. **Projectile Misses:**  
-   1. Player-fired projectiles (e.g., arrows, mage attacks) might pass through enemies if 2D collision layers or hitbox sizes in prefabs are misconfigured.
+10. **Projectile Misses:**
+    1. Player-fired projectiles (e.g., arrows, mage attacks) might pass through enemies if 2D collision layers or hitbox sizes in prefabs are misconfigured.
 
 ### Project Schedule
 

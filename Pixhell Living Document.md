@@ -118,17 +118,17 @@ Games are a huge source of fun and a way for people to escape from their regular
 
 3.  Max Russell  
    1. Actors: Player, Sound System  
-   2. Triggers: The player enters a new stage or enters a boss fight (stage boss or final boss).  
+   2. Triggers: The player enters a new stage or enters a boss fight.  
    3. Preconditions: The stage or boss fight has been loaded and the sound system is already initialized and functioning.  
    4. Postconditions: The background music changes based on the specific event triggered or new location entered.  
    5. List of Steps:   
       1. The game detects the player has entered a new stage or has transitioned into a boss fight.  
       2. The sound system prepares the corresponding music for the new encounter.  
-      3. The previous music fades away and is replaced with the new track.  
-      4. The player hears the matching music integrated with what they are experiencing in terms of gameplay.  
+      3. The previous music stops and is replaced with the new track.  
+      4. The player hears the matching music integrated with what they are experiencing in terms of gameplay (boss music, lobby music).  
    6. Extensions/Variations:   
-      1. During loading screens or in the hub/main area, ambient (elevator) music plays.  
-      2. The music is intensified (faster BPM) if the player’s health gets critically low.  
+      1. In the main menu, a unique theme track plays.  
+      2. The music is intensified (faster BPM) if the player is critically low on health.
    7. Failure:   
       1. A file might be corrupted or missing entirely meaning there is just silence during gameplay. This could be avoided by having a default track to play in the event that there is not one already set)  
       2. Tracks might lag or stutter. This could be avoided by pre-loading music assets ahead of time.  

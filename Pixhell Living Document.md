@@ -682,3 +682,10 @@ To ensure that the user experience is smooth and comprehensive, Pixhell will inc
       2. Quick and accessible explanations for mechanics
 
    The Help Menu will be available at all times inside the game alongside where settings will be.
+
+### Reflections
+
+Chris Dutton
+The lesson that I learned the hardest was why it is important to make constant commits and ensure that each person knows who is working on what so they do not collide. There was a point where I had 8 hours of work not uploaded to the github and it caused major commit errors when I did finally push it. It took an entire day of github fixes to get the changes I had made integrated properly into the full game. 
+I also learned that people can not be fully trusted to do work on their own when they say they will. I need to be able to manage my group better and constantly instruct individuals to make sure all tasks are finished in a timely manner.
+One positive that I was able to bring from this project as a whole was that I learned a lot about reading documentation and how to overcome challenges in programming. A lot of unity is really well documented. Every function that can be used has at least a paragraph of text that comes with it and learning to skim and read the functions to be able to understand how it works made me much better understand how documentation works in this industry.

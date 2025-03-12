@@ -653,11 +653,11 @@ To see the overall update to roles, check the top of this document, where the ro
 
 We will isolate and test each small change to the game software as required. These different requirements and testing implementations will be listed below:
 
-Mechanics:  
-Game mechanics will be tested in a mostly empty map with an enemy, the player character, and whatever additional hazards the character will frequently interact with. There will also be a custom item spawner to test different components and how they interact with each other. This means that each new element can be tested as it relates to the standard gameplay loop. This enables us to see if the desired mechanical change will properly affect the player, enemies, and whatever items may relate to it.
+Mechanics:
+For our mechanics, we would run them through a testing and debug script, which would ensure that all necessary elements exist in the right screen. Once the mechanics pass these tests, we will then playtest and tweak each element as we go to ensure that each ability has reasonable values associated with it, be it damage, cooldown, or otherwise.
 
-Items:  
-Items will follow the same path, primarily being spawned into this test world. This will allow us to isolate item effects and see how they change the player’s movement, health, damage, attacks, and any additional impacted core game mechanics. This will permit us to see potential edge cases, as well as how each item feels to use, and permit minor changes to be made and allow us to see how these changes impact gameplay.
+Items:
+Items will follow a similar path, with them first being run through the applicable script, which will test to ensure that it is incorporated into the right scene and is accessible to the player through the proper actions. After this, each item will have multiple elements to adjust, notably price and damage/speed modifiers, each of which will be adjusted directly in the code base until it feels right for the expected game stage it will be acquired in.
 
 Maps:  
 Maps will be a bit tougher to isolate given elements, so we will mostly be trying to test out individual maps while incrementally adding the designated features of said map. For example, the circle of greed will first have its basic shape and structure implemented and tested. This would mean that the foundation of the map would be tested, and then any additional unique features would be tested after. The final test of any map will be the enemy entities since these will likely be the most difficult to effectively balance. But by testing all other elements of a given map first, we will be able to see how the map feels to play before adding and changing the enemy code.

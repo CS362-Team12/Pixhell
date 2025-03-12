@@ -92,31 +92,30 @@ Games are a huge source of fun and a way for people to escape from their regular
       1. The player tries to attack when not in control of the character \- Nothing happens  
       2. The player tries to attack when on their attack cooldown \- Nothing Happens  
 2. Brendan Laus  
-   1. Actors: Player, Map elements, and Sound system  
-   2. Triggers:   
-      1. The player character's hitbox colliding with a map selection trigger  
-   3. Preconditions:   
-      1. Completion of previous maps (if applicable)  
-      2. The new map trigger is currently occupied by the player  
-   4. Postconditions:   
-      1. The loading screen is displayed   
-      2. The new map loads in with its dependencies  
-      3. The character spawns in an appropriate location on the new map  
-      4. The new map’s music begins to play  
-   5. List of Steps:   
-      1. The player character will move toward the desired map  
-      2. The player character’s hitbox collides with the new map trigger  
-      3. The game checks that the character is eligible to play on the new map  
-      4. After a successful check, a confirmation screen is displayed  
-      5. Upon final conformation, the loading screen displays  
-      6. Old and unnecessary assets get dropped while the map loads with its associated dependencies  
-      7. The player spawns into the new map at a designated spawn point  
-      8. The correct map music begins to play  
-   6. Extensions/Variations:   
-      1. Each different map will have a different trigger the character will need to access.   
-      2. Each map will have different spawn points, visuals, and the proper soundtracks.  
-   7. Failure:   
-      1. If the player doesn’t pass the eligibility check, there will be a pop-up informing them that they need to complete certain tasks to unlock the level they attempted to access and they will not be permitted to go to the next map.  
+1. Actors: Player, Map elements, and Sound system
+2. Triggers: 
+   The player character's hitbox colliding with a map selection trigger
+3. Preconditions: 
+   Completion of previous maps (if applicable)
+   The player interacts with the corresponding portal
+4. Postconditions: 
+   The new map loads in with its dependencies
+   The character spawns in an appropriate location on the new map
+   The new map’s music begins to play
+5. List of Steps: 
+   1. The player character will move toward the desired map trigger (portal)
+   2. The player character’s hitbox collides with the new map trigger
+   3. The game checks that the character is eligible to play on the new map
+   4. The new map gets loaded
+   5. Old and unnecessary assets get dropped while the map loads with its associated dependencies
+   6. The player spawns into the new map at a designated spawn point
+   7. The correct map music begins to play
+6. Extensions/Variations: 
+   Each map will be accessible only through its corresponding portal
+   Each map will have different spawn points, visuals, and the proper soundtracks.
+7. Failure: 
+   If the player is ineligible to go to a given level, the portal for that level will not teleport the player at all
+
 3.  Max Russell  
    1. Actors: Player, Sound System  
    2. Triggers: The player enters a new stage or enters a boss fight (stage boss or final boss).  
